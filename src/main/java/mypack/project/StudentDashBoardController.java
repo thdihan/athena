@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import userPack.Student;
 import userPack.User;
 
 import java.io.IOException;
@@ -17,6 +18,8 @@ public class StudentDashBoardController {
 
 
     private User currentUser; //this object will contain the email, pass and type of the user for querying
+
+    private Student currentStudent;
 
     @FXML
     private Button course_btn;
@@ -47,6 +50,13 @@ public class StudentDashBoardController {
 
     @FXML
     private Label semester_view;
+    public Student getCurrentStudent() {
+        return currentStudent;
+    }
+
+    public void initiateCurrentStudent(){
+
+    }
 
     public User getCurrentUser() {
         return currentUser;
@@ -54,7 +64,16 @@ public class StudentDashBoardController {
 
     public void initiateStudentUser(User newUser) {
         currentUser = newUser;
+        DbUtilities dbUtilities=new DbUtilities();
+        currentStudent=dbUtilities.getStudentInfo(currentUser.getEmail());
+
+        //putting the values in labels
         email_view.setText(currentUser.getEmail());
+        fullname_view.setText(currentStudent.getName());
+        dob_view.setText(currentStudent.getDob().toString());
+        dept_view.setText(currentStudent.getDept());
+        id_view.setText(currentStudent.getId());
+        semester_view.setText(currentStudent.getSemester());
     }
 
     @FXML

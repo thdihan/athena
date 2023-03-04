@@ -1,5 +1,7 @@
 package mypack.project;
 
+import userPack.Student;
+
 import java.sql.*;
 
 public class DbUtilities {
@@ -190,6 +192,28 @@ public class DbUtilities {
         } finally {
             preparedStatement.close();
             resultSet.close();
+        }
+    }
+
+    public Student getStudentInfo(String email){
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String query = "select * from student where s_email=?";
+        try{
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+//                System.out.println(resultSet.getString(3));
+                    Student temp=new Student(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),resultSet.getString(4),resultSet.getString(5), resultSet.getDate(6), resultSet.getString(7));
+                    return  temp;
+            } else {
+                return null;
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
