@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0008cb82-a2d4-41e7-a5eb-54ed76d549cc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/teachersUI/teacherDashBoard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/teachersUI/teacherDashBoard.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +18,20 @@
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "D:/PROJECT/PROJECT/src/main/resources/mypack/teachersUI",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PROJECT\PROJECT\src\main\resources\mypack\teachersUI" />
+    </key>
   </component>
   <component name="TaskManager">
     <servers />

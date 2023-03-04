@@ -15,7 +15,10 @@ public class Main extends Application {
 
     public void initiateTables() throws SQLException {
         DbUtilities dbUtilities=new DbUtilities();
-        dbUtilities.initiateUserTable();
+        dbUtilities.initiateTablesWithQuery();
+
+
+
     }
 
     @Override
