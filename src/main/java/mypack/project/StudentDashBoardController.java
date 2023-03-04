@@ -59,13 +59,12 @@ public class StudentDashBoardController {
 
     @FXML
     void courseBtnClicked(ActionEvent event) {
-
+        /*-------------Need to check if the student table has courses registered or not---------*/
     }
 
-    @FXML
-    void logoutBtnClicked(ActionEvent event) throws IOException {
+    void changeSceneInDashboard(ActionEvent event, String fxml) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("loginPage.fxml"));
+        loader.setLocation(getClass().getResource(fxml));
         Parent root = loader.load();
 
         Scene afterLoginScene = new Scene(root);
@@ -75,9 +74,17 @@ public class StudentDashBoardController {
         window.show();
     }
 
+    /*--------------may need to pass the user object for querying--------------*/
     @FXML
-    void progressBtnClicked(ActionEvent event) {
+    void logoutBtnClicked(ActionEvent event) throws IOException {
 
+        changeSceneInDashboard(event, "loginPage.fxml");
+    }
+
+    @FXML
+    void progressBtnClicked(ActionEvent event) throws IOException {
+//        System.out.println(currentUser.getEmail()); //works
+        changeSceneInDashboard(event, "academicProgress.fxml");
     }
 
     @FXML
