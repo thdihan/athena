@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79192387-80f2-4550-abae-986fef7b9c59" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegPage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/registeredCourses.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/academicProgress.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/loginPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/loginPage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +88,7 @@
       <workItem from="1677864019199" duration="493000" />
       <workItem from="1677864694438" duration="1412000" />
       <workItem from="1677870092476" duration="492000" />
-      <workItem from="1677901830813" duration="5247000" />
+      <workItem from="1677901830813" duration="6523000" />
     </task>
     <servers />
   </component>
