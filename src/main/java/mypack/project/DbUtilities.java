@@ -12,8 +12,7 @@ public class DbUtilities {
             conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + dbName, user, pass);
             if (conn != null) {
                 System.out.println("Connection Established");
-            }
-            else{
+            } else {
                 System.out.println("Connection Failed");
             }
         } catch (Exception e) {
@@ -23,21 +22,21 @@ public class DbUtilities {
     }
 
     public void initiateUserTable() throws SQLException {
-        Statement statement=null;
+        Statement statement = null;
 //        ResultSet resultSet=null;
-        String dropQuery="drop table if exists users";
-        String createTableQuery="create table users(\n" +
+        String dropQuery = "drop table if exists users";
+        String createTableQuery = "create table users(\n" +
                 "\temail text,\n" +
                 "\tpassword text,\n" +
                 "\ttype varchar(10),\n" +
                 "\tconstraint pk_users primary key (email)\n" +
                 ");";
-        String userQuery1="insert into users values ('shakun650@gmail.com', 'tukasl', 's')";
-        String userQuery2="insert into users values ('hasan123@gmail.com', 'tukas', 's')";
-        String userQuery3="insert into users values ('jamal234@gmail.com', 'tuka', 't')";
-        try{
-            Connection connection=connectToDB("projectDb", "postgres", "tukasl");
-            statement=connection.createStatement();
+        String userQuery1 = "insert into users values ('shakun650@gmail.com', 'tukasl', 's')";
+        String userQuery2 = "insert into users values ('hasan123@gmail.com', 'tukas', 's')";
+        String userQuery3 = "insert into users values ('jamal234@gmail.com', 'tuka', 't')";
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            statement = connection.createStatement();
 
             statement.executeUpdate(dropQuery);
             statement.executeUpdate(createTableQuery);
@@ -53,33 +52,55 @@ public class DbUtilities {
     }
 
     //this function queries the userinput and checks the password with database
-    public boolean loginNow(String user, String pass) throws SQLException{
-        PreparedStatement preparedStatement=null;
-        ResultSet resultSet=null;
-        String query="select * from users where email=? and password=?";
+    public boolean loginNow(String user, String pass) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String query = "select * from users where email=? and password=?";
         try {
-            Connection connection=connectToDB("projectDb", "postgres", "tukasl");
-            preparedStatement=connection.prepareStatement(query);
-            preparedStatement.setString(1,user);
-            preparedStatement.setString(2,pass);
-            resultSet=preparedStatement.executeQuery();
-            if(resultSet.next()){
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, user);
+            preparedStatement.setString(2, pass);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
             System.out.println("Exception thrown in login");
             return false;
-        }
-        finally {
+        } finally {
             preparedStatement.close();
             resultSet.close();
         }
     }
 
+    public String getUserType(String email) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String query = "select * from users where email=?";
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+//                System.out.println(resultSet.getString(3));
+                return resultSet.getString(3);
+            } else {
+                return null;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error getting user type");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+    }
 
 
 }
