@@ -280,29 +280,31 @@ public class DbUtilities {
     }
 
 
-//    public ArrayList<Courses> getRegisteredCourses(String id) throws SQLException {
-//        PreparedStatement preparedStatement = null;
-//        ResultSet resultSet = null;
-//        String query = "select * from Student_takes_course where s_id=?";
-//        ArrayList<Courses> courses= new ArrayList<>();
-//        int count=0;
-//        try {
-//            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
-//            preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setString(1, id);
-//            resultSet = preparedStatement.executeQuery();
-//            while(resultSet.next()){
-//                courses.add(new Courses(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getDouble(5)));
-//            }
-//            return  courses;
-//        } catch (SQLException e) {
-//            System.out.println("Exception getting offered courses");
-//            throw new RuntimeException(e);
-//        } finally {
-//            preparedStatement.close();
-//            resultSet.close();
-//        }
-//    }
+    public ArrayList<Courses> getRegisteredCourses(String id, String semester) throws SQLException {
+
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String query = "select course_code, course_title, dept, offered_dept, course_credit from courses , (select s_coursecode, s_courseoffereddept from Student_takes_course where s_id=? and semester=?) sub where s_coursecode=course_code and s_courseoffereddept=offered_dept;";
+        ArrayList<Courses> courses= null;
+
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, id);
+            preparedStatement.setString(2, semester);
+            resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+
+                courses.add(new Courses(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getDouble(5)));
+            }
+
+            return  courses;
+        } catch (SQLException e) {
+            System.out.println("Exception getting registered courses");
+            throw new RuntimeException(e);
+        }
+    }
 
 
 

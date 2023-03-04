@@ -9,11 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import userPack.Courses;
 import userPack.Student;
 import userPack.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class StudentDashBoardController {
 
@@ -83,7 +85,26 @@ public class StudentDashBoardController {
     @FXML
     void courseBtnClicked(ActionEvent event) throws SQLException, IOException {
         /*-------------Need to check if the student table has courses registered or not---------*/
-        changeSceneInDashboard(event, "courseRegPage.fxml", "regpage");
+        DbUtilities dbUtilities =new DbUtilities();
+        ArrayList<Courses> registered_course=dbUtilities.getRegisteredCourses(currentStudent.getId(), currentStudent.getSemester());
+        if(registered_course==null) {
+            changeSceneInDashboard(event, "courseRegPage.fxml", "regpage");
+        }
+        else {
+//            changeSceneInDashboard(event, "registeredCourses.fxml", "regdone");
+            RegisteredCoursesController registeredCoursesController;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("registeredCourses.fxml"));
+            Parent root = loader.load();
+
+            Scene afterLoginScene = new Scene(root);
+
+            registeredCoursesController=loader.getController();
+            registeredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(afterLoginScene);
+            window.show();
+        }
     }
 
     void changeSceneInDashboard(ActionEvent event, String fxml, String choice) throws IOException, SQLException {
@@ -95,6 +116,7 @@ public class StudentDashBoardController {
 
         //declaring all the controller
         CourseRegPageController courseRegPageController;
+        RegisteredCoursesController registeredCoursesController;
 
         if(choice.equals("regpage")){
             courseRegPageController=loader.getController();
@@ -102,9 +124,6 @@ public class StudentDashBoardController {
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(afterLoginScene);
             window.show();
-
-        } else if (choice.equals("regdone")) {
-            System.out.println("Empty registered course controller");
 
         } else if (choice.equals("progress")) {
             System.out.println("Empty progress controller");
