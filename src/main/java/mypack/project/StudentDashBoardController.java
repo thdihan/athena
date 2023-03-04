@@ -13,6 +13,7 @@ import userPack.Student;
 import userPack.User;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class StudentDashBoardController {
 
@@ -35,6 +36,8 @@ public class StudentDashBoardController {
 
     @FXML
     private Label fullname_view;
+
+    @FXML Label side_fullname_view;
 
     @FXML
     private Label id_view;
@@ -62,7 +65,7 @@ public class StudentDashBoardController {
         return currentUser;
     }
 
-    public void initiateStudentUser(User newUser) {
+    public void initiateStudentUser(User newUser) throws SQLException {
         currentUser = newUser;
         DbUtilities dbUtilities=new DbUtilities();
         currentStudent=dbUtilities.getStudentInfo(currentUser.getEmail());
@@ -74,36 +77,67 @@ public class StudentDashBoardController {
         dept_view.setText(currentStudent.getDept());
         id_view.setText(currentStudent.getId());
         semester_view.setText(currentStudent.getSemester());
+        side_fullname_view.setText(currentStudent.getName());
     }
 
     @FXML
-    void courseBtnClicked(ActionEvent event) {
+    void courseBtnClicked(ActionEvent event) throws SQLException, IOException {
         /*-------------Need to check if the student table has courses registered or not---------*/
+        changeSceneInDashboard(event, "courseRegPage.fxml", "regpage");
     }
 
-    void changeSceneInDashboard(ActionEvent event, String fxml) throws IOException {
+    void changeSceneInDashboard(ActionEvent event, String fxml, String choice) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxml));
         Parent root = loader.load();
 
         Scene afterLoginScene = new Scene(root);
 
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(afterLoginScene);
-        window.show();
+        //declaring all the controller
+        CourseRegPageController courseRegPageController;
+
+        if(choice.equals("regpage")){
+            courseRegPageController=loader.getController();
+            courseRegPageController.initiateStudent(currentStudent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(afterLoginScene);
+            window.show();
+
+        } else if (choice.equals("regdone")) {
+            System.out.println("Empty registered course controller");
+
+        } else if (choice.equals("progress")) {
+            System.out.println("Empty progress controller");
+//            courseRegPageController=loader.getController();
+//            courseRegPageController.initiateStudent(currentStudent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(afterLoginScene);
+            window.show();
+
+        } else if (choice.equals("result")) {
+            System.out.println("Empty result controller");
+
+        } else if (choice.equals("logout")) {
+            System.out.println("Logging out");
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(afterLoginScene);
+            window.show();
+        }
+
+
     }
 
     /*--------------may need to pass the user object for querying--------------*/
     @FXML
-    void logoutBtnClicked(ActionEvent event) throws IOException {
+    void logoutBtnClicked(ActionEvent event) throws IOException, SQLException {
 
-        changeSceneInDashboard(event, "loginPage.fxml");
+        changeSceneInDashboard(event, "loginPage.fxml", "logout");
     }
 
     @FXML
-    void progressBtnClicked(ActionEvent event) throws IOException {
+    void progressBtnClicked(ActionEvent event) throws IOException, SQLException {
 //        System.out.println(currentUser.getEmail()); //works
-        changeSceneInDashboard(event, "academicProgress.fxml");
+        changeSceneInDashboard(event, "academicProgress.fxml", "progress");
     }
 
     @FXML
