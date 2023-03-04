@@ -24,7 +24,7 @@ public class Main extends Application {
         Parent root= FXMLLoader.load(getClass().getResource("loginPage.fxml"));
         Scene scene = new Scene(root);
 
-        primaryStage.getIcons().add(new Image("online-learning.png"));
+//        primaryStage.getIcons().add(new Image("online-learning.png"));
         primaryStage.setTitle("Athena: Making student life easier");
         primaryStage.setResizable(false);
 
