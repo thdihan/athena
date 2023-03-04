@@ -30,8 +30,14 @@ public class CourseRegPageController {
             course_box.getChildren().add(option);
         }
     }
+    @FXML
+//    public void registerCourseBtnClicked(ActionEvent event, VBox vBox, Student currentStudent, ArrayList<Courses> offered_courses) throws SQLException {
+//
+//    }
 
-    public void registerCourseBtnClicked(ActionEvent event){
-        
+    public void registerCourseBtnClicked(ActionEvent event) throws SQLException {
+        DbUtilities dbUtilities=new DbUtilities();
+        dbUtilities.registerCourses(course_box, currentStudent, offered_courses);
+        System.out.println("Registered");
     }
 }

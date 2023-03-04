@@ -1,5 +1,7 @@
 package mypack.project;
 
+import javafx.scene.control.CheckBox;
+import javafx.scene.layout.VBox;
 import userPack.Courses;
 import userPack.Student;
 
@@ -110,7 +112,7 @@ public class DbUtilities {
 
 //        Student_takes_course
         tableName = "Student_takes_course";
-        tableQuery = "Create table Student_takes_course(S_ID varchar(20) not null,Student_dept varchar(20), S_coursedept varchar(20), S_coursecode varchar(20),s_courseOfferedDept varchar(20),semester varchar(10),Total_class int not null,Attended_class int not null,Quiz_1 double precision not null,Quiz_2 double precision not null,Quiz_3 double precision not null,Quiz_4 double precision not null,Mis_marks double precision not null,Final_marks double precision not null,CONSTRAINT stc_student Foreign key(S_ID) references student(S_ID),CONSTRAINT stc_course Foreign key(S_coursedept,s_courseOfferedDept,S_coursecode) references Courses(dept,offered_dept,Course_code));";
+        tableQuery = "Create table Student_takes_course(S_ID varchar(20) not null,Student_dept varchar(20), S_coursedept varchar(20), S_coursecode varchar(20),s_courseOfferedDept varchar(20),semester varchar(10),Total_class int not null,Attended_class int not null,Quiz_1 double precision not null,Quiz_2 double precision not null,Quiz_3 double precision not null,Quiz_4 double precision not null,Mid_marks double precision not null,Final_marks double precision not null,CONSTRAINT stc_student Foreign key(S_ID) references student(S_ID),CONSTRAINT stc_course Foreign key(S_coursedept,s_courseOfferedDept,S_coursecode) references Courses(dept,offered_dept,Course_code));";
         initiateAllTable(tableName, tableQuery, insertData);
     }
 
@@ -246,6 +248,37 @@ public class DbUtilities {
             resultSet.close();
         }
     }
+
+    public void registerCourses(VBox vBox, Student currentStudent, ArrayList<Courses>offered_courses) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query = "insert into student_takes_course values(?, ?, ?, ?, ?, ?, 0,0,0,0,0,0,0,0);";
+        try{
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+
+            for(int i=0 ; i<offered_courses.size() ; i++){
+                CheckBox course= (CheckBox) vBox.getChildren().get(i);
+                if(course.isSelected()){
+                    preparedStatement.setString(1, currentStudent.getId());
+                    preparedStatement.setString(2, currentStudent.getDept());
+                    preparedStatement.setString(3,offered_courses.get(i).getDept());
+                    preparedStatement.setString(4, offered_courses.get(i).getCode());
+                    preparedStatement.setString(5, offered_courses.get(i).getOffered_dept());
+                    preparedStatement.setString(6, currentStudent.getSemester());
+                    preparedStatement.executeUpdate();
+                }
+            }
+
+
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        }finally {
+            preparedStatement.close();
+        }
+    }
+
 
 //    public ArrayList<Courses> getRegisteredCourses(String id) throws SQLException {
 //        PreparedStatement preparedStatement = null;
