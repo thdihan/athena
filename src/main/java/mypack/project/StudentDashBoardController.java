@@ -87,7 +87,8 @@ public class StudentDashBoardController {
         /*-------------Need to check if the student table has courses registered or not---------*/
         DbUtilities dbUtilities =new DbUtilities();
         ArrayList<Courses> registered_course=dbUtilities.getRegisteredCourses(currentStudent.getId(), currentStudent.getSemester());
-        if(registered_course==null) {
+//        System.out.println(registered_course);
+        if(registered_course.isEmpty()) {
             changeSceneInDashboard(event, "courseRegPage.fxml", "regpage");
         }
         else {
@@ -101,6 +102,7 @@ public class StudentDashBoardController {
 
             registeredCoursesController=loader.getController();
             registeredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course);
+//            System.out.println(registered_course.get(0).getCode());
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(afterLoginScene);
             window.show();
