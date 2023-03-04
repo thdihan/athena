@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79192387-80f2-4550-abae-986fef7b9c59" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/academicProgress.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/userPack/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,10 +20,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,7 +59,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/PROJECT/PROJECT/src/main/resources/mypack/project",
+    "last_opened_file_path": "E:/JAVA_RELATED/Java_FX/prac/DbLogin - Copy",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -62,6 +68,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "actions.on.save",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>

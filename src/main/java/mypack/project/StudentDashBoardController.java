@@ -4,8 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import userPack.User;
 
 public class StudentDashBoardController {
+
+
+    private User currentUser; //this object will contain the email, pass and type of the user for querying
 
     @FXML
     private Button course_btn;
@@ -36,6 +40,15 @@ public class StudentDashBoardController {
 
     @FXML
     private Label semester_view;
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void initiateStudentUser(User newUser) {
+        currentUser = newUser;
+        email_view.setText(currentUser.getEmail());
+    }
 
     @FXML
     void courseBtnClicked(ActionEvent event) {
