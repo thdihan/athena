@@ -2,9 +2,16 @@ package mypack.project;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import userPack.User;
+
+import java.io.IOException;
 
 public class StudentDashBoardController {
 
@@ -56,8 +63,16 @@ public class StudentDashBoardController {
     }
 
     @FXML
-    void logoutBtnClicked(ActionEvent event) {
+    void logoutBtnClicked(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("loginPage.fxml"));
+        Parent root = loader.load();
 
+        Scene afterLoginScene = new Scene(root);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(afterLoginScene);
+        window.show();
     }
 
     @FXML
