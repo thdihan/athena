@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentDashBoardController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.AcademicProgressController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="main-container" stylesheets="@studentDashBoard.css">
          <children>
@@ -50,7 +50,7 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Label layoutX="124.0" layoutY="233.0" text="FULL NAME" textFill="#efefff">
+                        <Label fx:id="full_name_label" layoutX="124.0" layoutY="233.0" text="FULL NAME" textFill="#efefff">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>

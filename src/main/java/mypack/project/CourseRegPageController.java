@@ -7,10 +7,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import userPack.Courses;
 import userPack.Student;
+import userPack.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,14 +20,21 @@ import java.util.ArrayList;
 
 public class CourseRegPageController {
     Student currentStudent;
+    private User currentUser;
 
     @FXML
     private VBox course_box;
+    @FXML
+    private Label full_name_label;
     ArrayList<Courses> offered_courses;
+    ArrayList<Courses> registered_course;
 
 
-    public void initiateStudent(Student newStudent) throws SQLException {
+    public void initiateStudent(Student newStudent, User user) throws SQLException {
         currentStudent = newStudent;
+        currentUser=user;
+        full_name_label.setText(currentStudent.getName());
+
         DbUtilities dbUtilities = new DbUtilities();
         offered_courses = dbUtilities.getOfferedCourses(currentStudent.getDept());
 
@@ -38,10 +47,6 @@ public class CourseRegPageController {
         }
     }
     @FXML
-//    public void registerCourseBtnClicked(ActionEvent event, VBox vBox, Student currentStudent, ArrayList<Courses> offered_courses) throws SQLException {
-//
-//    }
-
     public void registerCourseBtnClicked(ActionEvent event) throws SQLException, IOException {
         DbUtilities dbUtilities=new DbUtilities();
         ArrayList<Courses>registered_course=dbUtilities.registerCourses(course_box, currentStudent, offered_courses);
@@ -56,11 +61,28 @@ public class CourseRegPageController {
 
         Scene registeredCourseScene = new Scene(root);
         registeredCoursesController=loader.getController();
-        registeredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course);
+        registeredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(registeredCourseScene);
         window.show();
+    }
+
+    public void progressBtnClicked (ActionEvent event) throws SQLException, IOException {
+        StudentDashBoardController studentDashBoardController=new StudentDashBoardController();
+        studentDashBoardController.assignDummyController(currentStudent, registered_course, currentUser);
+        studentDashBoardController.progressBtnClicked(event);
+    }
+    public void courseBtnClicked (ActionEvent event) throws SQLException, IOException {
+        System.out.println("Currently in course registration page");
+    }
+    public void resultBtnClicked (ActionEvent event){
+        System.out.println("Result btn for progress not done");
+    }
+    public void logoutBtnClicked (ActionEvent event) throws SQLException, IOException {
+        StudentDashBoardController studentDashBoardController=new StudentDashBoardController();
+        studentDashBoardController.assignDummyController(currentStudent, registered_course, currentUser);
+        studentDashBoardController.logoutBtnClicked(event);
     }
 
 }
