@@ -27,6 +27,14 @@ public class AcademicProgressController {
         full_name_label.setText(currentStudent.getName());
         //REMAINING: Functionalities of the academic progress
     }
+
+
+    public void dashboardBtnClicked(ActionEvent event) throws IOException,SQLException{
+        StudentDashBoardController studentDashBoardController=new StudentDashBoardController();
+        studentDashBoardController.assignDummyController(currentStudent, registered_course, currentUser);
+        studentDashBoardController.dashboardBtnClicked(event);
+
+    }
     public void progressBtnClicked (ActionEvent event){
         System.out.println("Currently in progress page");
     }

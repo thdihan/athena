@@ -30,3 +30,7 @@
 .registeredCoursesBlock {
     -fx-background-color:#eee;
 }
+
+.login {
+    -fx-background-color: #fff;
+}

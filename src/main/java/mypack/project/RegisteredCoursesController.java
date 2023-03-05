@@ -30,15 +30,29 @@ public class RegisteredCoursesController {
         full_name_label.setText(currentStudent.getName());
 
         for(int i=0 ; i<registered_courses.size() ; i++){
-            Pane pane =new Pane();
+//            Pane pane =new Pane();
+            VBox pane = new VBox();
             VBox vBox=new VBox();
             vBox.setSpacing(2);
             Label course=new Label(registered_courses.get(i).getCode() + ": "+ registered_courses.get(i).getTitle());
+            course.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
             Label credit=new Label("Credits: "+registered_courses.get(i).getCredit().toString());
             vBox.getChildren().addAll(course, credit);
+//            VBox.getMargin(vBox,new Insets(0, 0, 0, 10));
+            pane.setStyle("-fx-padding: 0 0 16px 50px;");
             pane.getChildren().add(vBox);
+
             course_box.getChildren().add(pane);
         }
+
+    }
+
+
+    public void dashboardBtnClicked(ActionEvent event) throws IOException,SQLException{
+        StudentDashBoardController studentDashBoardController=new StudentDashBoardController();
+        studentDashBoardController.assignDummyController(currentStudent, registered_courses, currentUser);
+        studentDashBoardController.dashboardBtnClicked(event);
+
     }
 
     public void progressBtnClicked (ActionEvent event) throws SQLException, IOException {

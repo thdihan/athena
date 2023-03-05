@@ -146,6 +146,14 @@ public class StudentDashBoardController {
             window.setScene(afterLoginScene);
             window.show();
         }
+        else if (choice.equals("studentDashBoard")) {
+            StudentDashBoardController studentDashBoardController;
+            studentDashBoardController = loader.getController();
+            studentDashBoardController.initiateStudentUser(currentUser);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(afterLoginScene);
+            window.show();
+        }
 
 
     }
@@ -155,6 +163,11 @@ public class StudentDashBoardController {
     void logoutBtnClicked(ActionEvent event) throws IOException, SQLException {
 
         changeSceneInDashboard(event, "loginPage.fxml", "logoutPage");
+    }
+
+    void dashboardBtnClicked(ActionEvent event) throws IOException, SQLException {
+
+        changeSceneInDashboard(event, "studentDashBoard.fxml", "studentDashBoard");
     }
 
     @FXML

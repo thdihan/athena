@@ -4,13 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
     <list default="true" id="0008cb82-a2d4-41e7-a5eb-54ed76d549cc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/AcademicProgressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/AcademicProgressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/CourseRegPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/CourseRegPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/RegisteredCoursesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/RegisteredCoursesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/loginImages/online-learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/loginImages/online-learning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/academicProgress.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/academicProgress.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/loginPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/loginPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/registeredCourses.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/registeredCourses.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.fxml" afterDir="false" />
     </list>
-
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
