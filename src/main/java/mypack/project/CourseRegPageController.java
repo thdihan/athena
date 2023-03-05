@@ -49,8 +49,7 @@ public class CourseRegPageController {
 
         RegisteredCoursesController registeredCoursesController;
 
-
-        // ERROR : Button clicked should go to the registeredCourse page and it goes but no data shown. Fix it.
+        
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("registeredCourses.fxml"));
         Parent root = loader.load();
