@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import userPack.Courses;
 import userPack.Student;
+import userPack.User;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,13 +14,15 @@ import java.util.ArrayList;
 public class RegisteredCoursesController {
     @FXML
     private VBox course_box;
+    private User currentUser;
 
     private Student currentStudent;
     private ArrayList<Courses> registered_courses;
 
-    public void initiateRegisteredCourseView(Student student, ArrayList<Courses> courses) throws SQLException {
+    public void initiateRegisteredCourseView(Student student, ArrayList<Courses> courses, User user) throws SQLException {
         currentStudent=student;
         registered_courses=courses;
+        currentUser=user;
 
         for(int i=0 ; i<registered_courses.size() ; i++){
             Pane pane =new Pane();

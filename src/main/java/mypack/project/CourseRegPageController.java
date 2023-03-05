@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import userPack.Courses;
 import userPack.Student;
+import userPack.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,14 +19,18 @@ import java.util.ArrayList;
 
 public class CourseRegPageController {
     Student currentStudent;
+    private User currentUser;
 
     @FXML
     private VBox course_box;
     ArrayList<Courses> offered_courses;
 
 
-    public void initiateStudent(Student newStudent) throws SQLException {
+    public void initiateStudent(Student newStudent, User user) throws SQLException {
         currentStudent = newStudent;
+        currentUser=user;
+//        System.out.println("Hello");
+//        System.out.println(currentStudent.getName());
         DbUtilities dbUtilities = new DbUtilities();
         offered_courses = dbUtilities.getOfferedCourses(currentStudent.getDept());
 
@@ -56,7 +61,7 @@ public class CourseRegPageController {
 
         Scene registeredCourseScene = new Scene(root);
         registeredCoursesController=loader.getController();
-        registeredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course);
+        registeredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(registeredCourseScene);
