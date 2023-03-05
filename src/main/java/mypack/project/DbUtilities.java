@@ -248,9 +248,10 @@ public class DbUtilities {
         }
     }
 
-    public void registerCourses(VBox vBox, Student currentStudent, ArrayList<Courses>offered_courses) throws SQLException {
+    public ArrayList<Courses> registerCourses(VBox vBox, Student currentStudent, ArrayList<Courses>offered_courses) throws SQLException {
         PreparedStatement preparedStatement = null;
         String query = "insert into student_takes_course values(?, ?, ?, ?, ?, ?, 0,0,0,0,0,0,0,0);";
+        ArrayList<Courses> registered_courses=new ArrayList<>();
         try{
             Connection connection = connectToDB("projectDb", "postgres", "tukasl");
             preparedStatement = connection.prepareStatement(query);
@@ -258,6 +259,7 @@ public class DbUtilities {
             for(int i=0 ; i<offered_courses.size() ; i++){
                 CheckBox course= (CheckBox) vBox.getChildren().get(i);
                 if(course.isSelected()){
+                    registered_courses.add(offered_courses.get(i));
                     preparedStatement.setString(1, currentStudent.getId());
                     preparedStatement.setString(2, currentStudent.getDept());
                     preparedStatement.setString(3,offered_courses.get(i).getDept());
@@ -267,6 +269,7 @@ public class DbUtilities {
                     preparedStatement.executeUpdate();
                 }
             }
+            return registered_courses;
 
 
 

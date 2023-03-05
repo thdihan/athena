@@ -23,6 +23,7 @@ public class CourseRegPageController {
     private VBox course_box;
     ArrayList<Courses> offered_courses;
 
+
     public void initiateStudent(Student newStudent) throws SQLException {
         currentStudent = newStudent;
         DbUtilities dbUtilities = new DbUtilities();
@@ -43,8 +44,10 @@ public class CourseRegPageController {
 
     public void registerCourseBtnClicked(ActionEvent event) throws SQLException, IOException {
         DbUtilities dbUtilities=new DbUtilities();
-        dbUtilities.registerCourses(course_box, currentStudent, offered_courses);
+        ArrayList<Courses>registered_course=dbUtilities.registerCourses(course_box, currentStudent, offered_courses);
         System.out.println("Registered");
+
+        RegisteredCoursesController registeredCoursesController;
 
 
         // ERROR : Button clicked should go to the registeredCourse page and it goes but no data shown. Fix it.
@@ -53,6 +56,9 @@ public class CourseRegPageController {
         Parent root = loader.load();
 
         Scene registeredCourseScene = new Scene(root);
+        registeredCoursesController=loader.getController();
+        registeredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course);
+
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(registeredCourseScene);
         window.show();
