@@ -94,7 +94,8 @@ public class StudentDashBoardController {
     @FXML
     void courseBtnClicked(ActionEvent event) throws SQLException, IOException {
         /*-------------Need to check if the student table has courses registered or not---------*/
-        if (registered_course.isEmpty()) {
+        /*-------Added null condition for error checking---------*/
+        if (registered_course==null || registered_course.isEmpty()) {
             changeSceneInDashboard(event, "courseRegPage.fxml", "regPage");
         } else {
             changeSceneInDashboard(event, "registeredCourses.fxml", "regDonePage");

@@ -34,11 +34,6 @@ public class AcademicProgressController {
         StudentDashBoardController studentDashBoardController=new StudentDashBoardController();
         studentDashBoardController.assignDummyController(currentStudent, registered_course, currentUser);
         studentDashBoardController.courseBtnClicked(event);
-//        if (registered_course.isEmpty()) {
-//            studentDashBoardController.changeSceneInDashboard(event, "courseRegPage.fxml", "regPage");
-//        } else {
-//            studentDashBoardController.changeSceneInDashboard(event, "registeredCourses.fxml", "regDonePage");
-//        }
     }
     public void resultBtnClicked (ActionEvent event){
         System.out.println("Result btn for progress not done");
