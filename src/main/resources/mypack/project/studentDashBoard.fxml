@@ -58,7 +58,7 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="dashboardBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="293.0" mnemonicParsing="false" onAction="#courseBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Dashboard" textFill="#efefff">
+                        <Button fx:id="dashboardBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="293.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Dashboard" textFill="#efefff">
                            <font>
                               <Font size="18.0" />
                            </font>

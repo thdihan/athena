@@ -197,7 +197,6 @@ public class StudentDashBoardController {
      * @throws SQLException If problems with query
      */
     void dashboardBtnClicked(ActionEvent event) throws IOException, SQLException {
-
         changeSceneInDashboard(event, "studentDashBoard.fxml", "studentDashBoard");
     }
     /**
