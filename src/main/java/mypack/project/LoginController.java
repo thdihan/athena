@@ -15,6 +15,11 @@ import userPack.User;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/** Controller class for login page
+ * @author Unknown
+ * @version 1.0
+ * @since March,2023
+ */
 public class LoginController {
     //    private User newUser; //this object will store the email, pass and type of the user which will login
     @FXML
@@ -24,6 +29,14 @@ public class LoginController {
     @FXML
     private Label wrongField;
 
+    /**
+     * Function for going from login page to user dashboard
+     * @param fxml Name of the fxml file
+     * @param event Event of login button click
+     * @param loggingUser User object currently logging in
+     * @throws IOException If problems with input/output
+     * @throws SQLException If problems with query
+     */
     public void goToDashBoard(String fxml, ActionEvent event, User loggingUser) throws IOException, SQLException {
 //        this.newUser = loggingUser;
         FXMLLoader loader = new FXMLLoader();
@@ -56,6 +69,10 @@ public class LoginController {
 
     }
 
+    /**
+     * For login authentication of users
+     * @param event Event of login button click
+     */
     public void loginCode(ActionEvent event) {
         try {
             DbUtilities dbUtilities = new DbUtilities();
