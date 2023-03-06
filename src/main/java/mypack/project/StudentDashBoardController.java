@@ -138,44 +138,30 @@ public class StudentDashBoardController {
         if (choice.equals("regPage")) {
             studentCourseRegPageController = loader.getController();
             studentCourseRegPageController.initiateStudent(currentStudent, currentUser);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(afterLoginScene);
-            window.show();
 
         } else if (choice.equals("progressPage")) {
 //            System.out.println("Empty progress controller");
             studentAcademicProgressController =loader.getController();
             studentAcademicProgressController.initiateAcademicProgressView(currentStudent, registered_course, currentUser);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(afterLoginScene);
-            window.show();
 
         } else if (choice.equals("regDonePage")) {
             studentRegisteredCoursesController =loader.getController();
             studentRegisteredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(afterLoginScene);
-            window.show();
 
         } else if (choice.equals("resultPage")) {
             System.out.println("Empty result controller");
 
         } else if (choice.equals("logoutPage")) {
             System.out.println("Logging out");
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(afterLoginScene);
-            window.show();
         }
         else if (choice.equals("studentDashBoard")) {
             StudentDashBoardController studentDashBoardController;
             studentDashBoardController = loader.getController();
             studentDashBoardController.initiateStudentUser(currentUser);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(afterLoginScene);
-            window.show();
         }
-
-
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(afterLoginScene);
+        window.show();
     }
 
     /*--------------may need to pass the user object for querying--------------*/

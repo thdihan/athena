@@ -126,8 +126,8 @@ public class DbUtilities {
 
 //         CourseTakenByTeacher
         tableName = "Teacher_takes_course";
-        tableQuery = "Create table Teacher_takes_course(courseteacher_ID varchar(15) not null,T_coursedept varchar(20), T_coursecode varchar(20),T_OfferedDept varchar(20), semester varchar(10),Foreign key(courseteacher_ID) references Teacher(T_ID),Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
-        tableQuery = "Create table Teacher_takes_course(courseteacher_ID varchar(15) not null,T_coursedept varchar(20), T_coursecode varchar(20),T_OfferedDept varchar(20), semester varchar(10),CONSTRAINT ttc_teacher Foreign key(courseteacher_ID) references Teacher(T_ID),CONSTRAINT ttc_course Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
+//        tableQuery = "Create table Teacher_takes_course(courseteacher_ID varchar(15) not null,T_coursedept varchar(20), T_coursecode varchar(20),T_OfferedDept varchar(20), semester varchar(10),Foreign key(courseteacher_ID) references Teacher(T_ID),Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
+        tableQuery = "Create table Teacher_takes_course(courseteacher_ID varchar(15) not null,T_coursedept varchar(20), T_coursecode varchar(20),T_OfferedDept varchar(20),CONSTRAINT ttc_teacher Foreign key(courseteacher_ID) references Teacher(T_ID));";
         String[] insertData = {};
         initiateAllTable(tableName, tableQuery, insertData);
 
@@ -371,6 +371,38 @@ public class DbUtilities {
         }
     }
 
+    public ArrayList<Courses> registerTeacherCourses(VBox vBox, Teacher currentTeacher, ArrayList<Courses>offered_courses) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query = "insert into teacher_takes_course values(?, ?, ?, ?);";
+        ArrayList<Courses> registered_courses=new ArrayList<>();
+        try{
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+
+            for(int i=0 ; i<offered_courses.size() ; i++){
+                CheckBox course= (CheckBox) vBox.getChildren().get(i);
+                if(course.isSelected()){
+                    registered_courses.add(offered_courses.get(i));
+                    preparedStatement.setString(1, currentTeacher.getId());
+                    preparedStatement.setString(2, currentTeacher.getDept());
+                    preparedStatement.setString(3,offered_courses.get(i).getCode());
+                    preparedStatement.setString(4, offered_courses.get(i).getOffered_dept());
+//                    preparedStatement.setString(6, currentStudent.getSemester());
+                    preparedStatement.executeUpdate();
+                }
+            }
+            return registered_courses;
+
+
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        }finally {
+            preparedStatement.close();
+        }
+    }
+
     /**
      * To get the list registered courses of a student
      * @param id Id of the student
@@ -390,6 +422,32 @@ public class DbUtilities {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, id);
             preparedStatement.setString(2, semester);
+            resultSet = preparedStatement.executeQuery();
+
+
+            while(resultSet.next()){
+//                System.out.println("NOT NULL");
+                courses.add(new Courses(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getDouble(5)));
+            }
+//            System.out.println("NULL");
+            return  courses;
+        } catch (SQLException e) {
+            System.out.println("Exception getting registered courses");
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ArrayList<Courses> getTeacherRegisteredCourses(String id) throws SQLException {
+
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String query = "select course_code, course_title, dept, offered_dept, course_credit from courses , (select t_coursecode, T_OfferedDept from teacher_takes_course where courseteacher_ID=?) sub where t_coursecode=course_code and T_OfferedDept=offered_dept;";
+        ArrayList<Courses> courses= new ArrayList<>();
+
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, id);
             resultSet = preparedStatement.executeQuery();
 
 

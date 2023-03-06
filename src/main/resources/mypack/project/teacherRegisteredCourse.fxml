@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentDashBoardController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.TeacherRegisteredCoursesController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="main-container" stylesheets="@teacherDashBoard.css">
          <children>
@@ -29,7 +29,7 @@
                               </ImageView>
                            </children>
                         </HBox>
-                        <Button fx:id="attendance_btn" alignment="CENTER" layoutX="36.0" layoutY="458.0" mnemonicParsing="false" onAction="#progressBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@teacherDashBoard.css" text="Take Attendance" textFill="#efefff">
+                        <Button fx:id="attendance_btn" alignment="CENTER" layoutX="36.0" layoutY="458.0" mnemonicParsing="false" onAction="#takeAttendanceBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@teacherDashBoard.css" text="Take Attendance" textFill="#efefff">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -49,12 +49,12 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Label layoutX="124.0" layoutY="233.0" text="FULL NAME" textFill="#efefff">
+                        <Label fx:id="full_name_label" layoutX="124.0" layoutY="233.0" text="FULL NAME" textFill="#efefff">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="course_btn1" alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="320.0" mnemonicParsing="false" onAction="#courseBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@teacherDashBoard.css" text="Dashboard" textFill="#efefff">
+                        <Button fx:id="course_btn1" alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="320.0" mnemonicParsing="false" onAction="#dashBoardBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@teacherDashBoard.css" text="Dashboard" textFill="#efefff">
                            <font>
                               <Font size="18.0" />
                            </font>

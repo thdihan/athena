@@ -28,7 +28,7 @@
                               </ImageView>
                            </children>
                         </HBox>
-                        <Button fx:id="attendance_btn" alignment="CENTER" layoutX="36.0" layoutY="458.0" mnemonicParsing="false" onAction="#progressBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@teacherDashBoard.css" text="Take Attendance" textFill="#efefff">
+                        <Button fx:id="attendance_btn" alignment="CENTER" layoutX="36.0" layoutY="458.0" mnemonicParsing="false" onAction="#takeAttendanceBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@teacherDashBoard.css" text="Take Attendance" textFill="#efefff">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -38,7 +38,7 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="marks_btn" alignment="CENTER" layoutX="36.0" layoutY="528.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@teacherDashBoard.css" text="Add Marks" textFill="#efefff">
+                        <Button fx:id="marks_btn" alignment="CENTER" layoutX="36.0" layoutY="528.0" mnemonicParsing="false" onAction="#addMarksBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@teacherDashBoard.css" text="Add Marks" textFill="#efefff">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -53,7 +53,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="course_btn1" alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="320.0" mnemonicParsing="false" onAction="#courseBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@teacherDashBoard.css" text="Dashboard" textFill="#efefff">
+                        <Button fx:id="course_btn1" alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="320.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@teacherDashBoard.css" text="Dashboard" textFill="#efefff">
                            <font>
                               <Font size="18.0" />
                            </font>
