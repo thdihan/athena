@@ -8,9 +8,24 @@ import userPack.Student;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * This class is dedicated solely for database related functions
+ * @author Unknown
+ * @version 1.0
+ * @since March,2023
+ */
+
 public class DbUtilities {
 
     //connection function for database
+
+    /**
+     * For connecting to posgresql database
+     * @param dbName Name of the database
+     * @param user Name of the user
+     * @param pass Password of the user
+     * @return Return the Connection object. Else null if connection failed
+     */
     private Connection connectToDB(String dbName, String user, String pass) {
         Connection conn = null;
         try {
@@ -56,6 +71,11 @@ public class DbUtilities {
 //            throw new RuntimeException(e);
 //        }
 //    }
+
+    /**
+     * To create and initiate data on all the tables of the database
+     * @throws SQLException If problems with query
+     */
     public void initiateTablesWithQuery() throws SQLException {
 
 //         UsersTable
@@ -116,7 +136,16 @@ public class DbUtilities {
         initiateAllTable(tableName, tableQuery, insertData);
     }
 
+    /**
+     * To create a table and insert demo data in it
+     * @param tableName Name of the table
+     * @param createTableQuery Query for creating table
+     * @param insertQuery Query for demo data in created table
+     * @throws SQLException If problems with query
+     */
     public void initiateAllTable(String tableName, String createTableQuery, String[] insertQuery) throws SQLException {
+
+
         Statement statement = null;
 //        ResultSet resultSet=null;
         String dropQuery = "drop table if exists " + tableName;
@@ -149,6 +178,14 @@ public class DbUtilities {
     }
 
     //this function queries the userinput and checks the password with database
+
+    /**
+     * For login authentication of users
+     * @param user Username or email
+     * @param pass Password of the user
+     * @return True if matched. Else return false
+     * @throws SQLException If problems with query
+     */
     public boolean loginNow(String user, String pass) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -174,6 +211,12 @@ public class DbUtilities {
         }
     }
 
+    /**
+     * To get the type of user (teacher, student, admin)
+     * @param email Username or email of the user
+     * @return User type (s for student, t for teacher, a for admin)
+     * @throws SQLException If problems with query
+     */
     public String getUserType(String email) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -199,6 +242,12 @@ public class DbUtilities {
         }
     }
 
+    /**
+     * To get the personal information of a student
+     * @param email Username or email of the student
+     * @return Student object if found. Else return null
+     * @throws SQLException If problems with query
+     */
     public Student getStudentInfo(String email) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -225,6 +274,12 @@ public class DbUtilities {
         }
     }
 
+    /**
+     * To get the list of the offered courses (may need to change based on semester)
+     * @param dept Department which offered the course
+     * @return List of courses if found. Else return empty list
+     * @throws SQLException
+     */
     public ArrayList<Courses> getOfferedCourses(String dept) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -248,6 +303,14 @@ public class DbUtilities {
         }
     }
 
+    /**
+     * For course registration of students
+     * @param vBox Vbox element containing the offered courses
+     * @param currentStudent The student doing the registration
+     * @param offered_courses List of offered courses to the student
+     * @return List of registered course if registration successful. Else return empty list
+     * @throws SQLException If problems with query
+     */
     public ArrayList<Courses> registerCourses(VBox vBox, Student currentStudent, ArrayList<Courses>offered_courses) throws SQLException {
         PreparedStatement preparedStatement = null;
         String query = "insert into student_takes_course values(?, ?, ?, ?, ?, ?, 0,0,0,0,0,0,0,0);";
@@ -281,7 +344,13 @@ public class DbUtilities {
         }
     }
 
-
+    /**
+     * To get the list registered courses of a student
+     * @param id Id of the student
+     * @param semester Semester of the student
+     * @return List of registered courses if registered. Else return empty list
+     * @throws SQLException If problems with query
+     */
     public ArrayList<Courses> getRegisteredCourses(String id, String semester) throws SQLException {
 
         PreparedStatement preparedStatement = null;

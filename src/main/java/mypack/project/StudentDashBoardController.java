@@ -16,7 +16,11 @@ import userPack.User;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+/** Controller class for student dashboard
+ * @author Unknown
+ * @version 1.0
+ * @since March,2023
+ */
 public class StudentDashBoardController {
 
 
@@ -67,6 +71,11 @@ public class StudentDashBoardController {
         return currentUser;
     }
 
+    /**
+     * To initiate the data and personal information of the logged in student
+     * @param newUser
+     * @throws SQLException
+     */
     public void initiateStudentUser(User newUser) throws SQLException {
         currentUser = newUser;
         DbUtilities dbUtilities = new DbUtilities();
@@ -85,12 +94,23 @@ public class StudentDashBoardController {
         registered_course = dbUtilities.getRegisteredCourses(currentStudent.getId(), currentStudent.getSemester());
     }
 
+    /**
+     * This function will be used for creating a dummy controller which will be used to call the onBtnClick functions on other student controllers
+     * @param student Student currently logged in
+     * @param registered_course List of registered courses
+     * @param user User currently logged in
+     */
     public void assignDummyController(Student student, ArrayList<Courses> registered_course, User user){
         currentStudent=student;
         this.registered_course=registered_course;
         currentUser=user;
     }
-
+    /**
+     * Course button click function
+     * @param event Event for course button click
+     * @throws SQLException If problems with query
+     * @throws IOException If problmes with input/output
+     */
     @FXML
     void courseBtnClicked(ActionEvent event) throws SQLException, IOException {
         /*-------------Need to check if the student table has courses registered or not---------*/
@@ -159,26 +179,42 @@ public class StudentDashBoardController {
     }
 
     /*--------------may need to pass the user object for querying--------------*/
+    /**
+     * Logout button click function
+     * @param event Event for logout button clicked
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     @FXML
     void logoutBtnClicked(ActionEvent event) throws IOException, SQLException {
 
         changeSceneInDashboard(event, "loginPage.fxml", "logoutPage");
     }
-
+    /**
+     * Dashboard button click function
+     * @param event Event of button click
+     * @throws IOException If problems with input/output
+     * @throws SQLException If problems with query
+     */
     void dashboardBtnClicked(ActionEvent event) throws IOException, SQLException {
-
         changeSceneInDashboard(event, "studentDashBoard.fxml", "studentDashBoard");
     }
-
+    /**
+     * Progress button click function
+     * @param event Event for progress button click
+     */
     @FXML
     void progressBtnClicked(ActionEvent event) throws IOException, SQLException {
 //        System.out.println(currentUser.getEmail()); //works
         changeSceneInDashboard(event, "academicProgress.fxml", "progressPage");
     }
-
+    /**
+     * Result button click function
+     * @param event Event for result button clicked
+     */
     @FXML
     void resultBtnClicked(ActionEvent event) {
-
+        System.out.println("Result button not assigned");
     }
 
 }

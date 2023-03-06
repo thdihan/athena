@@ -13,6 +13,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/** Controller class for registered course page
+ * @author Unknown
+ * @version 1.0
+ * @since March,2023
+ */
+
 public class RegisteredCoursesController {
     @FXML
     private VBox course_box;
@@ -23,6 +29,13 @@ public class RegisteredCoursesController {
     private Student currentStudent;
     private ArrayList<Courses> registered_courses;
 
+    /**
+     * To initiate the data and registered course view page
+     * @param student Student currently logged in
+     * @param courses List of registered courses
+     * @param user User currenly logged in
+     * @throws SQLException If problems with query
+     */
     public void initiateRegisteredCourseView(Student student, ArrayList<Courses> courses, User user) throws SQLException {
         currentStudent=student;
         registered_courses=courses;
@@ -47,25 +60,47 @@ public class RegisteredCoursesController {
 
     }
 
-
+    /**
+     * Dashboard button click function
+     * @param event Event of button click
+     * @throws IOException If problems with input/output
+     * @throws SQLException If problems with query
+     */
     public void dashboardBtnClicked(ActionEvent event) throws IOException,SQLException{
         StudentDashBoardController studentDashBoardController=new StudentDashBoardController();
         studentDashBoardController.assignDummyController(currentStudent, registered_courses, currentUser);
         studentDashBoardController.dashboardBtnClicked(event);
 
     }
-
+    /**
+     * Progress button click function
+     * @param event Event for progress button click
+     */
     public void progressBtnClicked (ActionEvent event) throws SQLException, IOException {
         StudentDashBoardController studentDashBoardController=new StudentDashBoardController();
         studentDashBoardController.assignDummyController(currentStudent, registered_courses, currentUser);
         studentDashBoardController.progressBtnClicked(event);
     }
-    public void courseBtnClicked (ActionEvent event) throws SQLException, IOException {
+    /**
+     * Function for course button click
+     * @param event
+     */
+    public void courseBtnClicked (ActionEvent event) {
         System.out.println("Currently in course registration page");
     }
+    /**
+     * Result button click function
+     * @param event Event for result button clicked
+     */
     public void resultBtnClicked (ActionEvent event){
         System.out.println("Result btn for progress not done");
     }
+    /**
+     * Logout button click function
+     * @param event Event for logout button clicked
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     public void logoutBtnClicked (ActionEvent event) throws SQLException, IOException {
         StudentDashBoardController studentDashBoardController=new StudentDashBoardController();
         studentDashBoardController.assignDummyController(currentStudent, registered_courses, currentUser);

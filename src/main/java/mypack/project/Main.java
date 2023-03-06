@@ -10,9 +10,18 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/** Main class of the project
+ * @author Unknown
+ * @version 1.0
+ * @since March,2023
+ */
 public class Main extends Application {
     private Stage stage;
 
+    /**
+     * Function to initate tables
+     * @throws SQLException If problems with query
+     */
     public void initiateTables() throws SQLException {
         DbUtilities dbUtilities=new DbUtilities();
         dbUtilities.initiateTablesWithQuery();
@@ -21,6 +30,12 @@ public class Main extends Application {
 
     }
 
+    /**
+     * Function to start/initiate the project
+     * @param primaryStage The initial window/stage of the application
+     * @throws IOException If problems with input/output
+     * @throws SQLException If problems with query
+     */
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException {
         stage=primaryStage;
@@ -43,6 +58,10 @@ public class Main extends Application {
 //        stage.getScene().setRoot(root);
 //    }
 
+    /**
+     * Main function of the project
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }

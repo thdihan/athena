@@ -1,5 +1,9 @@
 package userPack;
-
+/** Class for user information
+ * @author Unknown
+ * @version 1.0
+ * @since March,2023
+ */
 public class User {
     private String email;
     private String password;
