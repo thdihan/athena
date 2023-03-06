@@ -130,29 +130,29 @@ public class StudentDashBoardController {
         Scene afterLoginScene = new Scene(root);
 
         //declaring all the controller
-        CourseRegPageController courseRegPageController;
-        RegisteredCoursesController registeredCoursesController;
-        AcademicProgressController academicProgressController;
+        StudentCourseRegPageController studentCourseRegPageController;
+        StudentRegisteredCoursesController studentRegisteredCoursesController;
+        StudentAcademicProgressController studentAcademicProgressController;
         /*--------Result View Controller Remaining-------------*/
 
         if (choice.equals("regPage")) {
-            courseRegPageController = loader.getController();
-            courseRegPageController.initiateStudent(currentStudent, currentUser);
+            studentCourseRegPageController = loader.getController();
+            studentCourseRegPageController.initiateStudent(currentStudent, currentUser);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(afterLoginScene);
             window.show();
 
         } else if (choice.equals("progressPage")) {
 //            System.out.println("Empty progress controller");
-            academicProgressController=loader.getController();
-            academicProgressController.initiateAcademicProgressView(currentStudent, registered_course, currentUser);
+            studentAcademicProgressController =loader.getController();
+            studentAcademicProgressController.initiateAcademicProgressView(currentStudent, registered_course, currentUser);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(afterLoginScene);
             window.show();
 
         } else if (choice.equals("regDonePage")) {
-            registeredCoursesController=loader.getController();
-            registeredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
+            studentRegisteredCoursesController =loader.getController();
+            studentRegisteredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(afterLoginScene);
             window.show();

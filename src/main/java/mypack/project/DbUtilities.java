@@ -4,6 +4,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.layout.VBox;
 import userPack.Courses;
 import userPack.Student;
+import userPack.Teacher;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -82,7 +83,7 @@ public class DbUtilities {
         String[] insertUser = {
                 "insert into users values ('shakun650@gmail.com', 'tukasl', 's')",
                 "insert into users values ('hasan123@gmail.com', 'tukas', 's')",
-                "insert into users values ('jamal234@gmail.com', 'tuka', 't')",
+                "insert into users values ('z', 'z', 't')",
                 "insert into users values ('shuvro234@gmail.com', 'tukasl', 's')"
         };
         String tableName = "users";
@@ -101,7 +102,7 @@ public class DbUtilities {
         tableName = "teacher";
         tableQuery = "Create table Teacher(T_ID varchar(15) not null primary key,T_Name varchar(60) not null,T_email varchar(60) not null,Dept varchar(20),DOB date,T_contact varchar not null);";
         String[] insertTeacher = {
-                "insert into teacher values('123456','Jamal','jamal234@gmail.com','CSE','1995-01-01','01711111111');"
+                "insert into teacher values('123456','Jamal','z','CSE','1995-01-01','01711111111');"
         };
         initiateAllTable(tableName, tableQuery, insertTeacher);
 
@@ -260,6 +261,32 @@ public class DbUtilities {
             if (resultSet.next()) {
 //                System.out.println(resultSet.getString(3));
                 Student temp = new Student(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getDate(6), resultSet.getString(7));
+                return temp;
+            } else {
+                return null;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception getting student info");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+    }
+
+    public Teacher getTeacherInfo(String email) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String query = "select * from teacher where t_email=?";
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+//                System.out.println(resultSet.getString(3));
+                Teacher temp = new Teacher(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getDate(5), resultSet.getString(6));
                 return temp;
             } else {
                 return null;

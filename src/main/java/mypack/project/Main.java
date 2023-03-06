@@ -19,7 +19,7 @@ public class Main extends Application {
     private Stage stage;
 
     /**
-     * Function to initate tables
+     * Function to initiate tables
      * @throws SQLException If problems with query
      */
     public void initiateTables() throws SQLException {

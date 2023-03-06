@@ -10,7 +10,6 @@ import userPack.User;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.SplittableRandom;
 
 /**
  * Controller class for academic progress view of students
@@ -18,7 +17,7 @@ import java.util.SplittableRandom;
  * @version 1.0
  * @since March,2023
  */
-public class AcademicProgressController {
+public class StudentAcademicProgressController {
     @FXML
     private Label full_name_label;
     private Student currentStudent;

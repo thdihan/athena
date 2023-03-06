@@ -49,6 +49,7 @@ public class LoginController {
         //getting the user type
         String userType = loggingUser.getType();
         StudentDashBoardController studentDashBoardController; //do same for other user controllers also for inside if statements
+        TeacherDashBoardController teacherDashBoardController;
 
         if (userType.equals("s")) {
             studentDashBoardController = loader.getController();
@@ -56,15 +57,19 @@ public class LoginController {
 
             User us = new User(studentDashBoardController.getCurrentUser());
 
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(afterLoginScene);
-            window.show();
+
         } else if (userType.equals("t")) {
-            System.out.println("Empty teacher controller");
+            teacherDashBoardController=loader.getController();
+            teacherDashBoardController.initiateTeacherUser(loggingUser);
+
+            User us= new User(teacherDashBoardController.getCurrentUser());
 
         } else {
             System.out.println("Empty admin controller");
         }
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(afterLoginScene);
+        window.show();
 
 
     }
@@ -89,6 +94,9 @@ public class LoginController {
                 //need to use nested if for other users similarly
                 if (userType.equals("s"))
                     goToDashBoard("studentDashBoard.fxml", event, loggingUser);
+                else if (userType.equals("t")) {
+                    goToDashBoard("teacherDashBoard.fxml", event, loggingUser);
+                }
             } else {
                 wrongField.setText("Invalid username or password !!");
             }

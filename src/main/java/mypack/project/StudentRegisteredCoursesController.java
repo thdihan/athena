@@ -3,7 +3,6 @@ package mypack.project;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import userPack.Courses;
 import userPack.Student;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
  * @since March,2023
  */
 
-public class RegisteredCoursesController {
+public class StudentRegisteredCoursesController {
     @FXML
     private VBox course_box;
     @FXML
