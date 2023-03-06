@@ -14,6 +14,9 @@ import java.util.SplittableRandom;
 
 /**
  * Controller class for academic progress view of students
+ * @author Unknown
+ * @version 1.0
+ * @since March,2023
  */
 public class AcademicProgressController {
     @FXML
