@@ -2,7 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentDashBoardController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.Main">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="main-container" stylesheets="@teacherDashBoard.css">
          <children>
@@ -29,7 +32,7 @@
                               </ImageView>
                            </children>
                         </HBox>
-                        <Button fx:id="attendance_btn" alignment="CENTER" layoutX="36.0" layoutY="458.0" mnemonicParsing="false" onAction="#progressBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@teacherDashBoard.css" text="Take Attendance" textFill="#efefff">
+                        <Button fx:id="attendance_btn" alignment="CENTER" layoutX="36.0" layoutY="458.0" mnemonicParsing="false" onAction="#takeAttendanceBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@teacherDashBoard.css" text="Take Attendance" textFill="#efefff">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -49,34 +52,60 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Label layoutX="124.0" layoutY="233.0" text="FULL NAME" textFill="#efefff">
+                        <Label fx:id="full_name_label" layoutX="124.0" layoutY="233.0" text="FULL NAME" textFill="#efefff">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="course_btn1" alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="320.0" mnemonicParsing="false" onAction="#courseBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@teacherDashBoard.css" text="Dashboard" textFill="#efefff">
+                        <Button fx:id="course_btn1" alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="320.0" mnemonicParsing="false" onAction="#dashBoardBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@teacherDashBoard.css" text="Dashboard" textFill="#efefff">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
                      </children>
                   </Pane>
-                  <Pane prefHeight="720.0" prefWidth="850.0" styleClass="info-area" stylesheets="@../project/studentDashBoard.css">
-                     <children>
-                        <VBox fx:id="course_box" layoutX="14.0" layoutY="20.0" prefHeight="672.0" prefWidth="564.0">
+                  <ScrollPane prefHeight="720.0" prefWidth="850.0">
+                     <content>
+                        <Pane prefHeight="720.0" prefWidth="850.0" styleClass="info-area" stylesheets="@../project/studentDashBoard.css">
                            <children>
-                              <Label text="Registered Courses">
-                                 <VBox.margin>
-                                    <Insets bottom="20.0" left="50.0" right="50.0" top="30.0" />
-                                 </VBox.margin>
+                              <VBox layoutX="25.0" layoutY="198.0" prefHeight="200.0" prefWidth="315.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="328.0" style="-fx-background-color: #ddd;">
+                                       <children>
+                                          <Label text="200041101">
+                                             <HBox.margin>
+                                                <Insets right="20.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <TextField />
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <Label layoutX="25.0" layoutY="25.0" text="Student List">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
+                              <Button layoutX="363.0" layoutY="130.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="129.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Submit" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <ComboBox layoutX="25.0" layoutY="84.0" prefHeight="35.0" prefWidth="313.0" />
+                              <Button layoutX="363.0" layoutY="83.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="128.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Get Student List" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <ComboBox layoutX="26.0" layoutY="131.0" prefHeight="35.0" prefWidth="313.0" />
                            </children>
-                        </VBox>
-                     </children>
-                  </Pane>
+                        </Pane>
+                     </content>
+                  </ScrollPane>
                </children>
             </HBox>
          </children>
