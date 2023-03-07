@@ -127,7 +127,7 @@ public class DbUtilities {
 //         CourseTakenByTeacher
         tableName = "Teacher_takes_course";
 //        tableQuery = "Create table Teacher_takes_course(courseteacher_ID varchar(15) not null,T_coursedept varchar(20), T_coursecode varchar(20),T_OfferedDept varchar(20), semester varchar(10),Foreign key(courseteacher_ID) references Teacher(T_ID),Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
-        tableQuery = "Create table Teacher_takes_course(courseteacher_ID varchar(15) not null,T_coursedept varchar(20), T_coursecode varchar(20),T_OfferedDept varchar(20),CONSTRAINT ttc_teacher Foreign key(courseteacher_ID) references Teacher(T_ID));";
+        tableQuery = "Create table Teacher_takes_course(courseteacher_ID varchar(15) not null,T_coursedept varchar(20), T_coursecode varchar(20),T_OfferedDept varchar(20),CONSTRAINT ttc_teacher Foreign key(courseteacher_ID) references Teacher(T_ID),CONSTRAINT ttc_course Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
         String[] insertData = {};
         initiateAllTable(tableName, tableQuery, insertData);
 
@@ -307,10 +307,14 @@ public class DbUtilities {
      * @return List of courses if found. Else return empty list
      * @throws SQLException
      */
-    public ArrayList<Courses> getOfferedCourses(String dept) throws SQLException {
+    public ArrayList<Courses> getOfferedCourses(String dept, String userType) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        String query = "select * from courses where offered_dept=?";
+        String query;
+        if(userType.equals("s"))
+            query = "select * from courses where offered_dept=?";
+        else
+            query = "select * from courses where dept=?";
         ArrayList<Courses> courses= new ArrayList<>();
         try {
             Connection connection = connectToDB("projectDb", "postgres", "tukasl");
@@ -386,7 +390,7 @@ public class DbUtilities {
                     preparedStatement.setString(1, currentTeacher.getId());
                     preparedStatement.setString(2, currentTeacher.getDept());
                     preparedStatement.setString(3,offered_courses.get(i).getCode());
-                    preparedStatement.setString(4, offered_courses.get(i).getOffered_dept());
+                    preparedStatement.setString(4, offered_courses.get(i).getDept());
 //                    preparedStatement.setString(6, currentStudent.getSemester());
                     preparedStatement.executeUpdate();
                 }
