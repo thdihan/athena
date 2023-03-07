@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * @since March,2023
  */
 
-public class CourseRegPageController {
+public class StudentCourseRegPageController {
     Student currentStudent;
     private User currentUser;
 
@@ -47,7 +47,7 @@ public class CourseRegPageController {
         full_name_label.setText(currentStudent.getName());
 
         DbUtilities dbUtilities = new DbUtilities();
-        offered_courses = dbUtilities.getOfferedCourses(currentStudent.getDept());
+        offered_courses = dbUtilities.getOfferedCourses(currentStudent.getDept(), user.getType());
 
 
         for(int i=0 ; i<offered_courses.size() ; i++){
@@ -70,7 +70,7 @@ public class CourseRegPageController {
         ArrayList<Courses>registered_course=dbUtilities.registerCourses(course_box, currentStudent, offered_courses);
         System.out.println("Registered");
 
-        RegisteredCoursesController registeredCoursesController;
+        StudentRegisteredCoursesController studentRegisteredCoursesController;
 
 
         FXMLLoader loader = new FXMLLoader();
@@ -78,8 +78,8 @@ public class CourseRegPageController {
         Parent root = loader.load();
 
         Scene registeredCourseScene = new Scene(root);
-        registeredCoursesController=loader.getController();
-        registeredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
+        studentRegisteredCoursesController =loader.getController();
+        studentRegisteredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(registeredCourseScene);

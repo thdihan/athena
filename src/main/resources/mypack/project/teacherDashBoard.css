@@ -1,0 +1,32 @@
+.main-container {
+    -fx-background-color: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(17,121,9,0.06206232492997199) 35%, rgba(185,255,0,0.0984768907563025) 100%);
+}
+
+.profile-image {
+    -fx-border-width: 1px;
+    -fx-border-image-width: 50, 100;
+    -fx-border-radius:50%;
+    -fx-border-color: #ddd;
+}
+
+.btn {
+    -fx-background-color: #033b6b;
+    -fx-background-radius: 30px;
+}
+.btn:hover {
+    -fx-background-color: #3963AD;
+}
+.reg-btn {
+    -fx-background-color: #033b6b;
+    -fx-background-radius: 10px;
+}
+.navigation-area {
+    -fx-background-color:#052f56;
+}
+.info-area {
+    -fx-background-color: rgba(255,255,255,0.8);
+}
+
+.registeredCoursesBlock {
+    -fx-background-color:#eee;
+}

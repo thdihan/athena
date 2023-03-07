@@ -130,52 +130,38 @@ public class StudentDashBoardController {
         Scene afterLoginScene = new Scene(root);
 
         //declaring all the controller
-        CourseRegPageController courseRegPageController;
-        RegisteredCoursesController registeredCoursesController;
-        AcademicProgressController academicProgressController;
+        StudentCourseRegPageController studentCourseRegPageController;
+        StudentRegisteredCoursesController studentRegisteredCoursesController;
+        StudentAcademicProgressController studentAcademicProgressController;
         /*--------Result View Controller Remaining-------------*/
 
         if (choice.equals("regPage")) {
-            courseRegPageController = loader.getController();
-            courseRegPageController.initiateStudent(currentStudent, currentUser);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(afterLoginScene);
-            window.show();
+            studentCourseRegPageController = loader.getController();
+            studentCourseRegPageController.initiateStudent(currentStudent, currentUser);
 
         } else if (choice.equals("progressPage")) {
 //            System.out.println("Empty progress controller");
-            academicProgressController=loader.getController();
-            academicProgressController.initiateAcademicProgressView(currentStudent, registered_course, currentUser);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(afterLoginScene);
-            window.show();
+            studentAcademicProgressController =loader.getController();
+            studentAcademicProgressController.initiateAcademicProgressView(currentStudent, registered_course, currentUser);
 
         } else if (choice.equals("regDonePage")) {
-            registeredCoursesController=loader.getController();
-            registeredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(afterLoginScene);
-            window.show();
+            studentRegisteredCoursesController =loader.getController();
+            studentRegisteredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
 
         } else if (choice.equals("resultPage")) {
             System.out.println("Empty result controller");
 
         } else if (choice.equals("logoutPage")) {
             System.out.println("Logging out");
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(afterLoginScene);
-            window.show();
         }
         else if (choice.equals("studentDashBoard")) {
             StudentDashBoardController studentDashBoardController;
             studentDashBoardController = loader.getController();
             studentDashBoardController.initiateStudentUser(currentUser);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(afterLoginScene);
-            window.show();
         }
-
-
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(afterLoginScene);
+        window.show();
     }
 
     /*--------------may need to pass the user object for querying--------------*/
