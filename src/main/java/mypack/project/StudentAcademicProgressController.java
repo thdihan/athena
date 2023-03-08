@@ -3,6 +3,9 @@ package mypack.project;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import userPack.AcademicProgressModel;
 import userPack.Courses;
 import userPack.Student;
 import userPack.User;
@@ -18,6 +21,28 @@ import java.util.ArrayList;
  * @since March,2023
  */
 public class StudentAcademicProgressController {
+    @FXML
+    TableView<AcademicProgressModel> academicProgressModelTableView;
+    @FXML
+    TableColumn<AcademicProgressModel, String> courseCodeColumn;
+    @FXML
+    TableColumn<AcademicProgressModel, Double> attendanceColumn;
+    @FXML
+    TableColumn<AcademicProgressModel, Double> quiz1Column;
+    @FXML
+    TableColumn<AcademicProgressModel, Double> quiz2Column;
+    @FXML
+    TableColumn<AcademicProgressModel, Double> midColumn;
+    @FXML
+    TableColumn<AcademicProgressModel, Double> quiz3Column;
+    @FXML
+    TableColumn<AcademicProgressModel, Double> quiz4Column;
+    @FXML
+    TableColumn<AcademicProgressModel, Double> finalColumn;
+    @FXML
+    TableColumn<AcademicProgressModel, Double> progressColumn;
+    @FXML
+    TableColumn<AcademicProgressModel, String> gradeColumn;
     @FXML
     private Label full_name_label;
     private Student currentStudent;
