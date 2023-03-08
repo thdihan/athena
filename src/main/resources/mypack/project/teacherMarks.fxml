@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.Main">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.TeacherMarksController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="main-container" stylesheets="@teacherDashBoard.css">
          <children>
@@ -68,40 +67,42 @@
                      <content>
                         <Pane prefHeight="720.0" prefWidth="850.0" styleClass="info-area" stylesheets="@../project/studentDashBoard.css">
                            <children>
-                              <VBox layoutX="25.0" layoutY="198.0" prefHeight="200.0" prefWidth="315.0">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="328.0" style="-fx-background-color: #ddd;">
-                                       <children>
-                                          <Label text="200041101">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <TextField />
-                                       </children>
-                                       <padding>
-                                          <Insets left="20.0" />
-                                       </padding>
-                                    </HBox>
-                                 </children>
-                              </VBox>
                               <Label layoutX="25.0" layoutY="25.0" text="Student List">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="363.0" layoutY="130.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="129.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Submit" textFill="WHITE">
+                              <Button layoutX="363.0" layoutY="130.0" mnemonicParsing="false" onAction="#onSubmitBtnClicked" prefHeight="37.0" prefWidth="129.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Submit" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Button>
-                              <ComboBox layoutX="25.0" layoutY="84.0" prefHeight="35.0" prefWidth="313.0" />
-                              <Button layoutX="363.0" layoutY="83.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="128.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Get Student List" textFill="WHITE">
+                              <ComboBox fx:id="courseDropDown" layoutX="25.0" layoutY="84.0" onAction="#selectCourseInDropDown" prefHeight="35.0" prefWidth="313.0" promptText="Course List" />
+                              <Button layoutX="363.0" layoutY="83.0" mnemonicParsing="false" onAction="#onGetStudentListBtnClicked" prefHeight="37.0" prefWidth="128.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Get Student List" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Button>
-                              <ComboBox layoutX="26.0" layoutY="131.0" prefHeight="35.0" prefWidth="313.0" />
+                              <ComboBox fx:id="examTypeDropDown" layoutX="26.0" layoutY="131.0" onAction="#selectExamInDropDown" prefHeight="35.0" prefWidth="313.0" promptText="Exam Type" />
+                              <Label fx:id="courseLabel" layoutX="537.0" layoutY="93.0" prefHeight="17.0" prefWidth="254.0" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="examLabel" layoutX="537.0" layoutY="140.0" prefHeight="17.0" prefWidth="254.0" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ScrollPane layoutX="26.0" layoutY="186.0" prefHeight="200.0" prefWidth="314.0">
+                                 <content>
+                                    <VBox fx:id="studentListVbox" prefHeight="200.0" prefWidth="313.0">
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
                            </children>
                         </Pane>
                      </content>

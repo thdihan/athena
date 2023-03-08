@@ -471,6 +471,81 @@ public class DbUtilities {
         }
     }
 
+    public ArrayList<String> getStudentList(String courseCode){
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String query = "select s_name, student.s_id from student, (select s_id from student_takes_course where s_coursecode=?) sub where student.s_id=sub.s_id;";
+        ArrayList<String> studentList= new ArrayList<>();
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, courseCode);
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                studentList.add(resultSet.getString(1)+": "+ resultSet.getString(2)); //format: ID: FullName
+            }
+            return studentList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateStudentMarks(String studentId, Double marks, String courseCode,String examType){
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        //maybe need to do something about it
+        String quiz_1 = "update student_takes_course\n" +
+                "set quiz_1=?\n" +
+                "where s_id=? and s_coursecode=?;";
+        String quiz_2 = "update student_takes_course\n" +
+                "set quiz_2=?\n" +
+                "where s_id=? and s_coursecode=?;";
+        String quiz_3 = "update student_takes_course\n" +
+                "set quiz_3=?\n" +
+                "where s_id=? and s_coursecode=?;";
+        String quiz_4 = "update student_takes_course\n" +
+                "set quiz_4=?\n" +
+                "where s_id=? and s_coursecode=?;";
+        String mid_marks = "update student_takes_course\n" +
+                "set mid_marks=?\n" +
+                "where s_id=? and s_coursecode=?;";
+        String final_marks = "update student_takes_course\n" +
+                "set final_marks=?\n" +
+                "where s_id=? and s_coursecode=?;";
+        String query;
+        if(examType.equals("quiz_1"))
+            query=quiz_1;
+        else if (examType.equals("quiz_2")) {
+            query=quiz_2;
+        }else if (examType.equals("quiz_3")) {
+            query=quiz_3;
+        }else if (examType.equals("quiz_4")) {
+            query=quiz_4;
+        }else if (examType.equals("mid_marks")) {
+            query=mid_marks;
+        }else   {
+            query=final_marks;
+        }
+
+
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setDouble(1, marks);
+            preparedStatement.setString(2, studentId);
+            preparedStatement.setString(3, courseCode);
+            preparedStatement.executeUpdate();
+            System.out.println("Marks updated successfully");
+
+
+        } catch (Exception e) {
+            System.out.println("Error updating student marks");
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
 
 
