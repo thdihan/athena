@@ -84,7 +84,9 @@ public class DbUtilities {
                 "insert into users values ('shakun650@gmail.com', 'tukasl', 's')",
                 "insert into users values ('hasan123@gmail.com', 'tukas', 's')",
                 "insert into users values ('z', 'z', 't')",
-                "insert into users values ('shuvro234@gmail.com', 'tukasl', 's')"
+                "insert into users values ('shuvro234@gmail.com', 'tukasl', 's')",
+                "insert into users values ('a', 'a', 's')",
+                "insert into users values ('s', 's', 's')"
         };
         String tableName = "users";
         String tableQuery = "create table users(email text, password text, type varchar(10),constraint pk_users primary key (email) );";
@@ -94,7 +96,9 @@ public class DbUtilities {
         tableName = "student";
         tableQuery = "Create table Student(S_ID varchar(15) not null primary key,S_Name varchar(60) not null, S_email varchar(60) not null,Dept varchar(20),Semester varchar(10),DOB date,S_contact varchar(15) not null);";
         String[] insertStudent = {
-                "insert into student values('200041111','Hasan','hasan123@gmail.com','CSE','4','2001-01-01','01711111111');"
+                "insert into student values('200041111','Hasan','hasan123@gmail.com','CSE','4','2001-01-01','01711111111');",
+                "insert into student values('200041112','Kamal','a','CSE','4','2001-01-01','01711111111');",
+                "insert into student values('200041113','Wolf','s','CSE','4','2001-01-01','01711111111');"
         };
         initiateAllTable(tableName, tableQuery, insertStudent);
 
