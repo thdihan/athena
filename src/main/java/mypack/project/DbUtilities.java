@@ -545,7 +545,40 @@ public class DbUtilities {
         }
     }
 
+    public void takeAttendance(String courseCode, ArrayList<String> presentList, ArrayList<String> absentList){
+        PreparedStatement preparedStatement1 = null;
+        PreparedStatement preparedStatement2 = null;
+        ResultSet resultSet = null;
+        String presentQuery="update student_takes_course\n" +
+                "set total_class=total_class+1, attended_class=attended_class+1\n" +
+                "where s_id=? and s_coursecode=?;";
+        String absentQuery="update student_takes_course\n" +
+                "set total_class=total_class+1\n" +
+                "where s_id=? and s_coursecode=?;";
+        try{
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
 
+            preparedStatement1 = connection.prepareStatement(presentQuery);
+            preparedStatement2=connection.prepareStatement(absentQuery);
+            preparedStatement1.setString(2,courseCode);
+            preparedStatement2.setString(2,courseCode);
+
+            for(int i=0 ; i<presentList.size() ; i++){
+                preparedStatement1.setString(1,presentList.get(i));
+                preparedStatement1.executeUpdate();
+            }
+            System.out.println("Present List updated");
+
+            for(int i=0 ; i<absentList.size() ; i++){
+                preparedStatement2.setString(1,absentList.get(i));
+                preparedStatement2.executeUpdate();
+            }
+            System.out.println("Absent List updated");
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 

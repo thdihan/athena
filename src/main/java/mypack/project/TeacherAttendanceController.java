@@ -34,6 +34,10 @@ public class TeacherAttendanceController {
     private Label courseLabel;
     @FXML
     private VBox studentListVbox;
+    @FXML
+    private Label submitLabel;
+    @FXML
+    private Label studentLabel;
 
 
     public void initiateTeacherAttendanceController(Teacher teacher, User user, ArrayList<Courses> registered_course) throws SQLException {
@@ -86,7 +90,7 @@ public class TeacherAttendanceController {
             HBox studentBox = new HBox();
             CheckBox studentId = new CheckBox(studentList.get(i).split(" ")[1]);
             Label nameLabel=new Label(studentList.get(i).split(":")[0]);
-            HBox.setMargin(studentId, new Insets(15, 20, 10, 20));
+            HBox.setMargin(studentId, new Insets(15, 10, 10, 20));
             HBox.setMargin(nameLabel, new Insets(15, 10, 10, 10));
             studentBox.getChildren().addAll(studentId, nameLabel);
             studentBox.setSpacing(20);
@@ -99,8 +103,35 @@ public class TeacherAttendanceController {
     }
 
     public void onSubmitBtnClicked(ActionEvent event){
+        if (courseDropDown.getValue() == null || studentListVbox.getChildren().isEmpty()) {
+            if (courseDropDown.getValue() == null) {
+                courseLabel.setText("Please select course");
+            }else {
+                submitLabel.setText("Please generate student list to continue");
+            }
 
+        } else {
+            DbUtilities dbUtilities = new DbUtilities();
+            ArrayList<String> presentList=new ArrayList<>();
+            ArrayList<String> absentList=new ArrayList<>();
+            String courseCode=courseDropDown.getValue().split(":")[0];
+
+            for (int i = 0; i < studentListVbox.getChildren().size(); i++) {
+                HBox hBox = (HBox) studentListVbox.getChildren().get(i);
+                CheckBox idBox = (CheckBox) hBox.getChildren().get(0);
+//                TextField markField = (TextField) hBox.getChildren().get(1);
+                if(idBox.isSelected()){
+                    presentList.add(idBox.getText());
+                }else {
+                    absentList.add(idBox.getText());
+                }
+            }
+            dbUtilities.takeAttendance(courseCode, presentList, absentList);
+            submitLabel.setText("Attendance taken successfully");
+        }
     }
+
+
 
     public void takeAttendanceBtnClicked(ActionEvent event) {
         System.out.println("Already in attendance page");

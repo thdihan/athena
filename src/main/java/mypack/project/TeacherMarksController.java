@@ -41,6 +41,8 @@ public class TeacherMarksController implements Initializable {
     private Label courseLabel;
     @FXML
     private Label examLabel;
+    @FXML
+    private Label studentLabel;
 
     public void initiateTeacherMarksController(Teacher teacher, User user, ArrayList<Courses> registered_course) throws SQLException {
         currentTeacher = teacher;
@@ -96,6 +98,9 @@ public class TeacherMarksController implements Initializable {
         if (courseDropDown.getValue() == null || examTypeDropDown.getValue() == null || studentListVbox.getChildren().isEmpty()) {
             if (courseDropDown.getValue() == null) {
                 courseLabel.setText("Please select course");
+            }
+            if(studentListVbox.getChildren().isEmpty()){
+                studentLabel.setText("Please generate student list to continrue");
             }
             if (examTypeDropDown.getValue() == null) {
                 examLabel.setText("Please select exam type");
