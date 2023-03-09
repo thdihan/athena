@@ -133,12 +133,12 @@ public class DbUtilities {
 //        tableQuery = "Create table Teacher_takes_course(courseteacher_ID varchar(15) not null,T_coursedept varchar(20), T_coursecode varchar(20),T_OfferedDept varchar(20), semester varchar(10),Foreign key(courseteacher_ID) references Teacher(T_ID),Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
         tableQuery = "Create table Teacher_takes_course(courseteacher_ID varchar(15) not null,T_coursedept varchar(20), T_coursecode varchar(20),T_OfferedDept varchar(20),CONSTRAINT ttc_teacher Foreign key(courseteacher_ID) references Teacher(T_ID),CONSTRAINT ttc_course Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
         String[] insertData = {};
-        initiateAllTable(tableName, tableQuery, insertData);
+//        initiateAllTable(tableName, tableQuery, insertData);
 
 //        Student_takes_course
         tableName = "Student_takes_course";
         tableQuery = "Create table Student_takes_course(S_ID varchar(20) not null,Student_dept varchar(20), S_coursedept varchar(20), S_coursecode varchar(20),s_courseOfferedDept varchar(20),semester varchar(10),Total_class int not null,Attended_class int not null,Quiz_1 double precision not null,Quiz_2 double precision not null,Quiz_3 double precision not null,Quiz_4 double precision not null,Mid_marks double precision not null,Final_marks double precision not null,CONSTRAINT stc_student Foreign key(S_ID) references student(S_ID),CONSTRAINT stc_course Foreign key(S_coursedept,s_courseOfferedDept,S_coursecode) references Courses(dept,offered_dept,Course_code));";
-        initiateAllTable(tableName, tableQuery, insertData);
+//        initiateAllTable(tableName, tableQuery, insertData);
     }
 
     /**
