@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0008cb82-a2d4-41e7-a5eb-54ed76d549cc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/userPack/AcademicProgressModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherAttendanceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentAcademicProgressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentAcademicProgressController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/academicProgress.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/academicProgress.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherCourseRegPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherCourseRegPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherDashBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherMarksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherMarksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherRegisteredCoursesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherRegisteredCoursesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherAttendanceStudentList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherAttendanceStudentList.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

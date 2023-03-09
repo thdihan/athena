@@ -131,8 +131,10 @@ public class TeacherMarksController implements Initializable {
         return examType;
     }
 
-    public void takeAttendanceBtnClicked(ActionEvent event) {
-        System.out.println("Not implemented attendance");
+    public void takeAttendanceBtnClicked(ActionEvent event) throws SQLException, IOException {
+        TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
+        teacherDashBoardController.assignDummyController(currentTeacher, registered_course,currentUser);
+        teacherDashBoardController.takeAttendanceBtnClicked(event);
     }
 
     public void courseBtnClicked(ActionEvent event) throws SQLException, IOException {
@@ -147,9 +149,7 @@ public class TeacherMarksController implements Initializable {
     }
 
     public void marksBtnClicked(ActionEvent event) throws SQLException, IOException {
-        TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
-        teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
-        teacherDashBoardController.addMarksBtnClicked(event);
+        System.out.println("Already in marks page");
     }
 
     public void logoutBtnClicked(ActionEvent event) throws SQLException, IOException {

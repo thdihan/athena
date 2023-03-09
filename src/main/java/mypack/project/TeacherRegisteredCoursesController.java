@@ -64,7 +64,7 @@ public class TeacherRegisteredCoursesController {
         teacherDashBoardController.logoutBtnClicked(event);
     }
 
-    public void takeAttendanceBtnClicked(ActionEvent event){
+    public void takeAttendanceBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_courses, currentUser);
         teacherDashBoardController.takeAttendanceBtnClicked(event);
