@@ -8,6 +8,7 @@ import userPack.Teacher;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * This class is dedicated solely for database related functions
@@ -484,6 +485,7 @@ public class DbUtilities {
             while(resultSet.next()){
                 studentList.add(resultSet.getString(1)+": "+ resultSet.getString(2)); //format: ID: FullName
             }
+            Collections.sort(studentList);
             return studentList;
         } catch (SQLException e) {
             throw new RuntimeException(e);

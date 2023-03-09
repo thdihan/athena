@@ -21,12 +21,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class TeacherMarksController implements Initializable {
     private Teacher currentTeacher;
-    ArrayList<Courses>registered_course;
+    ArrayList<Courses> registered_course;
     HashMap<String, String> examType;
     private User currentUser;
     @FXML
@@ -47,7 +48,7 @@ public class TeacherMarksController implements Initializable {
     public void initiateTeacherMarksController(Teacher teacher, User user, ArrayList<Courses> registered_course) throws SQLException {
         currentTeacher = teacher;
         currentUser = user;
-        this.registered_course=registered_course;
+        this.registered_course = registered_course;
         full_name_label.setText(teacher.getName());
 
         DbUtilities dbUtilities = new DbUtilities();
@@ -60,7 +61,7 @@ public class TeacherMarksController implements Initializable {
         ObservableList<String> courseList = FXCollections.observableList(stringArrayList);
         courseDropDown.setItems(courseList);
 
-        examType=new HashMap<>();
+        examType = new HashMap<>();
         examType.put("Quiz: 1", "quiz_1");
         examType.put("Quiz: 2", "quiz_2");
         examType.put("Quiz: 3", "quiz_3");
@@ -91,6 +92,7 @@ public class TeacherMarksController implements Initializable {
 
         }
         studentListVbox.setAlignment(Pos.TOP_CENTER);
+        studentLabel.setText("");
         return studentList;
     }
 
@@ -99,8 +101,8 @@ public class TeacherMarksController implements Initializable {
             if (courseDropDown.getValue() == null) {
                 courseLabel.setText("Please select course");
             }
-            if(studentListVbox.getChildren().isEmpty()){
-                studentLabel.setText("Please generate student list to continrue");
+            if (studentListVbox.getChildren().isEmpty()) {
+                studentLabel.setText("Please generate student list to continue");
             }
             if (examTypeDropDown.getValue() == null) {
                 examLabel.setText("Please select exam type");
@@ -113,7 +115,12 @@ public class TeacherMarksController implements Initializable {
                 HBox hBox = (HBox) studentListVbox.getChildren().get(i);
                 Label idLabel = (Label) hBox.getChildren().get(0);
                 TextField markField = (TextField) hBox.getChildren().get(1);
+                if (markField.getText().equals("")) {
+                    studentLabel.setText("Please fill all the mark fields before submitting");
+                    break;
+                }
                 dbUtilities.updateStudentMarks(idLabel.getText(), Double.parseDouble(markField.getText()), courseDropDown.getValue().split(":")[0], examType.get(examTypeDropDown.getValue()));
+                studentLabel.setText("Marks updated successfully");
             }
         }
     }
@@ -137,18 +144,17 @@ public class TeacherMarksController implements Initializable {
     }
 
     public void takeAttendanceBtnClicked(ActionEvent event) throws SQLException, IOException {
-        TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
-        teacherDashBoardController.assignDummyController(currentTeacher, registered_course,currentUser);
+        TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
+        teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.takeAttendanceBtnClicked(event);
     }
 
     public void courseBtnClicked(ActionEvent event) throws SQLException, IOException {
-        TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
-        teacherDashBoardController.assignDummyController(currentTeacher,registered_course, currentUser);
-        if (registered_course==null || registered_course.isEmpty()) {
+        TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
+        teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
+        if (registered_course == null || registered_course.isEmpty()) {
             teacherDashBoardController.changeSceneInDashboard(event, "teacherCourseRegPage.fxml", "regPage");
-        }
-        else {
+        } else {
             teacherDashBoardController.changeSceneInDashboard(event, "teacherRegisteredCourse.fxml", "regDonePage");
         }
     }
@@ -158,13 +164,13 @@ public class TeacherMarksController implements Initializable {
     }
 
     public void logoutBtnClicked(ActionEvent event) throws SQLException, IOException {
-        TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
+        TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.logoutBtnClicked(event);
     }
 
     public void dashBoardBtnClicked(ActionEvent event) throws SQLException, IOException {
-        TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
+        TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.dashBoardBtnClicked(event);
 

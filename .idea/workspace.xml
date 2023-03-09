@@ -9,7 +9,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherAttendanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherAttendanceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherMarksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherMarksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherAttendanceStudentList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherAttendanceStudentList.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherDashBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherDashBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherMarks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherMarks.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherRegisteredCourse.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherRegisteredCourse.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -36,8 +36,7 @@ public class TeacherAttendanceController {
     private VBox studentListVbox;
     @FXML
     private Label submitLabel;
-    @FXML
-    private Label studentLabel;
+
 
 
     public void initiateTeacherAttendanceController(Teacher teacher, User user, ArrayList<Courses> registered_course) throws SQLException {
@@ -56,7 +55,7 @@ public class TeacherAttendanceController {
         ObservableList<String> courseList = FXCollections.observableList(stringArrayList);
         courseDropDown.setItems(courseList);
 
-        examType=new HashMap<>();
+        examType = new HashMap<>();
         examType.put("Quiz: 1", "quiz_1");
         examType.put("Quiz: 2", "quiz_2");
         examType.put("Quiz: 3", "quiz_3");
@@ -77,7 +76,7 @@ public class TeacherAttendanceController {
         return courseCode;
     }
 
-    public ArrayList<String> onGetStudentListBtnClicked(ActionEvent event){
+    public ArrayList<String> onGetStudentListBtnClicked(ActionEvent event) {
         //return empty list if exceptions
         DbUtilities dbUtilities = new DbUtilities();
         ArrayList<String> studentList = new ArrayList<>();
@@ -89,7 +88,7 @@ public class TeacherAttendanceController {
         for (int i = 0; i < studentList.size(); i++) {
             HBox studentBox = new HBox();
             CheckBox studentId = new CheckBox(studentList.get(i).split(" ")[1]);
-            Label nameLabel=new Label(studentList.get(i).split(":")[0]);
+            Label nameLabel = new Label(studentList.get(i).split(":")[0]);
             HBox.setMargin(studentId, new Insets(15, 10, 10, 20));
             HBox.setMargin(nameLabel, new Insets(15, 10, 10, 10));
             studentBox.getChildren().addAll(studentId, nameLabel);
@@ -98,31 +97,34 @@ public class TeacherAttendanceController {
 
         }
         studentListVbox.setAlignment(Pos.TOP_CENTER);
+        submitLabel.setText("");
         return studentList;
 
     }
 
-    public void onSubmitBtnClicked(ActionEvent event){
+    public void onSubmitBtnClicked(ActionEvent event) {
         if (courseDropDown.getValue() == null || studentListVbox.getChildren().isEmpty()) {
             if (courseDropDown.getValue() == null) {
                 courseLabel.setText("Please select course");
-            }else {
+            }
+            if(studentListVbox.getChildren().isEmpty()){
                 submitLabel.setText("Please generate student list to continue");
             }
 
         } else {
+
             DbUtilities dbUtilities = new DbUtilities();
-            ArrayList<String> presentList=new ArrayList<>();
-            ArrayList<String> absentList=new ArrayList<>();
-            String courseCode=courseDropDown.getValue().split(":")[0];
+            ArrayList<String> presentList = new ArrayList<>();
+            ArrayList<String> absentList = new ArrayList<>();
+            String courseCode = courseDropDown.getValue().split(":")[0];
 
             for (int i = 0; i < studentListVbox.getChildren().size(); i++) {
                 HBox hBox = (HBox) studentListVbox.getChildren().get(i);
                 CheckBox idBox = (CheckBox) hBox.getChildren().get(0);
 //                TextField markField = (TextField) hBox.getChildren().get(1);
-                if(idBox.isSelected()){
+                if (idBox.isSelected()) {
                     presentList.add(idBox.getText());
-                }else {
+                } else {
                     absentList.add(idBox.getText());
                 }
             }
@@ -130,7 +132,6 @@ public class TeacherAttendanceController {
             submitLabel.setText("Attendance taken successfully");
         }
     }
-
 
 
     public void takeAttendanceBtnClicked(ActionEvent event) {
@@ -148,19 +149,19 @@ public class TeacherAttendanceController {
     }
 
     public void marksBtnClicked(ActionEvent event) throws SQLException, IOException {
-        TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
+        TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.addMarksBtnClicked(event);
     }
 
     public void logoutBtnClicked(ActionEvent event) throws SQLException, IOException {
-        TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
+        TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.logoutBtnClicked(event);
     }
 
     public void dashBoardBtnClicked(ActionEvent event) throws SQLException, IOException {
-        TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
+        TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.dashBoardBtnClicked(event);
     }
