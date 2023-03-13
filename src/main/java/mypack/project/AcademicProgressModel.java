@@ -1,4 +1,4 @@
-package userPack;
+package mypack.project;
 
 public class AcademicProgressModel {
     private String courseCode;

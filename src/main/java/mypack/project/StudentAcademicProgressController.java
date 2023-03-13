@@ -1,11 +1,13 @@
 package mypack.project;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import userPack.AcademicProgressModel;
+import javafx.scene.control.cell.PropertyValueFactory;
 import userPack.Courses;
 import userPack.Student;
 import userPack.User;
@@ -48,6 +50,7 @@ public class StudentAcademicProgressController {
     private Student currentStudent;
     private ArrayList<Courses> registered_course;
     private User currentUser;
+    ObservableList<AcademicProgressModel>academicProgressModels;
 
     /**
      * To initiate the data and view of the academic progress view of students
@@ -62,6 +65,22 @@ public class StudentAcademicProgressController {
 
         full_name_label.setText(currentStudent.getName());
         //REMAINING: Functionalities of the academic progress
+        DbUtilities dbUtilities=new DbUtilities();
+        academicProgressModels=FXCollections.observableArrayList(dbUtilities.getStudentProgressData(currentStudent));
+
+        //setting up the columns
+        courseCodeColumn.setCellValueFactory(new PropertyValueFactory<>("courseCode"));
+        attendanceColumn.setCellValueFactory(new PropertyValueFactory<>("attendance"));
+        quiz1Column.setCellValueFactory(new PropertyValueFactory<>("quiz_1"));
+        quiz2Column.setCellValueFactory(new PropertyValueFactory<>("quiz_2"));
+        midColumn.setCellValueFactory(new PropertyValueFactory<>("mid_marks"));
+        quiz3Column.setCellValueFactory(new PropertyValueFactory<>("quiz_3"));
+        quiz4Column.setCellValueFactory(new PropertyValueFactory<>("quiz_4"));
+        finalColumn.setCellValueFactory(new PropertyValueFactory<>("final_marks"));
+        progressColumn.setCellValueFactory(new PropertyValueFactory<>("progress"));
+        gradeColumn.setCellValueFactory(new PropertyValueFactory<>("grade"));
+
+        academicProgressModelTableView.setItems(academicProgressModels);
     }
 
     /**
