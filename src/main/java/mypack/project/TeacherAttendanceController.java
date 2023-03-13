@@ -128,7 +128,7 @@ public class TeacherAttendanceController {
                     absentList.add(idBox.getText());
                 }
             }
-            dbUtilities.takeAttendance(courseCode, presentList, absentList);
+            dbUtilities.takeAttendance(courseCode, presentList, absentList, currentTeacher);
             submitLabel.setText("Attendance taken successfully");
         }
     }

@@ -37,7 +37,7 @@ public class TeacherCourseRegPageController {
         full_name_label.setText(currentTeacher.getName());
 
         DbUtilities dbUtilities = new DbUtilities();
-        offered_courses = dbUtilities.getOfferedCourses(currentTeacher.getDept(), user.getType());
+        offered_courses = dbUtilities.getOfferedCourses(currentTeacher.getDept(), user.getType(), "None");
 
 
         for(int i=0 ; i<offered_courses.size() ; i++){
