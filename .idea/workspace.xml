@@ -7,9 +7,7 @@
     <list default="true" id="0008cb82-a2d4-41e7-a5eb-54ed76d549cc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentAcademicProgressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentAcademicProgressController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userPack/AcademicProgressModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/AcademicProgressModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/academicProgress.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/academicProgress.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +42,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/PROJECT/PROJECT/src/main/resources/mypack/project&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/JAVA_RELATED/LAB/lab5/newApp&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,

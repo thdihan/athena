@@ -91,7 +91,7 @@ public class StudentDashBoardController {
         side_fullname_view.setText(currentStudent.getName());
 
         //checking for registered courses( will be empty if not registered )
-        registered_course = dbUtilities.getRegisteredCourses(currentStudent.getId(), currentStudent.getSemester());
+        registered_course = dbUtilities.getStudentRegisteredCourses(currentStudent.getId(), currentStudent.getSemester());
     }
 
     /**

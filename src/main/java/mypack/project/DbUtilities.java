@@ -7,6 +7,7 @@ import userPack.Student;
 import userPack.Teacher;
 
 import java.sql.*;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -149,9 +150,10 @@ public class DbUtilities {
                 "T_coursecode varchar(20)," +
                 "T_OfferedDept varchar(20)," +
                 "Total_class int not null," +
+                "Academic_Year int not null," +
                 "CONSTRAINT ttc_teacher Foreign key(courseteacher_ID) references Teacher(T_ID),CONSTRAINT ttc_course Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
         String[] insertData = {};
-//        initiateAllTable(tableName, tableQuery, insertData);
+        initiateAllTable(tableName, tableQuery, insertData);
 
 //        Student_takes_course
         tableName = "Student_takes_course";
@@ -168,8 +170,9 @@ public class DbUtilities {
                 "Quiz_4 double precision ," +
                 "Mid_marks double precision ," +
                 "Final_marks double precision ," +
+                "Academic_Year int not null," +
                 "CONSTRAINT stc_student Foreign key(S_ID) references student(S_ID),CONSTRAINT stc_course Foreign key(S_coursedept,s_courseOfferedDept,S_coursecode) references Courses(dept,offered_dept,Course_code));";
-//        initiateAllTable(tableName, tableQuery, insertData);
+        initiateAllTable(tableName, tableQuery, insertData);
     }
 
     /**
@@ -390,7 +393,8 @@ public class DbUtilities {
      */
     public ArrayList<Courses> registerCourses(VBox vBox, Student currentStudent, ArrayList<Courses> offered_courses) throws SQLException {
         PreparedStatement preparedStatement = null;
-        String query = "insert into student_takes_course values(?, ?, ?, ?, ?, ?,0, -1, -1, -1, -1, -1, -1);";
+        Year thisYear = Year.now();
+        String query = "insert into student_takes_course values(?, ?, ?, ?, ?, ?,0, -1, -1, -1, -1, -1, -1, ?);";
         ArrayList<Courses> registered_courses = new ArrayList<>();
         try {
             Connection connection = connectToDB("projectDb", "postgres", "tukasl");
@@ -406,6 +410,7 @@ public class DbUtilities {
                     preparedStatement.setString(4, offered_courses.get(i).getCode());
                     preparedStatement.setString(5, offered_courses.get(i).getOffered_dept());
                     preparedStatement.setString(6, currentStudent.getSemester());
+                    preparedStatement.setInt(7, Integer.parseInt(String.valueOf(thisYear)));
                     preparedStatement.executeUpdate();
                 }
             }
@@ -422,7 +427,8 @@ public class DbUtilities {
 
     public ArrayList<Courses> registerTeacherCourses(VBox vBox, Teacher currentTeacher, ArrayList<Courses> offered_courses) throws SQLException {
         PreparedStatement preparedStatement = null;
-        String query = "insert into teacher_takes_course values(?, ?, ?, ?, 0);";
+        Year thisYear = Year.now();
+        String query = "insert into teacher_takes_course values(?, ?, ?, ?, 0, ?);";
         ArrayList<Courses> registered_courses = new ArrayList<>();
         try {
             Connection connection = connectToDB("projectDb", "postgres", "tukasl");
@@ -436,7 +442,7 @@ public class DbUtilities {
                     preparedStatement.setString(2, currentTeacher.getDept());
                     preparedStatement.setString(3, offered_courses.get(i).getCode());
                     preparedStatement.setString(4, offered_courses.get(i).getDept());
-//                    preparedStatement.setString(6, currentStudent.getSemester());
+                    preparedStatement.setInt(5, Integer.parseInt(String.valueOf(thisYear)));
                     preparedStatement.executeUpdate();
                 }
             }
@@ -459,11 +465,12 @@ public class DbUtilities {
      * @return List of registered courses if registered. Else return empty list
      * @throws SQLException If problems with query
      */
-    public ArrayList<Courses> getRegisteredCourses(String id, String semester) throws SQLException {
+    public ArrayList<Courses> getStudentRegisteredCourses(String id, String semester) throws SQLException {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        String query = "select course_code, course_title, dept, offered_dept, course_credit from courses , (select s_coursecode, s_courseoffereddept from Student_takes_course where s_id=? and semester=?) sub where s_coursecode=course_code and s_courseoffereddept=offered_dept;";
+        Year thisYear = Year.now();
+        String query = "select course_code, course_title, dept, offered_dept, course_credit from courses , (select s_coursecode, s_courseoffereddept from Student_takes_course where s_id=? and semester=? and academic_year=?) sub where s_coursecode=course_code and s_courseoffereddept=offered_dept;";
         ArrayList<Courses> courses = new ArrayList<>();
 
         try {
@@ -471,6 +478,7 @@ public class DbUtilities {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, id);
             preparedStatement.setString(2, semester);
+            preparedStatement.setInt(3,Integer.parseInt(String.valueOf(thisYear)));
             resultSet = preparedStatement.executeQuery();
 
 
@@ -490,13 +498,15 @@ public class DbUtilities {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        String query = "select course_code, course_title, dept, offered_dept, course_credit from courses , (select t_coursecode, T_OfferedDept from teacher_takes_course where courseteacher_ID=?) sub where t_coursecode=course_code and T_OfferedDept=offered_dept;";
+        Year thisYear = Year.now();
+        String query = "select course_code, course_title, dept, offered_dept, course_credit from courses , (select t_coursecode, T_OfferedDept from teacher_takes_course where courseteacher_ID=? and academic_year=?) sub where t_coursecode=course_code and T_OfferedDept=offered_dept;";
         ArrayList<Courses> courses = new ArrayList<>();
 
         try {
             Connection connection = connectToDB("projectDb", "postgres", "tukasl");
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, id);
+            preparedStatement.setInt(2, Integer.parseInt(String.valueOf(thisYear)));
             resultSet = preparedStatement.executeQuery();
 
 
@@ -515,12 +525,14 @@ public class DbUtilities {
     public ArrayList<String> getStudentList(String courseCode) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        String query = "select s_name, student.s_id from student, (select s_id from student_takes_course where s_coursecode=?) sub where student.s_id=sub.s_id;";
+        Year thisYear = Year.now();
+        String query = "select s_name, student.s_id from student, (select s_id from student_takes_course where s_coursecode=? and academic_year=?) sub where student.s_id=sub.s_id;";
         ArrayList<String> studentList = new ArrayList<>();
         try {
             Connection connection = connectToDB("projectDb", "postgres", "tukasl");
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, courseCode);
+            preparedStatement.setInt(2,Integer.parseInt(String.valueOf(thisYear)));
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 studentList.add(resultSet.getString(1) + ": " + resultSet.getString(2)); //format: ID: FullName
