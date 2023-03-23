@@ -10,6 +10,7 @@ import java.sql.*;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 /**
  * This class is dedicated solely for database related functions
@@ -753,6 +754,34 @@ public class DbUtilities {
 
 
         return studentData;
+    }
+
+    public HashMap<String, Double> getStudentMarkList(String courseCode, String examType) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Year thisYear = Year.now();
+        String query = "select student.s_id,"+examType+" from student, (select s_id,"+examType+" from student_takes_course where s_coursecode=? and academic_year=?) sub where student.s_id=sub.s_id;";
+        ArrayList<String> studentList = new ArrayList<>();
+        HashMap<String, Double> hashMap =new HashMap<>();
+
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, courseCode);
+            preparedStatement.setInt(2,Integer.parseInt(String.valueOf(thisYear)));
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                if(resultSet.getDouble(2)==-1)
+                    return hashMap;
+                studentList.add(resultSet.getString(1) + ": " + resultSet.getString(2)); //format: ID: FullName
+                hashMap.put(resultSet.getString(1), resultSet.getDouble(2));
+//                System.out.println(resultSet.getString(2));
+            }
+            return hashMap;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

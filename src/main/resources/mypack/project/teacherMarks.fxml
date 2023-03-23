@@ -72,13 +72,13 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="363.0" layoutY="130.0" mnemonicParsing="false" onAction="#onSubmitBtnClicked" prefHeight="37.0" prefWidth="129.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Submit" textFill="WHITE">
+                              <Button fx:id="submitBtn" layoutX="363.0" layoutY="130.0" mnemonicParsing="false" onAction="#onSubmitBtnClicked" prefHeight="37.0" prefWidth="129.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Submit" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Button>
                               <ComboBox fx:id="courseDropDown" layoutX="25.0" layoutY="84.0" onAction="#selectCourseInDropDown" prefHeight="35.0" prefWidth="313.0" promptText="Course List" />
-                              <Button layoutX="363.0" layoutY="83.0" mnemonicParsing="false" onAction="#onGetStudentListBtnClicked" prefHeight="37.0" prefWidth="128.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Get Student List" textFill="WHITE">
+                              <Button fx:id="listBtn" layoutX="363.0" layoutY="83.0" mnemonicParsing="false" onAction="#onGetStudentListBtnClicked" prefHeight="37.0" prefWidth="128.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Get Student List" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
@@ -108,15 +108,19 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="600.0" layoutY="83.0" mnemonicParsing="false" onAction="#onAddMarksBtnClicked" prefHeight="37.0" prefWidth="128.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Add Marks" textFill="WHITE">
+                              <Button fx:id="modifyBtn" layoutX="369.0" layoutY="360.0" mnemonicParsing="false" onAction="#onModifyMarksBtnClicked" prefHeight="37.0" prefWidth="129.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Modify Marks" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Button>
+                              <Label fx:id="optionLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="139.0" layoutY="20.0" prefHeight="41.0" prefWidth="589.0" text="Please select an option to continue" textAlignment="CENTER" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font></Label>
+                              <Button fx:id="addBtn" layoutX="370.0" layoutY="302.0" mnemonicParsing="false" onAction="#onAddMarksBtnClicked" prefHeight="37.0" prefWidth="128.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Add New Marks" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="600.0" layoutY="130.0" mnemonicParsing="false" onAction="#onModifyMarksBtnClicked" prefHeight="37.0" prefWidth="129.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Modify Marks" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font></Button>
                            </children>
                         </Pane>
                      </content>
