@@ -84,7 +84,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Button>
-                              <ScrollPane layoutX="26.0" layoutY="212.0" prefHeight="472.0" prefWidth="313.0">
+                              <ScrollPane fx:id="scrollPane" layoutX="26.0" layoutY="212.0" prefHeight="472.0" prefWidth="313.0">
                                  <content>
                                     <VBox fx:id="studentListVbox" prefHeight="472.0" prefWidth="313.0" />
                                  </content>

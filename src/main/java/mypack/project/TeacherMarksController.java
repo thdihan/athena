@@ -1,5 +1,8 @@
 package mypack.project;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,12 +10,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import userPack.Courses;
 import userPack.Teacher;
 import userPack.User;
@@ -33,6 +34,8 @@ public class TeacherMarksController implements Initializable {
     @FXML
     private VBox studentListVbox;
     @FXML
+    private ScrollPane scrollPane;
+    @FXML
     private ComboBox<String> courseDropDown;
     @FXML
     private ComboBox<String> examTypeDropDown;
@@ -50,6 +53,8 @@ public class TeacherMarksController implements Initializable {
         currentUser = user;
         this.registered_course = registered_course;
         full_name_label.setText(teacher.getName());
+        scrollPane.setVisible(false);
+        studentListVbox.setVisible(false);
 
         DbUtilities dbUtilities = new DbUtilities();
         ArrayList<Courses> registeredCourses = dbUtilities.getTeacherRegisteredCourses(currentTeacher.getId()); //may come empty if
@@ -72,6 +77,7 @@ public class TeacherMarksController implements Initializable {
 
     public ArrayList<String> onGetStudentListBtnClicked(ActionEvent event) {
         //return empty list if exceptions
+
         DbUtilities dbUtilities = new DbUtilities();
         ArrayList<String> studentList = new ArrayList<>();
         if (selectCourseInDropDown(event) == null)
@@ -93,6 +99,8 @@ public class TeacherMarksController implements Initializable {
         }
         studentListVbox.setAlignment(Pos.TOP_CENTER);
         studentLabel.setText("");
+        scrollPane.setVisible(true);
+        studentListVbox.setVisible(true);
         return studentList;
     }
 
@@ -121,8 +129,30 @@ public class TeacherMarksController implements Initializable {
                 }
                 dbUtilities.updateStudentMarks(idLabel.getText(), Double.parseDouble(markField.getText()), courseDropDown.getValue().split(":")[0], examType.get(examTypeDropDown.getValue()));
                 studentLabel.setText("Marks updated successfully");
+                System.out.println("IN");
+                PauseTransition pauseTransition =new PauseTransition(Duration.seconds(3));
+//                FadeTransition fade = new FadeTransition(Duration.seconds(1), studentLabel);
+//                fade.setToValue(0);
+//                fade.setOnFinished(event1 -> studentLabel.setText(""));
+//                SequentialTransition seq = new SequentialTransition(pauseTransition, fade);
+//                seq.play();
+
+                pauseTransition.setOnFinished(event1 -> studentLabel.setText(""));
+                pauseTransition.play();
+                scrollPane.setVisible(false);
+                studentListVbox.setVisible(false);
+                studentListVbox.getChildren().clear();
             }
+
         }
+    }
+
+    public void onAddMarksBtnClicked(ActionEvent event){
+
+    }
+
+    public void onModifyMarksBtnClicked(ActionEvent event){
+        
     }
 
     public String selectCourseInDropDown(ActionEvent event) {

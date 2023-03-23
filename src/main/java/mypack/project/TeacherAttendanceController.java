@@ -1,17 +1,16 @@
 package mypack.project;
 
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import userPack.Courses;
 import userPack.Teacher;
 import userPack.User;
@@ -35,6 +34,8 @@ public class TeacherAttendanceController {
     @FXML
     private VBox studentListVbox;
     @FXML
+    private ScrollPane scrollPane;
+    @FXML
     private Label submitLabel;
 
 
@@ -44,6 +45,8 @@ public class TeacherAttendanceController {
         currentUser = user;
         this.registered_course = registered_course;
         full_name_label.setText(teacher.getName());
+        scrollPane.setVisible(false);
+        studentListVbox.setVisible(false);
 
         DbUtilities dbUtilities = new DbUtilities();
         ArrayList<Courses> registeredCourses = dbUtilities.getTeacherRegisteredCourses(currentTeacher.getId()); //may come empty if
@@ -98,6 +101,8 @@ public class TeacherAttendanceController {
         }
         studentListVbox.setAlignment(Pos.TOP_CENTER);
         submitLabel.setText("");
+        scrollPane.setVisible(true);
+        studentListVbox.setVisible(true);
         return studentList;
 
     }
@@ -130,6 +135,12 @@ public class TeacherAttendanceController {
             }
             dbUtilities.takeAttendance(courseCode, presentList, absentList, currentTeacher);
             submitLabel.setText("Attendance taken successfully");
+            PauseTransition pauseTransition =new PauseTransition(Duration.seconds(3));
+            pauseTransition.setOnFinished(event1 -> submitLabel.setText(""));
+            pauseTransition.play();
+            scrollPane.setVisible(false);
+            studentListVbox.setVisible(false);
+            studentListVbox.getChildren().clear();
         }
     }
 

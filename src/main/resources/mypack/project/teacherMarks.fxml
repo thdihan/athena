@@ -94,7 +94,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <ScrollPane layoutX="26.0" layoutY="208.0" prefHeight="472.0" prefWidth="315.0">
+                              <ScrollPane fx:id="scrollPane" layoutX="26.0" layoutY="208.0" prefHeight="472.0" prefWidth="315.0">
                                  <content>
                                     <VBox fx:id="studentListVbox" prefHeight="472.0" prefWidth="312.0">
                                        <padding>
@@ -108,6 +108,15 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
+                              <Button layoutX="600.0" layoutY="83.0" mnemonicParsing="false" onAction="#onAddMarksBtnClicked" prefHeight="37.0" prefWidth="128.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Add Marks" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="600.0" layoutY="130.0" mnemonicParsing="false" onAction="#onModifyMarksBtnClicked" prefHeight="37.0" prefWidth="129.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Modify Marks" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Button>
                            </children>
                         </Pane>
                      </content>

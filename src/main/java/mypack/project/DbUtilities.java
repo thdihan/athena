@@ -88,7 +88,7 @@ public class DbUtilities {
         String[] insertUser = {
                 "insert into users values ('shakun650@gmail.com', 'tukasl', 's')",
                 "insert into users values ('hasan@gmail.com', 'tukas', 's')",
-                "insert into users values ('jamal@gmail.com', 'z', 't')",
+                "insert into users values ('z', 'z', 't')",
                 "insert into users values ('shuvro234@gmail.com', 'tukasl', 's')",
                 "insert into users values ('a', 'a', 's')",
                 "insert into users values ('s', 's', 's')"
@@ -111,7 +111,7 @@ public class DbUtilities {
         tableName = "teacher";
         tableQuery = "Create table Teacher(T_ID varchar(15) not null primary key,T_Name varchar(60) not null,T_email varchar(60) not null,Dept varchar(20),DOB date,T_contact varchar not null);";
         String[] insertTeacher = {
-                "insert into teacher values('123456','Jamal','jamal@gmail.com','CSE','1995-01-01','01711111111');"
+                "insert into teacher values('123456','Jamal','z','CSE','1995-01-01','01711111111');"
         };
         initiateAllTable(tableName, tableQuery, insertTeacher);
 
@@ -153,7 +153,7 @@ public class DbUtilities {
                 "Academic_Year int not null," +
                 "CONSTRAINT ttc_teacher Foreign key(courseteacher_ID) references Teacher(T_ID),CONSTRAINT ttc_course Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
         String[] insertData = {};
-        initiateAllTable(tableName, tableQuery, insertData);
+//        initiateAllTable(tableName, tableQuery, insertData);
 
 //        Student_takes_course
         tableName = "Student_takes_course";
@@ -172,7 +172,7 @@ public class DbUtilities {
                 "Final_marks double precision ," +
                 "Academic_Year int not null," +
                 "CONSTRAINT stc_student Foreign key(S_ID) references student(S_ID),CONSTRAINT stc_course Foreign key(S_coursedept,s_courseOfferedDept,S_coursecode) references Courses(dept,offered_dept,Course_code));";
-        initiateAllTable(tableName, tableQuery, insertData);
+//        initiateAllTable(tableName, tableQuery, insertData);
     }
 
     /**
