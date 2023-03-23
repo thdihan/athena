@@ -71,18 +71,18 @@
                         <Insets />
                      </HBox.margin>
                      <children>
-                        <TableView layoutX="36.0" layoutY="52.0" prefHeight="627.0" prefWidth="785.0">
+                        <TableView fx:id="academicProgressModelTableView" layoutX="36.0" layoutY="52.0" prefHeight="627.0" prefWidth="785.0">
                           <columns>
-                            <TableColumn prefWidth="85.86669921875" text="Couse Code" />
-                            <TableColumn prefWidth="90.40009307861328" text="Attendance" />
-                              <TableColumn prefWidth="75.20001220703125" text="Quiz 1" />
-                              <TableColumn prefWidth="76.00006103515625" text="Quiz 2" />
-                              <TableColumn prefWidth="76.00006103515625" text="Mid" />
-                              <TableColumn prefWidth="76.00006103515625" text="Quiz 3" />
-                              <TableColumn prefWidth="76.00006103515625" text="Quiz 4" />
-                              <TableColumn prefWidth="76.00006103515625" text="Final" />
-                              <TableColumn prefWidth="76.00006103515625" text="Progress" />
-                              <TableColumn prefWidth="76.00006103515625" text="Grade" />
+                            <TableColumn fx:id="courseCodeColumn" prefWidth="85.86669921875" text="Couse Code" />
+                            <TableColumn fx:id="attendanceColumn" prefWidth="93.60001373291016" text="Attendance (%)" />
+                              <TableColumn fx:id="quiz1Column" prefWidth="65.5999755859375" text="Quiz 1" />
+                              <TableColumn fx:id="quiz2Column" prefWidth="70.4000244140625" text="Quiz 2" />
+                              <TableColumn fx:id="midColumn" prefWidth="70.39996337890625" text="Mid" />
+                              <TableColumn fx:id="quiz3Column" prefWidth="66.39996337890625" text="Quiz 3" />
+                              <TableColumn fx:id="quiz4Column" prefWidth="70.39999389648438" text="Quiz 4" />
+                              <TableColumn fx:id="finalColumn" prefWidth="68.79998779296875" text="Final" />
+                              <TableColumn fx:id="progressColumn" prefWidth="81.60003662109375" text="Progress (%)" />
+                              <TableColumn fx:id="gradeColumn" prefWidth="122.4000244140625" text="Expected Grade" />
                           </columns>
                         </TableView>
                      </children>

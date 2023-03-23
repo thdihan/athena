@@ -37,7 +37,7 @@ public class TeacherCourseRegPageController {
         full_name_label.setText(currentTeacher.getName());
 
         DbUtilities dbUtilities = new DbUtilities();
-        offered_courses = dbUtilities.getOfferedCourses(currentTeacher.getDept(), user.getType());
+        offered_courses = dbUtilities.getOfferedCourses(currentTeacher.getDept(), user.getType(), "None");
 
 
         for(int i=0 ; i<offered_courses.size() ; i++){
@@ -74,7 +74,7 @@ public class TeacherCourseRegPageController {
     public void courseBtnClicked(ActionEvent event) {
         System.out.println("Already in course page");
     }
-    public void marksBtnClicked(ActionEvent event) {
+    public void marksBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.addMarksBtnClicked(event);
@@ -86,7 +86,7 @@ public class TeacherCourseRegPageController {
         teacherDashBoardController.logoutBtnClicked(event);
     }
 
-    public void takeAttendanceBtnClicked(ActionEvent event){
+    public void takeAttendanceBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.takeAttendanceBtnClicked(event);

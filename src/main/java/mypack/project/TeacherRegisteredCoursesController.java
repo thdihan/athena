@@ -52,7 +52,7 @@ public class TeacherRegisteredCoursesController {
         System.out.println("Already in course page");
     }
 
-    public void marksBtnClicked(ActionEvent event) {
+    public void marksBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_courses, currentUser);
         teacherDashBoardController.addMarksBtnClicked(event);
@@ -64,7 +64,7 @@ public class TeacherRegisteredCoursesController {
         teacherDashBoardController.logoutBtnClicked(event);
     }
 
-    public void takeAttendanceBtnClicked(ActionEvent event){
+    public void takeAttendanceBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_courses, currentUser);
         teacherDashBoardController.takeAttendanceBtnClicked(event);

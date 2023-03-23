@@ -83,8 +83,9 @@ public class TeacherDashBoardController {
         //declaring all the controller
         TeacherCourseRegPageController teacherCourseRegPageController;
         TeacherRegisteredCoursesController teacherRegisteredCoursesController;
+        TeacherMarksController teacherMarksController;
+        TeacherAttendanceController teacherAttendanceController;
 
-        /*--------Marks and attendence Controller Remaining-------------*/
 
         if (choice.equals("regPage")) {
             teacherCourseRegPageController = loader.getController();
@@ -103,6 +104,12 @@ public class TeacherDashBoardController {
             TeacherDashBoardController teacherDashBoardController;
             teacherDashBoardController = loader.getController();
             teacherDashBoardController.initiateTeacherUser(currentUser);
+        }else if (choice.equals("teacherMarks")) {
+            teacherMarksController = loader.getController();
+            teacherMarksController.initiateTeacherMarksController(currentTeacher,currentUser, registered_course);
+        } else if (choice.equals("teacherAttendance")) {
+            teacherAttendanceController=loader.getController();
+            teacherAttendanceController.initiateTeacherAttendanceController(currentTeacher,currentUser,registered_course);
         }
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(afterLoginScene);
@@ -125,11 +132,12 @@ public class TeacherDashBoardController {
         }
     }
 
-    public void addMarksBtnClicked(ActionEvent event){
-        System.out.println("Not implemented add marks");
+    public void addMarksBtnClicked(ActionEvent event) throws SQLException, IOException {
+        changeSceneInDashboard(event, "teacherMarks.fxml", "teacherMarks");
     }
 
-    public void takeAttendanceBtnClicked(ActionEvent event){
+    public void takeAttendanceBtnClicked(ActionEvent event) throws SQLException, IOException {
+        changeSceneInDashboard(event, "teacherAttendanceStudentList.fxml", "teacherAttendance");
         System.out.println("Not implemented taking attendance");
     }
 
