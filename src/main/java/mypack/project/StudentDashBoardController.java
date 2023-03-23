@@ -133,6 +133,7 @@ public class StudentDashBoardController {
         StudentCourseRegPageController studentCourseRegPageController;
         StudentRegisteredCoursesController studentRegisteredCoursesController;
         StudentAcademicProgressController studentAcademicProgressController;
+        StudentWorkspacePageController studentWorkspacePageController;
         /*--------Result View Controller Remaining-------------*/
 
         if (choice.equals("regPage")) {
@@ -158,6 +159,10 @@ public class StudentDashBoardController {
             StudentDashBoardController studentDashBoardController;
             studentDashBoardController = loader.getController();
             studentDashBoardController.initiateStudentUser(currentUser);
+        }
+        else if(choice.equals("workspacePage")){
+            studentWorkspacePageController = loader.getController();
+            studentWorkspacePageController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
         }
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(afterLoginScene);
@@ -203,4 +208,8 @@ public class StudentDashBoardController {
         System.out.println("Result button not assigned");
     }
 
+    @FXML
+    void workspaceBtnClicked(ActionEvent event) throws SQLException, IOException {
+        changeSceneInDashboard(event, "studentWorkspacePage.fxml", "workspacePage");
+    }
 }
