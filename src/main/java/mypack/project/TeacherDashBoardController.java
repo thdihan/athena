@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import userPack.Courses;
 import userPack.Student;
@@ -36,6 +37,8 @@ public class TeacherDashBoardController {
     @FXML
     private Label dept_view;
     @FXML
+    private Pane infoPane;
+    @FXML
     public User getCurrentUser() {
         return currentUser;
     }
@@ -49,18 +52,21 @@ public class TeacherDashBoardController {
     }
 
 
-    public void initiateTeacherUser(User newUser) throws SQLException {
+    public void initiateTeacherUser(User newUser) throws SQLException, IOException {
         currentUser = newUser;
         DbUtilities dbUtilities = new DbUtilities();
         currentTeacher = dbUtilities.getTeacherInfo(currentUser.getEmail());
-
-        //putting the values in labels
-        email_view.setText(currentUser.getEmail());
-        fullname_view.setText(currentTeacher.getName());
-        dob_view.setText(currentTeacher.getDob().toString());
-        dept_view.setText(currentTeacher.getDept());
-        id_view.setText(currentTeacher.getId());
         side_fullname_view.setText(currentTeacher.getName());
+
+        //loading the teacherInfo fxml as child to the pane
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherInfo.fxml"));
+        Node child=loader.load(); //loader.load() must be used otherwise controller isn't created
+
+        TeacherInfoController teacherInfoController=loader.getController();
+        teacherInfoController.initiateTeacherPane(currentTeacher, newUser);
+
+        Node childNode=teacherInfoController.getChildNode();
+        infoPane.getChildren().add(childNode);
 
         //checking for registered courses( will be empty if not registered )
         registered_course = dbUtilities.getTeacherRegisteredCourses(currentTeacher.getId());

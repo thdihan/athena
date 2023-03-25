@@ -800,6 +800,9 @@ public class DbUtilities {
         String studentQuery="update "+userTableName+" \n" +
                 "set s_name=?, dob=?, s_contact=?\n" +
                 "where s_email=?;";
+        String teacherQuery="update "+userTableName+" \n" +
+                "set t_name=?, dob=?, t_contact=?\n" +
+                "where t_email=?;";
         try {
             Connection connection=connectToDB("projectDb", "postgres", "tukasl");
 
@@ -808,7 +811,10 @@ public class DbUtilities {
             userStatement.setString(2,user.getEmail());
             userStatement.executeUpdate();
 
+            if(userTableName.equals("student"))
             studentStatement=connection.prepareStatement(studentQuery);
+            else
+                studentStatement=connection.prepareStatement(teacherQuery);
             studentStatement.setString(1,newName);
             studentStatement.setDate(2, Date.valueOf(newDob));
             studentStatement.setString(3,newContact);

@@ -105,7 +105,7 @@ public class UpdateProfileController {
                 }
                 System.out.println("STILL IN");
             }
-            if(check==false) {
+            if (check == false) {
                 System.out.println("4: " + currentField.getText() + "   " + currentUser.getPassword());
                 checkLabel.setText("");
                 passCheckLabel.setText("");
@@ -117,14 +117,24 @@ public class UpdateProfileController {
                 System.out.println("Profile Updated successfully");
 
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("studentDashBoard.fxml"));
+                if (currentUser.getType().equals("s"))
+                    loader.setLocation(getClass().getResource("studentDashBoard.fxml"));
+                else
+                    loader.setLocation(getClass().getResource("teacherDashBoard.fxml"));
+
                 Parent root = loader.load();
 
                 Scene afterLoginScene = new Scene(root);
 
-                StudentDashBoardController studentDashBoardController;
-                studentDashBoardController = loader.getController();
-                studentDashBoardController.initiateStudentUser(currentUser);
+                if (currentUser.getType().equals("s")) {
+                    StudentDashBoardController studentDashBoardController;
+                    studentDashBoardController = loader.getController();
+                    studentDashBoardController.initiateStudentUser(currentUser);
+                } else {
+                    TeacherDashBoardController teacherDashBoardController;
+                    teacherDashBoardController = loader.getController();
+                    teacherDashBoardController.initiateTeacherUser(currentUser);
+                }
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(afterLoginScene);
                 window.show();
