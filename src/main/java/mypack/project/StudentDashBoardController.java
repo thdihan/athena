@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import userPack.Courses;
 import userPack.Student;
@@ -61,6 +62,8 @@ public class StudentDashBoardController {
 
     @FXML
     private Label semester_view;
+    @FXML
+    private Pane infoPane;
 
     public Student getCurrentStudent() {
         return currentStudent;
@@ -76,18 +79,40 @@ public class StudentDashBoardController {
      * @param newUser
      * @throws SQLException
      */
-    public void initiateStudentUser(User newUser) throws SQLException {
+    public void initiateStudentUser(User newUser) throws SQLException, IOException {
         currentUser = newUser;
         DbUtilities dbUtilities = new DbUtilities();
         currentStudent = dbUtilities.getStudentInfo(currentUser.getEmail());
+//        infoPane.getChildren().clear();
+
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("studentInfo.fxml"));
+        Node child = loader.load(); //loader.load() must be used otherwise controller isnt created
+        StudentInfoController studentInfoController = loader.getController();
+//        if(studentInfoController==null)
+//            System.out.println("NULL");
+        studentInfoController.initiateStudentPane(currentStudent, newUser);
+        Node childNode=studentInfoController.getChildNode();
+        infoPane.getChildren().add(childNode);
+
+
+//        FXMLLoader loader=new FXMLLoader(getClass().getResource("studentInfo.fxml"));
+//        Node child =loader.load();
+
+//        infoPane.getChildren().add(child);
+        
+        
+        
+
 
         //putting the values in labels
-        email_view.setText(currentUser.getEmail());
-        fullname_view.setText(currentStudent.getName());
-        dob_view.setText(currentStudent.getDob().toString());
-        dept_view.setText(currentStudent.getDept());
-        id_view.setText(currentStudent.getId());
-        semester_view.setText(currentStudent.getSemester());
+//        email_view.setText(currentUser.getEmail());
+//        fullname_view.setText(currentStudent.getName());
+//        dob_view.setText(currentStudent.getDob().toString());
+//        dept_view.setText(currentStudent.getDept());
+//        id_view.setText(currentStudent.getId());
+//        semester_view.setText(currentStudent.getSemester());
         side_fullname_view.setText(currentStudent.getName());
 
         //checking for registered courses( will be empty if not registered )

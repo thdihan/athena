@@ -5,6 +5,7 @@ import javafx.scene.layout.VBox;
 import userPack.Courses;
 import userPack.Student;
 import userPack.Teacher;
+import userPack.User;
 
 import java.sql.*;
 import java.time.Year;
@@ -780,6 +781,41 @@ public class DbUtilities {
             return hashMap;
 
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateStudentInfo(User user,String newName, String newContact, String newDob){
+        PreparedStatement userStatement=null;
+        PreparedStatement studentStatement=null;
+        String userTableName;
+        if(user.getType().equals("t")){
+            userTableName="teacher";
+        }else {
+            userTableName="student";
+        }
+        String userQuery="update users\n" +
+                "set password=?\n" +
+                "where email=?;";
+        String studentQuery="update "+userTableName+" \n" +
+                "set s_name=?, dob=?, s_contact=?\n" +
+                "where s_email=?;";
+        try {
+            Connection connection=connectToDB("projectDb", "postgres", "tukasl");
+
+            userStatement=connection.prepareStatement(userQuery);
+            userStatement.setString(1,user.getPassword());
+            userStatement.setString(2,user.getEmail());
+            userStatement.executeUpdate();
+
+            studentStatement=connection.prepareStatement(studentQuery);
+            studentStatement.setString(1,newName);
+            studentStatement.setDate(2, Date.valueOf(newDob));
+            studentStatement.setString(3,newContact);
+            studentStatement.setString(4,user.getEmail());
+            studentStatement.executeUpdate();
+
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentDashBoardController">
@@ -65,84 +64,10 @@
                         </Button>
                      </children>
                   </Pane>
-                  <Pane layoutX="10.0" layoutY="10.0" prefHeight="720.0" prefWidth="850.0" styleClass="info-area" stylesheets="@studentDashBoard.css">
+                  <Pane fx:id="infoPane" layoutX="10.0" layoutY="10.0" prefHeight="720.0" prefWidth="850.0" styleClass="info-area" stylesheets="@studentDashBoard.css">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
-                     <children>
-                        <Label layoutX="81.0" layoutY="80.0" text="Personal Information">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#052f56" height="5.0" layoutX="270.0" layoutY="93.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="25.0" />
-                        <Label layoutX="81.0" layoutY="115.0" text="Full Name : ">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="fullname_view" layoutX="175.0" layoutY="115.0" text="(Name From DataBase)">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="81.0" layoutY="140.0" text="Email :">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="email_view" layoutX="175.0" layoutY="140.0" text="(Email From DataBase)">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="81.0" layoutY="165.0" text="Date of Birth :">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="dob_view" layoutX="175.0" layoutY="165.0" text="(Date of Birth From Database)">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="81.0" layoutY="220.0" text="Academic Information">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#052f56" height="5.0" layoutX="278.0" layoutY="233.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="25.0" />
-                        <Label layoutX="81.0" layoutY="255.0" text="Student ID :">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="81.0" layoutY="280.0" text="Department :">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="81.0" layoutY="305.0" text="Current Semester :">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="id_view" layoutX="210.0" layoutY="255.0" text="(ID From DataBase)">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="dept_view" layoutX="210.0" layoutY="280.0" text="(Dept From DataBase)">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="semester_view" layoutX="210.0" layoutY="305.0" text="(Semester From DataBase)">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
                   </Pane>
                </children>
             </HBox>
