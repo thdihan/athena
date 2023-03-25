@@ -8,6 +8,7 @@ import userPack.Teacher;
 import userPack.User;
 
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -155,7 +156,7 @@ public class DbUtilities {
                 "Academic_Year int not null," +
                 "CONSTRAINT ttc_teacher Foreign key(courseteacher_ID) references Teacher(T_ID),CONSTRAINT ttc_course Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
         String[] insertData = {};
-//        initiateAllTable(tableName, tableQuery, insertData);
+        initiateAllTable(tableName, tableQuery, insertData);
 
 //        Student_takes_course
         tableName = "Student_takes_course";
@@ -174,7 +175,7 @@ public class DbUtilities {
                 "Final_marks double precision ," +
                 "Academic_Year int not null," +
                 "CONSTRAINT stc_student Foreign key(S_ID) references student(S_ID),CONSTRAINT stc_course Foreign key(S_coursedept,s_courseOfferedDept,S_coursecode) references Courses(dept,offered_dept,Course_code));";
-//        initiateAllTable(tableName, tableQuery, insertData);
+        initiateAllTable(tableName, tableQuery, insertData);
     }
 
     /**
@@ -733,7 +734,11 @@ public class DbUtilities {
                 Double quiz4=resultSet.getDouble(8);
                 Double final_marks=resultSet.getDouble(9);
                 Double credit=resultSet.getDouble(10);
-                Double progress=calculateProgress(quiz1, quiz2, quiz3, quiz4, mid, final_marks,credit);
+
+                Double tempProgress=calculateProgress(quiz1, quiz2, quiz3, quiz4, mid, final_marks,credit);
+                DecimalFormat decimalFormat=new DecimalFormat("0.00");
+                Double progress=Double.parseDouble(decimalFormat.format(tempProgress));
+
                 String grade=calculateGrade(quiz1, quiz2, quiz3, quiz4, mid, final_marks,credit);
                 quiz1=(quiz1==-1?0:quiz1);
                 quiz2=(quiz2==-1?0:quiz2);
