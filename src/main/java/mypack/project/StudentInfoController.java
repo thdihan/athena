@@ -11,13 +11,13 @@ import userPack.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
+/** Controller class for student information pane in dashboard
+ * @author Unknown
+ * @version 1.0
+ * @since March,2023
+ */
 public class StudentInfoController {
-    /** Controller class for student information pane in dashboard
-     * @author Unknown
-     * @version 1.0
-     * @since March,2023
-     */
+
     User currentUser;
     @FXML
     private Label fullname_view;
