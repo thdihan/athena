@@ -13,6 +13,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class StudentInfoController {
+    /** Controller class for student information pane in dashboard
+     * @author Unknown
+     * @version 1.0
+     * @since March,2023
+     */
     User currentUser;
     @FXML
     private Label fullname_view;
@@ -29,6 +34,11 @@ public class StudentInfoController {
     @FXML
     private Pane infoPane;
 
+    /**
+     * To initiate the student information in the pane
+     * @param currentStudent Student object containing their personal information
+     * @param user User object of the student
+     */
     public void initiateStudentPane(Student currentStudent, User user){
         currentUser=user;
         email_view.setText(currentStudent.getEmail());
@@ -39,6 +49,10 @@ public class StudentInfoController {
         semester_view.setText(currentStudent.getSemester());
     }
 
+    /**
+     * To get a reference to the pane containing the student information
+     * @return Student information pane as node
+     */
     public Node getChildNode(){
         return infoPane;
     }
@@ -47,6 +61,12 @@ public class StudentInfoController {
 //
 //    }
 
+    /**
+     * To change scene update information when updated profile button is clicked
+     * @param event Event of update profile button click
+     * @throws IOException
+     * @throws SQLException
+     */
     public void onUpdateProfileBtnClicked(ActionEvent event) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("updateProfile.fxml"));
         loader.load(); //loader.load() must be used otherwise controller isn't created

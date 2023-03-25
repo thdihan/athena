@@ -88,7 +88,7 @@ public class StudentDashBoardController {
 
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("studentInfo.fxml"));
-        Node child = loader.load(); //loader.load() must be used otherwise controller isnt created
+        Node child = loader.load(); //loader.load() must be used otherwise controller isn't created
         StudentInfoController studentInfoController = loader.getController();
 //        if(studentInfoController==null)
 //            System.out.println("NULL");
@@ -147,6 +147,14 @@ public class StudentDashBoardController {
         }
     }
 
+    /**
+     * For changing the scenes in the dashboard
+     * @param event Event of button click for scene change
+     * @param fxml File name of the UI of a scene
+     * @param choice Option containing type of scene (regPage, progressPage, regDonePage, resultPage, logoutPage, studentDashBoard)
+     * @throws IOException If problems with input output
+     * @throws SQLException If problems with query
+     */
     void changeSceneInDashboard(ActionEvent event, String fxml, String choice) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxml));

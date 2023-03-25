@@ -1,5 +1,11 @@
 package mypack.project;
 
+/**
+ * Class for initiating progress table view of student
+ * @author Unknown
+ * @version 1.0
+ * @since March,2023
+ */
 public class AcademicProgressModel {
     private String courseCode;
     private Double attendance;
@@ -11,6 +17,20 @@ public class AcademicProgressModel {
     private Double final_marks;
     private Double progress;
     private String grade;
+
+    /**
+     * Constructor of setting the progress model
+     * @param courseCode
+     * @param attendance
+     * @param quiz_1
+     * @param quiz_2
+     * @param mid_marks
+     * @param quiz_3
+     * @param quiz_4
+     * @param final_marks
+     * @param progress
+     * @param grade
+     */
     public AcademicProgressModel(String courseCode, Double attendance, Double quiz_1, Double quiz_2, Double mid_marks, Double quiz_3, Double quiz_4, Double final_marks, Double progress, String grade) {
         this.courseCode = courseCode;
         this.attendance = attendance;

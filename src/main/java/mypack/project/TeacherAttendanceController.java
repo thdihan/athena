@@ -19,6 +19,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+/** Controller class for attendance taking view of teacher
+ * @author Unknown
+ * @version 1.0
+ * @since March,2023
+ */
 
 public class TeacherAttendanceController {
     private Teacher currentTeacher;
@@ -39,7 +44,13 @@ public class TeacherAttendanceController {
     private Label submitLabel;
 
 
-
+    /**
+     * To initiate the required data while changing scenes
+     * @param teacher Teacher taking the attendance
+     * @param user User object of the teacher
+     * @param registered_course List of registered courses of teacher (if any)
+     * @throws SQLException If problems with query
+     */
     public void initiateTeacherAttendanceController(Teacher teacher, User user, ArrayList<Courses> registered_course) throws SQLException {
         currentTeacher = teacher;
         currentUser = user;
@@ -67,6 +78,11 @@ public class TeacherAttendanceController {
         examType.put("Semester Final", "final_marks");
     }
 
+    /**
+     * To obtain the information of selected course in dropdown
+     * @param event Event of course selection
+     * @return Selected course as string. Else return null
+     */
     public String selectCourseInDropDown(ActionEvent event) {
         if (courseDropDown.getValue() == null) {
             courseLabel.setText("Please select course");
@@ -79,6 +95,11 @@ public class TeacherAttendanceController {
         return courseCode;
     }
 
+    /**
+     * To generate the student list in the Vbox
+     * @param event Event of get list button click
+     * @return List of students based on course code
+     */
     public ArrayList<String> onGetStudentListBtnClicked(ActionEvent event) {
         //return empty list if exceptions
         DbUtilities dbUtilities = new DbUtilities();
@@ -107,6 +128,10 @@ public class TeacherAttendanceController {
 
     }
 
+    /**
+     * To submit the attendance when button is clicked
+     * @param event Event of submit button click
+     */
     public void onSubmitBtnClicked(ActionEvent event) {
         if (courseDropDown.getValue() == null || studentListVbox.getChildren().isEmpty()) {
             if (courseDropDown.getValue() == null) {
@@ -144,11 +169,20 @@ public class TeacherAttendanceController {
         }
     }
 
-
+    /**
+     * Course attendance click function
+     * @param event Event of attendance button click
+     */
     public void takeAttendanceBtnClicked(ActionEvent event) {
         System.out.println("Already in attendance page");
     }
 
+    /**
+     * Course button click function
+     * @param event Event of course button click
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input output
+     */
     public void courseBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
@@ -158,19 +192,34 @@ public class TeacherAttendanceController {
             teacherDashBoardController.changeSceneInDashboard(event, "teacherRegisteredCourse.fxml", "regDonePage");
         }
     }
-
+    /**
+     * Marks button click function
+     * @param event Event of Marks button click
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input output
+     */
     public void marksBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.addMarksBtnClicked(event);
     }
-
+    /**
+     * Logout button click function
+     * @param event Event for logout button clicked
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     public void logoutBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.logoutBtnClicked(event);
     }
-
+    /**
+     * Dashboard button click function
+     * @param event Event of button click
+     * @throws IOException If problems with input/output
+     * @throws SQLException If problems with query
+     */
     public void dashBoardBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);

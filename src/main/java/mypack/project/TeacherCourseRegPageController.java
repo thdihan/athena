@@ -18,6 +18,11 @@ import userPack.User;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+/** Controller class for course registration of teacher
+ * @author Unknown
+ * @version 1.0
+ * @since March,2023
+ */
 
 public class TeacherCourseRegPageController {
     Teacher currentTeacher;
@@ -30,6 +35,12 @@ public class TeacherCourseRegPageController {
     ArrayList<Courses> offered_courses;
     ArrayList<Courses> registered_course;
 
+    /**
+     * To initiate course registration view when scene is changed
+     * @param newTeacher Teacher object containing teacher information
+     * @param user User object of the teacher
+     * @throws SQLException If problems with query
+     */
     public void initiateTeacher(Teacher newTeacher, User user) throws SQLException {
         currentTeacher=newTeacher;
 //        System.out.println(currentTeacher.getDob());
@@ -48,7 +59,12 @@ public class TeacherCourseRegPageController {
         }
     }
 
-
+    /**
+     * To register courses when button is clicked
+     * @param event Event of register course button click
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     public void registerCourseBtnClicked(ActionEvent event) throws SQLException, IOException {
         DbUtilities dbUtilities=new DbUtilities();
         ArrayList<Courses>registered_course=dbUtilities.registerTeacherCourses(course_box, currentTeacher, offered_courses);
@@ -70,28 +86,52 @@ public class TeacherCourseRegPageController {
         window.show();
     }
 
-
+    /**
+     * Course button click function
+     * @param event
+     */
     public void courseBtnClicked(ActionEvent event) {
         System.out.println("Already in course page");
     }
+    /**
+     * Marks button click function
+     * @param event Event for marks button clicked
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     public void marksBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.addMarksBtnClicked(event);
     }
-
+    /**
+     * Logout button click function
+     * @param event Event for logout button clicked
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     public void logoutBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.logoutBtnClicked(event);
     }
-
+    /**
+     * Attendance button click function
+     * @param event Event for attendance button clicked
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     public void takeAttendanceBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.takeAttendanceBtnClicked(event);
     }
-
+    /**
+     * Dashboard button click function
+     * @param event Event of button click
+     * @throws IOException If problems with input/output
+     * @throws SQLException If problems with query
+     */
     public void dashBoardBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);

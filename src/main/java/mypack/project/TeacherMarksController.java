@@ -22,6 +22,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
+/** Controller class for adding marks
+ * @author Unknown
+ * @version 1.0
+ * @since March,2023
+ */
 
 public class TeacherMarksController implements Initializable {
     private Teacher currentTeacher;
@@ -56,6 +61,13 @@ public class TeacherMarksController implements Initializable {
     @FXML
     private Button modifyBtn;
 
+    /**
+     * To initiate the add marks view during scene change
+     * @param teacher Teacher object containing their information
+     * @param user User object of the teacher
+     * @param registered_course List of registered courses of the teacher if any
+     * @throws SQLException If problems with query
+     */
     public void initiateTeacherMarksController(Teacher teacher, User user, ArrayList<Courses> registered_course) throws SQLException {
         currentTeacher = teacher;
         currentUser = user;
@@ -87,6 +99,11 @@ public class TeacherMarksController implements Initializable {
         examType.put("Semester Final", "final_marks");
     }
 
+    /**
+     * To generate the student list
+     * @param event Event of get list button click
+     * @return List of students based on course code selected
+     */
     public ArrayList<String> onGetStudentListBtnClicked(ActionEvent event) {
         //return empty list if exceptions
 
@@ -145,6 +162,10 @@ public class TeacherMarksController implements Initializable {
         return studentList;
     }
 
+    /**
+     * To submit the newly added marks
+     * @param event Event of submit button click
+     */
     public void onSubmitBtnClicked(ActionEvent event) {
         if (courseDropDown.getValue() == null || examTypeDropDown.getValue() == null || studentListVbox.getChildren().isEmpty()) {
             if (courseDropDown.getValue() == null) {
@@ -193,6 +214,10 @@ public class TeacherMarksController implements Initializable {
         }
     }
 
+    /**
+     * Option to add marks
+     * @param event Event of add marks button click
+     */
     public void onAddMarksBtnClicked(ActionEvent event) {
         choice = "add";
         optionLabel.setText("Adding marks");
@@ -208,6 +233,10 @@ public class TeacherMarksController implements Initializable {
         addBtn.setVisible(false);
     }
 
+    /**
+     * Option to modify marks
+     * @param event Event of modify marks button click
+     */
     public void onModifyMarksBtnClicked(ActionEvent event) {
         choice = "modify";
         optionLabel.setText("Modifying marks");
@@ -223,6 +252,11 @@ public class TeacherMarksController implements Initializable {
         modifyBtn.setVisible(false);
     }
 
+    /**
+     * To get the selected course in dropdown
+     * @param event Event of selection
+     * @return Course code as string
+     */
     public String selectCourseInDropDown(ActionEvent event) {
         if (courseDropDown.getValue() == null) {
             courseLabel.setText("Please select course");
@@ -235,18 +269,33 @@ public class TeacherMarksController implements Initializable {
         return courseCode;
     }
 
+    /**
+     * To get the exam type in drop down
+     * @param event Event of selection
+     * @return Exam type as string
+     */
     public String selectExamInDropDown(ActionEvent event) {
         String examType = examTypeDropDown.getValue();
         examLabel.setText("");
         return examType;
     }
-
+    /**
+     * Attendance button click function
+     * @param event Event for attendance button clicked
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     public void takeAttendanceBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.takeAttendanceBtnClicked(event);
     }
-
+    /**
+     * Course button click function
+     * @param event Event for course button clicked
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     public void courseBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
@@ -257,16 +306,30 @@ public class TeacherMarksController implements Initializable {
         }
     }
 
-    public void marksBtnClicked(ActionEvent event) throws SQLException, IOException {
+    /**
+     * Marks button click function
+     * @param event Event of marks button click
+     */
+    public void marksBtnClicked(ActionEvent event) {
         System.out.println("Already in marks page");
     }
-
+    /**
+     * Logout button click function
+     * @param event Event for logout button clicked
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     public void logoutBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.logoutBtnClicked(event);
     }
-
+    /**
+     * Dashboard button click function
+     * @param event Event of button click
+     * @throws IOException If problems with input/output
+     * @throws SQLException If problems with query
+     */
     public void dashBoardBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
@@ -274,13 +337,21 @@ public class TeacherMarksController implements Initializable {
 
     }
 
+    /**
+     * To add transition to the labels
+     * @param label Label to add the transition
+     */
     public void addTransition(Label label){
         PauseTransition pauseTransition = new PauseTransition(Duration.seconds(3));
         pauseTransition.setOnFinished(event1 -> label.setText(""));
         pauseTransition.play();
     }
 
-
+    /**
+     * To initiate the exam dropdown
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> examList = FXCollections.observableArrayList("Quiz: 1", "Quiz: 2", "Quiz: 3", "Quiz: 4", "Semester Mid", "Semester Final");

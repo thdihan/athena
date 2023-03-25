@@ -82,7 +82,7 @@ public class StudentRegisteredCoursesController {
     }
     /**
      * Function for course button click
-     * @param event
+     * @param event Event of course button click
      */
     public void courseBtnClicked (ActionEvent event) {
         System.out.println("Currently in course registration page");

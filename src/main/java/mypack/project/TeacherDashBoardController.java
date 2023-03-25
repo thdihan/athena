@@ -17,6 +17,11 @@ import userPack.User;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+/** Controller class for teacher dashboard
+ * @author Unknown
+ * @version 1.0
+ * @since March,2023
+ */
 
 public class TeacherDashBoardController {
 
@@ -51,7 +56,12 @@ public class TeacherDashBoardController {
         return registered_course;
     }
 
-
+    /**
+     * To initiate the teacher dashboard during scene change
+     * @param newUser User object of the teacher
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     public void initiateTeacherUser(User newUser) throws SQLException, IOException {
         currentUser = newUser;
         DbUtilities dbUtilities = new DbUtilities();
@@ -72,6 +82,12 @@ public class TeacherDashBoardController {
         registered_course = dbUtilities.getTeacherRegisteredCourses(currentTeacher.getId());
     }
 
+    /**
+     * To resuse the buttons of dashboard, the data inserted in the dashboard controller
+     * @param teacher Teacher object containing their information
+     * @param registered_course List of registered courses of the teacher (if any)
+     * @param user User object of the teacher
+     */
     public void assignDummyController(Teacher teacher, ArrayList<Courses> registered_course, User user){
         currentTeacher=teacher;
         this.registered_course=registered_course;
@@ -79,6 +95,14 @@ public class TeacherDashBoardController {
 
     }
 
+    /**
+     * For changing scenes in the dashboard
+     * @param event Event of change scene button click
+     * @param fxml File name of the UIs of the scene change
+     * @param choice Option indicating views (regPage, regDonePage, logoutPage, teacherDashBoard, teacherMarks, teacherAttendance)
+     * @throws IOException If problems with input/output
+     * @throws SQLException If problems with query
+     */
     void changeSceneInDashboard(ActionEvent event, String fxml, String choice) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxml));
@@ -121,14 +145,24 @@ public class TeacherDashBoardController {
         window.setScene(afterLoginScene);
         window.show();
     }
-
+    /**
+     * Logout button click function
+     * @param event Event for logout button clicked
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     @FXML
     void logoutBtnClicked(ActionEvent event) throws IOException, SQLException {
 
         changeSceneInDashboard(event, "loginPage.fxml", "logoutPage");
     }
 
-
+    /**
+     * Course button click function
+     * @param event Event for course button clicked
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     public void courseBtnClicked(ActionEvent event) throws SQLException, IOException {
         if (registered_course==null || registered_course.isEmpty()) {
             changeSceneInDashboard(event, "teacherCourseRegPage.fxml", "regPage");
@@ -137,16 +171,30 @@ public class TeacherDashBoardController {
             changeSceneInDashboard(event, "teacherRegisteredCourse.fxml", "regDonePage");
         }
     }
-
+    /**
+     * Marks button click function
+     * @param event Event for marks button clicked
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     public void addMarksBtnClicked(ActionEvent event) throws SQLException, IOException {
         changeSceneInDashboard(event, "teacherMarks.fxml", "teacherMarks");
     }
-
+    /**
+     * Attendance button click function
+     * @param event Event for attendance button clicked
+     * @throws SQLException If problems with query
+     * @throws IOException If problems with input/output
+     */
     public void takeAttendanceBtnClicked(ActionEvent event) throws SQLException, IOException {
         changeSceneInDashboard(event, "teacherAttendanceStudentList.fxml", "teacherAttendance");
-        System.out.println("Not implemented taking attendance");
     }
-
+    /**
+     * Dashboard button click function
+     * @param event Event of button click
+     * @throws IOException If problems with input/output
+     * @throws SQLException If problems with query
+     */
     public void dashBoardBtnClicked(ActionEvent event) throws SQLException, IOException {
         changeSceneInDashboard(event, "teacherDashBoard.fxml", "teacherDashBoard");
     }

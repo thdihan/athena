@@ -17,8 +17,13 @@ import userPack.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
+/** Controller class updating profile information
+ * @author Unknown
+ * @version 1.0
+ * @since March,2023
+ */
 public class UpdateProfileController {
+
     User currentUser;
     @FXML
     public TextField nameField;
@@ -45,6 +50,11 @@ public class UpdateProfileController {
     @FXML
     public Label passCheckLabel;
 
+    /**
+     * To initiate the update profile pane while scene change
+     * @param user User object of the current user
+     * @throws SQLException If problems with query
+     */
     public void initiateUpdateProfileController(User user) throws SQLException {
         currentUser = user;
         currentField.setVisible(false);
@@ -68,6 +78,10 @@ public class UpdateProfileController {
         }
     }
 
+    /**
+     * To enable the change password fields
+     * @param event Event of change password button click
+     */
     public void onChangePasswordBtnClicked(ActionEvent event) {
         currentField.setVisible(true);
         newField.setVisible(true);
@@ -77,6 +91,12 @@ public class UpdateProfileController {
         confirmField.setVisible(true);
     }
 
+    /**
+     * To update the newly added information in the database
+     * @param event Event of confirm button click
+     * @throws IOException If problems with input/output
+     * @throws SQLException If problems with query
+     */
     public void onConfirmBtnClicked(ActionEvent event) throws IOException, SQLException {
         checkLabel.setText("");
         passCheckLabel.setText("");
@@ -144,6 +164,10 @@ public class UpdateProfileController {
 
     }
 
+    /**
+     * To get a reference to the pane
+     * @return Return the pane element as node
+     */
     public Node getChildNode() {
         return updatePane;
     }

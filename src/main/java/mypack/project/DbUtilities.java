@@ -320,6 +320,12 @@ public class DbUtilities {
         }
     }
 
+    /**
+     * To get personal information of teacher
+     * @param email Email of the teacher
+     * @return Teacher object containing their information
+     * @throws SQLException If problems with query
+     */
     public Teacher getTeacherInfo(String email) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -347,11 +353,12 @@ public class DbUtilities {
     }
 
     /**
-     * To get the list of the offered courses (may need to change based on semester)
-     *
-     * @param dept Department which offered the course
+     * To get the list of the offered courses
+     * @param dept Department of teacher and offered department of student
+     * @param userType Type of user (teacher(t), student(s))
+     * @param semester Ongoing semester
      * @return List of courses if found. Else return empty list
-     * @throws SQLException
+     * @throws SQLException If problems with query
      */
     public ArrayList<Courses> getOfferedCourses(String dept, String userType, String semester) throws SQLException {
         PreparedStatement preparedStatement = null;
@@ -387,7 +394,6 @@ public class DbUtilities {
 
     /**
      * For course registration of students
-     *
      * @param vBox            Vbox element containing the offered courses
      * @param currentStudent  The student doing the registration
      * @param offered_courses List of offered courses to the student
@@ -428,6 +434,14 @@ public class DbUtilities {
         }
     }
 
+    /**
+     * Function for course registration of teacher
+     * @param vBox Vbox element containing the offered courses
+     * @param currentTeacher Teacher object doing the registration
+     * @param offered_courses The list of courses that were offered to the teacher
+     * @return The list of registered courses
+     * @throws SQLException If problems with query
+     */
     public ArrayList<Courses> registerTeacherCourses(VBox vBox, Teacher currentTeacher, ArrayList<Courses> offered_courses) throws SQLException {
         PreparedStatement preparedStatement = null;
         Year thisYear = Year.now();
@@ -497,6 +511,12 @@ public class DbUtilities {
         }
     }
 
+    /**
+     * Gives the registered courses of the teacher
+     * @param id Id of the teacher
+     * @return List of registered courses if any. Else returns empty list
+     * @throws SQLException If problems with query
+     */
     public ArrayList<Courses> getTeacherRegisteredCourses(String id) throws SQLException {
 
         PreparedStatement preparedStatement = null;
@@ -525,6 +545,11 @@ public class DbUtilities {
         }
     }
 
+    /**
+     * To get the student list of a particular course code
+     * @param courseCode Course code of a course
+     * @return Student list if any. Else return empty list
+     */
     public ArrayList<String> getStudentList(String courseCode) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -547,6 +572,13 @@ public class DbUtilities {
         }
     }
 
+    /**
+     * For updating the student marks in the table
+     * @param studentId Id of the student
+     * @param marks Marks obtained by the student
+     * @param courseCode Course code of the course
+     * @param examType Type of exam the marks were given for
+     */
     public void updateStudentMarks(String studentId, Double marks, String courseCode, String examType) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -602,6 +634,13 @@ public class DbUtilities {
         }
     }
 
+    /**
+     * Updating the attendance of the student
+     * @param courseCode Course code of the course
+     * @param presentList List of students that were present
+     * @param absentList List of students that were absent
+     * @param teacher Teacher taking the course
+     */
     public void takeAttendance(String courseCode, ArrayList<String> presentList, ArrayList<String> absentList, Teacher teacher) {
         PreparedStatement preparedStatement1 = null;
         PreparedStatement preparedStatement2 = null;
@@ -646,6 +685,17 @@ public class DbUtilities {
         }
     }
 
+    /**
+     * For calculating the academic progress of the student
+     * @param quiz1 Marks of quiz 1
+     * @param quiz2 Marks of quiz 2
+     * @param quiz3 Marks of quiz 3
+     * @param quiz4 Marks of quiz 4
+     * @param mid Marks of mid exam
+     * @param final_marks Marks of final exam
+     * @param credit Credits of the course
+     * @return Academic progress of the student in percentage
+     */
     public Double calculateProgress(double quiz1, double quiz2, double quiz3, double quiz4, double mid, double final_marks, double credit) {
         Double progress = 0.0;
         progress += (quiz1 == -1 ? 0 : quiz1);
@@ -657,6 +707,17 @@ public class DbUtilities {
         return (progress / credit);
     }
 
+    /**
+     * For calculating the expected grade of a student
+     * @param quiz1 Marks of quiz 1
+     * @param quiz2 Marks of quiz 2
+     * @param quiz3 Marks of quiz 3
+     * @param quiz4 Marks of quiz 4
+     * @param mid Marks of mid exam
+     * @param final_marks Marks of final exam
+     * @param credit Credits of the course
+     * @return String containing the grade of the student
+     */
     public String calculateGrade(double quiz1, double quiz2, double quiz3, double quiz4, double mid, double final_marks, double credit) {
         double obtained = 0;
         double current_total = 0;
@@ -709,6 +770,11 @@ public class DbUtilities {
             return "F";
     }
 
+    /**
+     * To get the list of academic progress of student for table view
+     * @param student Student object
+     * @return List of academic records if any. Else return empty list
+     */
     public ArrayList<AcademicProgressModel> getStudentProgressData(Student student) {
         ArrayList<AcademicProgressModel> studentData = new ArrayList<>();
         PreparedStatement preparedStatement = null;
@@ -762,6 +828,12 @@ public class DbUtilities {
         return studentData;
     }
 
+    /**
+     * To get the marks of a student for modification by a teacher
+     * @param courseCode Course code of the course
+     * @param examType Exam type of the exam
+     * @return Hashmap containing student_id as key and exam_marks as value
+     */
     public HashMap<String, Double> getStudentMarkList(String courseCode, String examType) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -790,6 +862,13 @@ public class DbUtilities {
         }
     }
 
+    /**
+     * For updating the information of the student
+     * @param user User object of the student
+     * @param newName Updated name of the student
+     * @param newContact Updated contact information of the student
+     * @param newDob Updated date of birth of the student
+     */
     public void updateStudentInfo(User user,String newName, String newContact, String newDob){
         PreparedStatement userStatement=null;
         PreparedStatement studentStatement=null;
