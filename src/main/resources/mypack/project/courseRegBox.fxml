@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.CourseRegBoxController">
+   <children>
+      <HBox fx:id="newCourseInfo" layoutX="188.0" layoutY="74.0">
+         <children>
+            <CheckBox fx:id="option" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Course Code: Course Title" textAlignment="CENTER" />
+         </children>
+         <padding>
+            <Insets bottom="16.0" left="50.0" />
+         </padding>
+      </HBox>
+      <VBox fx:id="courseInfo" layoutX="176.0" layoutY="131.0" spacing="5.0">
+         <children>
+            <Label fx:id="courseName" prefHeight="20.0" prefWidth="190.0" text="Course Name: Course Title">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="credits" text="Credits: 0.00" />
+         </children>
+         <padding>
+            <Insets bottom="16.0" left="50.0" />
+         </padding>
+      </VBox>
+   </children>
+</Pane>

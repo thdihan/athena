@@ -2,6 +2,8 @@ package mypack.project;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import userPack.Courses;
@@ -27,6 +29,15 @@ public class StudentRegisteredCoursesController {
 
     private Student currentStudent;
     private ArrayList<Courses> registered_courses;
+    public Node getHbox(String course, String credits) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("courseRegBox.fxml"));
+        loader.load(); //loader.load() must be used otherwise controller isn't created
+        CourseRegBoxController courseRegBoxController=loader.getController();
+
+        courseRegBoxController.initiateCourseReg(course, credits);
+        Node childNode= courseRegBoxController.getDoneVbox();
+        return childNode;
+    }
 
     /**
      * To initiate the data and registered course view page
@@ -35,26 +46,16 @@ public class StudentRegisteredCoursesController {
      * @param user User currenly logged in
      * @throws SQLException If problems with query
      */
-    public void initiateRegisteredCourseView(Student student, ArrayList<Courses> courses, User user) throws SQLException {
+    public void initiateRegisteredCourseView(Student student, ArrayList<Courses> courses, User user) throws SQLException, IOException {
         currentStudent=student;
         registered_courses=courses;
         currentUser=user;
         full_name_label.setText(currentStudent.getName());
 
         for(int i=0 ; i<registered_courses.size() ; i++){
-//            Pane pane =new Pane();
-            VBox pane = new VBox();
-            VBox vBox=new VBox();
-            vBox.setSpacing(2);
-            Label course=new Label(registered_courses.get(i).getCode() + ": "+ registered_courses.get(i).getTitle());
-            course.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
-            Label credit=new Label("Credits: "+registered_courses.get(i).getCredit().toString());
-            vBox.getChildren().addAll(course, credit);
-//            VBox.getMargin(vBox,new Insets(0, 0, 0, 10));
-            pane.setStyle("-fx-padding: 0 0 16px 50px;");
-            pane.getChildren().add(vBox);
-
-            course_box.getChildren().add(pane);
+            String courseInfo=registered_courses.get(i).getCode() + ": "+ registered_courses.get(i).getTitle();
+            String credit="Credits: "+registered_courses.get(i).getCredit().toString();
+            course_box.getChildren().add(getHbox(courseInfo, credit));
         }
 
     }
