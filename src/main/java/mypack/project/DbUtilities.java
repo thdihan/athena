@@ -9,6 +9,7 @@ import userPack.User;
 
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -115,7 +116,8 @@ public class DbUtilities {
         tableName = "teacher";
         tableQuery = "Create table Teacher(T_ID varchar(15) not null primary key,T_Name varchar(60) not null,T_email varchar(60) not null,Dept varchar(20),DOB date,T_contact varchar not null);";
         String[] insertTeacher = {
-                "insert into teacher values('123456','Jamal','z','CSE','1995-01-01','01711111111');"
+                "insert into teacher values('123456','Jamal','jamal@gmail.com','CSE','1995-01-01','01711111111');",
+                "insert into teacher values('1233456','Jamal','z','CSE','1995-01-01','01711111111');"
         };
         initiateAllTable(tableName, tableQuery, insertTeacher);
 
@@ -181,21 +183,21 @@ public class DbUtilities {
         // Post Table
 
         String[] demoPost = {
-                "INSERT INTO POST VALUES('P001','CSE 4405','jamal@gmail.com','t','This is demo post','assignment',null,'2023-03-01');",
+                "INSERT INTO POST VALUES('P001','CSE 4405','jamal@gmail.com','t','This is demo post','assignment',null,'2023-04-01 12:00:00');",
                 "INSERT INTO post VALUES ('P002', 'CSE 4405', 'jamal@gmail.com', 't', 'Urgent update required', 'announcement', 'null', null);",
                 "INSERT INTO post VALUES ('P003','CSE 4405',  'hasan@gmail.com', 's', 'Check out our latest product', 'announcement', 'https://example.com/product.jpg', null);"
         };
 
         tableName = "Post";
         tableQuery = "Create table post(" +
-                "postid varchar(20)," +
-                "courseCode varchar(20),"+
-                "post_giver_email varchar(50)," +
-                "post_giver_type varchar(2)," +
+                "postid varchar(50)," +
+                "courseCode varchar(50),"+
+                "post_giver_email varchar(100)," +
+                "post_giver_type varchar(20)," +
                 "post_text varchar(500)," +
-                "post_type varchar(20)," +
+                "post_type varchar(50)," +
                 "attachment_link varchar(100)," +
-                "deadline date," +
+                "deadline timestamp," +
                 "constraint pk_post primary key (postid)," +
                 "constraint fk_user_post foreign key (post_giver_email) references users(email)" +
                 ");";
@@ -488,17 +490,17 @@ public class DbUtilities {
                 post.setPost_text(posts.getString(5));
                 post.setPost_type(posts.getString(6));
                 post.setAttachment_link(posts.getString(7));
-                post.setDeadline(posts.getDate(8));
+                post.setDeadline(posts.getString(8));
 
-                // Print the values of the columns to the console
-//                System.out.println("Post ID: " + post.getPostid());
-//                System.out.println("Course Code: " + post.getCourseCode());
-//                System.out.println("Post Giver Email: " + post.getPost_giver_email());
-//                System.out.println("Post Giver Type: " + post.getPost_giver_type());
-//                System.out.println("Post Text: " + post.getPost_text());
-//                System.out.println("Post Type: " + post.getPost_type());
-//                System.out.println("Attachment Link: " + post.getAttachment_link());
-//                System.out.println("Deadline: " + post.getDeadline());
+//                 Print the values of the columns to the console
+                System.out.println("Post ID: " + post.getPostid());
+                System.out.println("Course Code: " + post.getCourseCode());
+                System.out.println("Post Giver Email: " + post.getPost_giver_email());
+                System.out.println("Post Giver Type: " + post.getPost_giver_type());
+                System.out.println("Post Text: " + post.getPost_text());
+                System.out.println("Post Type: " + post.getPost_type());
+                System.out.println("Attachment Link: " + post.getAttachment_link());
+                System.out.println("Deadline: " + post.getDeadline());
                 allPost.add(post);
             }
 
@@ -509,6 +511,50 @@ public class DbUtilities {
             preparedStatement.close();
         }
         return allPost;
+    }
+
+    public void setPost(Post post) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query =  "INSERT INTO POST VALUES(?,?,?,?,?,?,?,?);";
+//        "INSERT INTO POST VALUES('P001','CSE 4405','jamal@gmail.com','t','This is demo post','assignment',null,'2023-04-01 12:00:00');",
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, post.getPostid());
+            preparedStatement.setString(2, post.getCourseCode());
+            preparedStatement.setString(3, post.getPost_giver_email());
+            preparedStatement.setString(4, post.getPost_type());
+            preparedStatement.setString(5, post.getPost_text());
+            preparedStatement.setString(6, post.getPost_type());
+            if( post.getDeadline() == null) {
+                preparedStatement.setString(7, "null");
+            }
+            else {
+                preparedStatement.setString(7, post.getAttachment_link());
+            }
+
+
+            // This part not handled
+
+            preparedStatement.setNull(8, java.sql.Types.TIMESTAMP); // set the Timestamp value as a parameter in the prepared statement
+            preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+//        // printing all value in console
+//        System.out.println("Post ID: " + post.getPostid());
+//        System.out.println("Course Code: " + post.getCourseCode());
+//        System.out.println("Post Giver Email: " + post.getPost_giver_email());
+//        System.out.println("Post Giver Type: " + post.getPost_giver_type());
+//        System.out.println("Post Text: " + post.getPost_text());
+//        System.out.println("Post Type: " + post.getPost_type());
+//        System.out.println("Attachment Link: " + post.getAttachment_link());
+//        System.out.println("Deadline: " + post.getDeadline());
+
     }
 
     public ArrayList<Courses> registerTeacherCourses(VBox vBox, Teacher currentTeacher, ArrayList<Courses> offered_courses) throws SQLException {

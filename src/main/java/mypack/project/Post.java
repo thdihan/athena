@@ -1,5 +1,7 @@
 package mypack.project;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Post {
@@ -10,7 +12,7 @@ public class Post {
     private String post_text;
     private String post_type;
     private String attachment_link;
-    private Date deadline;
+    private String deadline;
 
     public String getPostid() {
         return postid;
@@ -68,11 +70,16 @@ public class Post {
         this.attachment_link = attachment_link;
     }
 
-    public Date getDeadline() {
-        return deadline;
+    public Timestamp getDeadline() {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSSSSS");
+//        String date = dateFormat.format(new Date()); // get the current date and time
+//        String formattedDate = dateFormat.format(date); // format the date and time as a string
+//        Timestamp timestamp = Timestamp.valueOf(formattedDate); // parse the formatted string into a Timestamp object
+//        return timestamp;
+        return null;
     }
 
-    public void setDeadline(Date deadline) {
+    public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
 
