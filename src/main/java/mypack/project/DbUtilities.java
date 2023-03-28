@@ -813,10 +813,12 @@ public class DbUtilities {
                 mid=(mid==-1?0:mid);
                 final_marks=(final_marks == -1 ? 0 : final_marks);
                 double attedance;
-                if(total_class!=0)
-                    attedance=attended_class/total_class*100;
+                if(total_class!=0) {
+                    attedance = attended_class / total_class * 100;
+                }
                 else
                     attedance=100;
+                attedance=Double.parseDouble(decimalFormat.format(attedance));
                 studentData.add(new AcademicProgressModel(courseCode, attedance, quiz1, quiz2,mid, quiz3, quiz4, final_marks, progress, grade));
 
             }

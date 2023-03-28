@@ -225,6 +225,16 @@ public class TeacherMarksController implements Initializable {
         examTypeDropDown.setVisible(true);
         modifyBtn.setVisible(true);
         addBtn.setVisible(false);
+
+        modifyBtn.setLayoutX(535);
+        modifyBtn.setLayoutY(83);
+        addBtn.setLayoutX(535);
+        addBtn.setLayoutY(130);
+
+        modifyBtn.setPrefHeight(37);
+//        modifyBtn.setPrefWidth(129);
+        addBtn.setPrefHeight(37);
+//        addBtn.setPrefWidth(129);
     }
 
     /**

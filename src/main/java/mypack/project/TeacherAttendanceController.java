@@ -122,13 +122,6 @@ public class TeacherAttendanceController {
 //        System.out.println(studentList.get(0));
         studentListVbox.getChildren().clear();
         for (int i = 0; i < studentList.size(); i++) {
-//            HBox studentBox = new HBox();
-//            CheckBox studentId = new CheckBox(studentList.get(i).split(" ")[1]);
-//            Label nameLabel = new Label(studentList.get(i).split(":")[0]);
-//            HBox.setMargin(studentId, new Insets(15, 10, 10, 20));
-//            HBox.setMargin(nameLabel, new Insets(15, 10, 10, 10));
-//            studentBox.getChildren().addAll(studentId, nameLabel);
-//            studentBox.setSpacing(20);
             studentListVbox.getChildren().add(getHbox(studentList.get(i).split(" ")[1], studentList.get(i).split(":")[0]));
 
         }
