@@ -96,9 +96,9 @@
                               </Label>
                               <ScrollPane fx:id="scrollPane" layoutX="26.0" layoutY="208.0" prefHeight="472.0" prefWidth="315.0">
                                  <content>
-                                    <VBox fx:id="studentListVbox" prefHeight="472.0" prefWidth="312.0">
+                                    <VBox fx:id="studentListVbox" prefHeight="472.0" prefWidth="312.0" spacing="10.0">
                                        <padding>
-                                          <Insets right="10.0" />
+                                          <Insets right="10.0" top="10.0" />
                                        </padding>
                                     </VBox>
                                  </content>
