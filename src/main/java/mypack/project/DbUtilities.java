@@ -1,6 +1,7 @@
 package mypack.project;
 
 import javafx.scene.control.CheckBox;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import userPack.Courses;
 import userPack.Student;
@@ -156,7 +157,7 @@ public class DbUtilities {
                 "Academic_Year int not null," +
                 "CONSTRAINT ttc_teacher Foreign key(courseteacher_ID) references Teacher(T_ID),CONSTRAINT ttc_course Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
         String[] insertData = {};
-//        initiateAllTable(tableName, tableQuery, insertData);
+        initiateAllTable(tableName, tableQuery, insertData);
 
 //        Student_takes_course
         tableName = "Student_takes_course";
@@ -175,7 +176,7 @@ public class DbUtilities {
                 "Final_marks double precision ," +
                 "Academic_Year int not null," +
                 "CONSTRAINT stc_student Foreign key(S_ID) references student(S_ID),CONSTRAINT stc_course Foreign key(S_coursedept,s_courseOfferedDept,S_coursecode) references Courses(dept,offered_dept,Course_code));";
-//        initiateAllTable(tableName, tableQuery, insertData);
+        initiateAllTable(tableName, tableQuery, insertData);
     }
 
     /**
@@ -410,7 +411,9 @@ public class DbUtilities {
             preparedStatement = connection.prepareStatement(query);
 
             for (int i = 0; i < offered_courses.size(); i++) {
-                CheckBox course = (CheckBox) vBox.getChildren().get(i);
+                HBox hBox = (HBox) vBox.getChildren().get(i);
+                CheckBox course= (CheckBox) hBox.getChildren().get(0);
+
                 if (course.isSelected()) {
                     registered_courses.add(offered_courses.get(i));
                     preparedStatement.setString(1, currentStudent.getId());
@@ -452,7 +455,8 @@ public class DbUtilities {
             preparedStatement = connection.prepareStatement(query);
 
             for (int i = 0; i < offered_courses.size(); i++) {
-                CheckBox course = (CheckBox) vBox.getChildren().get(i);
+                HBox hBox = (HBox) vBox.getChildren().get(i);
+                CheckBox course= (CheckBox) hBox.getChildren().get(0);
                 if (course.isSelected()) {
                     registered_courses.add(offered_courses.get(i));
                     preparedStatement.setString(1, currentTeacher.getId());
