@@ -2,9 +2,14 @@ package mypack.project;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import userPack.Courses;
 import userPack.Student;
 import userPack.User;
@@ -49,6 +54,7 @@ public class StudentWorkspacePageController {
             vBox.setSpacing(2);
 
             Button singleWorkspace = new Button();
+            singleWorkspace.setStyle("-fx-min-width: 150px");
             singleWorkspace.setText(registered_courses.get(i).getCode());
 //            Label course=new Label(registered_courses.get(i).getCode() + ": "+ registered_courses.get(i).getTitle());
 //            course.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
@@ -60,6 +66,30 @@ public class StudentWorkspacePageController {
             pane.getChildren().add(vBox);
 
             course_box.getChildren().add(pane);
+
+            int finalI = i;
+            singleWorkspace.setOnAction(event -> {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("studentSingleWorkspacePage.fxml"));
+                Parent root = null;
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Scene afterLoginScene = new Scene(root);
+                StudentSingleWorkspaceController studentSingleWorkspaceController = loader.getController();
+                try {
+                    studentSingleWorkspaceController.initiateData(registered_courses.get(finalI).getCode(),currentStudent, registered_courses, currentUser);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(afterLoginScene);
+                window.show();
+            });
         }
 
     }

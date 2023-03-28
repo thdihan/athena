@@ -173,6 +173,29 @@ public class DbUtilities {
                 "Academic_Year int not null," +
                 "CONSTRAINT stc_student Foreign key(S_ID) references student(S_ID),CONSTRAINT stc_course Foreign key(S_coursedept,s_courseOfferedDept,S_coursecode) references Courses(dept,offered_dept,Course_code));";
         initiateAllTable(tableName, tableQuery, insertData);
+
+        // Post Table
+
+        String[] demoPost = {
+                "INSERT INTO POST VALUES('P001','CSE 4405','jamal@gmail.com','t','This is demo post','assignment',null,'2023-03-01');",
+                "INSERT INTO post VALUES ('P002', 'CSE 4405', 'jamal@gmail.com', 't', 'Urgent update required', 'announcement', 'null', null);",
+                "INSERT INTO post VALUES ('P003','CSE 4405',  'hasan@gmail.com', 's', 'Check out our latest product', 'announcement', 'https://example.com/product.jpg', null);"
+        };
+
+        tableName = "Post";
+        tableQuery = "Create table post(" +
+                "postid varchar(20)," +
+                "courseCode varchar(20),"+
+                "post_giver_email varchar(50)," +
+                "post_giver_type varchar(2)," +
+                "post_text varchar(500)," +
+                "post_type varchar(20)," +
+                "attachment_link varchar(100)," +
+                "deadline date," +
+                "constraint pk_post primary key (postid)," +
+                "constraint fk_user_post foreign key (post_giver_email) references users(email)" +
+                ");";
+        initiateAllTable(tableName,tableQuery,demoPost);
     }
 
     /**
@@ -195,6 +218,10 @@ public class DbUtilities {
             Connection connection = connectToDB("projectDb", "postgres", "tukasl");
             statement = connection.createStatement();
 
+
+            if (tableName.equals("users")) {
+                statement.executeUpdate("ALTER TABLE post DROP CONSTRAINT   IF EXISTS fk_user_post");
+            }
             if (tableName.equals("teacher")) {
                 statement.executeUpdate("ALTER TABLE Teacher_takes_course DROP CONSTRAINT   IF EXISTS ttc_teacher");
                 statement.executeUpdate("ALTER TABLE Teacher_takes_course DROP CONSTRAINT   IF EXISTS ttc_course");
@@ -425,6 +452,51 @@ public class DbUtilities {
         }
     }
 
+
+    public ArrayList<Post> getAllPost(String courseCode) throws SQLException {
+
+        PreparedStatement preparedStatement = null;
+        String query = "select * from post where coursecode = ?;";
+        ArrayList<Post> allPost = new ArrayList<>();
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1,courseCode);
+            ResultSet posts = preparedStatement.executeQuery();
+
+            while(posts.next()) {
+//                System.out.println(posts.getString(1));
+                Post post = new Post();
+                post.setPostid(posts.getString(1));
+                post.setCourseCode(posts.getString(2));
+                post.setPost_giver_email(posts.getString(3));
+                post.setPost_giver_type(posts.getString(4));
+                post.setPost_text(posts.getString(5));
+                post.setPost_type(posts.getString(6));
+                post.setAttachment_link(posts.getString(7));
+                post.setDeadline(posts.getDate(8));
+
+                // Print the values of the columns to the console
+//                System.out.println("Post ID: " + post.getPostid());
+//                System.out.println("Course Code: " + post.getCourseCode());
+//                System.out.println("Post Giver Email: " + post.getPost_giver_email());
+//                System.out.println("Post Giver Type: " + post.getPost_giver_type());
+//                System.out.println("Post Text: " + post.getPost_text());
+//                System.out.println("Post Type: " + post.getPost_type());
+//                System.out.println("Attachment Link: " + post.getAttachment_link());
+//                System.out.println("Deadline: " + post.getDeadline());
+                allPost.add(post);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+        return allPost;
+    }
     public ArrayList<Courses> registerTeacherCourses(VBox vBox, Teacher currentTeacher, ArrayList<Courses> offered_courses) throws SQLException {
         PreparedStatement preparedStatement = null;
         Year thisYear = Year.now();
