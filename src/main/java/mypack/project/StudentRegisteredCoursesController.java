@@ -29,6 +29,13 @@ public class StudentRegisteredCoursesController {
 
     private Student currentStudent;
     private ArrayList<Courses> registered_courses;
+    /**
+     * To create nodes of course Hbox
+     * @param course Course code and title
+     * @param credits Course credits
+     * @return Hbox as node
+     * @throws IOException If problems with input/output
+     */
     public Node getHbox(String course, String credits) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("courseRegBox.fxml"));
         loader.load(); //loader.load() must be used otherwise controller isn't created

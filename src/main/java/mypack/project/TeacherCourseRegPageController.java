@@ -34,6 +34,12 @@ public class TeacherCourseRegPageController {
     private Label full_name_label;
     ArrayList<Courses> offered_courses;
     ArrayList<Courses> registered_course;
+    /**
+     * To create nodes of course Hbox
+     * @param course Course code and title
+     * @return Hbox as node
+     * @throws IOException If problems with input/output
+     */
     public Node getHbox(String course) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("courseRegBox.fxml"));
         loader.load(); //loader.load() must be used otherwise controller isn't created
