@@ -197,7 +197,7 @@ public class DbUtilities {
                 "post_text varchar(500)," +
                 "post_type varchar(50)," +
                 "attachment_link varchar(100)," +
-                "deadline timestamp," +
+                "deadline varchar(50)," +
                 "constraint pk_post primary key (postid)," +
                 "constraint fk_user_post foreign key (post_giver_email) references users(email)" +
                 ");";
@@ -536,7 +536,7 @@ public class DbUtilities {
 
             // This part not handled
 
-            preparedStatement.setNull(8, java.sql.Types.TIMESTAMP);
+            preparedStatement.setString(8, post.getDeadline());
             preparedStatement.executeUpdate();
 
         } catch (Exception e) {

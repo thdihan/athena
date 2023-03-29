@@ -3,16 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentSingleWorkspaceController">
@@ -73,27 +72,27 @@
                         <Insets />
                      </HBox.margin>
                      <children>
-                        <ScrollPane prefHeight="720.0" prefWidth="850.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="848.0">
-                                 <children>
-                                    <Label fx:id="workspace_name" layoutX="45.0" layoutY="41.0" text="Workspace Name">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextArea fx:id="post_text_box" layoutX="45.0" layoutY="80.0" prefHeight="200.0" prefWidth="758.0" />
-                                    <Button fx:id="postBtn" layoutX="672.0" layoutY="295.0" mnemonicParsing="false" onAction="#postBtnClicked" prefHeight="34.0" prefWidth="130.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Post" textFill="WHITE">
-                                       <font>
-                                          <Font name="System Bold" size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <VBox fx:id="postBox" layoutX="45.0" layoutY="386.0" prefWidth="760.0" />
-                                    <ComboBox fx:id="postType" layoutX="470.0" layoutY="292.0" prefHeight="39.0" prefWidth="170.0" />
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </ScrollPane>
+                        <DatePicker fx:id="deadlineDate" layoutX="376.0" layoutY="317.0" prefHeight="40.0" prefWidth="157.0" />
+                        <TextField fx:id="time_hh" layoutX="376.0" layoutY="380.0" prefHeight="40.0" prefWidth="40.0" />
+                        <TextField fx:id="time_mm" layoutX="426.0" layoutY="380.0" prefHeight="40.0" prefWidth="40.0" />
+                        <ComboBox fx:id="am_pm" layoutX="483.0" layoutY="380.0" prefHeight="40.0" prefWidth="40.0" />
+                        <Label layoutX="291.0" layoutY="380.0" prefHeight="40.0" prefWidth="73.0" text="Select Time:" />
+                        <Label layoutX="291.0" layoutY="317.0" prefHeight="40.0" prefWidth="73.0" text="Select Date:" />
+                        <Label layoutX="420.0" layoutY="380.0" prefHeight="40.0" prefWidth="11.0" text=":">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="371.0" layoutY="252.0" prefHeight="40.0" prefWidth="90.0" text="Set Deadline">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="deadlineConfirmBtn" layoutX="459.0" layoutY="439.0" mnemonicParsing="false" onAction="#onConfirmBtnClicked" prefHeight="40.0" prefWidth="81.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Confirm" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
                      </children>
                   </Pane>
                </children>
