@@ -523,7 +523,7 @@ public class DbUtilities {
             preparedStatement.setString(1, post.getPostid());
             preparedStatement.setString(2, post.getCourseCode());
             preparedStatement.setString(3, post.getPost_giver_email());
-            preparedStatement.setString(4, post.getPost_type());
+            preparedStatement.setString(4, post.getPost_giver_type());
             preparedStatement.setString(5, post.getPost_text());
             preparedStatement.setString(6, post.getPost_type());
             if( post.getDeadline() == null) {
@@ -536,7 +536,7 @@ public class DbUtilities {
 
             // This part not handled
 
-            preparedStatement.setNull(8, java.sql.Types.TIMESTAMP); // set the Timestamp value as a parameter in the prepared statement
+            preparedStatement.setNull(8, java.sql.Types.TIMESTAMP);
             preparedStatement.executeUpdate();
 
         } catch (Exception e) {

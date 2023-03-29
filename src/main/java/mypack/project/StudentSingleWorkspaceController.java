@@ -45,10 +45,15 @@ public class StudentSingleWorkspaceController {
     @FXML
     private TextArea post_text_box;
 
+
+    @FXML
+    private VBox datetime;
     public void initiateData(String workspaceName, Student student, ArrayList<Courses> courses, User user) throws SQLException {
         currentStudent = student;
         currentUser = user;
         registered_courses = courses;
+
+
 
         this.workspaceName = workspaceName;
         workspace_name.setText(workspaceName);

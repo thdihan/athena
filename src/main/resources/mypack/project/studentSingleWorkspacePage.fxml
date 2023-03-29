@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -90,6 +91,11 @@
                                     </Button>
                                     <VBox fx:id="postBox" layoutX="45.0" layoutY="386.0" prefHeight="200.0" prefWidth="760.0" />
                                     <ComboBox fx:id="postType" layoutX="470.0" layoutY="292.0" prefHeight="39.0" prefWidth="170.0" />
+                                    <VBox fx:id="datetime" layoutX="158.0" layoutY="289.0" prefHeight="80.0" prefWidth="209.0">
+                                       <children>
+                                          <Spinner />
+                                       </children>
+                                    </VBox>
                                  </children>
                               </AnchorPane>
                           </content>

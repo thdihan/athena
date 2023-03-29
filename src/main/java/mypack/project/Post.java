@@ -71,7 +71,7 @@ public class Post {
     }
 
     public Timestamp getDeadline() {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSSSSS");
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //        String date = dateFormat.format(new Date()); // get the current date and time
 //        String formattedDate = dateFormat.format(date); // format the date and time as a string
 //        Timestamp timestamp = Timestamp.valueOf(formattedDate); // parse the formatted string into a Timestamp object
