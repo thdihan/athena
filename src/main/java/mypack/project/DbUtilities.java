@@ -90,12 +90,12 @@ public class DbUtilities {
 
 //         UsersTable
         String[] insertUser = {
-                "insert into users values ('shakun650@gmail.com', 'tukasl', 's')",
-                "insert into users values ('hasan@gmail.com', 'tukas', 's')",
-                "insert into users values ('z', 'z', 't')",
+                "insert into users values ('shakun650@gmail.com', '21752926f73d037a19c53a9f172dd00c2b08d4b7b6d6e3b096835842faf24f57', 's')",
+                "insert into users values ('hasan@gmail.com', 'd38b6b3ca3e5bac0547c3cf6ea5b92a4f633bd6b2c8c94d28e009736d02ab3f4', 's')",
+                "insert into users values ('z', '594e519ae499312b29433b7dd8a97ff068defcba9755b6d5d00e84c524d67b06', 't')",
                 "insert into users values ('shuvro234@gmail.com', 'tukasl', 's')",
-                "insert into users values ('a', 'a', 's')",
-                "insert into users values ('s', 's', 's')"
+                "insert into users values ('a', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', 's')",
+                "insert into users values ('s', '43a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89', 's')"
         };
         String tableName = "users";
         String tableQuery = "create table users(email text, password text, type varchar(10),constraint pk_users primary key (email) );";
@@ -107,7 +107,8 @@ public class DbUtilities {
         String[] insertStudent = {
                 "insert into student values('200041111','Hasan','hasan@gmail.com','CSE','4','2001-01-01','01711111111');",
                 "insert into student values('200041112','Kamal','a','CSE','4','2001-01-01','01711111111');",
-                "insert into student values('200041113','Wolf','s','CSE','4','2001-01-01','01711111111');"
+                "insert into student values('200041113','Wolf','s','CSE','4','2001-01-01','01711111111');",
+                "insert into student values('200041114','Shakun','shakun650@gmail.com','CSE','3','2001-01-01','01711111111');"
         };
         initiateAllTable(tableName, tableQuery, insertStudent);
 
@@ -305,7 +306,6 @@ public class DbUtilities {
             preparedStatement.setString(1, email);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-//                System.out.println(resultSet.getString(3));
                 Student temp = new Student(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getDate(6), resultSet.getString(7));
                 return temp;
             } else {

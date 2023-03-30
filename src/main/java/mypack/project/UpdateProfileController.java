@@ -16,6 +16,9 @@ import userPack.Teacher;
 import userPack.User;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 /** Controller class updating profile information
  * @author Unknown
@@ -90,23 +93,31 @@ public class UpdateProfileController {
         confirmLabel.setVisible(true);
         confirmField.setVisible(true);
     }
+    /**
+     * Function to encrypt password based on SHA-256 algorithm
+     * @param password Passsword as string
+     * @return Encrypted password
+     * @throws NoSuchAlgorithmException If invalid algorithm
+     */
+    public String encryptPassword(String password) throws NoSuchAlgorithmException {
+        MessageDigest mD=MessageDigest.getInstance("SHA-256");
+        byte[] messageDigest= mD.digest(password.getBytes());
+        BigInteger bigInteger=new BigInteger(1,messageDigest);
+        return bigInteger.toString(16);
+    }
 
     /**
      * To update the newly added information in the database
      * @param event Event of confirm button click
      * @throws IOException If problems with input/output
      * @throws SQLException If problems with query
+     * @throws NoSuchAlgorithmException If invalid algorithm
      */
-    public void onConfirmBtnClicked(ActionEvent event) throws IOException, SQLException {
+    public void onConfirmBtnClicked(ActionEvent event) throws IOException, SQLException, NoSuchAlgorithmException {
         checkLabel.setText("");
         passCheckLabel.setText("");
-        System.out.println("1: " + currentField.getText() + "   " + currentUser.getPassword());
         if (nameField.getText().equals("") || dobField.getText().equals("") || contactField.getText().equals("")) {
             checkLabel.setText("Please fill up all the fields");
-//            if (currentField.isVisible()) {
-//
-//            }
-            System.out.println("2: " + currentField.getText() + "   " + currentUser.getPassword());
         } else {
             boolean check = false;
             if (currentField.isVisible()) {
@@ -114,8 +125,8 @@ public class UpdateProfileController {
                     passCheckLabel.setText("Please fill up all the fields");
                     check = true;
                 } else {
-                    if (!(currentField.getText().equals(currentUser.getPassword()))) {
-                        System.out.println("3: " + currentField.getText() + "   " + currentUser.getPassword());
+                    String currentFieldPassword=encryptPassword(currentField.getText());
+                    if (!(currentFieldPassword.equals(currentUser.getPassword()))) {
                         passCheckLabel.setText("Current password doesn't match");
                         check = true;
                     } else if (!(newField.getText().equals(confirmField.getText()))) {
@@ -123,15 +134,13 @@ public class UpdateProfileController {
                         check = true;
                     }
                 }
-                System.out.println("STILL IN");
             }
             if (check == false) {
-                System.out.println("4: " + currentField.getText() + "   " + currentUser.getPassword());
                 checkLabel.setText("");
                 passCheckLabel.setText("");
                 System.out.println("IN");
                 if (!newField.getText().equals(""))
-                    currentUser.setPassword(newField.getText());
+                    currentUser.setPassword(encryptPassword(newField.getText()));
                 DbUtilities dbUtilities = new DbUtilities();
                 dbUtilities.updateStudentInfo(currentUser, nameField.getText(), contactField.getText(), dobField.getText());
                 System.out.println("Profile Updated successfully");
