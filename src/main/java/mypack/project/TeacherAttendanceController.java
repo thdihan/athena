@@ -5,8 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -95,12 +97,22 @@ public class TeacherAttendanceController {
         return courseCode;
     }
 
+    public Node getHbox(String id, String name) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("attendanceBox.fxml"));
+        loader.load(); //loader.load() must be used otherwise controller isn't created
+        AttendanceBoxController attendanceBoxController=loader.getController();
+
+        attendanceBoxController.initiateBox(id,name);
+        Node childNode= attendanceBoxController.getChildNode();
+        return childNode;
+    }
+
     /**
      * To generate the student list in the Vbox
      * @param event Event of get list button click
      * @return List of students based on course code
      */
-    public ArrayList<String> onGetStudentListBtnClicked(ActionEvent event) {
+    public ArrayList<String> onGetStudentListBtnClicked(ActionEvent event) throws IOException {
         //return empty list if exceptions
         DbUtilities dbUtilities = new DbUtilities();
         ArrayList<String> studentList = new ArrayList<>();
@@ -110,17 +122,10 @@ public class TeacherAttendanceController {
 //        System.out.println(studentList.get(0));
         studentListVbox.getChildren().clear();
         for (int i = 0; i < studentList.size(); i++) {
-            HBox studentBox = new HBox();
-            CheckBox studentId = new CheckBox(studentList.get(i).split(" ")[1]);
-            Label nameLabel = new Label(studentList.get(i).split(":")[0]);
-            HBox.setMargin(studentId, new Insets(15, 10, 10, 20));
-            HBox.setMargin(nameLabel, new Insets(15, 10, 10, 10));
-            studentBox.getChildren().addAll(studentId, nameLabel);
-            studentBox.setSpacing(20);
-            studentListVbox.getChildren().add(studentBox);
+            studentListVbox.getChildren().add(getHbox(studentList.get(i).split(" ")[1], studentList.get(i).split(":")[0]));
 
         }
-        studentListVbox.setAlignment(Pos.TOP_CENTER);
+//        studentListVbox.setAlignment(Pos.TOP_CENTER);
         submitLabel.setText("");
         scrollPane.setVisible(true);
         studentListVbox.setVisible(true);

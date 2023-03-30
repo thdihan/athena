@@ -7,9 +7,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -98,13 +100,22 @@ public class TeacherMarksController implements Initializable {
         examType.put("Semester Mid", "mid_marks");
         examType.put("Semester Final", "final_marks");
     }
+    public Node getHbox(String id, double marks) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("markBox.fxml"));
+        loader.load(); //loader.load() must be used otherwise controller isn't created
+        MarkBoxController markBoxController=loader.getController();
+
+        markBoxController.initiateBox(id, marks);
+        Node childNode= markBoxController.getChildNode();
+        return childNode;
+    }
 
     /**
      * To generate the student list
      * @param event Event of get list button click
      * @return List of students based on course code selected
      */
-    public ArrayList<String> onGetStudentListBtnClicked(ActionEvent event) {
+    public ArrayList<String> onGetStudentListBtnClicked(ActionEvent event) throws IOException {
         //return empty list if exceptions
 
         DbUtilities dbUtilities = new DbUtilities();
@@ -121,15 +132,7 @@ public class TeacherMarksController implements Initializable {
 //        System.out.println(studentList.get(0));
             studentListVbox.getChildren().clear();
             for (int i = 0; i < studentList.size(); i++) {
-                HBox studentBox = new HBox();
-                Label studentId = new Label(studentList.get(i).split(" ")[1]);
-                TextField markField = new TextField();
-                markField.setPromptText("Input Marks");
-                HBox.setMargin(studentId, new Insets(15, 20, 10, 20));
-                HBox.setMargin(markField, new Insets(10, 10, 10, 20));
-                studentBox.getChildren().addAll(studentId, markField);
-                studentBox.setSpacing(20);
-                studentListVbox.getChildren().add(studentBox);
+                studentListVbox.getChildren().add(getHbox(studentList.get(i).split(" ")[1], -1));
 
             }
         } else {
@@ -142,16 +145,7 @@ public class TeacherMarksController implements Initializable {
             }
             studentListVbox.getChildren().clear();
             for (Map.Entry<String, Double> entry : treeMap.entrySet()) {
-                HBox studentBox = new HBox();
-                Label studentId = new Label(entry.getKey());
-                TextField markField = new TextField();
-                markField.setText(String.valueOf(entry.getValue()));
-//                markField.setPromptText("Input Marks");
-                HBox.setMargin(studentId, new Insets(15, 20, 10, 20));
-                HBox.setMargin(markField, new Insets(10, 10, 10, 20));
-                studentBox.getChildren().addAll(studentId, markField);
-                studentBox.setSpacing(20);
-                studentListVbox.getChildren().add(studentBox);
+                studentListVbox.getChildren().add(getHbox(String.valueOf(entry.getKey()), entry.getValue()));
 
             }
         }
@@ -162,6 +156,14 @@ public class TeacherMarksController implements Initializable {
         return studentList;
     }
 
+    /**
+     * To check if valid marks has been given as input
+     * @param str Marks as string
+     * @return True if string contains only numeric else False
+     */
+    public boolean isNumeric(String str) {
+        return str != null && str.matches("-?\\d+(\\.\\d+)?");
+    }
     /**
      * To submit the newly added marks
      * @param event Event of submit button click
@@ -187,7 +189,9 @@ public class TeacherMarksController implements Initializable {
                 TextField markField = (TextField) hBox.getChildren().get(1);
                 if (markField.getText().equals("")) {
                     studentLabel.setText("Please fill all the mark fields before submitting");
-//                    System.out.println("dasdasd");
+                    break;
+                } else if (!isNumeric(markField.getText())) {
+                    studentLabel.setText("Please input valid marks");
                     break;
                 }
                 System.out.println(studentListVbox.getChildren().size());
@@ -231,6 +235,16 @@ public class TeacherMarksController implements Initializable {
         examTypeDropDown.setVisible(true);
         modifyBtn.setVisible(true);
         addBtn.setVisible(false);
+
+        modifyBtn.setLayoutX(535);
+        modifyBtn.setLayoutY(83);
+        addBtn.setLayoutX(535);
+        addBtn.setLayoutY(130);
+
+        modifyBtn.setPrefHeight(37);
+//        modifyBtn.setPrefWidth(129);
+        addBtn.setPrefHeight(37);
+//        addBtn.setPrefWidth(129);
     }
 
     /**

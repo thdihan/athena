@@ -51,11 +51,6 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-//    public void changeScene(String fxml) throws IOException{
-//        Parent root =FXMLLoader.load(getClass().getResource(fxml));
-//        stage.getScene().setRoot(root);
-//    }
-
     /**
      * Main function of the project
      * @param args Command line arguments

@@ -34,6 +34,21 @@ public class TeacherCourseRegPageController {
     private Label full_name_label;
     ArrayList<Courses> offered_courses;
     ArrayList<Courses> registered_course;
+    /**
+     * To create nodes of course Hbox
+     * @param course Course code and title
+     * @return Hbox as node
+     * @throws IOException If problems with input/output
+     */
+    public Node getHbox(String course) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("courseRegBox.fxml"));
+        loader.load(); //loader.load() must be used otherwise controller isn't created
+        CourseRegBoxController courseRegBoxController=loader.getController();
+
+        courseRegBoxController.initiateCourseReg(course, "-1");
+        Node childNode= courseRegBoxController.getCheckHbox();
+        return childNode;
+    }
 
     /**
      * To initiate course registration view when scene is changed
@@ -41,7 +56,7 @@ public class TeacherCourseRegPageController {
      * @param user User object of the teacher
      * @throws SQLException If problems with query
      */
-    public void initiateTeacher(Teacher newTeacher, User user) throws SQLException {
+    public void initiateTeacher(Teacher newTeacher, User user) throws SQLException, IOException {
         currentTeacher=newTeacher;
 //        System.out.println(currentTeacher.getDob());
         currentUser=user;
@@ -54,8 +69,8 @@ public class TeacherCourseRegPageController {
         for(int i=0 ; i<offered_courses.size() ; i++){
             Courses course=offered_courses.get(i);
             String course_name=course.getCode()+": "+course.getTitle();
-            CheckBox option=new CheckBox(course_name);
-            course_box.getChildren().add(option);
+//            CheckBox option=new CheckBox(course_name);
+            course_box.getChildren().add(getHbox(course_name));
         }
     }
 

@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 import userPack.User;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 /** Controller class for login page
@@ -75,19 +78,34 @@ public class LoginController {
     }
 
     /**
+     * Function to encrypt password based on SHA-256 algorithm
+     * @param password Passsword as string
+     * @return Encrypted password
+     * @throws NoSuchAlgorithmException If invalid algorithm
+     */
+    public String encryptPassword(String password) throws NoSuchAlgorithmException {
+        MessageDigest mD=MessageDigest.getInstance("SHA-256");
+        byte[] messageDigest= mD.digest(password.getBytes());
+        BigInteger bigInteger=new BigInteger(1,messageDigest);
+        return bigInteger.toString(16);
+    }
+
+    /**
      * For login authentication of users
      * @param event Event of login button click
+     * @throws NoSuchAlgorithmException If incorrect algorithm
      */
     public void loginCode(ActionEvent event) {
         try {
+            String password=encryptPassword(passField.getText());
             DbUtilities dbUtilities = new DbUtilities();
             if (emailField.getText().isEmpty() || passField.getText().isEmpty())
                 wrongField.setText("Email and password field can't be left empty !!");
-            else if (dbUtilities.loginNow(emailField.getText(), passField.getText())) {
+            else if (dbUtilities.loginNow(emailField.getText(), password)) {
 
                 wrongField.setText("Valid username and password !!");
 
-                User loggingUser = new User(emailField.getText(), passField.getText());
+                User loggingUser = new User(emailField.getText(), password);
                 String userType = dbUtilities.getUserType(loggingUser.getEmail());
                 loggingUser.setType(userType);
 
@@ -104,6 +122,8 @@ public class LoginController {
             System.out.println(e);
             wrongField.setText("Login check error");
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
     }

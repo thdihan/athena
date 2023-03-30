@@ -36,12 +36,28 @@ public class StudentCourseRegPageController {
     ArrayList<Courses> registered_course;
 
     /**
+     * To create nodes of course Hbox
+     * @param course Course code and title
+     * @return Hbox as node
+     * @throws IOException If problems with input/output
+     */
+    public Node getHbox(String course) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("courseRegBox.fxml"));
+        loader.load(); //loader.load() must be used otherwise controller isn't created
+        CourseRegBoxController courseRegBoxController=loader.getController();
+
+        courseRegBoxController.initiateCourseReg(course, "-1");
+        Node childNode= courseRegBoxController.getCheckHbox();
+        return childNode;
+    }
+
+    /**
      * For initiating the data and course registration page view
      * @param newStudent Student currently logged in
      * @param user User currently logged in
      * @throws SQLException If problems with query
      */
-    public void initiateStudent(Student newStudent, User user) throws SQLException {
+    public void initiateStudent(Student newStudent, User user) throws SQLException, IOException {
         currentStudent = newStudent;
         currentUser=user;
         full_name_label.setText(currentStudent.getName());
@@ -53,8 +69,8 @@ public class StudentCourseRegPageController {
         for(int i=0 ; i<offered_courses.size() ; i++){
             Courses course=offered_courses.get(i);
             String course_name=course.getCode()+": "+course.getTitle();
-            CheckBox option=new CheckBox(course_name);
-            course_box.getChildren().add(option);
+//            CheckBox option=new CheckBox(course_name);
+            course_box.getChildren().add(getHbox(course_name));
         }
     }
 
