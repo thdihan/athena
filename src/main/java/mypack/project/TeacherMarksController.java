@@ -155,6 +155,12 @@ public class TeacherMarksController implements Initializable {
         studentListVbox.setVisible(true);
         return studentList;
     }
+
+    /**
+     * To check if valid marks has been given as input
+     * @param str Marks as string
+     * @return True if string contains only numeric else False
+     */
     public boolean isNumeric(String str) {
         return str != null && str.matches("-?\\d+(\\.\\d+)?");
     }
