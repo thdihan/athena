@@ -155,7 +155,9 @@ public class TeacherMarksController implements Initializable {
         studentListVbox.setVisible(true);
         return studentList;
     }
-
+    public boolean isNumeric(String str) {
+        return str != null && str.matches("-?\\d+(\\.\\d+)?");
+    }
     /**
      * To submit the newly added marks
      * @param event Event of submit button click
@@ -181,7 +183,9 @@ public class TeacherMarksController implements Initializable {
                 TextField markField = (TextField) hBox.getChildren().get(1);
                 if (markField.getText().equals("")) {
                     studentLabel.setText("Please fill all the mark fields before submitting");
-//                    System.out.println("dasdasd");
+                    break;
+                } else if (!isNumeric(markField.getText())) {
+                    studentLabel.setText("Please input valid marks");
                     break;
                 }
                 System.out.println(studentListVbox.getChildren().size());
