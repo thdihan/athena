@@ -11,7 +11,7 @@ public class Post {
     private String post_giver_type;
     private String post_text;
     private String post_type;
-    private String attachment_link;
+    private byte[]  attachment;
     private String deadline;
 
     public String getPostid() {
@@ -62,12 +62,12 @@ public class Post {
         this.post_type = post_type;
     }
 
-    public String getAttachment_link() {
-        return attachment_link;
+    public byte[]  getAttachment() {
+        return attachment;
     }
 
-    public void setAttachment_link(String attachment_link) {
-        this.attachment_link = attachment_link;
+    public void setAttachment(byte[] attachment) {
+        this.attachment = attachment;
     }
 
     public String getDeadline() {

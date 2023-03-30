@@ -5,24 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc99f71b-b75b-403a-8455-3c1682544c88" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/AttendanceBoxController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/CourseRegBoxController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/MarkBoxController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/attendanceBox.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegBox.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/markBox.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentCourseRegPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentCourseRegPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentRegisteredCoursesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentRegisteredCoursesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherAttendanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherAttendanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherCourseRegPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherCourseRegPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherMarksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherMarksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherRegisteredCoursesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherRegisteredCoursesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/UpdateProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/UpdateProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherMarks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherMarks.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentSingleWorkspaceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentSingleWorkspaceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userPack/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userPack/Post.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +25,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

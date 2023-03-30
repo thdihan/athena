@@ -167,7 +167,7 @@ public class StudentSingleWorkspaceController {
         Post post = new Post();
         post.setPost_text(postText);
         post.setPost_type(postTypeInput.get(postType.getValue()));
-        post.setAttachment_link(null);
+        post.setAttachment(null);
         post.setCourseCode(workspaceName);
         post.setPost_giver_email(currentUser.getEmail());
         post.setPost_giver_type(currentUser.getType());
@@ -279,14 +279,14 @@ public class StudentSingleWorkspaceController {
 //        String timeTypeValue = am_pm.getValue();
 //        System.out.println(timeTypeValue);
         //         printing all value in console
-        System.out.println("Post ID: " + sendPost.getPostid());
-        System.out.println("Course Code: " + sendPost.getCourseCode());
-        System.out.println("Post Giver Email: " + sendPost.getPost_giver_email());
-        System.out.println("Post Giver Type: " + sendPost.getPost_giver_type());
-        System.out.println("Post Text: " + sendPost.getPost_text());
-        System.out.println("Post Type: " + sendPost.getPost_type());
-        System.out.println("Attachment Link: " + sendPost.getAttachment_link());
-        System.out.println("Deadline: " + sendPost.getDeadline());
+//        System.out.println("Post ID: " + sendPost.getPostid());
+//        System.out.println("Course Code: " + sendPost.getCourseCode());
+//        System.out.println("Post Giver Email: " + sendPost.getPost_giver_email());
+//        System.out.println("Post Giver Type: " + sendPost.getPost_giver_type());
+//        System.out.println("Post Text: " + sendPost.getPost_text());
+//        System.out.println("Post Type: " + sendPost.getPost_type());
+//        System.out.println("Attachment Link: " + sendPost.getAttachment_link());
+//        System.out.println("Deadline: " + sendPost.getDeadline());
 
 
 

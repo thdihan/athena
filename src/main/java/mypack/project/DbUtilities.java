@@ -182,8 +182,8 @@ public class DbUtilities {
 
         String[] demoPost = {
                 "INSERT INTO POST VALUES('P001','CSE 4405','jamal@gmail.com','t','This is demo post','assignment',null,'2023-04-01 12:00:00');",
-                "INSERT INTO post VALUES ('P002', 'CSE 4405', 'jamal@gmail.com', 't', 'Urgent update required', 'announcement', 'null', null);",
-                "INSERT INTO post VALUES ('P003','CSE 4405',  'hasan@gmail.com', 's', 'Check out our latest product', 'announcement', 'https://example.com/product.jpg', null);"
+                "INSERT INTO post VALUES ('P002', 'CSE 4405', 'jamal@gmail.com', 't', 'Urgent update required', 'announcement', null, null);",
+                "INSERT INTO post VALUES ('P003','CSE 4405',  'hasan@gmail.com', 's', 'Check out our latest product', 'announcement', null, null);"
         };
 
         tableName = "Post";
@@ -194,7 +194,7 @@ public class DbUtilities {
                 "post_giver_type varchar(20)," +
                 "post_text varchar(500)," +
                 "post_type varchar(50)," +
-                "attachment_link varchar(100)," +
+                "attachment BYTEA," +
                 "deadline varchar(50)," +
                 "constraint pk_post primary key (postid)," +
                 "constraint fk_user_post foreign key (post_giver_email) references users(email)" +
@@ -512,7 +512,9 @@ public class DbUtilities {
                 post.setPost_giver_type(posts.getString(4));
                 post.setPost_text(posts.getString(5));
                 post.setPost_type(posts.getString(6));
-                post.setAttachment_link(posts.getString(7));
+                Blob blob = posts.getBlob(7);
+                if(blob!=null)
+                post.setAttachment(blob.getBytes(1,(int) blob.length()));
                 post.setDeadline(posts.getString(8));
 
 //                 Print the values of the columns to the console
@@ -522,7 +524,7 @@ public class DbUtilities {
                 System.out.println("Post Giver Type: " + post.getPost_giver_type());
                 System.out.println("Post Text: " + post.getPost_text());
                 System.out.println("Post Type: " + post.getPost_type());
-                System.out.println("Attachment Link: " + post.getAttachment_link());
+//                System.out.println("Attachment Link: " + post.getAttachment_link());
                 System.out.println("Deadline: " + post.getDeadline());
                 allPost.add(post);
             }
@@ -549,16 +551,8 @@ public class DbUtilities {
             preparedStatement.setString(4, post.getPost_giver_type());
             preparedStatement.setString(5, post.getPost_text());
             preparedStatement.setString(6, post.getPost_type());
-            if( post.getDeadline() == null) {
-                preparedStatement.setString(7, "null");
-            }
-            else {
-                preparedStatement.setString(7, post.getAttachment_link());
-            }
 
-
-            // This part not handled
-
+            preparedStatement.setBytes(7, post.getAttachment());
             preparedStatement.setString(8, post.getDeadline());
             preparedStatement.executeUpdate();
 
