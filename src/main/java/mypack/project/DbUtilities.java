@@ -2,14 +2,10 @@ package mypack.project;
 
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.VBox;
-import userPack.Courses;
-import userPack.Student;
-import userPack.Teacher;
-import userPack.User;
+import userPack.*;
 
 import java.sql.*;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -110,7 +106,7 @@ public class DbUtilities {
                 "insert into student values('200041112','Kamal','a','CSE','4','2001-01-01','01711111111');",
                 "insert into student values('200041113','Wolf','s','CSE','4','2001-01-01','01711111111');"
         };
-        initiateAllTable(tableName, tableQuery, insertStudent);
+//        initiateAllTable(tableName, tableQuery, insertStudent);
 
         // Teacher Table
         tableName = "teacher";
@@ -145,7 +141,7 @@ public class DbUtilities {
                 "INSERT INTO COURSES VALUES('HUM 4441','Engineering Ethics','CSE','CSE',3.0,'4');",
                 "INSERT INTO COURSES VALUES('CSE 4303','DBMS','CSE','CSE',3.0,'3');"
         };
-        initiateAllTable(tableName, tableQuery, insertCourse);
+//        initiateAllTable(tableName, tableQuery, insertCourse);
 
 //         CourseTakenByTeacher
         tableName = "Teacher_takes_course";
@@ -178,7 +174,7 @@ public class DbUtilities {
                 "Final_marks double precision ," +
                 "Academic_Year int not null," +
                 "CONSTRAINT stc_student Foreign key(S_ID) references student(S_ID),CONSTRAINT stc_course Foreign key(S_coursedept,s_courseOfferedDept,S_coursecode) references Courses(dept,offered_dept,Course_code));";
-        initiateAllTable(tableName, tableQuery, insertData);
+//        initiateAllTable(tableName, tableQuery, insertData);
 
         // Post Table
 
@@ -202,6 +198,27 @@ public class DbUtilities {
                 "constraint fk_user_post foreign key (post_giver_email) references users(email)" +
                 ");";
         initiateAllTable(tableName,tableQuery,demoPost);
+
+
+        // comment table
+
+        String[] demoComment = {
+                "insert into comment values('C001', 'P001','jamal@gmail.com','t','Comment 1','2023-03-01 12:33:00')"
+        };
+        tableName = "comment";
+        tableQuery = "create table comment (" +
+                "    commentid varchar(30)," +
+                "    postid varchar(30)," +
+                "    commenter_email varchar(50)," +
+                "    commenter_type varchar(20)," +
+                "    comment_text varchar(500)," +
+                "    comment_time varchar(30),"+
+                "    constraint pk_comment primary key(commentid)," +
+                "    constraint fk_comment_post foreign key (postid) references post (postid)" +
+                ");";
+        initiateAllTable(tableName, tableQuery, demoComment);
+
+
     }
 
     /**
@@ -225,6 +242,9 @@ public class DbUtilities {
             statement = connection.createStatement();
 
 
+            if(tableName.equals("Post")) {
+                statement.executeUpdate("ALTER TABLE comment DROP CONSTRAINT   IF EXISTS fk_comment_post");
+            }
             if (tableName.equals("users")) {
                 statement.executeUpdate("ALTER TABLE post DROP CONSTRAINT   IF EXISTS fk_user_post");
             }
@@ -232,10 +252,10 @@ public class DbUtilities {
                 statement.executeUpdate("ALTER TABLE Teacher_takes_course DROP CONSTRAINT   IF EXISTS ttc_teacher");
                 statement.executeUpdate("ALTER TABLE Teacher_takes_course DROP CONSTRAINT   IF EXISTS ttc_course");
             }
-            if (tableName.equals("student")) {
-                statement.executeUpdate("ALTER TABLE Student_takes_course DROP CONSTRAINT   IF EXISTS stc_course");
-                statement.executeUpdate("ALTER TABLE Student_takes_course DROP CONSTRAINT   IF EXISTS stc_student");
-            }
+//            if (tableName.equals("student")) {
+//                statement.executeUpdate("ALTER TABLE Student_takes_course DROP CONSTRAINT   IF EXISTS stc_course");
+//                statement.executeUpdate("ALTER TABLE Student_takes_course DROP CONSTRAINT   IF EXISTS stc_student");
+//            }
 
             statement.executeUpdate(dropQuery);
             statement.executeUpdate(createTableQuery);
@@ -554,6 +574,77 @@ public class DbUtilities {
 //        System.out.println("Post Type: " + post.getPost_type());
 //        System.out.println("Attachment Link: " + post.getAttachment_link());
 //        System.out.println("Deadline: " + post.getDeadline());
+
+    }
+
+
+    public ArrayList<Comment> getAllComments(String postid) throws SQLException {
+
+        PreparedStatement preparedStatement = null;
+        String query = "select * from comment where postid = ?;";
+        ArrayList<Comment> allComment = new ArrayList<>();
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1,postid);
+            ResultSet comments = preparedStatement.executeQuery();
+
+            while(comments.next()) {
+//                System.out.println(posts.getString(1));
+                Comment comment = new Comment();
+                comment.setCommentId(comments.getString(1));
+                comment.setPostId(comments.getString(2));
+                comment.setCommenterEmail(comments.getString(3));
+                comment.setCommenterType(comments.getString(4));
+                comment.setCommentText(comments.getString(5));
+                comment.setCommentTime(comments.getString(6));
+
+
+
+//                 Print the values of the columns to the console
+//                System.out.println("Post ID: " + post.getPostid());
+//                System.out.println("Course Code: " + post.getCourseCode());
+//                System.out.println("Post Giver Email: " + post.getPost_giver_email());
+//                System.out.println("Post Giver Type: " + post.getPost_giver_type());
+//                System.out.println("Post Text: " + post.getPost_text());
+//                System.out.println("Post Type: " + post.getPost_type());
+//                System.out.println("Attachment Link: " + post.getAttachment_link());
+//                System.out.println("Deadline: " + post.getDeadline());
+                allComment.add(comment);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+        return allComment;
+    }
+    public void setComment(Comment comment) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query =  "INSERT INTO COMMENT VALUES(?,?,?,?,?,?);";
+//        "insert into comment values('C001', 'P001','jamal@gmail.com','t','Comment 1')
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, comment.getCommentId());
+            preparedStatement.setString(2, comment.getPostId());
+            preparedStatement.setString(3, comment.getCommenterEmail());
+            preparedStatement.setString(4, comment.getCommenterType());
+            preparedStatement.setString(5, comment.getCommentText());
+            preparedStatement.setString(6, comment.getCommentTime());
+
+
+            preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
 
     }
 

@@ -14,13 +14,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import userPack.Courses;
+import userPack.Post;
 import userPack.Student;
 import userPack.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -109,6 +109,31 @@ public class StudentSingleWorkspaceController {
             postPane.getChildren().add(postDetails);
             singlePost.getChildren().add(0,postPane);
 
+
+            // View Details button action
+            viewDetails.setOnAction(event -> {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("singlePostPage.fxml"));
+                Parent root = null;
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Scene singlePostPageScene = new Scene(root);
+                SinglePostPageController singlePostPageController = loader.getController();
+                try {
+                    singlePostPageController.initiate(workspaceName,currentStudent, registered_courses, currentUser,post);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(singlePostPageScene);
+                System.out.println("working");
+                window.show();
+            });
             postBox.getChildren().add(0,singlePost);
             // printing all value in console
 //                System.out.println("Post ID: " + post.getPostid());
@@ -206,6 +231,10 @@ public class StudentSingleWorkspaceController {
         currentUser = user;
         registered_courses = courses;
         this.workspaceName = workspaceName;
+
+        ObservableList<String> timeTypeSet = FXCollections.observableArrayList("AM", "PM");
+        am_pm.setItems(timeTypeSet);
+        am_pm.setValue("AM");
     }
     public void setDeadline(ActionEvent event) throws IOException {
 

@@ -2,9 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,9 +11,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentSingleWorkspaceController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.SinglePostPageController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="main-container" stylesheets="@studentDashBoard.css">
          <children>
@@ -72,27 +73,42 @@
                         <Insets />
                      </HBox.margin>
                      <children>
-                        <DatePicker fx:id="deadlineDate" layoutX="376.0" layoutY="317.0" prefHeight="40.0" prefWidth="200.0" />
-                        <TextField fx:id="time_hh" layoutX="376.0" layoutY="380.0" prefHeight="40.0" prefWidth="40.0" />
-                        <TextField fx:id="time_mm" layoutX="426.0" layoutY="380.0" prefHeight="40.0" prefWidth="40.0" />
-                        <ComboBox fx:id="am_pm" layoutX="483.0" layoutY="380.0" prefHeight="40.0" prefWidth="97.0" />
-                        <Label layoutX="291.0" layoutY="380.0" prefHeight="40.0" prefWidth="73.0" text="Select Time:" />
-                        <Label layoutX="291.0" layoutY="317.0" prefHeight="40.0" prefWidth="73.0" text="Select Date:" />
-                        <Label layoutX="420.0" layoutY="380.0" prefHeight="40.0" prefWidth="11.0" text=":">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="371.0" layoutY="252.0" prefHeight="40.0" prefWidth="90.0" text="Set Deadline">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="deadlineConfirmBtn" layoutX="459.0" layoutY="439.0" mnemonicParsing="false" onAction="#onConfirmBtnClicked" prefHeight="40.0" prefWidth="119.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Confirm" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
+                        <ScrollPane prefHeight="720.0" prefWidth="850.0">
+                          <content>
+                            <AnchorPane minHeight="718.0" minWidth="835.0" prefWidth="846.0">
+                                 <children>
+                                    <Button fx:id="backtoworkspaceBtn" layoutX="49.0" layoutY="41.0" mnemonicParsing="false" onAction="#backtoworkspaceBtnClicked" text="Back to workspace">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Label fx:id="postType_label" layoutX="211.0" layoutY="42.0" text="Assignment">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Text fx:id="post_text" layoutX="49.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." wrappingWidth="742.3159713745117" />
+                                    <TextField fx:id="comment_textbox" layoutX="49.0" layoutY="444.0" prefHeight="90.0" prefWidth="732.0" />
+                                    <Label layoutX="49.0" layoutY="417.0" text="Comment">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="postCommentBtn" layoutX="646.0" layoutY="553.0" mnemonicParsing="false" onAction="#postCommentBtnclicked" text="Post Comment">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <VBox fx:id="comment_box" layoutX="46.0" layoutY="614.0" prefWidth="735.0" />
+                                    <Label fx:id="postDeadline_label" layoutX="587.0" layoutY="46.0">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
                      </children>
                   </Pane>
                </children>

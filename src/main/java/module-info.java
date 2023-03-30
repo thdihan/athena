@@ -6,4 +6,6 @@ module mypack.project {
 
     opens mypack.project to javafx.fxml;
     exports mypack.project;
+    exports userPack;
+    opens userPack to javafx.fxml;
 }
