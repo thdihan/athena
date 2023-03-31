@@ -12,12 +12,15 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import userPack.Courses;
 import userPack.Post;
 import userPack.Student;
 import userPack.User;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -65,6 +68,11 @@ public class StudentSingleWorkspaceController {
     private TextField time_mm;
     @FXML
     private DatePicker deadlineDate;
+
+    @FXML
+    private Button chooseAttachmentBtn;
+
+    private byte[] attachment_data;
     public void initiateData(String workspaceName, Student student, ArrayList<Courses> courses, User user) throws SQLException {
         currentStudent = student;
         currentUser = user;
@@ -135,14 +143,14 @@ public class StudentSingleWorkspaceController {
                 window.show();
             });
             postBox.getChildren().add(0,singlePost);
-            // printing all value in console
+//             printing all value in console
 //                System.out.println("Post ID: " + post.getPostid());
 //                System.out.println("Course Code: " + post.getCourseCode());
 //                System.out.println("Post Giver Email: " + post.getPost_giver_email());
 //                System.out.println("Post Giver Type: " + post.getPost_giver_type());
 //                System.out.println("Post Text: " + post.getPost_text());
 //                System.out.println("Post Type: " + post.getPost_type());
-//                System.out.println("Attachment Link: " + post.getAttachment_link());
+//                System.out.println("Attachment Link: " + post.getAttachment());
 //                System.out.println("Deadline: " + post.getDeadline());
         }
 
@@ -154,6 +162,27 @@ public class StudentSingleWorkspaceController {
 //        }
 
 
+    }
+
+    @FXML
+    void chooseAttachmentBtnClicked(ActionEvent event) throws IOException {
+        // Create a FileChooser dialog box to allow the user to select the PDF file
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select PDF File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+        File pdfFile = fileChooser.showOpenDialog(null);
+
+
+        if (pdfFile != null) {
+            // Read the contents of the PDF file into a byte array
+            FileInputStream inputStream = new FileInputStream(pdfFile);
+            byte[] pdfData = new byte[(int) pdfFile.length()];
+            inputStream.read(pdfData);
+            inputStream.close();
+
+            this.attachment_data = pdfData;
+            System.out.println(attachment_data);
+        }
     }
 
     @FXML
@@ -172,6 +201,7 @@ public class StudentSingleWorkspaceController {
         post.setPost_giver_email(currentUser.getEmail());
         post.setPost_giver_type(currentUser.getType());
         post.setDeadline(null);
+        post.setAttachment(attachment_data);
 
         // generating id
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -221,7 +251,7 @@ public class StudentSingleWorkspaceController {
 //                System.out.println("Post Giver Type: " + post.getPost_giver_type());
 //                System.out.println("Post Text: " + post.getPost_text());
 //                System.out.println("Post Type: " + post.getPost_type());
-//                System.out.println("Attachment Link: " + post.getAttachment_link());
+//                System.out.println("Attachment Link: " + post.getAttachment());
 //                System.out.println("Deadline: " + post.getDeadline());
 
     }

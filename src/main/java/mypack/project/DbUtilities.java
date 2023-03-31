@@ -512,9 +512,10 @@ public class DbUtilities {
                 post.setPost_giver_type(posts.getString(4));
                 post.setPost_text(posts.getString(5));
                 post.setPost_type(posts.getString(6));
-                Blob blob = posts.getBlob(7);
+                byte[] blob = posts.getBytes(7);
                 if(blob!=null)
-                post.setAttachment(blob.getBytes(1,(int) blob.length()));
+//                post.setAttachment(blob.getBytes(1,(int) blob.length()));
+                    post.setAttachment(blob);
                 post.setDeadline(posts.getString(8));
 
 //                 Print the values of the columns to the console
@@ -524,7 +525,7 @@ public class DbUtilities {
                 System.out.println("Post Giver Type: " + post.getPost_giver_type());
                 System.out.println("Post Text: " + post.getPost_text());
                 System.out.println("Post Type: " + post.getPost_type());
-//                System.out.println("Attachment Link: " + post.getAttachment_link());
+                System.out.println("Attachment Link: " + post.getAttachment());
                 System.out.println("Deadline: " + post.getDeadline());
                 allPost.add(post);
             }

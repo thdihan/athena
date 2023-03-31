@@ -6,15 +6,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import userPack.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -56,6 +61,9 @@ public class SinglePostPageController {
     private String workspaceName;
 
     private Post currentPost;
+
+    @FXML
+    private  Button downloadAttachmentBtn;
     public void initiate(String workspaceName, Student student, ArrayList<Courses> courses, User user, Post post) throws SQLException {
         this.workspaceName = workspaceName;
         this.currentStudent = student;
@@ -63,6 +71,10 @@ public class SinglePostPageController {
         this.registered_courses = courses;
         this.currentPost = post;
 
+
+        if(currentPost.getAttachment() == null) {
+            downloadAttachmentBtn.setVisible(false);
+        }
         postType_label.setText(post.getPost_type());
         post_text.setText(post.getPost_text());
         if(post.getDeadline() != null)
@@ -95,6 +107,34 @@ public class SinglePostPageController {
             comment_box.getChildren().add(0,singlePost);
         }
 
+    }
+
+    @FXML
+    void downloadAttachmentBtn_clicked(ActionEvent event) throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+        File file = fileChooser.showSaveDialog(null);
+
+        if (file != null) {
+            // Write the byte array data to a file with the chosen file name and path
+            FileOutputStream outStream = new FileOutputStream(file);
+            outStream.write(currentPost.getAttachment());
+            outStream.close();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Download Complete");
+            alert.setHeaderText(null);
+            alert.setContentText("The blob data has been downloaded and saved to " + file.getAbsolutePath());
+            alert.showAndWait();
+        }
+         else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("No blob data found in the database for the specified ID");
+            alert.showAndWait();
+        }
     }
 
     @FXML
