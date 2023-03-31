@@ -17,10 +17,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import userPack.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -64,6 +61,13 @@ public class SinglePostPageController {
 
     @FXML
     private  Button downloadAttachmentBtn;
+
+    @FXML
+    private  Button submissionBtn;
+    @FXML
+    private  Button selectSubmissionBtn;
+
+    Submission currentSubmission;
     public void initiate(String workspaceName, Student student, ArrayList<Courses> courses, User user, Post post) throws SQLException {
         this.workspaceName = workspaceName;
         this.currentStudent = student;
@@ -71,9 +75,18 @@ public class SinglePostPageController {
         this.registered_courses = courses;
         this.currentPost = post;
 
-
+        // Button Visibility
         if(currentPost.getAttachment() == null) {
             downloadAttachmentBtn.setVisible(false);
+        }
+
+        if(currentUser.getType().equals("s") && currentPost.getPost_type().equals("assignment")) {
+            submissionBtn.setVisible(true);
+            selectSubmissionBtn.setVisible(true);
+        }
+        else{
+            submissionBtn.setVisible(false);
+            selectSubmissionBtn.setVisible(false);
         }
         postType_label.setText(post.getPost_type());
         post_text.setText(post.getPost_text());
@@ -109,6 +122,53 @@ public class SinglePostPageController {
 
     }
 
+
+    @FXML
+    void selectSubmissionBtn_clicked(ActionEvent event) throws IOException {
+// Create a FileChooser dialog box to allow the user to select the PDF file
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select PDF File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+        File pdfFile = fileChooser.showOpenDialog(null);
+        currentSubmission = new Submission();
+
+        if (pdfFile != null) {
+            // Read the contents of the PDF file into a byte array
+            FileInputStream inputStream = new FileInputStream(pdfFile);
+            byte[] pdfData = new byte[(int) pdfFile.length()];
+            inputStream.read(pdfData);
+            inputStream.close();
+
+
+            // setData
+            currentSubmission.setSubmissionFile(pdfData);
+        }
+    }
+
+    @FXML
+    void submissionBtn_clicked(ActionEvent event) throws SQLException {
+        // generating id
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        String date = dateFormat.format(new Date());
+        Random random = new Random();
+        int randomNum = random.nextInt(10000);
+        randomNum %= 12;
+        String uniqueCode = date + randomNum;
+
+        // Get current date and time
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String currentDateTimeString = currentDateTime.format(formatter);
+
+
+        currentSubmission.setSubmissionId(uniqueCode);
+        currentSubmission.setPostId(currentPost.getPostid());
+        currentSubmission.setSubmitterEmail(currentUser.getEmail());
+        currentSubmission.setSubmissionTime(currentDateTimeString);
+
+        DbUtilities setSubmissiontoDatabase = new DbUtilities();
+        setSubmissiontoDatabase.setSubmission(currentSubmission);
+    }
     @FXML
     void downloadAttachmentBtn_clicked(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();

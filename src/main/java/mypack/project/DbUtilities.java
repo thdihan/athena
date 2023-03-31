@@ -221,6 +221,20 @@ public class DbUtilities {
         initiateAllTable(tableName, tableQuery, demoComment);
 
 
+//        Submission Table
+        String[] demoSubmission = {
+                "insert into submission values('S001', 'P001','hasan@gmail.com',null,'2023-03-01 12:33:00');"
+        };
+        tableName = "submission";
+        tableQuery = "create table submission(\n" +
+                "\tsubmissionid varchar(30),\n" +
+                "\tpostid varchar(30),\n" +
+                "\tsubmitter_email varchar(50),\n" +
+                "\tsubmission_file BYTEA,\n" +
+                "\tsubmission_time varchar(30),\n" +
+                "\tconstraint pk_submission primary key (submissionid),\n" +
+                "\tconstraint fk_sub_post foreign key(postid) references post(postid)\n" +
+                ");";
     }
 
     /**
@@ -246,6 +260,7 @@ public class DbUtilities {
 
             if(tableName.equals("Post")) {
                 statement.executeUpdate("ALTER TABLE comment DROP CONSTRAINT   IF EXISTS fk_comment_post");
+                statement.executeUpdate("ALTER TABLE submission DROP CONSTRAINT   IF EXISTS fk_sub_post");
             }
             if (tableName.equals("users")) {
                 statement.executeUpdate("ALTER TABLE post DROP CONSTRAINT   IF EXISTS fk_user_post");
@@ -645,6 +660,34 @@ public class DbUtilities {
         }
 
     }
+
+
+    public void setSubmission(Submission submission) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query =  "INSERT INTO SUBMISSION VALUES(?,?,?,?,?);";
+//        insert into submission values('S001', 'P001','hasan@gmail.com',null,'2023-03-01 12:33:00');
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, submission.getSubmissionId());
+            preparedStatement.setString(2, submission.getPostId());
+            preparedStatement.setString(3, submission.getSubmitterEmail());
+            preparedStatement.setBytes(4,submission.getSubmissionFile());
+            preparedStatement.setString(5, submission.getSubmissionTime());
+
+            preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+
+    }
+
+
+
 
     public ArrayList<Courses> registerTeacherCourses(VBox vBox, Teacher currentTeacher, ArrayList<Courses> offered_courses) throws SQLException {
         PreparedStatement preparedStatement = null;
