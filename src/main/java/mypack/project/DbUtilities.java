@@ -1,5 +1,6 @@
 package mypack.project;
 
+import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -87,16 +88,16 @@ public class DbUtilities {
 
 //         UsersTable
         String[] insertUser = {
-                "insert into users values ('jamal@gmail.com', 'z', 't')",
-                "insert into users values ('shakun650@gmail.com', '21752926f73d037a19c53a9f172dd00c2b08d4b7b6d6e3b096835842faf24f57', 's')",
-                "insert into users values ('hasan@gmail.com', 'd38b6b3ca3e5bac0547c3cf6ea5b92a4f633bd6b2c8c94d28e009736d02ab3f4', 's')",
-                "insert into users values ('z', '594e519ae499312b29433b7dd8a97ff068defcba9755b6d5d00e84c524d67b06', 't')",
-                "insert into users values ('shuvro234@gmail.com', 'tukasl', 's')",
-                "insert into users values ('a', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', 's')",
-                "insert into users values ('s', '43a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89', 's')"
+                "insert into users values ('jamal@gmail.com', 'z', 't',0)",
+                "insert into users values ('shakun650@gmail.com', '21752926f73d037a19c53a9f172dd00c2b08d4b7b6d6e3b096835842faf24f57', 's',0)",
+                "insert into users values ('hasan@gmail.com', 'd38b6b3ca3e5bac0547c3cf6ea5b92a4f633bd6b2c8c94d28e009736d02ab3f4', 's',0)",
+                "insert into users values ('z', '594e519ae499312b29433b7dd8a97ff068defcba9755b6d5d00e84c524d67b06', 't',0)",
+                "insert into users values ('shuvro234@gmail.com', 'tukasl', 's',0)",
+                "insert into users values ('a', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', 's',0)",
+                "insert into users values ('s', '43a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89', 's',0)"
         };
         String tableName = "users";
-        String tableQuery = "create table users(email text, password text, type varchar(10),constraint pk_users primary key (email) );";
+        String tableQuery = "create table users(email text, password text, type varchar(10),notification int,constraint pk_users primary key (email) );";
         initiateAllTable(tableName, tableQuery, insertUser);
 
         // Student Table
@@ -117,7 +118,7 @@ public class DbUtilities {
                 "insert into teacher values('123456','Jamal','jamal@gmail.com','CSE','1995-01-01','01711111111');",
                 "insert into teacher values('1233456','Jamal','z','CSE','1995-01-01','01711111111');"
         };
-        initiateAllTable(tableName, tableQuery, insertTeacher);
+//        initiateAllTable(tableName, tableQuery, insertTeacher);
 
         // Admin Table
         tableName = "admins";
@@ -157,7 +158,7 @@ public class DbUtilities {
                 "Academic_Year int not null," +
                 "CONSTRAINT ttc_teacher Foreign key(courseteacher_ID) references Teacher(T_ID),CONSTRAINT ttc_course Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
         String[] insertData = {};
-        initiateAllTable(tableName, tableQuery, insertData);
+//        initiateAllTable(tableName, tableQuery, insertData);
 
 //        Student_takes_course
         tableName = "Student_takes_course";
@@ -235,6 +236,23 @@ public class DbUtilities {
                 "\tconstraint pk_submission primary key (submissionid),\n" +
                 "\tconstraint fk_sub_post foreign key(postid) references post(postid)\n" +
                 ");";
+
+        initiateAllTable(tableName,tableQuery,demoSubmission);
+        // Notification Table
+
+        String[] demoNotifiaction = {
+                "insert into notification values('N001','P001','post','jamal@gmail.com');"
+        };
+        tableName = "notification";
+        tableQuery = "create table notification (\n" +
+                "\tnotificationid varchar(30),\n" +
+                "\tpostid varchar(30),\n" +
+                "\tnotification_type varchar(20),\n" +
+                "notifier_email varchar(50),"+
+                "\tconstraint pk_notification primary key(notificationid),\n" +
+                "\tconstraint fk_notification_post foreign key (postid) references post(postid)\n" +
+                ");";
+        initiateAllTable(tableName,tableQuery,demoNotifiaction);
     }
 
     /**
@@ -261,6 +279,8 @@ public class DbUtilities {
             if(tableName.equals("Post")) {
                 statement.executeUpdate("ALTER TABLE comment DROP CONSTRAINT   IF EXISTS fk_comment_post");
                 statement.executeUpdate("ALTER TABLE submission DROP CONSTRAINT   IF EXISTS fk_sub_post");
+                statement.executeUpdate("ALTER TABLE notification DROP CONSTRAINT   IF EXISTS fk_notification_post");
+
             }
             if (tableName.equals("users")) {
                 statement.executeUpdate("ALTER TABLE post DROP CONSTRAINT   IF EXISTS fk_user_post");
@@ -504,6 +524,63 @@ public class DbUtilities {
 
 
 
+    public void setNotification(Post post, String notificationType) throws SQLException {
+
+        ArrayList<String> userList = new ArrayList<>();
+        Notification newNotification = new Notification();
+        String query = "select s_email from student, student_takes_course where student_takes_course.s_coursecode = ? and student_takes_course.s_id = student.s_id; ";
+
+        PreparedStatement preparedStatement = null;
+
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1,post.getCourseCode());
+            ResultSet users = preparedStatement.executeQuery();
+
+            while(users.next()) {
+                System.out.println("Notification To : "  + users.getString(1));
+
+                userList.add(users.getString(1));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+
+        // selectFromTeacher
+        query = "select t_email from teacher, teacher_takes_course where teacher_takes_course.t_coursecode = ? and teacher_takes_course.courseteacher_id = teacher.t_id;";
+
+
+
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1,post.getCourseCode());
+            ResultSet users = preparedStatement.executeQuery();
+
+            while(users.next()) {
+                System.out.println("Notification To : "  + users.getString(1));
+
+                userList.add(users.getString(1));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+
+
+        // setNotification 
+
+    }
 
 
     public ArrayList<Post> getAllPost(String courseCode) throws SQLException {
@@ -555,6 +632,7 @@ public class DbUtilities {
     }
 
     public void setPost(Post post) throws SQLException {
+        setNotification(post,"post");
         PreparedStatement preparedStatement = null;
         String query =  "INSERT INTO POST VALUES(?,?,?,?,?,?,?,?);";
 //        "INSERT INTO POST VALUES('P001','CSE 4405','jamal@gmail.com','t','This is demo post','assignment',null,'2023-04-01 12:00:00');",
