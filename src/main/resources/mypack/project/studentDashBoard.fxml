@@ -73,6 +73,9 @@
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
+                     <children>
+                        <Button fx:id="notificationbtn" layoutX="743.0" layoutY="670.0" mnemonicParsing="false" onAction="#notificationbtn_clicked" text="Notification" />
+                     </children>
                   </Pane>
                </children>
             </HBox>

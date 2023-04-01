@@ -225,4 +225,9 @@ public class StudentDashBoardController {
     void workspaceBtnClicked(ActionEvent event) throws SQLException, IOException {
         changeSceneInDashboard(event, "studentWorkspacePage.fxml", "workspacePage");
     }
+
+    @FXML
+    void notificationbtn_clicked(ActionEvent event) {
+
+    }
 }

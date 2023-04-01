@@ -8,10 +8,14 @@ import userPack.*;
 
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.Year;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * This class is dedicated solely for database related functions
@@ -238,10 +242,11 @@ public class DbUtilities {
                 ");";
 
         initiateAllTable(tableName,tableQuery,demoSubmission);
-        // Notification Table
 
+
+        // Notification Table
         String[] demoNotifiaction = {
-                "insert into notification values('N001','P001','post','jamal@gmail.com');"
+                "insert into notification values('N001','P001','post','jamal@gmail.com','a','New Post','2023-04-01 12:44:33');"
         };
         tableName = "notification";
         tableQuery = "create table notification (\n" +
@@ -249,6 +254,9 @@ public class DbUtilities {
                 "\tpostid varchar(30),\n" +
                 "\tnotification_type varchar(20),\n" +
                 "notifier_email varchar(50),"+
+                "notify_email varchar(50),"+
+                "notification_text varchar(200),"+
+                "notificationTime varchar(30),"+
                 "\tconstraint pk_notification primary key(notificationid),\n" +
                 "\tconstraint fk_notification_post foreign key (postid) references post(postid)\n" +
                 ");";
@@ -580,6 +588,56 @@ public class DbUtilities {
 
         // setNotification
 
+
+        // generate uniqueId
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        String date = dateFormat.format(new java.util.Date());
+        Random random = new Random();
+        int randomNum = random.nextInt(10000);
+        randomNum %= 12;
+        String uniqueCode = date + randomNum;
+
+        // prepare notification text
+        String postSubstr;
+        if(post.getPost_text().length() <= 15) postSubstr = post.getPost_text();
+        else postSubstr = post.getPost_text().substring(0,15);
+        String notifiaction_text = "New " + notificationType + " from '" + post.getPost_giver_email() +  "' : " + postSubstr;
+
+        // get current date
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String currentDateTimeString = currentDateTime.format(formatter);
+
+
+        for(int i = 0; i < userList.size();i++) {
+
+            query =  "INSERT INTO NOTIFICATION VALUES(?,?,?,?,?,?,?);";
+//            "insert into notification values('N001','P001','post','jamal@gmail.com','a','New Post','2023-04-01 12:44:33');"
+          try {
+                Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, notificationType+"_"+uniqueCode+userList.get(i));
+                preparedStatement.setString(2, post.getPostid());
+                preparedStatement.setString(3, notificationType);
+                preparedStatement.setString(4, post.getPost_giver_email());
+                preparedStatement.setString(5, userList.get(i));
+                preparedStatement.setString(6, notifiaction_text);
+
+                preparedStatement.setString(7, currentDateTimeString);
+                preparedStatement.executeUpdate();
+
+            } catch (Exception e) {
+                System.out.println("Exception registering courses");
+                throw new RuntimeException(e);
+            } finally {
+                preparedStatement.close();
+            }
+        }
+
+
+
+
+
     }
 
 
@@ -632,7 +690,7 @@ public class DbUtilities {
     }
 
     public void setPost(Post post) throws SQLException {
-        setNotification(post,"post");
+
         PreparedStatement preparedStatement = null;
         String query =  "INSERT INTO POST VALUES(?,?,?,?,?,?,?,?);";
 //        "INSERT INTO POST VALUES('P001','CSE 4405','jamal@gmail.com','t','This is demo post','assignment',null,'2023-04-01 12:00:00');",
@@ -666,6 +724,9 @@ public class DbUtilities {
 //        System.out.println("Attachment Link: " + post.getAttachment_link());
 //        System.out.println("Deadline: " + post.getDeadline());
 
+
+        // set notification
+        setNotification(post,"post");
     }
 
 
@@ -713,7 +774,7 @@ public class DbUtilities {
         }
         return allComment;
     }
-    public void setComment(Comment comment) throws SQLException {
+    public void setComment(Comment comment, Post post) throws SQLException {
         PreparedStatement preparedStatement = null;
         String query =  "INSERT INTO COMMENT VALUES(?,?,?,?,?,?);";
 //        "insert into comment values('C001', 'P001','jamal@gmail.com','t','Comment 1')
@@ -737,10 +798,13 @@ public class DbUtilities {
             preparedStatement.close();
         }
 
+        // set notification
+        setNotification(post,"Comment");
+
     }
 
 
-    public void setSubmission(Submission submission) throws SQLException {
+    public void setSubmission(Submission submission, Post post) throws SQLException {
         PreparedStatement preparedStatement = null;
         String query =  "INSERT INTO SUBMISSION VALUES(?,?,?,?,?);";
 //        insert into submission values('S001', 'P001','hasan@gmail.com',null,'2023-03-01 12:33:00');
@@ -761,6 +825,9 @@ public class DbUtilities {
         } finally {
             preparedStatement.close();
         }
+
+        // set notification
+        setNotification(post,"Submission");
 
     }
 

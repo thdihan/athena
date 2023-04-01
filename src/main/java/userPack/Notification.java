@@ -6,6 +6,9 @@ public class Notification {
     private String notificationType;
     private String notifierEmail;
 
+    private  String notifyToEmail;
+    private  String notificationText;
+
 
     public String getNotificationId() {
         return notificationId;
@@ -37,6 +40,22 @@ public class Notification {
 
     public void setNotifierEmail(String notifierEmail) {
         this.notifierEmail = notifierEmail;
+    }
+
+    public String getNotifyToEmail() {
+        return notifyToEmail;
+    }
+
+    public void setNotifyToEmail(String notifyToEmail) {
+        this.notifyToEmail = notifyToEmail;
+    }
+
+    public String getNotificationText() {
+        return notificationText;
+    }
+
+    public void setNotificationText(String notificationText) {
+        this.notificationText = notificationText;
     }
 }
 

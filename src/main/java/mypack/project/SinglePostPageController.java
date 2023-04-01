@@ -167,7 +167,7 @@ public class SinglePostPageController {
         currentSubmission.setSubmissionTime(currentDateTimeString);
 
         DbUtilities setSubmissiontoDatabase = new DbUtilities();
-        setSubmissiontoDatabase.setSubmission(currentSubmission);
+        setSubmissiontoDatabase.setSubmission(currentSubmission,currentPost);
     }
     @FXML
     void downloadAttachmentBtn_clicked(ActionEvent event) throws IOException {
@@ -248,7 +248,7 @@ public class SinglePostPageController {
         tempComment.setCommentId(uniqueCode);
 
         DbUtilities commentSetter = new DbUtilities();
-        commentSetter.setComment(tempComment);
+        commentSetter.setComment(tempComment,currentPost);
 
         // reload the page
         FXMLLoader loader = new FXMLLoader();
