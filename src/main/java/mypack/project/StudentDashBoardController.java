@@ -33,23 +33,23 @@ public class StudentDashBoardController {
     @FXML
     private Button course_btn;
 
-    @FXML
-    private Label dept_view;
+//    @FXML
+//    private Label dept_view;
 
-    @FXML
-    private Label dob_view;
+//    @FXML
+//    private Label dob_view;
 
-    @FXML
-    private Label email_view;
+//    @FXML
+//    private Label email_view;
 
-    @FXML
-    private Label fullname_view;
+//    @FXML
+//    private Label fullname_view;
 
     @FXML
     Label side_fullname_view;
 
-    @FXML
-    private Label id_view;
+//    @FXML
+//    private Label id_view;
 
     @FXML
     private Button logout_btn;
@@ -60,8 +60,8 @@ public class StudentDashBoardController {
     @FXML
     private Button result_btn;
 
-    @FXML
-    private Label semester_view;
+//    @FXML
+//    private Label semester_view;
     @FXML
     private Pane infoPane;
 
