@@ -77,4 +77,6 @@ public class StudentInfoController {
         infoPane.getChildren().clear();
         infoPane.getChildren().add(childNode);
     }
+
+
 }

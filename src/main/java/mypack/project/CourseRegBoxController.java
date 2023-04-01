@@ -30,6 +30,7 @@ public class CourseRegBoxController {
      * @param credits Number of credits of that course
      */
     public void initiateCourseReg(String courseCodeTitle, String credits){
+        option.setStyle("-fx-text-fill: #fff;");
         option.setText(courseCodeTitle);
         courseName.setText(courseCodeTitle);
         this.credits.setText(credits);

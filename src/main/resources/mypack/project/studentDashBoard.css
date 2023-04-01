@@ -101,3 +101,31 @@
     -fx-border-style: solid;
     -fx-border-color: #A29B96;
 }
+
+.center-info-pane {
+    -fx-background-color: #242529;
+}
+
+.background-primary {
+    -fx-background-color: #242529;
+}
+
+.background-secondary {
+    -fx-background-color: #36373E;
+}
+
+.course-reg{
+}
+
+
+.thumb {
+    -fx-background-color:#242529;
+}
+.track{
+    -fx-background-color: #36373E;
+}
+
+.scroll-bar .decrement-button,.scroll-bar .increment-button, .corner{
+    -fx-background-color: #242529;
+    -fx-background-insets: 0;
+}

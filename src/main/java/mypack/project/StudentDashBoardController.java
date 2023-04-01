@@ -47,6 +47,8 @@ public class StudentDashBoardController {
 
     @FXML
     Label side_fullname_view;
+    @FXML
+    Label ui_name;
 
 //    @FXML
 //    private Label id_view;
@@ -86,13 +88,16 @@ public class StudentDashBoardController {
         System.out.println(currentStudent.getEmail());
 //        infoPane.getChildren().clear();
 
+        ui_name.setText("Dashboard");
         //initiating student info view
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("studentInfo.fxml"));
         loader.load(); //loader.load() must be used otherwise controller isn't created
         StudentInfoController studentInfoController = loader.getController();
         studentInfoController.initiateStudentPane(currentStudent, newUser);
         Node childNode=studentInfoController.getChildNode();
         infoPane.getChildren().add(childNode);
+
         side_fullname_view.setText(currentStudent.getName());
 
         //checking for registered courses( will be empty if not registered )
@@ -124,10 +129,60 @@ public class StudentDashBoardController {
         /*-------------Need to check if the student table has courses registered or not---------*/
         /*-------Added null condition for error checking---------*/
         if (registered_course==null || registered_course.isEmpty()) {
-            changeSceneInDashboard(event, "courseRegPage.fxml", "regPage");
+            changeSceneWithInfoPane(event, "courseRegPage.fxml", "regPage");
         } else {
-            changeSceneInDashboard(event, "registeredCourses.fxml", "regDonePage");
+            changeSceneWithInfoPane(event, "registeredCourses.fxml", "regDonePage");
         }
+    }
+
+    void changeSceneWithInfoPane(ActionEvent event, String fxml, String choice) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        loader.load(); //loader.load() must be used otherwise controller isn't created
+        Node childNode = null;
+
+        //declaring all the controller
+        StudentCourseRegPageController studentCourseRegPageController;
+        StudentRegisteredCoursesController studentRegisteredCoursesController;
+        StudentAcademicProgressController studentAcademicProgressController;
+        StudentWorkspacePageController studentWorkspacePageController;
+        /*--------Result View Controller Remaining-------------*/
+
+        if (choice.equals("regPage")) {
+            studentCourseRegPageController = loader.getController();
+            studentCourseRegPageController.initiateStudent(currentStudent, currentUser);
+            ui_name.setText(studentCourseRegPageController.getUiName());
+            childNode=studentCourseRegPageController.getPane();
+
+        } else if (choice.equals("progressPage")) {
+//            System.out.println("Empty progress controller");
+            studentAcademicProgressController =loader.getController();
+            studentAcademicProgressController.initiateAcademicProgressView(currentStudent, registered_course, currentUser);
+
+        } else if (choice.equals("regDonePage")) {
+            studentRegisteredCoursesController =loader.getController();
+            studentRegisteredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
+
+//            ui_name.setText(studentRegisteredCoursesController.getUiName());
+            childNode=studentRegisteredCoursesController.getPane();
+
+        } else if (choice.equals("resultPage")) {
+            System.out.println("Empty result controller");
+
+        } else if (choice.equals("logoutPage")) {
+            System.out.println("Logging out");
+        }
+        else if (choice.equals("studentDashBoard")) {
+            StudentDashBoardController studentDashBoardController;
+            studentDashBoardController = loader.getController();
+            studentDashBoardController.initiateStudentUser(currentUser);
+        }
+        else if(choice.equals("workspacePage")){
+            studentWorkspacePageController = loader.getController();
+            studentWorkspacePageController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
+        }
+
+        infoPane.getChildren().clear();
+        infoPane.getChildren().add(childNode);
     }
 
     /**
@@ -229,8 +284,25 @@ public class StudentDashBoardController {
         changeSceneInDashboard(event, "studentWorkspacePage.fxml", "workspacePage");
     }
 
+
+    /**
+     * To change scene update information when updated profile button is clicked
+     * @param event Event of update profile button click
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
-    void notificationbtn_clicked(ActionEvent event) {
+    public void onUpdateProfileBtnClicked(ActionEvent event) throws IOException, SQLException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("updateProfile.fxml"));
+        loader.load(); //loader.load() must be used otherwise controller isn't created
+        UpdateProfileController updateProfileController=loader.getController();
+        updateProfileController.initiateUpdateProfileController(currentUser);
+        ui_name.setText(updateProfileController.getUiname());
+        System.out.println(updateProfileController.getUiname());
+        Node childNode=updateProfileController.getChildNode();
+        infoPane.getChildren().clear();
+        infoPane.getChildren().add(childNode);
 
     }
 }
