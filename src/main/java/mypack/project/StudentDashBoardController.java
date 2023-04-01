@@ -97,6 +97,9 @@ public class StudentDashBoardController {
 
         //checking for registered courses( will be empty if not registered )
         registered_course = dbUtilities.getStudentRegisteredCourses(currentStudent.getId(), currentStudent.getSemester());
+
+        // get notifications
+        dbUtilities.getAllNotification(currentUser.getEmail());
     }
 
     /**

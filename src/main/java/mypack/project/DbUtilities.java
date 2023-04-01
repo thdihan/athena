@@ -4,18 +4,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.w3c.dom.traversal.NodeIterator;
 import userPack.*;
 
 import java.sql.*;
+import java.sql.Date;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 /**
  * This class is dedicated solely for database related functions
@@ -246,7 +246,10 @@ public class DbUtilities {
 
         // Notification Table
         String[] demoNotifiaction = {
-                "insert into notification values('N001','P001','post','jamal@gmail.com','a','New Post','2023-04-01 12:44:33');"
+                "insert into notification values('N001','P001','post','jamal@gmail.com','a','New Post 1','2023-04-01 10:03:29');",
+                "insert into notification values('N002','P001','post','jamal@gmail.com','a','New Post 2','2023-04-01 10:03:41');",
+                "insert into notification values('N003','P001','post','jamal@gmail.com','a','New Post 3','2023-04-01 10:03:45');",
+                "insert into notification values('N004','P001','post','jamal@gmail.com','a','New Post 4','2023-04-01 10:04:45');"
         };
         tableName = "notification";
         tableQuery = "create table notification (\n" +
@@ -638,6 +641,63 @@ public class DbUtilities {
 
 
 
+    }
+
+
+
+    public ArrayList<Notification> getAllNotification(String useremail) throws SQLException {
+
+        PreparedStatement preparedStatement = null;
+        String query = "select * from notification where  notify_email = ?;";
+        ArrayList<Notification> allNotification = new ArrayList<>();
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1,useremail);
+            ResultSet notifications = preparedStatement.executeQuery();
+
+            while(notifications.next()) {
+                Notification tempNotification = new Notification();
+                tempNotification.setNotificationId(notifications.getString(1));
+                tempNotification.setPostId(notifications.getString(2));
+                tempNotification.setNotificationType(notifications.getString(3));
+                tempNotification.setNotifierEmail(notifications.getString(4));
+                tempNotification.setNotifyToEmail(notifications.getString(5));
+                tempNotification.setNotificationText(notifications.getString(6));
+                tempNotification.setNotifacationDeadline(notifications.getString(7));
+
+
+                allNotification.add(tempNotification);
+            }
+
+            // sorting notifications
+            Collections.sort(allNotification, new Comparator<>() {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                public int compare(Notification dateTime1, Notification dateTime2) {
+                    try {
+                        java.util.Date date1 = dateFormat.parse(dateTime1.getNotifacationDeadline());
+                        java.util.Date date2 = dateFormat.parse(dateTime2.getNotifacationDeadline());
+                        return -date1.compareTo(date2);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    return 0;
+                }
+            });
+
+            for(int i = 0;i < allNotification.size();i++) {
+                System.out.println(allNotification.get(i).getNotificationText());
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+        return allNotification;
     }
 
 

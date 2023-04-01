@@ -9,6 +9,8 @@ public class Notification {
     private  String notifyToEmail;
     private  String notificationText;
 
+    private  String notifacationDeadline;
+
 
     public String getNotificationId() {
         return notificationId;
@@ -56,6 +58,13 @@ public class Notification {
 
     public void setNotificationText(String notificationText) {
         this.notificationText = notificationText;
+    }
+
+    public  void setNotifacationDeadline(String notifacationDeadline){
+        this.notifacationDeadline = notifacationDeadline;
+    }
+    public String getNotifacationDeadline() {
+        return notifacationDeadline;
     }
 }
 
