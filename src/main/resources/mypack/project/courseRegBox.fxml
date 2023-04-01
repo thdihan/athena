@@ -12,7 +12,7 @@
    <children>
       <HBox fx:id="newCourseInfo" layoutX="188.0" layoutY="74.0">
          <children>
-            <CheckBox fx:id="option" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Course Code: Course Title" textAlignment="CENTER" />
+            <CheckBox fx:id="option" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Course Code: Course Title" textAlignment="CENTER" textFill="#e4e4e4" />
          </children>
          <padding>
             <Insets bottom="16.0" />
@@ -20,12 +20,12 @@
       </HBox>
       <VBox fx:id="courseInfo" layoutX="28.0" layoutY="133.0" spacing="5.0">
          <children>
-            <Label fx:id="courseName" prefHeight="20.0" prefWidth="432.0" text="Course Name: Course Title">
+            <Label fx:id="courseName" prefHeight="20.0" prefWidth="432.0" text="Course Name: Course Title" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="credits" text="Credits: 0.00" />
+            <Label fx:id="credits" text="Credits: 0.00" textFill="WHITE" />
          </children>
          <padding>
             <Insets bottom="16.0" left="50.0" />

@@ -71,7 +71,7 @@
                               </StackPane>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" styleClass="edit-button" stylesheets="@../../../../../../../athenaui/style.css" text="Edit" textFill="#f4e9e1">
+                                    <Button mnemonicParsing="false" onAction="#onUpdateProfileBtnClicked" prefHeight="34.0" prefWidth="85.0" styleClass="edit-button" stylesheets="@../../../../../../../athenaui/style.css" text="Edit" textFill="#f4e9e1">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -179,12 +179,16 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="67.0" prefWidth="921.0" styleClass="top-banner" stylesheets="@studentDashBoard.css">
                            <children>
-                              <Label text="Dashboard" textFill="#f4e9e1">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="67.0" prefWidth="661.0" HBox.hgrow="ALWAYS" />
+                              <Pane prefHeight="66.0" prefWidth="288.0">
+                                 <children>
+                                    <Label fx:id="ui_name" layoutX="33.0" layoutY="23.0" text="Dashboard" textFill="#f4e9e1">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="66.0" prefWidth="470.0" HBox.hgrow="ALWAYS" />
                               <Button fx:id="logout_btn" mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="33.0" prefWidth="88.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Login">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
