@@ -90,7 +90,6 @@
                                     </Button>
                                     <VBox fx:id="postBox" layoutX="45.0" layoutY="386.0" prefWidth="760.0" />
                                     <ComboBox fx:id="postType" layoutX="470.0" layoutY="292.0" prefHeight="39.0" prefWidth="170.0" />
-                                    <Button fx:id="chooseAttachmentBtn" layoutX="305.0" layoutY="292.0" mnemonicParsing="false" onAction="#chooseAttachmentBtnClicked" prefHeight="39.0" prefWidth="128.0" text="Choose Attachment" />
                                  </children>
                               </AnchorPane>
                           </content>

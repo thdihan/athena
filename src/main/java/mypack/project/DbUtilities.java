@@ -578,7 +578,7 @@ public class DbUtilities {
         }
 
 
-        // setNotification 
+        // setNotification
 
     }
 
