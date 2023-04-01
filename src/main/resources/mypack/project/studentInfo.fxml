@@ -1,88 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="infoPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentInfoController">
+<Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="centerinfo-pane" stylesheets="@studentDashBoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="118.0" layoutY="126.0" text="Personal Information">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#052f56" height="5.0" layoutX="307.0" layoutY="137.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-      <Label layoutX="118.0" layoutY="169.0" text="Full Name :">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="118.0" layoutY="197.0" text="Email :">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="118.0" layoutY="340.0" text="Student ID :">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="118.0" layoutY="396.0" text="Department :">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="118.0" layoutY="367.0" text="Current Semester :">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="118.0" layoutY="223.0" text="Date of Birth :">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="118.0" layoutY="296.0" text="Academic Information">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#052f56" height="5.0" layoutX="320.0" layoutY="307.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-      <Label fx:id="fullname_view" layoutX="262.0" layoutY="169.0" text="(Name from Database)">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="semester_view" layoutX="262.0" layoutY="396.0" text="(Semester from Database)">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="dept_view" layoutX="262.0" layoutY="367.0" text="(Dept from Database)">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="id_view" layoutX="262.0" layoutY="340.0" text="(ID from Database)">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="dob_view" layoutX="262.0" layoutY="223.0" text="(DOB from Database)">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="email_view" layoutX="262.0" layoutY="197.0" text="(Email from Database)">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Button layoutX="515.0" layoutY="121.0" mnemonicParsing="false" onAction="#onUpdateProfileBtnClicked" prefHeight="37.0" prefWidth="131.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Update Profile" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
+      <Pane layoutX="31.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="611.0" prefWidth="415.0" styleClass="common-background" stylesheets="@studentDashBoard.css">
+         <children>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="290.0" prefWidth="415.0" styleClass="info-pane-box" stylesheets="@studentDashBoard.css">
+               <children>
+                  <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="71.0" prefWidth="415.0">
+                     <children>
+                        <Label text="Personal Information" textFill="#fdece0" underline="true">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox layoutY="71.0" prefHeight="233.0" prefWidth="195.0">
+                     <children>
+                        <Label prefHeight="82.0" prefWidth="195.0" text="Full Name :" textFill="#fdece0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                        <Label prefHeight="82.0" prefWidth="195.0" text="Email:" textFill="#fdece0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                        <Label prefHeight="82.0" prefWidth="195.0" text="Date of Birth :" textFill="#fdece0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="185.0" layoutY="71.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="233.0" prefWidth="231.0">
+                     <children>
+                        <Label prefHeight="80.0" prefWidth="234.0" text="(Name from Database)" textFill="#fdece0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                        <Label prefHeight="79.0" prefWidth="239.0" text="(mail from database)" textFill="#fdece0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                        <Label prefHeight="78.0" prefWidth="238.0" text="(dob from database)" textFill="#fdece0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <Pane layoutY="321.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="290.0" prefWidth="415.0" styleClass="info-pane-box" stylesheets="@studentDashBoard.css">
+               <children>
+                  <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="71.0" prefWidth="415.0">
+                     <children>
+                        <Label text="Academic Information" textFill="#fdece0" underline="true">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox layoutY="71.0" prefHeight="233.0" prefWidth="195.0">
+                     <children>
+                        <Label prefHeight="82.0" prefWidth="195.0" text="Student ID :" textFill="#fdece0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                        <Label prefHeight="82.0" prefWidth="195.0" text="Current Semester :" textFill="#fdece0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                        <Label prefHeight="82.0" prefWidth="195.0" text="Department :" textFill="#fdece0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="185.0" layoutY="71.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="233.0" prefWidth="231.0">
+                     <children>
+                        <Label prefHeight="80.0" prefWidth="237.0" text="(ID from Database)" textFill="#fdece0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                        <Label prefHeight="79.0" prefWidth="233.0" text="(Dept from database)" textFill="#fdece0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                        <Label prefHeight="78.0" prefWidth="230.0" text="(Semester from database)" textFill="#fdece0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="477.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="611.0" prefWidth="415.0" styleClass="info-pane-box" stylesheets="@studentDashBoard.css" />
    </children>
 </Pane>

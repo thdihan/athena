@@ -101,3 +101,15 @@
     -fx-border-style: solid;
     -fx-border-color: #A29B96;
 }
+.centerinfo-pane{
+-fx-background-color: #242529;
+}
+.common-background{
+-fx-background-color: #242529;
+}
+.info-pane-box{
+-fx-background-color: #36383E;
+
+ -fx-background-radius: 20px;
+
+}
