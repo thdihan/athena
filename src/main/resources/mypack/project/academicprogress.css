@@ -1,0 +1,16 @@
+.table-view {
+    -fx-background-color: transparent;
+    -fx-background-border:2px;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: #37393F;
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 0 0 5px 0;
+}
+.table-view .column-header {
+    -fx-background-color: #37393F;
+    -fx-text-fill:#ffffff;
+
+}
