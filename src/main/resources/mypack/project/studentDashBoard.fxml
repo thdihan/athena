@@ -8,78 +8,195 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentDashBoardController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentDashBoardController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="main-container" stylesheets="@studentDashBoard.css">
+      <HBox layoutX="-10.0" layoutY="11.0" prefHeight="720.0" prefWidth="1200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox prefHeight="720.0" prefWidth="1200.0">
+            <VBox prefHeight="720.0" prefWidth="280.0" stylesheets="@studentDashBoard.css">
                <children>
-                  <Pane prefHeight="100.0" prefWidth="350.0" styleClass="navigation-area" stylesheets="@studentDashBoard.css">
+                  <HBox alignment="CENTER" prefHeight="195.0" prefWidth="328.0" styleClass="top-logo-part" stylesheets="@studentDashBoard.css">
                      <children>
-                        <HBox alignment="CENTER" layoutX="95.0" layoutY="59.0" prefHeight="150.0" prefWidth="157.0" styleClass="profile-image">
+                        <ImageView fitHeight="80.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../dashboardicons/university.png" />
+                           </image>
+                        </ImageView>
+                        <Pane prefHeight="195.0" prefWidth="26.0" />
+                        <Label text="Athena" textFill="#f4e9e1">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="177.0" prefWidth="328.0" styleClass="user-profile-part" stylesheets="@studentDashBoard.css">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="83.0" prefWidth="328.0">
                            <children>
-                              <ImageView fitHeight="110.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view-wrapper">
+                              <ImageView fitHeight="78.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../DashboardImages/demo-profile.png" />
+                                    <Image url="@../../dashboardicons/student.png" />
                                  </image>
                               </ImageView>
                            </children>
-                        </HBox>
-                        <StackPane layoutX="75.0" layoutY="224.0" prefHeight="58.0" prefWidth="200.0">
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="77.0" prefWidth="328.0">
                            <children>
-                              <Label fx:id="side_fullname_view" alignment="CENTER" prefHeight="27.0" prefWidth="119.0" text="FULL NAME" textAlignment="CENTER" textFill="#efefff">
+                              <Label prefHeight="32.0" prefWidth="117.0" text="Mahia Naznin" textFill="#f4e9e1">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" styleClass="edit-button" stylesheets="@../../../../../../../athenaui/style.css" text="Edit" textFill="#f4e9e1">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
                            </children>
-                        </StackPane>
-                        <Button fx:id="progress_btn" alignment="CENTER" layoutX="36.0" layoutY="426.0" mnemonicParsing="false" onAction="#progressBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Academic Progress" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="course_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="360.0" mnemonicParsing="false" onAction="#courseBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Courses" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="result_btn" alignment="CENTER" layoutX="36.0" layoutY="493.0" mnemonicParsing="false" onAction="#resultBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Previous Results" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="logout_btn" alignment="CENTER" layoutX="36.0" layoutY="639.0" mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Logout" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="dashboardBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="293.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Dashboard" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="wordspaceBtn" alignment="CENTER" layoutX="36.0" layoutY="561.0" mnemonicParsing="false" onAction="#workspaceBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Workspace" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
+                        </VBox>
                      </children>
-                  </Pane>
-                  <Pane fx:id="infoPane" layoutX="10.0" layoutY="10.0" prefHeight="720.0" prefWidth="850.0" styleClass="info-area" stylesheets="@studentDashBoard.css">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="353.0" prefWidth="328.0" styleClass="feature-background" stylesheets="@studentDashBoard.css">
                      <children>
-                        <Button fx:id="notificationbtn" layoutX="743.0" layoutY="670.0" mnemonicParsing="false" onAction="#notificationbtn_clicked" text="Notification" />
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@../../../../../../../athenaui/style.css" text="Dashboard" textFill="#f4e9e1">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../dashboardicons/dashboard.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@../../../../../../../athenaui/style.css" text="Courses" textFill="#f4e9e1">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../dashboardicons/book.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@../../../../../../../athenaui/style.css" text="Academic Progress" textFill="#f4e9e1">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../dashboardicons/expertise.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@../../../../../../../athenaui/style.css" text="Previous Result" textFill="#f4e9e1">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../dashboardicons/exam.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@../../../../../../../athenaui/style.css" text="Workspace" textFill="#f4e9e1">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../dashboardicons/workspace.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
                      </children>
-                  </Pane>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </VBox>
                </children>
-            </HBox>
+            </VBox>
+            <VBox prefHeight="720.0" prefWidth="925.0">
+               <children>
+                  <HBox prefHeight="67.0" prefWidth="923.0">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="67.0" prefWidth="921.0" styleClass="top-banner" stylesheets="@studentDashBoard.css">
+                           <children>
+                              <Label text="Dashboard" textFill="#f4e9e1">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="67.0" prefWidth="661.0" HBox.hgrow="ALWAYS" />
+                              <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="88.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Login">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="notification-button" stylesheets="@../../../../../../../athenaui/style.css" text="Button">
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../dashboardicons/bell.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" />
+               </children>
+            </VBox>
          </children>
-      </AnchorPane>
+      </HBox>
    </children>
-</StackPane>
+</AnchorPane>

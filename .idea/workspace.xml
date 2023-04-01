@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc99f71b-b75b-403a-8455-3c1682544c88" name="Changes" comment="" />
+    <list default="true" id="fc99f71b-b75b-403a-8455-3c1682544c88" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,6 +81,26 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="mypack.project" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="mypack.project.Main" />
+      <module name="athena" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mypack.project.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

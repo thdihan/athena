@@ -113,7 +113,7 @@ public class DbUtilities {
                 "insert into student values('200041113','Wolf','s','CSE','4','2001-01-01','01711111111');",
                 "insert into student values('200041114','Shakun','shakun650@gmail.com','CSE','3','2001-01-01','01711111111');"
         };
-//        initiateAllTable(tableName, tableQuery, insertStudent);
+        initiateAllTable(tableName, tableQuery, insertStudent);
 
         // Teacher Table
         tableName = "teacher";
@@ -122,7 +122,7 @@ public class DbUtilities {
                 "insert into teacher values('123456','Jamal','jamal@gmail.com','CSE','1995-01-01','01711111111');",
                 "insert into teacher values('1233456','Jamal','z','CSE','1995-01-01','01711111111');"
         };
-//        initiateAllTable(tableName, tableQuery, insertTeacher);
+        initiateAllTable(tableName, tableQuery, insertTeacher);
 
         // Admin Table
         tableName = "admins";
@@ -148,7 +148,7 @@ public class DbUtilities {
                 "INSERT INTO COURSES VALUES('HUM 4441','Engineering Ethics','CSE','CSE',3.0,'4');",
                 "INSERT INTO COURSES VALUES('CSE 4303','DBMS','CSE','CSE',3.0,'3');"
         };
-//        initiateAllTable(tableName, tableQuery, insertCourse);
+        initiateAllTable(tableName, tableQuery, insertCourse);
 
 //         CourseTakenByTeacher
         tableName = "Teacher_takes_course";
@@ -162,7 +162,7 @@ public class DbUtilities {
                 "Academic_Year int not null," +
                 "CONSTRAINT ttc_teacher Foreign key(courseteacher_ID) references Teacher(T_ID),CONSTRAINT ttc_course Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
         String[] insertData = {};
-//        initiateAllTable(tableName, tableQuery, insertData);
+        initiateAllTable(tableName, tableQuery, insertData);
 
 //        Student_takes_course
         tableName = "Student_takes_course";
@@ -181,7 +181,7 @@ public class DbUtilities {
                 "Final_marks double precision ," +
                 "Academic_Year int not null," +
                 "CONSTRAINT stc_student Foreign key(S_ID) references student(S_ID),CONSTRAINT stc_course Foreign key(S_coursedept,s_courseOfferedDept,S_coursecode) references Courses(dept,offered_dept,Course_code));";
-//        initiateAllTable(tableName, tableQuery, insertData);
+        initiateAllTable(tableName, tableQuery, insertData);
 
         // Post Table
 
@@ -300,10 +300,10 @@ public class DbUtilities {
                 statement.executeUpdate("ALTER TABLE Teacher_takes_course DROP CONSTRAINT   IF EXISTS ttc_teacher");
                 statement.executeUpdate("ALTER TABLE Teacher_takes_course DROP CONSTRAINT   IF EXISTS ttc_course");
             }
-//            if (tableName.equals("student")) {
-//                statement.executeUpdate("ALTER TABLE Student_takes_course DROP CONSTRAINT   IF EXISTS stc_course");
-//                statement.executeUpdate("ALTER TABLE Student_takes_course DROP CONSTRAINT   IF EXISTS stc_student");
-//            }
+            if (tableName.equals("student")) {
+                statement.executeUpdate("ALTER TABLE Student_takes_course DROP CONSTRAINT   IF EXISTS stc_course");
+                statement.executeUpdate("ALTER TABLE Student_takes_course DROP CONSTRAINT   IF EXISTS stc_student");
+            }
 
             statement.executeUpdate(dropQuery);
             statement.executeUpdate(createTableQuery);
