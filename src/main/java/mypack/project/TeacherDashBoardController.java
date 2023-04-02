@@ -104,6 +104,9 @@ public class TeacherDashBoardController {
         loader.load(); //loader.load() must be used otherwise controller isn't created
         Node childNode = null;
 
+
+        DbUtilities dbUtilities = new DbUtilities();
+        registered_course = dbUtilities.getTeacherRegisteredCourses(currentTeacher.getId());
         //declaring all the controller
         TeacherCourseRegPageController teacherCourseRegPageController;
         TeacherRegisteredCoursesController teacherRegisteredCoursesController;

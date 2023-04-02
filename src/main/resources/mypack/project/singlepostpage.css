@@ -31,11 +31,23 @@
   -fx-background-radius: 10px;
 }
 .submission-button{
- -fx-background-color: linear-gradient(to bottom, #0098F1, #00C4FB);
-
+        -fx-background-color:#242529;
         -fx-background-radius: 10px;
         -fx-background-border-style: solid;
-         -fx-border-color: white;
-            -fx-border-width: 1px;
-            -fx-border-radius:10px;
+        -fx-border-color: #999;
+        -fx-border-width: 1px;
+        -fx-border-radius:10px;
+}
+
+
+.back-button {
+    -fx-background-color: trasparent;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+}
+.back-button:hover {
+    -fx-border-color: #ddd;
+    -fx-background-radius: 50px;
+    -fx-background-color: #363636;
 }

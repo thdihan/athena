@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import userPack.Courses;
@@ -27,11 +28,11 @@ import java.util.ArrayList;
 public class StudentWorkspacePageController {
     @FXML
     private VBox course_box;
-    @FXML
-    private Label full_name_label;
     private User currentUser;
 
     private Student currentStudent;
+    @FXML
+    private  Pane infoPane;
     private ArrayList<Courses> registered_courses;
 
     /**
@@ -45,9 +46,9 @@ public class StudentWorkspacePageController {
         currentStudent=student;
         registered_courses=courses;
         currentUser=user;
-        full_name_label.setText(currentStudent.getName());
-
+        if(registered_courses.size()  == 0) System.out.println("NULLLLLLLL");
         for(int i=0 ; i<registered_courses.size() ; i++){
+            System.out.println("working");
 //            Pane pane =new Pane();
             VBox pane = new VBox();
             VBox vBox=new VBox();
@@ -139,5 +140,13 @@ public class StudentWorkspacePageController {
         StudentDashBoardController studentDashBoardController=new StudentDashBoardController();
         studentDashBoardController.assignDummyController(currentStudent, registered_courses, currentUser);
         studentDashBoardController.logoutBtnClicked(event);
+    }
+
+    public Pane getPane() {
+        return infoPane;
+    }
+
+    public  String getUiName() {
+        return "Course Registration Page";
     }
 }

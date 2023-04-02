@@ -62,7 +62,12 @@ public class StudentRegisteredCoursesController {
         for(int i=0 ; i<registered_courses.size() ; i++){
             String courseInfo=registered_courses.get(i).getCode() + ": "+ registered_courses.get(i).getTitle();
             String credit="Credits: "+registered_courses.get(i).getCredit().toString();
+
+
             course_box.getChildren().add(getHbox(courseInfo, credit));
+            Pane separator = new Pane();
+            separator.setPrefHeight(20);
+            course_box.getChildren().add(separator);
         }
 
     }

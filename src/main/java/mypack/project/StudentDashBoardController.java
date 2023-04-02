@@ -140,6 +140,9 @@ public class StudentDashBoardController {
         loader.load(); //loader.load() must be used otherwise controller isn't created
         Node childNode = null;
 
+        // get Registered Courses
+        DbUtilities dbUtilities = new DbUtilities();
+        registered_course = dbUtilities.getStudentRegisteredCourses(currentStudent.getId(),currentStudent.getSemester());
         //declaring all the controller
         StudentCourseRegPageController studentCourseRegPageController;
         StudentRegisteredCoursesController studentRegisteredCoursesController;
@@ -172,13 +175,14 @@ public class StudentDashBoardController {
             System.out.println("Logging out");
         }
         else if (choice.equals("studentDashBoard")) {
-            StudentDashBoardController studentDashBoardController;
-            studentDashBoardController = loader.getController();
-            studentDashBoardController.initiateStudentUser(currentUser);
+            StudentInfoController studentInfoController = loader.getController();
+            studentInfoController.initiateStudentPane(currentStudent, currentUser);
+            childNode=studentInfoController.getChildNode();
         }
         else if(choice.equals("workspacePage")){
             studentWorkspacePageController = loader.getController();
             studentWorkspacePageController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
+            childNode=studentWorkspacePageController.getPane();
         }
 
         infoPane.getChildren().clear();
@@ -234,6 +238,7 @@ public class StudentDashBoardController {
         else if(choice.equals("workspacePage")){
             studentWorkspacePageController = loader.getController();
             studentWorkspacePageController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
+
         }
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(afterLoginScene);
@@ -258,8 +263,9 @@ public class StudentDashBoardController {
      * @throws IOException If problems with input/output
      * @throws SQLException If problems with query
      */
+    @FXML
     void dashboardBtnClicked(ActionEvent event) throws IOException, SQLException {
-        changeSceneInDashboard(event, "studentDashBoard.fxml", "studentDashBoard");
+        changeSceneWithInfoPane(event, "studentInfo.fxml", "studentDashBoard");
     }
     /**
      * Progress button click function
@@ -281,7 +287,7 @@ public class StudentDashBoardController {
 
     @FXML
     void workspaceBtnClicked(ActionEvent event) throws SQLException, IOException {
-        changeSceneInDashboard(event, "studentWorkspacePage.fxml", "workspacePage");
+        changeSceneWithInfoPane(event, "studentWorkspacePage.fxml", "workspacePage");
     }
 
 
