@@ -7,59 +7,111 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #4F9F3C;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.LoginController">
-   <left>
-      <AnchorPane prefHeight="720.0" prefWidth="588.0" style="-fx-background-color: #4F9F36;" BorderPane.alignment="CENTER">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" styleClass="common-background" stylesheets="@login.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="6.0" prefHeight="750.0" prefWidth="600.0" styleClass="main-logo-left-side" stylesheets="@login.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="755.0" fitWidth="600.0" layoutX="-12.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label layoutX="243.0" layoutY="190.0" text="ATHENA" textFill="#f4f7f5">
+               <font>
+                  <Font name="Segoe UI Bold" size="52.0" />
+               </font>
+            </Label>
+            <Label layoutX="135.0" layoutY="272.0" prefHeight="38.0" prefWidth="336.0" text="Making Student Life Easier" textFill="#f4f7f5">
+               <font>
+                  <Font name="Candara Bold" size="28.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="135.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../loginImages/New%20Project%20(1).png" />
+                  <Image url="@../../dashboardicons/university.png" />
                </image>
             </ImageView>
-         </children></AnchorPane>
-   </left>
-   <right>
-      <AnchorPane prefHeight="750.0" prefWidth="720.0" style="-fx-background-color: #fff;" styleClass="login" stylesheets="@studentDashBoard.css" BorderPane.alignment="CENTER">
-         <children>
-            <TextField fx:id="emailField" layoutX="164.0" layoutY="339.0" prefHeight="35.0" prefWidth="270.0" promptText="Email">
+            <Label graphicTextGap="0.0" layoutX="147.0" layoutY="363.0" prefHeight="28.0" prefWidth="94.0" styleClass="span" stylesheets="@login.css" text="Efficiency" textAlignment="JUSTIFY" textFill="#fff37b">
                <font>
-                  <Font name="Leelawadee" size="15.0" />
-               </font></TextField>
-            <Label layoutX="164.0" layoutY="308.0" text="Email">
-               <font>
-                  <Font name="Leelawadee" size="18.0" />
+                  <Font name="Leelawadee Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="164.0" layoutY="396.0" text="Password">
+            <Label layoutX="256.0" layoutY="418.0" prefHeight="26.0" prefWidth="210.0" text=" for  the  Teachers and " textFill="#f4f7f5">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Leelawadee" size="20.0" />
                </font>
             </Label>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="225.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../loginImages/online-learning.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="188.0" layoutY="229.0" text="Hello! Welcome back">
+            <Label layoutX="287.0" layoutY="391.0" text="  for  the  Students ," textFill="#f4f7f5">
                <font>
-                  <Font name="Leelawadee Bold" size="24.0" />
+                  <Font name="Leelawadee" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="loginButton" layoutX="164.0" layoutY="499.0" mnemonicParsing="false" onAction="#loginCode" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: #052f56;" text="Log In" textFill="WHITE">
+            <Label layoutX="263.0" layoutY="443.0" text="For All." textFill="#f4f7f5">
                <font>
-                  <Font name="Leelawadee Bold" size="15.0" />
+                  <Font name="Leelawadee" size="20.0" />
                </font>
-            </Button>
-            <PasswordField fx:id="passField" layoutX="164.0" layoutY="427.0" prefHeight="35.0" prefWidth="270.0" promptText="Password">
+            </Label>
+            <Line endX="16.000015258789062" endY="102.66665649414062" layoutX="118.0" layoutY="366.0" startX="16.000015258789062" startY="-5.60003662109375" stroke="#fff37b" strokeWidth="3.0" />
+            <Label layoutX="247.0" layoutY="364.0" text="in  the  Official-Process ," textFill="#f4f7f5">
                <font>
-                  <Font name="Leelawadee" size="15.0" />
+                  <Font name="Leelawadee" size="20.0" />
                </font>
-            </PasswordField>
-            <Label fx:id="wrongField" layoutX="225.0" layoutY="279.0" prefHeight="18.0" prefWidth="270.0" textFill="RED" />
+            </Label>
+            <Label graphicTextGap="0.0" layoutX="147.0" layoutY="416.0" prefHeight="28.0" prefWidth="110.0" styleClass="span" stylesheets="@login.css" text="Time-saver" textAlignment="JUSTIFY" textFill="#fff37b">
+               <font>
+                  <Font name="Leelawadee Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label graphicTextGap="0.0" layoutX="147.0" layoutY="390.0" prefHeight="28.0" prefWidth="134.0" styleClass="span" stylesheets="@login.css" text="Helping-hand" textAlignment="JUSTIFY" textFill="#fff37b">
+               <font>
+                  <Font name="Leelawadee Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label graphicTextGap="0.0" layoutX="147.0" layoutY="441.0" prefHeight="28.0" prefWidth="118.0" styleClass="span" stylesheets="@login.css" text="Convenient" textAlignment="JUSTIFY" textFill="#fff37b">
+               <font>
+                  <Font name="Leelawadee Bold" size="20.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-   </right>
-</BorderPane>
+      <Label layoutX="760.0" layoutY="201.0" text="Hello!Welcome Back" textFill="#f4f7f5">
+         <font>
+            <Font name="Leelawadee Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="773.0" layoutY="333.0" text="Email" textFill="#f4f7f5">
+         <font>
+            <Font name="Leelawadee Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField layoutX="730.0" layoutY="363.0" prefHeight="50.0" prefWidth="350.0" promptText="   Email Address" styleClass="textfields" stylesheets="@login.css">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Label layoutX="773.0" layoutY="447.0" text="Password" textFill="#f4f7f5">
+         <font>
+            <Font name="Leelawadee Bold" size="20.0" />
+         </font>
+      </Label>
+      <PasswordField layoutX="730.0" layoutY="479.0" prefHeight="50.0" prefWidth="350.0" promptText="  Password" styleClass="textfields" stylesheets="@login.css">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </PasswordField>
+      <Button layoutX="730.0" layoutY="579.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="350.0" styleClass="login-button" stylesheets="@login.css" text="Log In">
+         <font>
+            <Font name="Leelawadee Bold" size="24.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="730.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../dashboardicons/mail.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="730.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../dashboardicons/lock.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
