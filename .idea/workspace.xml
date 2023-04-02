@@ -12,14 +12,26 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentInfoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentRegisteredCoursesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentRegisteredCoursesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherAttendanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherAttendanceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherCourseRegPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherCourseRegPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherDashBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherMarksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherMarksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherRegisteredCoursesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherRegisteredCoursesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/UpdateProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/UpdateProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/attendanceBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/attendanceBox.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegBox.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/markBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/markBox.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/registeredCourses.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/registeredCourses.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/singlePostPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/singlePostPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentInfo.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherAttendanceStudentList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherAttendanceStudentList.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherCourseRegPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherCourseRegPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherDashBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherDashBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherInfo.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherMarks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherMarks.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherRegisteredCourse.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherRegisteredCourse.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

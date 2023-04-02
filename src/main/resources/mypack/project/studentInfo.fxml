@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="centerinfo-pane" stylesheets="@studentDashBoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="centerinfo-pane" stylesheets="@studentDashBoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentInfoController">
    <children>
       <Pane layoutX="31.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="611.0" prefWidth="415.0" styleClass="common-background" stylesheets="@studentDashBoard.css">
          <children>
@@ -57,7 +57,7 @@
                   </VBox>
                   <VBox layoutX="185.0" layoutY="71.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="233.0" prefWidth="231.0">
                      <children>
-                        <Label prefHeight="80.0" prefWidth="234.0" text="(Name from Database)" textFill="#fdece0">
+                        <Label fx:id="fullname_view" prefHeight="80.0" prefWidth="234.0" text="(Name from Database)" textFill="#fdece0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -68,7 +68,7 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <Label prefHeight="79.0" prefWidth="239.0" text="(mail from database)" textFill="#fdece0">
+                        <Label fx:id="email_view" prefHeight="79.0" prefWidth="239.0" text="(mail from database)" textFill="#fdece0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -76,7 +76,7 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <Label prefHeight="78.0" prefWidth="238.0" text="(dob from database)" textFill="#fdece0">
+                        <Label fx:id="dob_view" prefHeight="78.0" prefWidth="238.0" text="(dob from database)" textFill="#fdece0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -135,7 +135,7 @@
                   </VBox>
                   <VBox layoutX="185.0" layoutY="71.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="233.0" prefWidth="231.0">
                      <children>
-                        <Label prefHeight="80.0" prefWidth="237.0" text="(ID from Database)" textFill="#fdece0">
+                        <Label fx:id="id_view" prefHeight="80.0" prefWidth="237.0" text="(ID from Database)" textFill="#fdece0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -146,7 +146,7 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <Label prefHeight="79.0" prefWidth="233.0" text="(Dept from database)" textFill="#fdece0">
+                        <Label fx:id="semester_view" prefHeight="79.0" prefWidth="233.0" text="(Dept from database)" textFill="#fdece0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -154,7 +154,7 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <Label prefHeight="78.0" prefWidth="230.0" text="(Semester from database)" textFill="#fdece0">
+                        <Label fx:id="dept_view" prefHeight="78.0" prefWidth="230.0" text="(Semester from database)" textFill="#fdece0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>

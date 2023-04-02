@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import userPack.Courses;
@@ -30,8 +31,9 @@ public class TeacherCourseRegPageController {
 
     @FXML
     private VBox course_box;
+
     @FXML
-    private Label full_name_label;
+    Pane infoPane;
     ArrayList<Courses> offered_courses;
     ArrayList<Courses> registered_course;
     /**
@@ -60,7 +62,6 @@ public class TeacherCourseRegPageController {
         currentTeacher=newTeacher;
 //        System.out.println(currentTeacher.getDob());
         currentUser=user;
-        full_name_label.setText(currentTeacher.getName());
 
         DbUtilities dbUtilities = new DbUtilities();
         offered_courses = dbUtilities.getOfferedCourses(currentTeacher.getDept(), user.getType(), "None");
@@ -88,17 +89,19 @@ public class TeacherCourseRegPageController {
         TeacherRegisteredCoursesController teacherRegisteredCoursesController;
 
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("teacherRegisteredCourse.fxml"));
-        Parent root = loader.load();
 
-        Scene registeredCourseScene = new Scene(root);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherRegisteredCourse.fxml"));
+        loader.load(); //loader.load() must be used otherwise controller isn't created
+        Node childNode = null;
+
         teacherRegisteredCoursesController =loader.getController();
         teacherRegisteredCoursesController.initiateRegisteredCourseView(currentTeacher, registered_course, currentUser);
 
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(registeredCourseScene);
-        window.show();
+//            ui_name.setText(studentRegisteredCoursesController.getUiName());
+        childNode=teacherRegisteredCoursesController.getPane();
+        infoPane.getChildren().clear();
+        infoPane.getChildren().add(childNode);
     }
 
     /**
@@ -152,5 +155,13 @@ public class TeacherCourseRegPageController {
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.dashBoardBtnClicked(event);
 //        System.out.println(currentTeacher.getDob());
+    }
+
+    public Pane getPane() {
+        return infoPane;
+    }
+
+    public  String getUiName() {
+        return "Course Registration Page";
     }
 }
