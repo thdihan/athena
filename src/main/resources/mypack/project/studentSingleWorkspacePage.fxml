@@ -5,101 +5,54 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentSingleWorkspaceController">
+<Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="centerinfo-pane" stylesheets="@studentDashBoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="main-container" stylesheets="@studentDashBoard.css">
-         <children>
-            <HBox prefHeight="720.0" prefWidth="1200.0">
+      <ScrollPane prefHeight="655.0" prefWidth="923.0" styleClass="common-background" stylesheets="@singleStudentWorkspace.css">
+        <content>
+          <AnchorPane minHeight="846.0" minWidth="923.0" prefWidth="923.0" styleClass="common-background" stylesheets="@singleStudentWorkspace.css">
                <children>
-                  <Pane prefHeight="100.0" prefWidth="350.0" styleClass="navigation-area" stylesheets="@studentDashBoard.css">
-                     <children>
-                        <HBox alignment="CENTER" layoutX="95.0" layoutY="59.0" prefHeight="150.0" prefWidth="157.0" spacing="10.0" styleClass="profile-image">
-                           <children>
-                              <ImageView fitHeight="110.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view-wrapper">
-                                 <image>
-                                    <Image url="@../../DashboardImages/demo-profile.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <Button alignment="CENTER" layoutX="36.0" layoutY="426.0" mnemonicParsing="false" onAction="#progressBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Academic Progress" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="360.0" mnemonicParsing="false" onAction="#courseBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Courses" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button alignment="CENTER" layoutX="36.0" layoutY="493.0" mnemonicParsing="false" onAction="#resultBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Previous Results" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button alignment="CENTER" layoutX="36.0" layoutY="639.0" mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Logout" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="293.0" mnemonicParsing="false" onAction="#dashboardBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Dashboard" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <StackPane layoutX="75.0" layoutY="224.0" prefHeight="58.0" prefWidth="200.0">
-                           <children>
-                              <Label fx:id="full_name_label" alignment="CENTER" prefHeight="27.0" prefWidth="119.0" text="FULL NAME" textAlignment="CENTER" textFill="#efefff">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="10.0" layoutY="10.0" prefHeight="720.0" prefWidth="850.0" styleClass="info-area" stylesheets="@studentDashBoard.css">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <children>
-                        <ScrollPane prefHeight="720.0" prefWidth="850.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="848.0">
-                                 <children>
-                                    <Label fx:id="workspace_name" layoutX="45.0" layoutY="41.0" text="Workspace Name">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextArea fx:id="post_text_box" layoutX="45.0" layoutY="80.0" prefHeight="200.0" prefWidth="758.0" />
-                                    <Button fx:id="postBtn" layoutX="672.0" layoutY="295.0" mnemonicParsing="false" onAction="#postBtnClicked" prefHeight="34.0" prefWidth="130.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Post" textFill="WHITE">
-                                       <font>
-                                          <Font name="System Bold" size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <VBox fx:id="postBox" layoutX="45.0" layoutY="386.0" prefWidth="760.0" />
-                                    <ComboBox fx:id="postType" layoutX="470.0" layoutY="292.0" prefHeight="39.0" prefWidth="170.0" />
-                                    <Button layoutX="306.0" layoutY="293.0" mnemonicParsing="false" onAction="#chooseAttachmentBtnClicked" prefHeight="38.0" prefWidth="112.0" text="Attachment" />
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </ScrollPane>
-                     </children>
-                  </Pane>
+                  <Label layoutX="74.0" layoutY="97.0" text="Workspace Name" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Line endX="587.6000366210938" endY="-4.57763671875E-5" layoutX="182.0" layoutY="132.0" startX="-141.1999969482422" startY="-3.0517578125E-5" stroke="WHITE" />
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="38.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../dashboardicons/study.png" />
+                     </image>
+                  </ImageView>
+                  <TextField layoutX="40.0" layoutY="170.0" prefHeight="168.0" prefWidth="731.0" styleClass="workspace-box" stylesheets="@singleStudentWorkspace.css" />
+                  <Button layoutX="356.0" layoutY="349.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="125.0" styleClass="common-background-button" stylesheets="@singleStudentWorkspace.css" text="Attachment" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <ComboBox layoutX="494.0" layoutY="350.0" prefHeight="34.0" prefWidth="150.0" styleClass="common-background-button" stylesheets="@singleStudentWorkspace.css" />
+                  <Button graphicTextGap="10.0" layoutX="660.0" layoutY="350.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="post-button" stylesheets="@singleStudentWorkspace.css" text="Post">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Button>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="682.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../dashboardicons/send.png" />
+                     </image>
+                  </ImageView>
                </children>
-            </HBox>
-         </children>
-      </AnchorPane>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
    </children>
-</StackPane>
+</Pane>
