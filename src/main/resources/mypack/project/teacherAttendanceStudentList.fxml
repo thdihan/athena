@@ -5,20 +5,24 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="center-info-pane" stylesheets="@studentDashBoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentRegisteredCoursesController">
+<Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="center-info-pane" stylesheets="@studentDashBoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.TeacherAttendanceController">
    <children>
-      <ComboBox layoutX="141.0" layoutY="55.0" prefHeight="40.0" prefWidth="280.0" styleClass="background-secondary" stylesheets="@studentDashBoard.css" />
-      <Button layoutX="461.0" layoutY="54.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="150.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Get Student List">
+      <ComboBox fx:id="courseDropDown" layoutX="141.0" layoutY="55.0" prefHeight="40.0" prefWidth="280.0" styleClass="background-secondary" stylesheets="@studentDashBoard.css" />
+      <Button layoutX="461.0" layoutY="54.0" mnemonicParsing="false" onAction="#onGetStudentListBtnClicked" prefHeight="42.0" prefWidth="150.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Get Student List">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
       <Button layoutX="642.0" layoutY="54.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="142.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Submit" />
-      <ScrollPane layoutX="141.0" layoutY="119.0" prefHeight="508.0" prefWidth="642.0" styleClass="background-secondary">
+      <ScrollPane fx:id="scrollPane" layoutX="141.0" layoutY="119.0" prefHeight="508.0" prefWidth="642.0" styleClass="background-secondary">
         <content>
-          <AnchorPane minHeight="508.0" minWidth="0.0" prefWidth="642.0" styleClass="background-secondary" />
+          <AnchorPane minHeight="508.0" minWidth="0.0" prefWidth="642.0" styleClass="background-secondary">
+               <children>
+                  <VBox fx:id="studentListVbox" prefWidth="642.0" />
+               </children></AnchorPane>
         </content>
       </ScrollPane>
    </children>

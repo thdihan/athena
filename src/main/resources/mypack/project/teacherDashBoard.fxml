@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentDashBoardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.TeacherDashBoardController">
    <children>
       <HBox layoutX="-10.0" layoutY="11.0" prefHeight="720.0" prefWidth="1200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -71,7 +71,7 @@
                               </StackPane>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" styleClass="edit-button" stylesheets="@../../../../../../../athenaui/style.css" text="Edit" textFill="#f4e9e1">
+                                    <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" styleClass="edit-button" stylesheets="@studentDashBoard.css" text="Edit" textFill="#f4e9e1">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -87,7 +87,7 @@
                   </VBox>
                   <VBox prefHeight="475.0" prefWidth="278.0" styleClass="feature-background" stylesheets="@studentDashBoard.css">
                      <children>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@../../../../../../../athenaui/style.css" text="Dashboard" textFill="#f4e9e1">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#dashBoardBtnClicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Dashboard" textFill="#f4e9e1">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -105,7 +105,7 @@
                               <Insets top="30.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="course_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#courseBtnClicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@../../../../../../../athenaui/style.css" text="Courses" textFill="#f4e9e1">
+                        <Button fx:id="course_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#courseBtnClicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Courses" textFill="#f4e9e1">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -120,7 +120,7 @@
                               <Insets left="60.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="progress_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#progressBtnClicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@../../../../../../../athenaui/style.css" text="Attendance " textFill="#f4e9e1">
+                        <Button fx:id="progress_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#takeAttendanceBtnClicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Attendance " textFill="#f4e9e1">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -135,7 +135,7 @@
                               <Insets left="60.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="result_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#resultBtnClicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@../../../../../../../athenaui/style.css" text="Add Marks" textFill="#f4e9e1">
+                        <Button fx:id="result_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#addMarksBtnClicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Add Marks" textFill="#f4e9e1">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -150,7 +150,7 @@
                               <Insets left="60.0" />
                            </padding>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#workspaceBtnClicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@../../../../../../../athenaui/style.css" text="Workspace" textFill="#f4e9e1">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Workspace" textFill="#f4e9e1">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -179,7 +179,7 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="67.0" prefWidth="921.0" styleClass="top-banner" stylesheets="@studentDashBoard.css">
                            <children>
-                              <Label text="Dashboard" textFill="#f4e9e1">
+                              <Label fx:id="ui_name" text="Dashboard" textFill="#f4e9e1">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -193,7 +193,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="notification-button" stylesheets="@../../../../../../../athenaui/style.css" text="Button">
+                              <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="notification-button" stylesheets="@studentDashBoard.css" text="Button">
                                  <graphic>
                                     <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
