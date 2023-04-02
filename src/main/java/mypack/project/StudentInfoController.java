@@ -6,11 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import userPack.Notification;
 import userPack.Student;
 import userPack.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 /** Controller class for student information pane in dashboard
  * @author Unknown
  * @version 1.0
@@ -34,12 +38,26 @@ public class StudentInfoController {
     @FXML
     private Pane infoPane;
 
+    @FXML
+    VBox notificationPanal_Vbox;
+
+
+
+    public Node getNotificationiBoxNode(Notification notification) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("notificationBox.fxml"));
+        loader.load(); //loader.load() must be used otherwise controller isn't created
+        NotificationBoxController notificationBoxController = loader.getController();
+        notificationBoxController.initiate(notification);
+        Node childNode=notificationBoxController.getSmNotification();
+        return childNode;
+    }
+
     /**
      * To initiate the student information in the pane
      * @param currentStudent Student object containing their personal information
      * @param user User object of the student
      */
-    public void initiateStudentPane(Student currentStudent, User user){
+    public void initiateStudentPane(Student currentStudent, User user) throws SQLException, IOException {
         currentUser=user;
         email_view.setText(currentStudent.getEmail());
         fullname_view.setText(currentStudent.getName());
@@ -47,6 +65,22 @@ public class StudentInfoController {
         dept_view.setText(currentStudent.getDept());
         id_view.setText(currentStudent.getId());
         semester_view.setText(currentStudent.getSemester());
+
+
+        // get notifications
+        DbUtilities dbUtilities = new DbUtilities();
+        ArrayList<Notification> allNotification = new ArrayList<>();
+        allNotification=dbUtilities.getAllNotification(currentUser.getEmail());
+        System.out.println(allNotification.size());
+        for(int i = 0;i < 5;i++){
+            if(i == allNotification.size()) break;
+            System.out.println("Working");
+            notificationPanal_Vbox.getChildren().add(getNotificationiBoxNode(allNotification.get(i)));
+            Pane separator = new Pane();
+            separator.setPrefHeight(20);
+            notificationPanal_Vbox.getChildren().add(separator);
+        }
+
     }
 
     /**

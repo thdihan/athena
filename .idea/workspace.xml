@@ -5,19 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc99f71b-b75b-403a-8455-3c1682544c88" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/NotificationBoxController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/notificationBox.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/SinglePostPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/SinglePostPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentAcademicProgressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentAcademicProgressController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentSingleWorkspaceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentSingleWorkspaceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentWorkspacePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentWorkspacePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherDashBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/academicProgress.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/academicProgress.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/academicprogress.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/academicprogress.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/singlePostPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/singlePostPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentSingleWorkspacePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentSingleWorkspacePage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherDashBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherDashBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentInfo.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherInfo.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
