@@ -123,6 +123,7 @@ public class StudentSingleWorkspaceController {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("singlePostPage.fxml"));
                 Parent root = null;
+                SinglePostPageController singlePostPageController = loader.getController();
                 try {
                     root = loader.load();
                 } catch (IOException e) {
@@ -130,7 +131,7 @@ public class StudentSingleWorkspaceController {
                 }
 
                 Scene singlePostPageScene = new Scene(root);
-                SinglePostPageController singlePostPageController = loader.getController();
+
                 try {
                     singlePostPageController.initiate(workspaceName,currentStudent, registered_courses, currentUser,post);
                 } catch (SQLException e) {

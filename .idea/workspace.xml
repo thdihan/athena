@@ -5,20 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc99f71b-b75b-403a-8455-3c1682544c88" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/CourseRegBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/CourseRegBoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentCourseRegPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentCourseRegPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherCourseRegPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherCourseRegPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/UpdateProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/UpdateProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/attendanceBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/attendanceBox.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/markBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/markBox.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/registeredCourses.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/registeredCourses.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentInfo.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherCourseRegPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherCourseRegPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherDashBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherDashBoard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherInfo.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherRegisteredCourse.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherRegisteredCourse.fxml" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherMarksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherMarksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherDashBoard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherDashBoard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherMarks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherMarks.fxml" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +62,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ELMA/Desktop/project-Athena/athena/lib/postgresql-42.5.4.jar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Unchanged Project/athena&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,

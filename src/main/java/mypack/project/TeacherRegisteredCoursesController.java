@@ -68,6 +68,9 @@ public class TeacherRegisteredCoursesController {
             String credit="Credits: "+registered_courses.get(i).getCredit().toString();
 
             course_box.getChildren().add(getHbox(courseInfo, credit));
+            Pane separator = new Pane();
+            separator.setPrefHeight(20);
+            course_box.getChildren().add(separator);
         }
 
     }

@@ -51,6 +51,9 @@ public class SinglePostPageController {
     @FXML
     private  Label postDeadline_label;
 
+    @FXML
+    private Pane infoPane;
+
     private User currentUser;
 
     private Student currentStudent;
@@ -273,29 +276,15 @@ public class SinglePostPageController {
         System.out.println("working");
         window.show();
     }
-    @FXML
-    void courseBtnClicked(ActionEvent event) {
 
+    public Pane getPane() {
+        return infoPane;
     }
 
-    @FXML
-    void dashboardBtnClicked(ActionEvent event) {
-
+    public  String getUiName() {
+        return "Marks";
     }
 
-    @FXML
-    void logoutBtnClicked(ActionEvent event) {
 
-    }
-
-    @FXML
-    void progressBtnClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void resultBtnClicked(ActionEvent event) {
-
-    }
 
 }
