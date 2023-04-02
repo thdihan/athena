@@ -114,6 +114,7 @@ public class AdminDashBoardController {
         TeacherAttendanceController teacherAttendanceController;
         StudentWorkspacePageController studentWorkspacePageController;
         AddUser addUser;
+        ResetAllDataController resetAllDataController;
         /*--------Result View Controller Remaining-------------*/
     if (choice.equals("adminDashBoard")) {
             System.out.println("invoking");
@@ -124,6 +125,12 @@ public class AdminDashBoardController {
             addUser = loader.getController();
             childNode=addUser.getInfoPane();
         }
+
+    else if(choice.equals("resetData")){
+        resetAllDataController = loader.getController();
+        resetAllDataController.initiate(currentAdmin);
+        childNode=resetAllDataController.getInfoPane();
+    }
 
         infoPane.getChildren().clear();
         infoPane.getChildren().add(childNode);
@@ -216,5 +223,10 @@ public class AdminDashBoardController {
     @FXML
     void addUser_btn_clicked(ActionEvent event) throws SQLException, IOException {
         changeSceneWithInfoPane(event, "addUser.fxml", "addUser");
+    }
+
+    @FXML
+    void reset_system_btn_clicked(ActionEvent event) throws SQLException, IOException {
+        changeSceneWithInfoPane(event, "resetAllData.fxml", "resetData");
     }
 }

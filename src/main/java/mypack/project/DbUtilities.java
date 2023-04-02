@@ -270,6 +270,39 @@ public class DbUtilities {
     }
 
 
+    public void runResetQuery(String query) throws SQLException {
+        // delete all data from teacherTakesCourse DELETE FROM teacher_takes_course;
+        PreparedStatement preparedStatement = null;
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.executeUpdate();
+
+//            Statement stmt = connection.createStatement();
+//            stmt.executeUpdate(query);
+//            System.out.println("working");
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+    }
+    public void reset() throws SQLException {
+        // delete all data from teacherTakesCourse DELETE FROM teacher_takes_course;
+        String query = "DELETE FROM teacher_takes_course";
+        runResetQuery(query);
+
+        // update all students semester unless 8
+        query = "UPDATE student SET semester = \n" +
+                "    CASE \n" +
+                "        WHEN semester <> '8' THEN (CAST(semester AS INTEGER) + 1)::VARCHAR \n" +
+                "        ELSE semester \n" +
+                "    END;";
+        runResetQuery(query);
+    }
+
     public void addUser(User user) throws SQLException {
         PreparedStatement preparedStatement = null;
         String query = "insert into users values(?,?,?)";
