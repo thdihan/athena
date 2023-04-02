@@ -160,6 +160,8 @@ public class StudentDashBoardController {
 //            System.out.println("Empty progress controller");
             studentAcademicProgressController =loader.getController();
             studentAcademicProgressController.initiateAcademicProgressView(currentStudent, registered_course, currentUser);
+            ui_name.setText(studentAcademicProgressController.getUiName());
+            childNode=studentAcademicProgressController.getPane();
 
         } else if (choice.equals("regDonePage")) {
             studentRegisteredCoursesController =loader.getController();
@@ -181,7 +183,7 @@ public class StudentDashBoardController {
         }
         else if(choice.equals("workspacePage")){
             studentWorkspacePageController = loader.getController();
-            studentWorkspacePageController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
+            studentWorkspacePageController.initiateRegisteredCourseView(registered_course, currentUser);
             childNode=studentWorkspacePageController.getPane();
         }
 
@@ -237,7 +239,7 @@ public class StudentDashBoardController {
         }
         else if(choice.equals("workspacePage")){
             studentWorkspacePageController = loader.getController();
-            studentWorkspacePageController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
+            studentWorkspacePageController.initiateRegisteredCourseView(registered_course, currentUser);
 
         }
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -274,7 +276,7 @@ public class StudentDashBoardController {
     @FXML
     void progressBtnClicked(ActionEvent event) throws IOException, SQLException {
 //        System.out.println(currentUser.getEmail()); //works
-        changeSceneInDashboard(event, "academicProgress.fxml", "progressPage");
+        changeSceneWithInfoPane(event, "academicProgress.fxml", "progressPage");
     }
     /**
      * Result button click function

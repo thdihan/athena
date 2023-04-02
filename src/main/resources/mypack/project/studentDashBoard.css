@@ -152,3 +152,8 @@
  .list-cell {
  -fx-background-color: #36373E;
 }
+
+
+.table-view .column-header-background {
+    -fx-background-color: #36373E;
+}

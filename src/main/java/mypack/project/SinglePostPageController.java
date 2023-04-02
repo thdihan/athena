@@ -67,6 +67,9 @@ public class SinglePostPageController {
     @FXML
     private  Button selectSubmissionBtn;
 
+    @FXML
+    Button seeSubmissionbtn;
+
     Submission currentSubmission;
     public void initiate(String workspaceName, Student student, ArrayList<Courses> courses, User user, Post post) throws SQLException {
         this.workspaceName = workspaceName;
@@ -87,6 +90,12 @@ public class SinglePostPageController {
         else{
             submissionBtn.setVisible(false);
             selectSubmissionBtn.setVisible(false);
+        }
+        if(currentUser.getType().equals("t") && currentPost.getPost_type().equals("assignment")) {
+            seeSubmissionbtn.setVisible(true);
+        }
+        else{
+            seeSubmissionbtn.setVisible(false);
         }
         postType_label.setText(post.getPost_type());
         post_text.setText(post.getPost_text());
@@ -262,6 +271,10 @@ public class SinglePostPageController {
         infoPane.getChildren().clear();
         infoPane.getChildren().add(singlePostPageController.getPane());
     }
+
+
+    @FXML
+    public void seeSubmissionbtn_clicked(){}
 
     public Pane getPane() {
         return infoPane;

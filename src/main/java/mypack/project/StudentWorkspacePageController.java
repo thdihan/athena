@@ -42,8 +42,7 @@ public class StudentWorkspacePageController {
      * @param user User currenly logged in
      * @throws SQLException If problems with query
      */
-    public void initiateRegisteredCourseView(Student student, ArrayList<Courses> courses, User user) throws SQLException {
-        currentStudent=student;
+    public void initiateRegisteredCourseView(ArrayList<Courses> courses, User user) throws SQLException {
         registered_courses=courses;
         currentUser=user;
         if(registered_courses.size()  == 0) System.out.println("NULLLLLLLL");
@@ -108,41 +107,6 @@ public class StudentWorkspacePageController {
 
     }
 
-    /**
-     * Dashboard button click function
-     * @param event Event of button click
-     * @throws IOException If problems with input/output
-     * @throws SQLException If problems with query
-     */
-    public void dashboardBtnClicked(ActionEvent event) throws IOException,SQLException{
-        StudentDashBoardController studentDashBoardController=new StudentDashBoardController();
-        studentDashBoardController.assignDummyController(currentStudent, registered_courses, currentUser);
-        studentDashBoardController.dashboardBtnClicked(event);
-
-    }
-    /**
-     * Progress button click function
-     * @param event Event for progress button click
-     */
-    public void progressBtnClicked (ActionEvent event) throws SQLException, IOException {
-        StudentDashBoardController studentDashBoardController=new StudentDashBoardController();
-        studentDashBoardController.assignDummyController(currentStudent, registered_courses, currentUser);
-        studentDashBoardController.progressBtnClicked(event);
-    }
-    /**
-     * Function for course button click
-     * @param event
-     */
-    public void courseBtnClicked (ActionEvent event) {
-        System.out.println("Currently in course registration page");
-    }
-    /**
-     * Result button click function
-     * @param event Event for result button clicked
-     */
-    public void resultBtnClicked (ActionEvent event){
-        System.out.println("Result btn for progress not done");
-    }
     /**
      * Logout button click function
      * @param event Event for logout button clicked

@@ -80,13 +80,15 @@ public class StudentSingleWorkspaceController {
         currentUser = user;
         registered_courses = courses;
 
-
-
         this.workspaceName = workspaceName;
         workspace_name.setText(workspaceName);
         ObservableList<String> postTypeOption = FXCollections.observableArrayList("Announcement", "Assignment");
         postType.setPromptText("Select post type");
         postType.setItems(postTypeOption);
+
+        if(currentUser.getType().equals("s")){
+            postType.setVisible(false);
+        }
 
 
 
@@ -191,7 +193,14 @@ public class StudentSingleWorkspaceController {
 
         Post post = new Post();
         post.setPost_text(postText);
-        post.setPost_type(postTypeInput.get(postType.getValue()));
+
+        if(currentUser.getType().equals("s")){
+            post.setPost_type("announcement");
+        }
+        else{
+            post.setPost_type(postTypeInput.get(postType.getValue()));
+        }
+
         post.setAttachment(null);
         post.setCourseCode(workspaceName);
         post.setPost_giver_email(currentUser.getEmail());
