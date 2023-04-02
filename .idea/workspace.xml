@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc99f71b-b75b-403a-8455-3c1682544c88" name="Changes" comment="" />
+    <list default="true" id="fc99f71b-b75b-403a-8455-3c1682544c88" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/academicProgress.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/academicProgress.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/singleStudentWorkspace.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/singleStudentWorkspace.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentSingleWorkspacePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentSingleWorkspacePage.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

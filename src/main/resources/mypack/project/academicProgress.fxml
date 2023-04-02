@@ -1,95 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentAcademicProgressController">
+<Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="centerinfo-pane" stylesheets="@studentDashBoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="main-container" stylesheets="@studentDashBoard.css">
+      <Pane layoutX="31.0" layoutY="22.0" prefHeight="611.0" prefWidth="861.0">
          <children>
-            <HBox prefHeight="720.0" prefWidth="1200.0">
-               <children>
-                  <Pane prefHeight="100.0" prefWidth="350.0" styleClass="navigation-area" stylesheets="@studentDashBoard.css">
-                     <children>
-                        <HBox alignment="CENTER" layoutX="95.0" layoutY="59.0" prefHeight="150.0" prefWidth="157.0" styleClass="profile-image">
-                           <children>
-                              <ImageView fitHeight="110.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view-wrapper">
-                                 <image>
-                                    <Image url="@../../DashboardImages/demo-profile.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <Button fx:id="progress_btn" alignment="CENTER" layoutX="36.0" layoutY="426.0" mnemonicParsing="false" onAction="#progressBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Academic Progress" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="course_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="360.0" mnemonicParsing="false" onAction="#courseBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Courses" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="result_btn" alignment="CENTER" layoutX="36.0" layoutY="493.0" mnemonicParsing="false" onAction="#resultBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Previous Results" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <StackPane layoutX="75.0" layoutY="224.0" prefHeight="58.0" prefWidth="200.0">
-                           <children>
-                              <Label fx:id="full_name_label" alignment="CENTER" prefHeight="27.0" prefWidth="119.0" text="FULL NAME" textAlignment="CENTER" textFill="#efefff">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <Button fx:id="logout_btn" alignment="CENTER" layoutX="36.0" layoutY="639.0" mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Logout" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="course_btn1" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="293.0" mnemonicParsing="false" onAction="#dashboardBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Dashboard" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="10.0" layoutY="10.0" prefHeight="720.0" prefWidth="850.0" styleClass="info-area" stylesheets="@studentDashBoard.css">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <children>
-                        <TableView fx:id="academicProgressModelTableView" layoutX="36.0" layoutY="52.0" prefHeight="627.0" prefWidth="785.0">
-                          <columns>
-                            <TableColumn fx:id="courseCodeColumn" prefWidth="85.86669921875" text="Couse Code" />
-                            <TableColumn fx:id="attendanceColumn" prefWidth="93.60001373291016" text="Attendance (%)" />
-                              <TableColumn fx:id="quiz1Column" prefWidth="65.5999755859375" text="Quiz 1" />
-                              <TableColumn fx:id="quiz2Column" prefWidth="70.4000244140625" text="Quiz 2" />
-                              <TableColumn fx:id="midColumn" prefWidth="70.39996337890625" text="Mid" />
-                              <TableColumn fx:id="quiz3Column" prefWidth="66.39996337890625" text="Quiz 3" />
-                              <TableColumn fx:id="quiz4Column" prefWidth="70.39999389648438" text="Quiz 4" />
-                              <TableColumn fx:id="finalColumn" prefWidth="68.79998779296875" text="Final" />
-                              <TableColumn fx:id="progressColumn" prefWidth="81.60003662109375" text="Progress (%)" />
-                              <TableColumn fx:id="gradeColumn" prefWidth="122.4000244140625" text="Expected Grade" />
-                          </columns>
-                        </TableView>
-                     </children>
-                  </Pane>
-               </children>
-            </HBox>
+            <TableView maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="611.0" prefWidth="861.0" styleClass="column-header-background" stylesheets="@academicprogress.css">
+              <columns>
+                <TableColumn prefWidth="102.39999961853027" text="Course Code" />
+                <TableColumn maxWidth="343.2000198364258" minWidth="0.0" prefWidth="99.19998168945312" text="Attendance(%)" />
+                  <TableColumn prefWidth="78.4000244140625" text="Quiz 1" />
+                  <TableColumn prefWidth="73.5999755859375" text="Quiz 2" />
+                  <TableColumn prefWidth="69.60003662109375" text="Mid" />
+                  <TableColumn prefWidth="76.79995727539062" text="Quiz 3" />
+                  <TableColumn prefWidth="82.4000244140625" text="Quiz 4" />
+                  <TableColumn prefWidth="88.800048828125" text="Final" />
+                  <TableColumn prefWidth="75.0" text="Progress(%)" />
+                  <TableColumn prefWidth="110.5999755859375" text="Expected Grade" />
+              </columns>
+            </TableView>
          </children>
-      </AnchorPane>
+      </Pane>
    </children>
-</StackPane>
+</Pane>
