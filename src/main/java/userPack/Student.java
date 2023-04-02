@@ -14,10 +14,10 @@ public class Student {
     private String email;
     private String dept;
     private String semester;
-    private Date dob;
+    private String dob;
     private String contact;
 
-    public Student(String id, String name, String email, String dept, String semester, Date dob, String contact) {
+    public Student(String id, String name, String email, String dept, String semester, String dob, String contact) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -66,11 +66,11 @@ public class Student {
         this.semester = semester;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 

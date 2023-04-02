@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.AdminDashBoardController">
+   <children>
+      <HBox layoutX="-10.0" layoutY="11.0" prefHeight="720.0" prefWidth="1200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="720.0" prefWidth="280.0" stylesheets="@studentDashBoard.css">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="67.0" prefWidth="278.0" styleClass="top-logo-part" stylesheets="@studentDashBoard.css">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../dashboardicons/university.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Athena" textFill="#f4e9e1">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets top="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="177.0" prefWidth="328.0" styleClass="user-profile-part" stylesheets="@studentDashBoard.css">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="83.0" prefWidth="328.0">
+                           <children>
+                              <ImageView fitHeight="78.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../dashboardicons/student.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="31.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="77.0" prefWidth="328.0">
+                           <children>
+                              <StackPane prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <Label fx:id="side_fullname_view" alignment="CENTER" prefHeight="32.0" prefWidth="117.0" text="Mahia " textFill="#f4e9e1">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                       <StackPane.margin>
+                                          <Insets top="14.0" />
+                                       </StackPane.margin>
+                                    </Label>
+                                 </children>
+                              </StackPane>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" styleClass="edit-button" stylesheets="@studentDashBoard.css" text="Edit" textFill="#f4e9e1">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="9.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="475.0" prefWidth="278.0" styleClass="feature-background" stylesheets="@studentDashBoard.css">
+                     <children>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#dashBoardBtnClicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Dashboard" textFill="#f4e9e1">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../dashboardicons/dashboard.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="addUser_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#addUser_btn_clicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Add User" textFill="#f4e9e1">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../dashboardicons/book.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="reset_workspace_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Reset Workspace" textFill="#f4e9e1">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../dashboardicons/attendance.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+            <Pane fx:id="separator" prefHeight="720.0" prefWidth="4.0" style="-fx-background-color: #36373E;" />
+            <VBox prefHeight="720.0" prefWidth="925.0">
+               <children>
+                  <HBox prefHeight="67.0" prefWidth="923.0">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="66.0" prefWidth="929.0" styleClass="top-banner" stylesheets="@studentDashBoard.css">
+                           <children>
+                              <Label fx:id="ui_name" text="Dashboard" textFill="#f4e9e1">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="67.0" prefWidth="661.0" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="logout_btn" mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="33.0" prefWidth="88.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Login">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="notification-button" stylesheets="@studentDashBoard.css" text="Button">
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../dashboardicons/bell.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="centerinfo-pane" stylesheets="@studentDashBoard.css">
+                     <children>
+                        <StackPane layoutX="31.0" layoutY="22.0" prefHeight="611.0" prefWidth="415.0" styleClass="info-pane-box" stylesheets="@studentDashBoard.css" />
+                        <StackPane layoutX="477.0" layoutY="22.0" prefHeight="611.0" prefWidth="415.0" styleClass="info-pane-box" stylesheets="@studentDashBoard.css" />
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

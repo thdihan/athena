@@ -92,21 +92,22 @@ public class DbUtilities {
 
 //         UsersTable
         String[] insertUser = {
-                "insert into users values ('jamal@gmail.com', 'z', 't',0)",
-                "insert into users values ('shakun650@gmail.com', '21752926f73d037a19c53a9f172dd00c2b08d4b7b6d6e3b096835842faf24f57', 's',0)",
-                "insert into users values ('hasan@gmail.com', 'd38b6b3ca3e5bac0547c3cf6ea5b92a4f633bd6b2c8c94d28e009736d02ab3f4', 's',0)",
-                "insert into users values ('z', '594e519ae499312b29433b7dd8a97ff068defcba9755b6d5d00e84c524d67b06', 't',0)",
-                "insert into users values ('shuvro234@gmail.com', 'tukasl', 's',0)",
-                "insert into users values ('a', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', 's',0)",
-                "insert into users values ('s', '43a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89', 's',0)"
+                "insert into users values ('jamal@gmail.com', 'z', 't')",
+                "insert into users values ('shakun650@gmail.com', '21752926f73d037a19c53a9f172dd00c2b08d4b7b6d6e3b096835842faf24f57', 's')",
+                "insert into users values ('hasan@gmail.com', 'd38b6b3ca3e5bac0547c3cf6ea5b92a4f633bd6b2c8c94d28e009736d02ab3f4', 's')",
+                "insert into users values ('z', '594e519ae499312b29433b7dd8a97ff068defcba9755b6d5d00e84c524d67b06', 't')",
+                "insert into users values ('shuvro234@gmail.com', 'tukasl', 's')",
+                "insert into users values ('a', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', 's')",
+                "insert into users values ('s', '43a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89', 's')",
+                "insert into users values ('admin@gmail.com','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','a')"
         };
         String tableName = "users";
-        String tableQuery = "create table users(email text, password text, type varchar(10),notification int,constraint pk_users primary key (email) );";
+        String tableQuery = "create table users(email text, password text, type varchar(10),constraint pk_users primary key (email) );";
         initiateAllTable(tableName, tableQuery, insertUser);
 
         // Student Table
         tableName = "student";
-        tableQuery = "Create table Student(S_ID varchar(15) not null primary key,S_Name varchar(60) not null, S_email varchar(60) not null,Dept varchar(20),Semester varchar(10),DOB date,S_contact varchar(15) not null);";
+        tableQuery = "Create table Student(S_ID varchar(15) not null primary key,S_Name varchar(100) not null, S_email varchar(100) not null,Dept varchar(20),Semester varchar(10),DOB varchar(20),S_contact varchar(15) not null);";
         String[] insertStudent = {
                 "insert into student values('200041111','Hasan','hasan@gmail.com','CSE','4','2001-01-01','01711111111');",
                 "insert into student values('200041112','Kamal','a','CSE','4','2001-01-01','01711111111');",
@@ -117,7 +118,7 @@ public class DbUtilities {
 
         // Teacher Table
         tableName = "teacher";
-        tableQuery = "Create table Teacher(T_ID varchar(15) not null primary key,T_Name varchar(60) not null,T_email varchar(60) not null,Dept varchar(20),DOB date,T_contact varchar not null);";
+        tableQuery = "Create table Teacher(T_ID varchar(15) not null primary key,T_Name varchar(60) not null,T_email varchar(60) not null,Dept varchar(20),DOB varchar(20),T_contact varchar not null);";
         String[] insertTeacher = {
                 "insert into teacher values('123456','Jamal','jamal@gmail.com','CSE','1995-01-01','01711111111');",
                 "insert into teacher values('1233456','Jamal','z','CSE','1995-01-01','01711111111');"
@@ -126,8 +127,10 @@ public class DbUtilities {
 
         // Admin Table
         tableName = "admins";
-        tableQuery = "create table admins( Ad_ID varchar(15) not null primary key, Ad_Name varchar(60) not null, Ad_email varchar(60) not null, DOB date, Ad_contact varchar(20) not null );";
-        String[] insertAdmin = {};
+        tableQuery = "create table admins( admin_ID varchar(15) not null primary key, admin_Name varchar(60) not null, admin_email varchar(60) not null, DOB date, admin_contact varchar(20) not null );";
+        String[] insertAdmin = {
+                "insert into admins values('123456', 'Admin 1','admin@gmail.com','2000-01-01','0171111111')"
+        };
         initiateAllTable(tableName, tableQuery, insertAdmin);
 
         // Course Table
@@ -266,6 +269,77 @@ public class DbUtilities {
         initiateAllTable(tableName,tableQuery,demoNotifiaction);
     }
 
+
+    public void addUser(User user) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query = "insert into users values(?,?,?)";
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, user.getEmail());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getType());
+            preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+
+
+    }
+
+    public void addStudent(Student student) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query = "insert into student values(?,?,?,?,?,?,?)";
+//        "insert into student values('200041111','Hasan','hasan@gmail.com','CSE','4','2001-01-01','01711111111');",
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, student.getId());
+            preparedStatement.setString(2, student.getName());
+            preparedStatement.setString(3, student.getEmail());
+            preparedStatement.setString(4, student.getDept());
+            preparedStatement.setString(5, student.getSemester());
+            preparedStatement.setString(6, student.getDob());
+            preparedStatement.setString(7, student.getContact());
+            preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+
+    }
+
+    public void addTeacher(Teacher teacher) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query = "insert into teacher values(?,?,?,?,?,?)";
+//        "insert into student values('200041111','Hasan','hasan@gmail.com','CSE','4','2001-01-01','01711111111');",
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, teacher.getId());
+            preparedStatement.setString(2, teacher.getName());
+            preparedStatement.setString(3, teacher.getEmail());
+            preparedStatement.setString(4, teacher.getDept());
+            preparedStatement.setString(5, teacher.getDob());
+            preparedStatement.setString(6, teacher.getContact());
+            preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+
+    }
+
     /**
      * To create a table and insert demo data in it
      *
@@ -402,7 +476,7 @@ public class DbUtilities {
             preparedStatement.setString(1, email);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                Student temp = new Student(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getDate(6), resultSet.getString(7));
+                Student temp = new Student(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
                 return temp;
             } else {
                 return null;
@@ -434,7 +508,35 @@ public class DbUtilities {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
 //                System.out.println(resultSet.getString(3));
-                Teacher temp = new Teacher(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getDate(5), resultSet.getString(6));
+                Teacher temp = new Teacher(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
+                return temp;
+            } else {
+                return null;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception getting student info");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+    }
+
+
+
+    public Admin getAdminInfo(String email) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String query = "select * from admins where admin_email=?";
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+//                System.out.println(resultSet.getString(3));
+                Admin temp = new Admin(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),  resultSet.getDate(4), resultSet.getString(5));
                 return temp;
             } else {
                 return null;

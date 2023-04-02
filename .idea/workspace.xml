@@ -5,14 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc99f71b-b75b-403a-8455-3c1682544c88" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/NotificationBoxController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/notificationBox.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/AddUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/AdminDashBoardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/AdminInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/userPack/Admin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/addUser.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/adminDashboard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/adminInfo.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentInfo.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherInfo.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userPack/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userPack/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userPack/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userPack/Teacher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +67,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/athena",
+    "last_opened_file_path": "E:/athena/src/main/resources/mypack/project",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -84,6 +88,10 @@
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="mypack.project" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="mypack.project" />
+      <recent name="userPack" />
     </key>
   </component>
   <component name="RunManager">

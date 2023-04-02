@@ -53,6 +53,7 @@ public class LoginController {
         String userType = loggingUser.getType();
         StudentDashBoardController studentDashBoardController; //do same for other user controllers also for inside if statements
         TeacherDashBoardController teacherDashBoardController;
+        AdminDashBoardController adminDashBoardController;
 
         if (userType.equals("s")) {
             studentDashBoardController = loader.getController();
@@ -67,6 +68,9 @@ public class LoginController {
 
             User us= new User(teacherDashBoardController.getCurrentUser());
 
+        } else if (userType.equals("a")){
+            adminDashBoardController = loader.getController();
+            adminDashBoardController.initiateAdmin(loggingUser);
         } else {
             System.out.println("Empty admin controller");
         }
@@ -114,6 +118,9 @@ public class LoginController {
                     goToDashBoard("studentDashBoard.fxml", event, loggingUser);
                 else if (userType.equals("t")) {
                     goToDashBoard("teacherDashBoard.fxml", event, loggingUser);
+                }
+                else if(userType.equals("a")){
+                    goToDashBoard("adminDashBoard.fxml", event, loggingUser);
                 }
             } else {
                 wrongField.setText("Invalid username or password !!");
