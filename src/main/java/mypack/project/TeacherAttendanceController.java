@@ -48,6 +48,11 @@ public class TeacherAttendanceController {
     @FXML
     private  Pane infoPane;
 
+    @FXML
+    private Pane warning_box;
+    @FXML
+    private  Label warning_text;
+
 
     /**
      * To initiate the required data while changing scenes
@@ -62,6 +67,8 @@ public class TeacherAttendanceController {
         this.registered_course = registered_course;
         scrollPane.setVisible(false);
         studentListVbox.setVisible(false);
+        warning_box.setVisible(false);
+
 
         DbUtilities dbUtilities = new DbUtilities();
         ArrayList<Courses> registeredCourses = dbUtilities.getTeacherRegisteredCourses(currentTeacher.getId()); //may come empty if
@@ -89,8 +96,13 @@ public class TeacherAttendanceController {
      */
     public String selectCourseInDropDown(ActionEvent event) {
         if (courseDropDown.getValue() == null) {
+            warning_box.setVisible(true);
+            warning_text.setText("Please select courses");
 //            courseLabel.setText("Please select course");
             return null;
+        }
+        else{
+            warning_box.setVisible(false);
         }
         String[] course = courseDropDown.getValue().split(":");
         String courseCode = course[0];
@@ -140,13 +152,23 @@ public class TeacherAttendanceController {
      * To submit the attendance when button is clicked
      * @param event Event of submit button click
      */
+    @FXML
     public void onSubmitBtnClicked(ActionEvent event) {
         if (courseDropDown.getValue() == null || studentListVbox.getChildren().isEmpty()) {
             if (courseDropDown.getValue() == null) {
-//                courseLabel.setText("Please select course");
+                warning_box.setVisible(true);
+                warning_text.setText("Please select courses");
+            }
+            else{
+                warning_box.setVisible(false);
             }
             if(studentListVbox.getChildren().isEmpty()){
-//                submitLabel.setText("Please generate student list to continue");
+                warning_box.setVisible(true);
+                warning_text.setText("Please select courses");
+//            courseLabel.setText("Please select course");
+            }
+            else{
+                warning_box.setVisible(false);
             }
 
         } else {
@@ -167,10 +189,12 @@ public class TeacherAttendanceController {
                 }
             }
             dbUtilities.takeAttendance(courseCode, presentList, absentList, currentTeacher);
-//            submitLabel.setText("Attendance taken successfully");
-            PauseTransition pauseTransition =new PauseTransition(Duration.seconds(3));
-            pauseTransition.setOnFinished(event1 -> submitLabel.setText(""));
-            pauseTransition.play();
+            warning_box.setStyle("-fx-background-color: #a4ebb5;-fx-border-color: green;-fx-background-radius: 15px; -fx-border-radius: 15px;");
+            warning_box.setVisible(true);
+            warning_text.setText("Attendance Taken successfully");
+//            PauseTransition pauseTransition =new PauseTransition(Duration.seconds(3));
+//            pauseTransition.setOnFinished(event1 -> submitLabel.setText(""));
+//            pauseTransition.play();
             scrollPane.setVisible(false);
             studentListVbox.setVisible(false);
             studentListVbox.getChildren().clear();
