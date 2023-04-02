@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc99f71b-b75b-403a-8455-3c1682544c88" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/singlepostpage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-=======
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/CourseRegBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/CourseRegBoxController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentCourseRegPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentCourseRegPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" afterDir="false" />
@@ -17,10 +16,10 @@
       <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegBox.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/registeredCourses.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/registeredCourses.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/singlePostPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/singlePostPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherAttendanceStudentList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherAttendanceStudentList.fxml" afterDir="false" />
->>>>>>> ui_modification_dihan
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,6 +134,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
