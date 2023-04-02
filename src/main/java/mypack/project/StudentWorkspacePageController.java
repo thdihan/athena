@@ -72,24 +72,37 @@ public class StudentWorkspacePageController {
             singleWorkspace.setOnAction(event -> {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("studentSingleWorkspacePage.fxml"));
-                Parent root = null;
                 try {
-                    root = loader.load();
+                    loader.load();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
-                Scene afterLoginScene = new Scene(root);
                 StudentSingleWorkspaceController studentSingleWorkspaceController = loader.getController();
                 try {
                     studentSingleWorkspaceController.initiateData(registered_courses.get(finalI).getCode(),currentStudent, registered_courses, currentUser);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window.setScene(afterLoginScene);
-                window.show();
+                infoPane.getChildren().clear();
+                infoPane.getChildren().add(studentSingleWorkspaceController.getPane());
+//                Parent root = null;
+//                try {
+//                    root = loader.load();
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                }
+//
+//                Scene afterLoginScene = new Scene(root);
+//                StudentSingleWorkspaceController studentSingleWorkspaceController = loader.getController();
+//                try {
+//                    studentSingleWorkspaceController.initiateData(registered_courses.get(finalI).getCode(),currentStudent, registered_courses, currentUser);
+//                } catch (SQLException e) {
+//                    throw new RuntimeException(e);
+//                }
+//
+//                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                window.setScene(afterLoginScene);
+//                window.show();
             });
         }
 

@@ -63,6 +63,8 @@ public class StudentSingleWorkspaceController {
     private TextArea post_text_box;
 
     @FXML
+    private Pane infoPane;
+    @FXML
     private TextField time_hh;
     @FXML
     private TextField time_mm;
@@ -122,26 +124,19 @@ public class StudentSingleWorkspaceController {
             viewDetails.setOnAction(event -> {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("singlePostPage.fxml"));
-                Parent root = null;
-                SinglePostPageController singlePostPageController = loader.getController();
                 try {
-                    root = loader.load();
+                    loader.load();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
-                Scene singlePostPageScene = new Scene(root);
-
+                SinglePostPageController singlePostPageController = loader.getController();
                 try {
                     singlePostPageController.initiate(workspaceName,currentStudent, registered_courses, currentUser,post);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window.setScene(singlePostPageScene);
-                System.out.println("working");
-                window.show();
+                infoPane.getChildren().clear();
+                infoPane.getChildren().add(singlePostPageController.getPane());
             });
             postBox.getChildren().add(0,singlePost);
 //             printing all value in console
@@ -222,27 +217,24 @@ public class StudentSingleWorkspaceController {
         else {
             DbUtilities postSetting = new DbUtilities();
             postSetting.setPost(post);
+
+
             // back to workspace
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("studentSingleWorkspacePage.fxml"));
-            Parent root = null;
             try {
-                root = loader.load();
+                loader.load();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-            Scene afterLoginScene = new Scene(root);
             StudentSingleWorkspaceController studentSingleWorkspaceController = loader.getController();
             try {
                 studentSingleWorkspaceController.initiateData(workspaceName,currentStudent, registered_courses, currentUser);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(afterLoginScene);
-            window.show();
+            infoPane.getChildren().clear();
+            infoPane.getChildren().add(studentSingleWorkspaceController.getPane());
         }
 
 //        // printing all value in console
@@ -344,29 +336,14 @@ public class StudentSingleWorkspaceController {
         window.show();
 
     }
-    @FXML
-    void courseBtnClicked(ActionEvent event) {
-
+    public Pane getPane() {
+        return infoPane;
     }
 
-    @FXML
-    void dashboardBtnClicked(ActionEvent event) {
-
+    public  String getUiName() {
+        return "Registered Courses";
     }
 
-    @FXML
-    void logoutBtnClicked(ActionEvent event) {
 
-    }
-
-    @FXML
-    void progressBtnClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void resultBtnClicked(ActionEvent event) {
-
-    }
 
 }
