@@ -61,9 +61,13 @@ public class TeacherMarksController implements Initializable {
     @FXML
     private Label optionLabel;
     @FXML
-    private Button addBtn;
+    private Toggle add_modify_toggle;
+
     @FXML
-    private Button modifyBtn;
+    private Pane warning_box;
+    @FXML
+    private  Label warning_text;
+
 
     /**
      * To initiate the add marks view during scene change
@@ -76,7 +80,11 @@ public class TeacherMarksController implements Initializable {
         currentTeacher = teacher;
         currentUser = user;
         this.registered_course = registered_course;
-//        scrollPane.setVisible(false);
+        scrollPane.setVisible(false);
+        choice = "add";
+        warning_box.setVisible(false);
+        courseDropDown.setStyle("-fx-text-fill: white;");
+        examTypeDropDown.setStyle("-fx-text-fill: white;");;
 //        studentListVbox.setVisible(false);
 //        courseDropDown.setVisible(false);
 //        examTypeDropDown.setVisible(false);
@@ -119,7 +127,7 @@ public class TeacherMarksController implements Initializable {
     @FXML
     public ArrayList<String> onGetStudentListBtnClicked(ActionEvent event) throws IOException {
         //return empty list if exceptions
-
+        System.out.println("Invokedddddd");
         DbUtilities dbUtilities = new DbUtilities();
         ArrayList<String> studentList = new ArrayList<>();
         if (selectCourseInDropDown(event) == null)
@@ -127,9 +135,14 @@ public class TeacherMarksController implements Initializable {
         if (choice.equals("add")) {
             studentList = dbUtilities.getStudentList(selectCourseInDropDown(event));
             if(studentList.isEmpty()){
-                studentLabel.setText("No students registered for this course yet");
-                addTransition(studentLabel);
+//                studentLabel.setText("No students registered for this course yet");
+                warning_box.setVisible(true);
+                warning_text.setText("No students registered for this course yet");
+//                addTransition(studentLabel);
                 return studentList;
+            }
+            else{
+                warning_box.setVisible(false);
             }
 //        System.out.println(studentList.get(0));
             studentListVbox.getChildren().clear();
@@ -142,7 +155,7 @@ public class TeacherMarksController implements Initializable {
             treeMap.putAll(dbUtilities.getStudentMarkList(selectCourseInDropDown(event), examType.get(selectExamInDropDown(event))));
             if (treeMap.isEmpty()) {
 //                studentLabel.setText("No students registered or previously marks not added");
-                addTransition(studentLabel);
+//                addTransition(studentLabel);
                 return studentList;
             }
             studentListVbox.getChildren().clear();
@@ -173,15 +186,27 @@ public class TeacherMarksController implements Initializable {
     public void onSubmitBtnClicked(ActionEvent event) {
         if (courseDropDown.getValue() == null || examTypeDropDown.getValue() == null || studentListVbox.getChildren().isEmpty()) {
             if (courseDropDown.getValue() == null) {
-//                courseLabel.setText("Please select course");
+                warning_box.setVisible(true);
+                warning_text.setText("Please select courses");
+            }
+            else{
+                warning_box.setVisible(false);
             }
             if (studentListVbox.getChildren().isEmpty()) {
 //                studentLabel.setText("Please generate student list to continue");
+                warning_box.setVisible(true);
+                warning_text.setText("Please generate student list to continue");
+            }
+            else{
+                warning_box.setVisible(false);
             }
             if (examTypeDropDown.getValue() == null) {
 //                examLabel.setText("Please select exam type");
-            } else {
-                examLabel.setText("");
+                warning_box.setVisible(true);
+                warning_text.setText("Please select exam type");
+            }
+            else{
+                warning_box.setVisible(false);
             }
         } else {
             DbUtilities dbUtilities = new DbUtilities();
@@ -200,7 +225,7 @@ public class TeacherMarksController implements Initializable {
                 System.out.println(markField.getText());
                 dbUtilities.updateStudentMarks(idLabel.getText(), Double.parseDouble(markField.getText()), courseDropDown.getValue().split(":")[0], examType.get(examTypeDropDown.getValue()));
 //                studentLabel.setText("Marks updated successfully");
-                addTransition(studentLabel);
+//                addTransition(studentLabel);
 //                System.out.println("IN");
 //                PauseTransition pauseTransition = new PauseTransition(Duration.seconds(3));
 ////                FadeTransition fade = new FadeTransition(Duration.seconds(1), studentLabel);
@@ -224,29 +249,31 @@ public class TeacherMarksController implements Initializable {
      * Option to add marks
      * @param event Event of add marks button click
      */
-    public void onAddMarksBtnClicked(ActionEvent event) {
-        choice = "add";
-//        optionLabel.setText("Adding marks");
-        studentListVbox.getChildren().clear();
-        studentListVbox.setVisible(false);
-        listBtn.setVisible(true);
-        submitBtn.setVisible(true);
-        scrollPane.setVisible(false);
 
-        courseDropDown.setVisible(true);
-        examTypeDropDown.setVisible(true);
-        modifyBtn.setVisible(true);
-        addBtn.setVisible(false);
-
-        modifyBtn.setLayoutX(535);
-        modifyBtn.setLayoutY(83);
-        addBtn.setLayoutX(535);
-        addBtn.setLayoutY(130);
-
-        modifyBtn.setPrefHeight(37);
-//        modifyBtn.setPrefWidth(129);
-        addBtn.setPrefHeight(37);
-//        addBtn.setPrefWidth(129);
+    @FXML
+    public void add_modify_toggle_clicked(ActionEvent event) {
+//        choice = "add";
+////        optionLabel.setText("Adding marks");
+//        studentListVbox.getChildren().clear();
+//        studentListVbox.setVisible(false);
+//        listBtn.setVisible(true);
+//        submitBtn.setVisible(true);
+//        scrollPane.setVisible(false);
+//
+//        courseDropDown.setVisible(true);
+//        examTypeDropDown.setVisible(true);
+//        modifyBtn.setVisible(true);
+//        addBtn.setVisible(false);
+//
+//        modifyBtn.setLayoutX(535);
+//        modifyBtn.setLayoutY(83);
+//        addBtn.setLayoutX(535);
+//        addBtn.setLayoutY(130);
+//
+//        modifyBtn.setPrefHeight(37);
+////        modifyBtn.setPrefWidth(129);
+//        addBtn.setPrefHeight(37);
+////        addBtn.setPrefWidth(129);
     }
 
     /**
@@ -264,8 +291,8 @@ public class TeacherMarksController implements Initializable {
 
         courseDropDown.setVisible(true);
         examTypeDropDown.setVisible(true);
-        addBtn.setVisible(true);
-        modifyBtn.setVisible(false);
+//        addBtn.setVisible(true);
+//        modifyBtn.setVisible(false);
     }
 
     /**
@@ -357,11 +384,11 @@ public class TeacherMarksController implements Initializable {
      * To add transition to the labels
      * @param label Label to add the transition
      */
-    public void addTransition(Label label){
-        PauseTransition pauseTransition = new PauseTransition(Duration.seconds(3));
-        pauseTransition.setOnFinished(event1 -> label.setText(""));
-        pauseTransition.play();
-    }
+//    public void addTransition(Label label){
+//        PauseTransition pauseTransition = new PauseTransition(Duration.seconds(3));
+//        pauseTransition.setOnFinished(event1 -> label.setText(""));
+//        pauseTransition.play();
+//    }
 
     /**
      * To initiate the exam dropdown

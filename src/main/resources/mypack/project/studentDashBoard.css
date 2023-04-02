@@ -143,3 +143,12 @@
     -fx-background-insets: 0;
 
 }
+
+
+.combo-box  .list-cell {
+-fx-text-fill: white;
+}
+
+ .list-cell {
+ -fx-background-color: #36373E;
+}
