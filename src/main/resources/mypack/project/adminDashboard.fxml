@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.TeacherDashBoardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.AdminDashBoardController">
    <children>
       <HBox layoutX="-10.0" layoutY="11.0" prefHeight="720.0" prefWidth="1200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -105,7 +105,7 @@
                               <Insets top="30.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="course_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#courseBtnClicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Courses" textFill="#f4e9e1">
+                        <Button fx:id="addUser_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#addUser_btn_clicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Add User" textFill="#f4e9e1">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -120,41 +120,11 @@
                               <Insets left="60.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="progress_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#takeAttendanceBtnClicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Attendance " textFill="#f4e9e1">
+                        <Button fx:id="reset_system_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#reset_system_btn_clicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Reset System" textFill="#f4e9e1">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../dashboardicons/attendance.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                           <padding>
-                              <Insets left="60.0" />
-                           </padding>
-                        </Button>
-                        <Button fx:id="result_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#addMarksBtnClicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Add Marks" textFill="#f4e9e1">
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../dashboardicons/test.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                           <padding>
-                              <Insets left="60.0" />
-                           </padding>
-                        </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#workspaceBtnClicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Workspace" textFill="#f4e9e1">
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../dashboardicons/workspace.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -177,7 +147,7 @@
                <children>
                   <HBox prefHeight="67.0" prefWidth="923.0">
                      <children>
-                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="67.0" prefWidth="921.0" styleClass="top-banner" stylesheets="@studentDashBoard.css">
+                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="66.0" prefWidth="929.0" styleClass="top-banner" stylesheets="@studentDashBoard.css">
                            <children>
                               <Label fx:id="ui_name" text="Dashboard" textFill="#f4e9e1">
                                  <font>

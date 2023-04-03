@@ -152,6 +152,15 @@
             </Pane>
          </children>
       </Pane>
-      <Pane layoutX="477.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="611.0" prefWidth="415.0" styleClass="info-pane-box" stylesheets="@studentDashBoard.css" />
+      <Pane fx:id="notificationPanal" layoutX="487.0" layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="611.0" prefWidth="415.0" styleClass="info-pane-box" stylesheets="@studentDashBoard.css">
+         <children>
+            <VBox fx:id="notificationPanal_Vbox" layoutX="24.0" layoutY="70.0" prefWidth="368.0" />
+            <Label layoutX="24.0" layoutY="24.0" text="Top Notifications" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </Pane>

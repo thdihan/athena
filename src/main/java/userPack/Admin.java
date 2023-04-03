@@ -1,18 +1,18 @@
 package userPack;
 
 import java.util.Date;
+
 /** Class for teacher information
  * @author Unknown
  * @version 1.0
  * @since March,2023
  */
 
-public class Teacher {
+public class Admin {
     private String id;
     private String name;
     private String email;
-    private String dept;
-    private String dob;
+    private Date dob;
     private String contact;
     public String getId() {
         return id;
@@ -38,19 +38,12 @@ public class Teacher {
         this.email = email;
     }
 
-    public String getDept() {
-        return dept;
-    }
 
-    public void setDept(String dept) {
-        this.dept = dept;
-    }
-
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 
@@ -62,11 +55,10 @@ public class Teacher {
         this.contact = contact;
     }
 
-    public Teacher(String id, String name, String email, String dept, String dob, String contact) {
+    public Admin(String id, String name, String email, Date dob, String contact) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.dept = dept;
         this.dob = dob;
         this.contact = contact;
     }

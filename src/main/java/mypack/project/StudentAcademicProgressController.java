@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import userPack.Courses;
 import userPack.Student;
 import userPack.User;
@@ -45,8 +46,9 @@ public class StudentAcademicProgressController {
     TableColumn<AcademicProgressModel, Double> progressColumn;
     @FXML
     TableColumn<AcademicProgressModel, String> gradeColumn;
+
     @FXML
-    private Label full_name_label;
+    Pane infoPane;
     private Student currentStudent;
     private ArrayList<Courses> registered_course;
     private User currentUser;
@@ -63,7 +65,6 @@ public class StudentAcademicProgressController {
         this.registered_course=registered_courses;
         currentUser=user;
 
-        full_name_label.setText(currentStudent.getName());
         //REMAINING: Functionalities of the academic progress
         DbUtilities dbUtilities=new DbUtilities();
         academicProgressModels=FXCollections.observableArrayList(dbUtilities.getStudentProgressData(currentStudent));
@@ -134,5 +135,14 @@ public class StudentAcademicProgressController {
         StudentDashBoardController studentDashBoardController=new StudentDashBoardController();
         studentDashBoardController.assignDummyController(currentStudent, registered_course, currentUser);
         studentDashBoardController.logoutBtnClicked(event);
+    }
+
+
+    public Pane getPane() {
+        return infoPane;
+    }
+
+    public  String getUiName() {
+        return "Marks";
     }
 }

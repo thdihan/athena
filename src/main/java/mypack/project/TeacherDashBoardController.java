@@ -112,6 +112,7 @@ public class TeacherDashBoardController {
         TeacherRegisteredCoursesController teacherRegisteredCoursesController;
         TeacherMarksController teacherMarksController;
         TeacherAttendanceController teacherAttendanceController;
+        StudentWorkspacePageController studentWorkspacePageController;
 
         /*--------Result View Controller Remaining-------------*/
 
@@ -142,12 +143,11 @@ public class TeacherDashBoardController {
             TeacherInfoController teacherInfoController=loader.getController();
             teacherInfoController.initiateTeacherPane(currentTeacher, currentUser);
             childNode=teacherInfoController.getChildNode();
+        }else if(choice.equals("workspacePage")){
+            studentWorkspacePageController = loader.getController();
+            studentWorkspacePageController.initiateRegisteredCourseView(registered_course, currentUser);
+            childNode=studentWorkspacePageController.getPane();
         }
-
-//        else if(choice.equals("workspacePage")){
-//            studentWorkspacePageController = loader.getController();
-//            studentWorkspacePageController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
-//        }
 
         infoPane.getChildren().clear();
         infoPane.getChildren().add(childNode);
@@ -256,4 +256,11 @@ public class TeacherDashBoardController {
     public void dashBoardBtnClicked(ActionEvent event) throws SQLException, IOException {
         changeSceneWithInfoPane(event, "teacherInfo.fxml", "teacherDashBoard");
     }
+
+    @FXML
+    void workspaceBtnClicked(ActionEvent event) throws SQLException, IOException {
+        changeSceneWithInfoPane(event, "studentWorkspacePage.fxml", "workspacePage");
+    }
+
+
 }

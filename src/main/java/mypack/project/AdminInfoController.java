@@ -4,14 +4,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import userPack.Admin;
 import userPack.Notification;
-import userPack.Student;
 import userPack.Teacher;
 import userPack.User;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,7 +25,7 @@ import java.util.ArrayList;
  * @since March,2023
  */
 
-public class TeacherInfoController {
+public class AdminInfoController {
     User currentUser;
     @FXML
     private Label fullname_view;
@@ -39,6 +42,8 @@ public class TeacherInfoController {
     @FXML
     VBox notificationPanal_Vbox;
 
+    @FXML
+    Button userDataFileChooseBtn;
 
 
     public Node getNotificationiBoxNode(Notification notification) throws IOException {
@@ -51,16 +56,15 @@ public class TeacherInfoController {
     }
     /**
      * To initiate the teacher information in the pane
-     * @param currentTeacher Teacher object containing their information
+     * @param currentAdmin Teacher object containing their information
      * @param user User object of the teacher
      */
-    public void initiateTeacherPane(Teacher currentTeacher, User user) throws SQLException, IOException {
+    public void initiateAdminPane(Admin currentAdmin, User user) throws SQLException, IOException {
         currentUser=user;
-        email_view.setText(currentTeacher.getEmail());
-        fullname_view.setText(currentTeacher.getName());
-        dob_view.setText(currentTeacher.getDob().toString());
-        dept_view.setText(currentTeacher.getDept());
-        id_view.setText(currentTeacher.getId());
+        email_view.setText(currentAdmin.getEmail());
+        fullname_view.setText(currentAdmin.getName());
+        dob_view.setText(currentAdmin.getDob().toString());
+        id_view.setText(currentAdmin.getId());
 
 
 
@@ -107,4 +111,6 @@ public class TeacherInfoController {
         infoPane.getChildren().clear();
         infoPane.getChildren().add(childNode);
     }
+
+
 }

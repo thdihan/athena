@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="centerinfo-pane" stylesheets="@studentDashBoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentInfoController">
+<Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="centerinfo-pane" stylesheets="@studentDashBoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.AdminInfoController">
    <children>
       <Pane layoutX="31.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="611.0" prefWidth="415.0" styleClass="common-background" stylesheets="@studentDashBoard.css">
          <children>
@@ -104,21 +104,13 @@
                   </VBox>
                   <VBox layoutY="71.0" prefHeight="233.0" prefWidth="195.0">
                      <children>
-                        <Label prefHeight="82.0" prefWidth="195.0" text="Student ID :" textFill="#fdece0">
+                        <Label prefHeight="82.0" prefWidth="195.0" text="Admin ID" textFill="#fdece0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <Label prefHeight="82.0" prefWidth="195.0" text="Current Semester :" textFill="#fdece0">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
                            <padding>
                               <Insets left="20.0" />
                            </padding>
@@ -146,15 +138,7 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="semester_view" prefHeight="79.0" prefWidth="233.0" text="(Dept from database)" textFill="#fdece0">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <Label fx:id="dept_view" prefHeight="78.0" prefWidth="230.0" text="(Semester from database)" textFill="#fdece0">
+                        <Label fx:id="dept_view" prefHeight="79.0" prefWidth="233.0" text="(Dept from database)" textFill="#fdece0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -168,7 +152,7 @@
             </Pane>
          </children>
       </Pane>
-      <Pane fx:id="notificationPanal" layoutX="477.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="611.0" prefWidth="415.0" styleClass="info-pane-box" stylesheets="@studentDashBoard.css">
+      <Pane fx:id="notificationPanal" layoutX="487.0" layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="611.0" prefWidth="415.0" styleClass="info-pane-box" stylesheets="@studentDashBoard.css">
          <children>
             <VBox fx:id="notificationPanal_Vbox" layoutX="24.0" layoutY="70.0" prefWidth="368.0" />
             <Label layoutX="24.0" layoutY="24.0" text="Top Notifications" textFill="WHITE">
@@ -176,6 +160,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-         </children></Pane>
+         </children>
+      </Pane>
    </children>
 </Pane>
