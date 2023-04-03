@@ -72,12 +72,12 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label fx:id="wrongField" layoutX="760.0" layoutY="201.0" text="Hello!Welcome Back" textFill="#f4f7f5">
+      <Label fx:id="wrongField" layoutX="760.0" layoutY="201.0" text="Hello! Welcome Back" textFill="#f4f7f5">
          <font>
             <Font name="Leelawadee Bold" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="773.0" layoutY="333.0" text="Email" textFill="#f4f7f5">
+      <Label layoutX="773.0" layoutY="329.0" text="Email" textFill="#f4f7f5">
          <font>
             <Font name="Leelawadee Bold" size="20.0" />
          </font>
@@ -87,7 +87,7 @@
             <Font size="16.0" />
          </font>
       </TextField>
-      <Label layoutX="773.0" layoutY="447.0" text="Password" textFill="#f4f7f5">
+      <Label layoutX="773.0" layoutY="444.0" text="Password" textFill="#f4f7f5">
          <font>
             <Font name="Leelawadee Bold" size="20.0" />
          </font>
@@ -102,12 +102,12 @@
             <Font name="Leelawadee Bold" size="24.0" />
          </font>
       </Button>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="730.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="730.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../dashboardicons/mail.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="730.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="732.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../dashboardicons/lock.png" />
          </image>

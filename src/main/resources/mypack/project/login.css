@@ -8,6 +8,7 @@
  .textfields{
  -fx-background-color:#363636;
    -fx-background-radius: 10px;
+   -fx-text-fill : #fff;
  }
  .login-button{
  -fx-background-color:#FFF37B;

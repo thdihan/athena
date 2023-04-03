@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
     <list default="true" id="fc99f71b-b75b-403a-8455-3c1682544c88" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/PreviousResultController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/ResultBoxController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/userPack/Pair.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/ResultBox.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherDashBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/previous_result.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/previous_result.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/login.css" afterDir="false" />
     </list>
-
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
