@@ -35,7 +35,7 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Label fx:id="postDeadline_label" layoutX="480.0" layoutY="103.0" text="Submission Deadline" textFill="WHITE">
+                  <Label fx:id="postDeadline_label" layoutX="401.0" layoutY="103.0" text="Submission Deadline" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -61,11 +61,11 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Pane layoutX="680.0" layoutY="134.0" prefHeight="150.0" prefWidth="200.0" stylesheets="@singlepostpage.css">
+                  <Pane fx:id="submissionBtnPane" layoutX="680.0" layoutY="134.0" prefHeight="150.0" prefWidth="200.0" stylesheets="@singlepostpage.css">
                      <children>
-                        <VBox minHeight="0.0" prefWidth="202.0" styleClass="submission-button-pane">
+                        <VBox fx:id="submissionVbox" minHeight="0.0" prefWidth="202.0" styleClass="submission-button-pane">
                            <children>
-                              <Button fx:id="selectSubmissionBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#selectSubmissionBtn_clicked" prefHeight="35.0" prefWidth="160.0" styleClass="submission-button" stylesheets="@studentDashBoard.css" text="Select Submission" textFill="WHITE">
+                              <Button fx:id="selectSubmissionBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#selectSubmissionBtn_clicked" prefHeight="35.0" prefWidth="160.0" styleClass="submission-button" stylesheets="@singlepostpage.css" text="Select Submission" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -86,14 +86,14 @@
                                     <Font size="14.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets bottom="15.0" left="20.0" />
+                                    <Insets bottom="15.0" left="20.0" top="15.0" />
                                  </VBox.margin>
                               </Button>
                            </children>
                         </VBox>
                      </children>
                   </Pane>
-                  <VBox fx:id="comment_box" layoutX="50.0" layoutY="700.0" prefWidth="100.0" />
+                  <VBox fx:id="comment_box" layoutX="56.0" layoutY="700.0" prefWidth="582.0" />
                   <Button fx:id="backtoworkspaceBtn" layoutX="50.0" layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#backtoworkspaceBtnClicked" prefHeight="30.0" prefWidth="70.0" styleClass="back-button" stylesheets="@singlepostpage.css" text="Back" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="11.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">

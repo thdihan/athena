@@ -90,6 +90,12 @@
     -fx-background-radius: 10px;
 }
 
+.login-button:hover {
+    -fx-background-color:#36373E;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #fff;
+}
+
 .top-banner {
     -fx-background-color: #242529;
 }
@@ -156,4 +162,16 @@
 
 .table-view .column-header-background {
     -fx-background-color: #36373E;
+}
+
+
+
+.titled-pane .title {
+    -fx-background-color: #36373E;
+    -fx-padding: 10 0 10 10;
+
+}
+
+#viewDetailsNotificationBtn:hover {
+    -fx-text-fill: #fff;
 }

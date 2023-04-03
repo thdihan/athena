@@ -69,13 +69,18 @@ public class SinglePostPageController {
 
     @FXML
     Button seeSubmissionbtn;
+    @FXML
+    Pane submissionBtnPane;
+
+    @FXML
+    VBox submissionVbox;
 
     Submission currentSubmission;
-    public void initiate(String workspaceName, Student student, ArrayList<Courses> courses, User user, Post post) throws SQLException {
+    public void initiate(String workspaceName, User user, Post post) throws SQLException {
         this.workspaceName = workspaceName;
-        this.currentStudent = student;
+//        this.currentStudent = student;
         this.currentUser = user;
-        this.registered_courses = courses;
+//        this.registered_courses = courses;
         this.currentPost = post;
 
         // Button Visibility
@@ -84,18 +89,20 @@ public class SinglePostPageController {
         }
 
         if(currentUser.getType().equals("s") && currentPost.getPost_type().equals("assignment")) {
-            submissionBtn.setVisible(true);
-            selectSubmissionBtn.setVisible(true);
+            submissionVbox.setVisible(true);
+            submissionVbox.getChildren().clear();
+            selectSubmissionBtn.setLayoutY(0);
+            submissionBtn.setLayoutY(50);
+            submissionVbox.getChildren().addAll(selectSubmissionBtn,submissionBtn);
         }
-        else{
-            submissionBtn.setVisible(false);
-            selectSubmissionBtn.setVisible(false);
+
+        else if(currentUser.getType().equals("t") && currentPost.getPost_type().equals("assignment")) {
+            submissionVbox.setVisible(true);
+            submissionVbox.getChildren().clear();
+            submissionVbox.getChildren().add(seeSubmissionbtn);
         }
-        if(currentUser.getType().equals("t") && currentPost.getPost_type().equals("assignment")) {
-            seeSubmissionbtn.setVisible(true);
-        }
-        else{
-            seeSubmissionbtn.setVisible(false);
+        else {
+            submissionVbox.setVisible(false);
         }
         postType_label.setText(post.getPost_type());
         post_text.setText(post.getPost_text());
@@ -109,24 +116,52 @@ public class SinglePostPageController {
 
         for(Comment comment : allComment) {
 
-            System.out.println(comment.getCommentText());
+            // Single Vbox
             VBox singlePost = new VBox();
-            Pane postPane = new Pane();
-            VBox postDetails = new VBox();
-            Text commentText = new Text();
-            Label commenterEmail = new Label();
+            singlePost.setPrefWidth(834);
+            singlePost.setMinHeight(100);
+            singlePost.setStyle("-fx-background-color: #36373E; -fx-background-radius : 10px");
 
-            commenterEmail.setText(comment.getCommenterEmail());
-            commentText.setText(comment.getCommentText());
+            // Post header : post giver and button
+            Pane postHeaderPane = new Pane();
+            postHeaderPane.setStyle("-fx-border-width : 0 0 1px 0; -fx-border-color: #666; -fx-background-radius : 10px");
+            postHeaderPane.setPrefHeight(38);
+            postHeaderPane.setPrefWidth(834);
 
-            postPane.setStyle("-fx-padding: 0 0 16px 50px;");
-            commenterEmail.setStyle("-fx-margin: 10px 0 0 0");
+            // Post Giver info
+            Label postGiverTag = new Label();
+            postGiverTag.setText("Commented By : ");
+            postGiverTag.setStyle("-fx-text-fill: #fff; -fx-font-weight: bold");
+            postGiverTag.setLayoutX(23);
+            postGiverTag.setLayoutY(11);
 
-            postDetails.getChildren().addAll(commentText,commenterEmail);
-            postPane.getChildren().add(postDetails);
-            singlePost.getChildren().add(0,postPane);
+            Label postGiverName = new Label();
+            postGiverName.setText(comment.getCommenterEmail());
+            postGiverName.setStyle("-fx-text-fill: #fff");
+            postGiverName.setLayoutX(125);
+            postGiverName.setLayoutY(11);
+
+            postHeaderPane.getChildren().addAll(postGiverTag,postGiverName);
+
+            // Post Text Pane
+            Pane postTextPane = new Pane();
+            postTextPane.setPrefWidth(834);
+
+            Text postText = new Text();
+            postText.setText(comment.getCommentText());
+            postText.setLayoutX(22);
+            postText.setLayoutY(17);
+            postText.setStyle("-fx-fill: #fff");
+
+            postTextPane.getChildren().add(postText);
+
+
+            singlePost.getChildren().addAll(postHeaderPane,postTextPane);
+            Pane separator = new Pane();
+            separator.setPrefHeight(20);
 
             comment_box.getChildren().add(0,singlePost);
+            comment_box.getChildren().add(1,separator);
         }
 
     }
@@ -217,7 +252,7 @@ public class SinglePostPageController {
         }
         StudentSingleWorkspaceController studentSingleWorkspaceController = loader.getController();
         try {
-            studentSingleWorkspaceController.initiateData(workspaceName,currentStudent, registered_courses, currentUser);
+            studentSingleWorkspaceController.initiateData(workspaceName, currentUser);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -264,7 +299,7 @@ public class SinglePostPageController {
         }
         SinglePostPageController singlePostPageController = loader.getController();
         try {
-            singlePostPageController.initiate(workspaceName,currentStudent, registered_courses, currentUser,currentPost);
+            singlePostPageController.initiate(workspaceName, currentUser,currentPost);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -274,7 +309,24 @@ public class SinglePostPageController {
 
 
     @FXML
-    public void seeSubmissionbtn_clicked(){}
+    public void seeSubmissionbtn_clicked(){
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("seeSubmission.fxml"));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        SeeSubmissionController seeSubmissionController = loader.getController();
+        try {
+            seeSubmissionController.initiate(workspaceName,currentPost,currentUser);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        infoPane.getChildren().clear();
+        infoPane.getChildren().add(seeSubmissionController.getInfoPane());
+
+    }
 
     public Pane getPane() {
         return infoPane;

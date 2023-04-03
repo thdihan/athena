@@ -53,35 +53,7 @@ public class DbUtilities {
         return conn;
     }
 
-    //    public void initiateUserTable() throws SQLException {
-//        Statement statement = null;
-////        ResultSet resultSet=null;
-//        String dropQuery = "drop table if exists users";
-//        String createTableQuery = "create table users(\n" +
-//                "\temail text,\n" +
-//                "\tpassword text,\n" +
-//                "\ttype varchar(10),\n" +
-//                "\tconstraint pk_users primary key (email)\n" +
-//                ");";
-//        String userQuery1 = "insert into users values ('shakun650@gmail.com', 'tukasl', 's')";
-//        String userQuery2 = "insert into users values ('hasan123@gmail.com', 'tukas', 's')";
-//        String userQuery3 = "insert into users values ('jamal234@gmail.com', 'tuka', 't')";
-//        try {
-//            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
-//            statement = connection.createStatement();
-//
-//            statement.executeUpdate(dropQuery);
-//            statement.executeUpdate(createTableQuery);
-//
-//            statement.executeUpdate(userQuery1);
-//            statement.executeUpdate(userQuery2);
-//            statement.executeUpdate(userQuery3);
-//            statement.close();
-//        } catch (Exception e) {
-//            System.out.println("Error creating user table");
-//            throw new RuntimeException(e);
-//        }
-//    }
+
 
     /**
      * To create and initiate data on all the tables of the database
@@ -165,7 +137,7 @@ public class DbUtilities {
                 "Academic_Year int not null," +
                 "CONSTRAINT ttc_teacher Foreign key(courseteacher_ID) references Teacher(T_ID),CONSTRAINT ttc_course Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
         String[] insertData = {};
-        initiateAllTable(tableName, tableQuery, insertData);
+//        initiateAllTable(tableName, tableQuery, insertData);
 
 //        Student_takes_course
         tableName = "Student_takes_course";
@@ -184,7 +156,7 @@ public class DbUtilities {
                 "Final_marks double precision ," +
                 "Academic_Year int not null," +
                 "CONSTRAINT stc_student Foreign key(S_ID) references student(S_ID),CONSTRAINT stc_course Foreign key(S_coursedept,s_courseOfferedDept,S_coursecode) references Courses(dept,offered_dept,Course_code));";
-        initiateAllTable(tableName, tableQuery, insertData);
+//        initiateAllTable(tableName, tableQuery, insertData);
 
         // Post Table
 
@@ -200,7 +172,7 @@ public class DbUtilities {
                 "courseCode varchar(50),"+
                 "post_giver_email varchar(100)," +
                 "post_giver_type varchar(20)," +
-                "post_text varchar(500)," +
+                "post_text varchar(5000)," +
                 "post_type varchar(50)," +
                 "attachment BYTEA," +
                 "deadline varchar(50)," +
@@ -221,7 +193,7 @@ public class DbUtilities {
                 "    postid varchar(30)," +
                 "    commenter_email varchar(50)," +
                 "    commenter_type varchar(20)," +
-                "    comment_text varchar(500)," +
+                "    comment_text varchar(5000)," +
                 "    comment_time varchar(30),"+
                 "    constraint pk_comment primary key(commentid)," +
                 "    constraint fk_comment_post foreign key (postid) references post (postid)" +
@@ -374,12 +346,12 @@ public class DbUtilities {
     }
 
 
-    public ArrayList<Pair<String,String>> getResults(Student currentStudent, String semester){
+    public ArrayList<Pair<String,String,Double>> getResults(Student currentStudent, String semester){
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         Year thisYear = Year.now();
         String query = "select s_coursecode, course_title, quiz_1,quiz_2,quiz_3,quiz_4,mid_marks,final_marks,course_credit from Student_takes_course,(select course_code,course_title,course_credit from courses) as courseData where s_id=? and semester=? and courseData.course_code = Student_takes_course.s_coursecode";
-        ArrayList<Pair<String,String>>courses = new ArrayList<>();
+        ArrayList<Pair<String,String,Double>>courses = new ArrayList<>();
 
         try {
             Connection connection = connectToDB("projectDb", "postgres", "tukasl");
@@ -391,7 +363,7 @@ public class DbUtilities {
 
             while (resultSet.next()) {
                 String getGrade = calculateGrade(resultSet.getDouble(3),resultSet.getDouble(4),resultSet.getDouble(5),resultSet.getDouble(6),resultSet.getDouble(7),resultSet.getDouble(8),resultSet.getDouble(9));
-                Pair<String,String> tempCourse = new Pair<>(resultSet.getString(1) + ": "+ resultSet.getString(2),getGrade);
+                Pair<String,String,Double> tempCourse = new Pair<>(resultSet.getString(1) + ": "+ resultSet.getString(2),getGrade,resultSet.getDouble(9));
                 courses.add(tempCourse);
             }
 //            System.out.println("NULL");
@@ -866,6 +838,44 @@ public class DbUtilities {
     }
 
 
+
+
+    public ArrayList<Submission> getAllSubmission(String postId) throws SQLException {
+
+        PreparedStatement preparedStatement = null;
+        String query = "select * from submission where postId = ?;";
+        ArrayList<Submission> allSubmission = new ArrayList<>();
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1,postId);
+            ResultSet submissions = preparedStatement.executeQuery();
+
+            while(submissions.next()) {
+//                System.out.println(posts.getString(1));
+                Submission submission = new Submission();
+                submission.setSubmissionId(submissions.getString(1));
+                submission.setPostId(submissions.getString(2));
+                submission.setSubmitterEmail(submissions.getString(3));
+                byte[] blob = submissions.getBytes(4);
+                if(blob!=null)
+//                post.setAttachment(blob.getBytes(1,(int) blob.length()));
+                    submission.setSubmissionFile(blob);
+                submission.setSubmissionTime(submissions.getString(5));
+                allSubmission.add(submission);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+        return allSubmission;
+    }
+
     public ArrayList<Post> getAllPost(String courseCode) throws SQLException {
 
         PreparedStatement preparedStatement = null;
@@ -912,6 +922,55 @@ public class DbUtilities {
             preparedStatement.close();
         }
         return allPost;
+    }
+
+
+    public Post getPost(String postid) throws SQLException {
+        Post tempPost = new Post();
+        PreparedStatement preparedStatement = null;
+        String query = "select * from post where postid = ?;";
+        ArrayList<Post> allPost = new ArrayList<>();
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1,postid);
+            ResultSet posts = preparedStatement.executeQuery();
+
+            while(posts.next()) {
+//                System.out.println(posts.getString(1));
+                Post post = new Post();
+                post.setPostid(posts.getString(1));
+                post.setCourseCode(posts.getString(2));
+                post.setPost_giver_email(posts.getString(3));
+                post.setPost_giver_type(posts.getString(4));
+                post.setPost_text(posts.getString(5));
+                post.setPost_type(posts.getString(6));
+                byte[] blob = posts.getBytes(7);
+                if(blob!=null)
+//                post.setAttachment(blob.getBytes(1,(int) blob.length()));
+                    post.setAttachment(blob);
+                post.setDeadline(posts.getString(8));
+
+//                 Print the values of the columns to the console
+                System.out.println("Post ID: " + post.getPostid());
+                System.out.println("Course Code: " + post.getCourseCode());
+                System.out.println("Post Giver Email: " + post.getPost_giver_email());
+                System.out.println("Post Giver Type: " + post.getPost_giver_type());
+                System.out.println("Post Text: " + post.getPost_text());
+                System.out.println("Post Type: " + post.getPost_type());
+                System.out.println("Attachment Link: " + post.getAttachment());
+                System.out.println("Deadline: " + post.getDeadline());
+                tempPost = post;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+        return tempPost;
     }
 
     public void setPost(Post post) throws SQLException {
@@ -1341,19 +1400,19 @@ public class DbUtilities {
         double current_total = 0;
         if (quiz1 != -1) {
             obtained+=quiz1;
-            current_total+=15;
+            current_total+=5*credit;
         }
         if (quiz2 != -1) {
             obtained+=quiz2;
-            current_total+=15;
+            current_total+=5*credit;
         }
         if (quiz3 != -1) {
             obtained+=quiz3;
-            current_total+=15;
+            current_total+=5*credit;
         }
         if (quiz4 != -1) {
             obtained+=quiz4;
-            current_total+=15;
+            current_total+=5*credit;
         }
         if (mid != -1) {
             obtained+=mid;
@@ -1364,7 +1423,7 @@ public class DbUtilities {
             current_total+=(credit*100/2);
         }
         if(current_total==0)
-            return "Null";
+            return "F";
         double percentageMarks=(obtained/current_total)*100;
         if(percentageMarks>=80)
             return "A+";

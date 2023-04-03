@@ -1,103 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.StudentSingleWorkspaceController">
+<Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="centerinfo-pane" stylesheets="@studentDashBoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.SetDeadlineController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="main-container" stylesheets="@studentDashBoard.css">
-         <children>
-            <HBox prefHeight="720.0" prefWidth="1200.0">
-               <children>
-                  <Pane prefHeight="100.0" prefWidth="350.0" styleClass="navigation-area" stylesheets="@studentDashBoard.css">
-                     <children>
-                        <HBox alignment="CENTER" layoutX="95.0" layoutY="59.0" prefHeight="150.0" prefWidth="157.0" spacing="10.0" styleClass="profile-image">
-                           <children>
-                              <ImageView fitHeight="110.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view-wrapper">
-                                 <image>
-                                    <Image url="@../../DashboardImages/demo-profile.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <Button alignment="CENTER" layoutX="36.0" layoutY="426.0" mnemonicParsing="false" onAction="#progressBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Academic Progress" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="360.0" mnemonicParsing="false" onAction="#courseBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Courses" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button alignment="CENTER" layoutX="36.0" layoutY="493.0" mnemonicParsing="false" onAction="#resultBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Previous Results" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button alignment="CENTER" layoutX="36.0" layoutY="639.0" mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Logout" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="293.0" mnemonicParsing="false" onAction="#dashboardBtnClicked" prefHeight="50.0" prefWidth="276.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Dashboard" textFill="#efefff">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <StackPane layoutX="75.0" layoutY="224.0" prefHeight="58.0" prefWidth="200.0">
-                           <children>
-                              <Label fx:id="full_name_label" alignment="CENTER" prefHeight="27.0" prefWidth="119.0" text="FULL NAME" textAlignment="CENTER" textFill="#efefff">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="10.0" layoutY="10.0" prefHeight="720.0" prefWidth="850.0" styleClass="info-area" stylesheets="@studentDashBoard.css">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <children>
-                        <DatePicker fx:id="deadlineDate" layoutX="376.0" layoutY="317.0" prefHeight="40.0" prefWidth="200.0" />
-                        <TextField fx:id="time_hh" layoutX="376.0" layoutY="380.0" prefHeight="40.0" prefWidth="40.0" />
-                        <TextField fx:id="time_mm" layoutX="426.0" layoutY="380.0" prefHeight="40.0" prefWidth="40.0" />
-                        <ComboBox fx:id="am_pm" layoutX="483.0" layoutY="380.0" prefHeight="40.0" prefWidth="97.0" />
-                        <Label layoutX="291.0" layoutY="380.0" prefHeight="40.0" prefWidth="73.0" text="Select Time:" />
-                        <Label layoutX="291.0" layoutY="317.0" prefHeight="40.0" prefWidth="73.0" text="Select Date:" />
-                        <Label layoutX="420.0" layoutY="380.0" prefHeight="40.0" prefWidth="11.0" text=":">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="371.0" layoutY="252.0" prefHeight="40.0" prefWidth="90.0" text="Set Deadline">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="deadlineConfirmBtn" layoutX="459.0" layoutY="439.0" mnemonicParsing="false" onAction="#onConfirmBtnClicked" prefHeight="40.0" prefWidth="119.0" styleClass="reg-btn" stylesheets="@studentDashBoard.css" text="Confirm" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </Pane>
-               </children>
-            </HBox>
-         </children>
-      </AnchorPane>
+      <DatePicker fx:id="deadlineDate" layoutX="386.0" layoutY="327.0" prefHeight="40.0" prefWidth="200.0" />
+      <TextField fx:id="time_hh" layoutX="386.0" layoutY="390.0" prefHeight="40.0" prefWidth="40.0" />
+      <TextField fx:id="time_mm" layoutX="436.0" layoutY="390.0" prefHeight="40.0" prefWidth="40.0" />
+      <ComboBox fx:id="am_pm" layoutX="493.0" layoutY="390.0" prefHeight="40.0" prefWidth="97.0" styleClass="common-background-button" stylesheets="@singleStudentWorkspace.css" />
+      <Label layoutX="301.0" layoutY="390.0" prefHeight="40.0" prefWidth="73.0" text="Select Time:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="301.0" layoutY="327.0" prefHeight="40.0" prefWidth="73.0" text="Select Date:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="430.0" layoutY="390.0" prefHeight="40.0" prefWidth="11.0" text=":">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="381.0" layoutY="262.0" prefHeight="40.0" prefWidth="90.0" text="Set Deadline" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="deadlineConfirmBtn" layoutX="469.0" layoutY="449.0" mnemonicParsing="false" onAction="#onConfirmBtnClicked" prefHeight="40.0" prefWidth="119.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Confirm">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
-</StackPane>
+</Pane>

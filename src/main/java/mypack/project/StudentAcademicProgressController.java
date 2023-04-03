@@ -82,6 +82,8 @@ public class StudentAcademicProgressController {
         gradeColumn.setCellValueFactory(new PropertyValueFactory<>("grade"));
 
         academicProgressModelTableView.setItems(academicProgressModels);
+
+        academicProgressModelTableView.setId("my-table");
     }
 
     /**
@@ -143,6 +145,6 @@ public class StudentAcademicProgressController {
     }
 
     public  String getUiName() {
-        return "Marks";
+        return "Academic Progress";
     }
 }

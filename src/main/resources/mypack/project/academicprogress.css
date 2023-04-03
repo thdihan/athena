@@ -13,3 +13,7 @@
  -fx-text-fill: white;
  -fx-padding: 10px 0 10px 0;
 }
+
+#my-table .table-column {
+  -fx-alignment: CENTER;
+}

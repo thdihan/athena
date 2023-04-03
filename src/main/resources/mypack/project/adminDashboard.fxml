@@ -71,7 +71,7 @@
                               </StackPane>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" styleClass="edit-button" stylesheets="@studentDashBoard.css" text="Edit" textFill="#f4e9e1">
+                                    <Button mnemonicParsing="false" onAction="#onUpdateProfileBtnClicked" prefHeight="34.0" prefWidth="85.0" styleClass="edit-button" stylesheets="@studentDashBoard.css" text="Edit" textFill="#f4e9e1">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -155,7 +155,7 @@
                                  </font>
                               </Label>
                               <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="67.0" prefWidth="661.0" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="logout_btn" mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="33.0" prefWidth="88.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Login">
+                              <Button fx:id="logout_btn" mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="33.0" prefWidth="88.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Logout">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>

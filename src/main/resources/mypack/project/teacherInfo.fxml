@@ -10,7 +10,7 @@
    <children>
       <Pane layoutX="31.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="611.0" prefWidth="415.0" styleClass="common-background" stylesheets="@studentDashBoard.css">
          <children>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="290.0" prefWidth="415.0" styleClass="info-pane-box" stylesheets="@studentDashBoard.css">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="334.0" prefWidth="415.0" styleClass="info-pane-box" stylesheets="@studentDashBoard.css">
                <children>
                   <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="71.0" prefWidth="415.0">
                      <children>
@@ -37,7 +37,7 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <Label prefHeight="82.0" prefWidth="195.0" text="Email:" textFill="#fdece0">
+                        <Label prefHeight="82.0" prefWidth="195.0" text="Email :" textFill="#fdece0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -46,6 +46,14 @@
                            </padding>
                         </Label>
                         <Label prefHeight="82.0" prefWidth="195.0" text="Date of Birth :" textFill="#fdece0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="165.0" prefHeight="82.0" prefWidth="195.0" text="Contact :" textFill="#fdece0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -84,11 +92,19 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
+                        <Label fx:id="contact_view" layoutX="10.0" layoutY="166.0" prefHeight="78.0" prefWidth="238.0" text="(dob from database)" textFill="#fdece0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
                      </children>
                   </VBox>
                </children>
             </Pane>
-            <Pane layoutY="321.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="290.0" prefWidth="415.0" styleClass="info-pane-box" stylesheets="@studentDashBoard.css">
+            <Pane layoutY="363.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="248.0" prefWidth="415.0" styleClass="info-pane-box" stylesheets="@studentDashBoard.css">
                <children>
                   <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="71.0" prefWidth="415.0">
                      <children>

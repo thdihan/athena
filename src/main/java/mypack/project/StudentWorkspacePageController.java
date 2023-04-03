@@ -37,7 +37,6 @@ public class StudentWorkspacePageController {
 
     /**
      * To initiate the data and registered course view page
-     * @param student Student currently logged in
      * @param courses List of registered courses
      * @param user User currenly logged in
      * @throws SQLException If problems with query
@@ -54,7 +53,17 @@ public class StudentWorkspacePageController {
             vBox.setSpacing(2);
 
             Button singleWorkspace = new Button();
-            singleWorkspace.setStyle("-fx-min-width: 150px");
+            singleWorkspace.setStyle("-fx-background-color:#FFF37B; -fx-background-radius: 10px;-fx-border-radius:10px;-fx-font-weight: bold; -fx-font-size: 14px");
+            singleWorkspace.setOnMouseEntered(e -> {
+                singleWorkspace.setStyle("-fx-background-color:#36373E; -fx-background-radius: 10px;-fx-border-radius:10px;-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #fff; -fx-border-width: 1px;-fx-border-color: #666");
+            });
+
+            singleWorkspace.setOnMouseExited(e -> {
+                singleWorkspace.setStyle("-fx-background-color:#FFF37B; -fx-background-radius: 10px;-fx-border-radius:10px;-fx-font-weight: bold; -fx-font-size: 14px;-fx-text-fill: #000");
+            });
+
+            singleWorkspace.setPrefHeight(50);
+            singleWorkspace.setPrefWidth(350);
             singleWorkspace.setText(registered_courses.get(i).getCode());
 //            Label course=new Label(registered_courses.get(i).getCode() + ": "+ registered_courses.get(i).getTitle());
 //            course.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
@@ -78,7 +87,7 @@ public class StudentWorkspacePageController {
                 }
                 StudentSingleWorkspaceController studentSingleWorkspaceController = loader.getController();
                 try {
-                    studentSingleWorkspaceController.initiateData(registered_courses.get(finalI).getCode(),currentStudent, registered_courses, currentUser);
+                    studentSingleWorkspaceController.initiateData(registered_courses.get(finalI).getCode(),currentUser);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
@@ -124,6 +133,6 @@ public class StudentWorkspacePageController {
     }
 
     public  String getUiName() {
-        return "Course Registration Page";
+        return "Workspace";
     }
 }

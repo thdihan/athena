@@ -5,6 +5,6 @@
 
 <Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="center-info-pane" stylesheets="@studentDashBoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.PreviousResultController">
    <children>
-      <Accordion fx:id="resultBox" layoutX="30.0" layoutY="34.0" prefHeight="590.0" prefWidth="861.0" />
+      <Accordion fx:id="resultBox" layoutX="30.0" layoutY="34.0" prefHeight="590.0" prefWidth="861.0" stylesheets="@studentDashBoard.css" />
    </children>
 </Pane>

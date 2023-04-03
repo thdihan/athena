@@ -50,7 +50,7 @@ public class AdminInfoController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("notificationBox.fxml"));
         loader.load(); //loader.load() must be used otherwise controller isn't created
         NotificationBoxController notificationBoxController = loader.getController();
-        notificationBoxController.initiate(notification);
+        notificationBoxController.initiate(notification,currentUser,infoPane);
         Node childNode=notificationBoxController.getSmNotification();
         return childNode;
     }

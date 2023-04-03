@@ -125,6 +125,6 @@ public class StudentRegisteredCoursesController {
     }
 
     public  String getUiName() {
-        return "Registered Courses";
+        return "Course Page";
     }
 }

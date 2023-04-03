@@ -154,6 +154,7 @@ public class TeacherAttendanceController {
      */
     @FXML
     public void onSubmitBtnClicked(ActionEvent event) {
+        warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
         if (courseDropDown.getValue() == null || studentListVbox.getChildren().isEmpty()) {
             if (courseDropDown.getValue() == null) {
                 warning_box.setVisible(true);
@@ -263,6 +264,6 @@ public class TeacherAttendanceController {
     }
 
     public  String getUiName() {
-        return "Attendance";
+        return "Attendance Page";
     }
 }
