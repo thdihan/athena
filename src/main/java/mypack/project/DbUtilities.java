@@ -373,6 +373,36 @@ public class DbUtilities {
 
     }
 
+
+    public ArrayList<Pair<String,String>> getResults(Student currentStudent, String semester){
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Year thisYear = Year.now();
+        String query = "select s_coursecode, course_title, quiz_1,quiz_2,quiz_3,quiz_4,mid_marks,final_marks,course_credit from Student_takes_course,(select course_code,course_title,course_credit from courses) as courseData where s_id=? and semester=? and courseData.course_code = Student_takes_course.s_coursecode";
+        ArrayList<Pair<String,String>>courses = new ArrayList<>();
+
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, currentStudent.getId());
+            preparedStatement.setString(2, semester);
+            resultSet = preparedStatement.executeQuery();
+
+
+            while (resultSet.next()) {
+                String getGrade = calculateGrade(resultSet.getDouble(3),resultSet.getDouble(4),resultSet.getDouble(5),resultSet.getDouble(6),resultSet.getDouble(7),resultSet.getDouble(8),resultSet.getDouble(9));
+                Pair<String,String> tempCourse = new Pair<>(resultSet.getString(1) + ": "+ resultSet.getString(2),getGrade);
+                courses.add(tempCourse);
+            }
+//            System.out.println("NULL");
+
+        } catch (SQLException e) {
+            System.out.println("Exception getting registered courses");
+            throw new RuntimeException(e);
+        }
+        return courses;
+    }
+
     /**
      * To create a table and insert demo data in it
      *

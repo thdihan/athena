@@ -147,6 +147,7 @@ public class StudentDashBoardController {
         StudentRegisteredCoursesController studentRegisteredCoursesController;
         StudentAcademicProgressController studentAcademicProgressController;
         StudentWorkspacePageController studentWorkspacePageController;
+        PreviousResultController previousResultController;
         /*--------Result View Controller Remaining-------------*/
 
         if (choice.equals("regPage")) {
@@ -170,7 +171,9 @@ public class StudentDashBoardController {
             childNode=studentRegisteredCoursesController.getPane();
 
         } else if (choice.equals("resultPage")) {
-            System.out.println("Empty result controller");
+            previousResultController = loader.getController();
+            previousResultController.initiate(currentStudent);
+            childNode=previousResultController.getPane();
 
         } else if (choice.equals("logoutPage")) {
             System.out.println("Logging out");
@@ -210,6 +213,7 @@ public class StudentDashBoardController {
         StudentRegisteredCoursesController studentRegisteredCoursesController;
         StudentAcademicProgressController studentAcademicProgressController;
         StudentWorkspacePageController studentWorkspacePageController;
+
         /*--------Result View Controller Remaining-------------*/
 
         if (choice.equals("regPage")) {
@@ -226,7 +230,8 @@ public class StudentDashBoardController {
             studentRegisteredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
 
         } else if (choice.equals("resultPage")) {
-            System.out.println("Empty result controller");
+
+
 
         } else if (choice.equals("logoutPage")) {
             System.out.println("Logging out");
@@ -282,8 +287,9 @@ public class StudentDashBoardController {
      * @param event Event for result button clicked
      */
     @FXML
-    void resultBtnClicked(ActionEvent event) {
-        System.out.println("Result button not assigned");
+    void resultBtnClicked(ActionEvent event) throws SQLException, IOException {
+
+        changeSceneWithInfoPane(event, "previous_result.fxml", "resultPage");
     }
 
     @FXML
