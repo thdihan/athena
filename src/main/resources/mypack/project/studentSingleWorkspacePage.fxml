@@ -31,12 +31,12 @@
                         <Image url="@../../dashboardicons/study.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="chooseAttachmentBtn" layoutX="621.0" layoutY="269.0" mnemonicParsing="false" onAction="#chooseAttachmentBtnClicked" prefHeight="34.0" prefWidth="125.0" styleClass="common-background-button" stylesheets="@singleStudentWorkspace.css" text="Attachment" textFill="WHITE">
+                  <Button fx:id="chooseAttachmentBtn" layoutX="621.0" layoutY="269.0" mnemonicParsing="false" onAction="#chooseAttachmentBtnClicked" prefHeight="34.0" prefWidth="125.0" styleClass="submission-button" stylesheets="@singlepostpage.css" text="Attachment" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <ComboBox fx:id="postType" layoutX="446.0" layoutY="269.0" prefHeight="34.0" prefWidth="150.0" styleClass="common-background-button" stylesheets="@singleStudentWorkspace.css" />
+                  <ComboBox fx:id="postType" layoutX="446.0" layoutY="269.0" prefHeight="34.0" prefWidth="150.0" promptText="Post Type" styleClass="common-background-button" stylesheets="@singleStudentWorkspace.css" />
                   <Button fx:id="postBtn" graphicTextGap="10.0" layoutX="770.0" layoutY="269.0" mnemonicParsing="false" onAction="#postBtnClicked" prefHeight="34.0" prefWidth="102.0" styleClass="post-button" stylesheets="@singleStudentWorkspace.css" text="Post">
                      <font>
                         <Font name="System Bold" size="14.0" />

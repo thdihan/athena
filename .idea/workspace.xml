@@ -5,9 +5,62 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc99f71b-b75b-403a-8455-3c1682544c88" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/PostCommentBoxController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/SeeSubmissionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/SetDeadlineController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/seeSubmission.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/singlePostCommentBox.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/AdminDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/AdminDashBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/AdminInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/AdminInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/NotificationBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/NotificationBoxController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/PreviousResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/PreviousResultController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/SinglePostPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/SinglePostPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentAcademicProgressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentAcademicProgressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentCourseRegPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentCourseRegPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentDashBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentRegisteredCoursesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentRegisteredCoursesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentSingleWorkspaceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentSingleWorkspaceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentWorkspacePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentWorkspacePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherAttendanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherAttendanceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherCourseRegPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherCourseRegPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherDashBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherMarksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherMarksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherRegisteredCoursesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/TeacherRegisteredCoursesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userPack/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userPack/Pair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/ResultBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/ResultBox.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/academicprogress.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/academicprogress.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/addUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/addUser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/adminDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/adminDashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/attendanceBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/attendanceBox.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/courseRegBox.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/markBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/markBox.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/notificationBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/notificationBox.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/previous_result.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/previous_result.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/registeredCourses.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/registeredCourses.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/singlePostPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/singlePostPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/singleStudentWorkspace.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/singleStudentWorkspace.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentDashBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentInfo.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentSingleWorkspacePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentSingleWorkspacePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/studentSingleWorkspacePage_deadline.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/studentSingleWorkspacePage_deadline.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherAttendanceStudentList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherAttendanceStudentList.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherDashBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherDashBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherInfo.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherMarks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/teacherMarks.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/updateProfile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/updateProfile.fxml" afterDir="false" />
+>>>>>>> final_modification_1
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

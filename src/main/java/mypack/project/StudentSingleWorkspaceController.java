@@ -51,9 +51,7 @@ public class StudentSingleWorkspaceController {
     private ArrayList<Courses> registered_courses;
     private HashMap<String, String> postTypeInput;
 
-    @FXML
-    private  ComboBox<String> am_pm;
-    private  HashMap<String, String> timeTypeSelection;
+
 
     // Post that will be transferred to database
     Post sendPost;
@@ -64,21 +62,15 @@ public class StudentSingleWorkspaceController {
 
     @FXML
     private Pane infoPane;
-    @FXML
-    private TextField time_hh;
-    @FXML
-    private TextField time_mm;
-    @FXML
-    private DatePicker deadlineDate;
 
     @FXML
     private Button chooseAttachmentBtn;
 
     private byte[] attachment_data;
-    public void initiateData(String workspaceName, Student student, ArrayList<Courses> courses, User user) throws SQLException {
-        currentStudent = student;
+    public void initiateData(String workspaceName, User user) throws SQLException {
+
         currentUser = user;
-        registered_courses = courses;
+
 
         this.workspaceName = workspaceName;
         workspace_name.setText(workspaceName);
@@ -102,24 +94,63 @@ public class StudentSingleWorkspaceController {
 
 
         for(Post post : allPost) {
+
+            // Single Vbox
             VBox singlePost = new VBox();
-            Pane postPane = new Pane();
-            VBox postDetails = new VBox();
-            Text postText = new Text();
-            Label postGiverEmail = new Label();
+            singlePost.setPrefWidth(834);
+            singlePost.setMinHeight(140);
+            singlePost.setStyle("-fx-background-color: #36373E; -fx-background-radius : 10px");
+
+            // Post header : post giver and button
+            Pane postHeaderPane = new Pane();
+            postHeaderPane.setStyle("-fx-border-width : 0 0 1px 0; -fx-border-color: #666; -fx-background-radius : 10px");
+            postHeaderPane.setPrefHeight(38);
+            postHeaderPane.setPrefWidth(834);
+
+            // Post Giver info
+            Label postGiverTag = new Label();
+            postGiverTag.setText("Posted By : ");
+            postGiverTag.setStyle("-fx-text-fill: #fff; -fx-font-weight: bold");
+            postGiverTag.setLayoutX(23);
+            postGiverTag.setLayoutY(11);
+
+            Label postGiverName = new Label();
+            postGiverName.setText(post.getPost_giver_email());
+            postGiverName.setStyle("-fx-text-fill: #fff");
+            postGiverName.setLayoutX(95);
+            postGiverName.setLayoutY(11);
+
             Button viewDetails = new Button();
-
             viewDetails.setText("View Details");
-            postGiverEmail.setText(post.getPost_giver_email());
+            viewDetails.setLayoutX(718);
+            viewDetails.setLayoutY(7);
+            viewDetails.setStyle("-fx-text-fill: #fff37a;-fx-background-color: trainsparent;-fx-font-weight: bold");
+
+            postHeaderPane.getChildren().addAll(postGiverTag,postGiverName,viewDetails);
+
+
+            // Post Text Pane
+            Pane postTextPane = new Pane();
+            postTextPane.setPrefWidth(834);
+
+            Text postText = new Text();
             postText.setText(post.getPost_text());
+            postText.setLayoutX(22);
+            postText.setLayoutY(17);
+            postText.setStyle("-fx-fill: #fff;-fx-line-spacing: 5");
+            postText.setWrappingWidth(800);
+            postText.setLineSpacing(5);
 
-            postPane.setStyle("-fx-padding: 0 0 16px 50px;");
-            viewDetails.setStyle("-fx-margin: 10px 0 0 0");
-            postGiverEmail.setStyle("-fx-margin: 10px 0 0 0");
 
-            postDetails.getChildren().addAll(postText,postGiverEmail, viewDetails);
-            postPane.getChildren().add(postDetails);
-            singlePost.getChildren().add(0,postPane);
+            postTextPane.getChildren().add(postText);
+
+
+            singlePost.getChildren().addAll(postHeaderPane,postTextPane);
+
+
+//            postDetails.getChildren().addAll(postText,postGiverEmail, viewDetails);
+//            postPane.getChildren().add(postDetails);
+//            singlePost.getChildren().add(0,postPane);
 
 
             // View Details button action
@@ -133,14 +164,18 @@ public class StudentSingleWorkspaceController {
                 }
                 SinglePostPageController singlePostPageController = loader.getController();
                 try {
-                    singlePostPageController.initiate(workspaceName,currentStudent, registered_courses, currentUser,post);
+                    singlePostPageController.initiate(workspaceName,currentUser,post);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
                 infoPane.getChildren().clear();
                 infoPane.getChildren().add(singlePostPageController.getPane());
             });
+
+            Pane separator = new Pane();
+            separator.setPrefHeight(20);
             postBox.getChildren().add(0,singlePost);
+            postBox.getChildren().add(1,separator);
 //             printing all value in console
 //                System.out.println("Post ID: " + post.getPostid());
 //                System.out.println("Course Code: " + post.getCourseCode());
@@ -238,7 +273,7 @@ public class StudentSingleWorkspaceController {
             }
             StudentSingleWorkspaceController studentSingleWorkspaceController = loader.getController();
             try {
-                studentSingleWorkspaceController.initiateData(workspaceName,currentStudent, registered_courses, currentUser);
+                studentSingleWorkspaceController.initiateData(workspaceName, currentUser);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -264,11 +299,9 @@ public class StudentSingleWorkspaceController {
         registered_courses = courses;
         this.workspaceName = workspaceName;
 
-        ObservableList<String> timeTypeSet = FXCollections.observableArrayList("AM", "PM");
-        am_pm.setItems(timeTypeSet);
-        am_pm.setValue("AM");
+
     }
-    public void setDeadline(ActionEvent event) throws IOException {
+    public void setDeadline(ActionEvent event) throws IOException, SQLException {
 
 
         System.out.println("SETDEADLINE PAGE");
@@ -276,75 +309,22 @@ public class StudentSingleWorkspaceController {
 
         loader.setLocation(getClass().getResource("studentSingleWorkspacePage_deadline.fxml"));
         Parent root = loader.load();
-        StudentSingleWorkspaceController studentSingleWorkspaceController = loader.getController();
-        studentSingleWorkspaceController.setPost(sendPost,workspaceName,currentStudent, registered_courses, currentUser);
-        Scene deadlineScene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(deadlineScene);
-        window.show();
+        SetDeadlineController setDeadlineController = loader.getController();
+        setDeadlineController.initiateData(workspaceName,currentUser,sendPost);
+
+        infoPane.getChildren().clear();
+        infoPane.getChildren().add(setDeadlineController.getInfoPane());
+//        studentSingleWorkspaceController.setPost(sendPost,workspaceName,currentStudent, registered_courses, currentUser);
+//        Scene deadlineScene = new Scene(root);
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        window.setScene(deadlineScene);
+//        window.show();
 
 
 
     }
 
-    @FXML
-    public void onConfirmBtnClicked(ActionEvent event) throws SQLException {
 
-        timeTypeSelection = new HashMap<>();
-        timeTypeSelection.put("AM","am");
-        timeTypeSelection.put("PM","pm");
-//        LocalDate localDate = deadlineDate.getValue();
-        String date = deadlineDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        System.out.println(date);
-
-        String hour = time_hh.getText();
-        String min = time_mm.getText();
-
-        if(Integer.parseInt(hour) <= 12 && Integer.parseInt(min) <= 59){
-            date += " " + hour +":"+min+":00";
-            System.out.println(date);
-
-            sendPost.setDeadline(date);
-            DbUtilities postSetting = new DbUtilities();
-            postSetting.setPost(sendPost);
-        }
-//        String timeTypeValue = am_pm.getValue();
-//        System.out.println(timeTypeValue);
-        //         printing all value in console
-//        System.out.println("Post ID: " + sendPost.getPostid());
-//        System.out.println("Course Code: " + sendPost.getCourseCode());
-//        System.out.println("Post Giver Email: " + sendPost.getPost_giver_email());
-//        System.out.println("Post Giver Type: " + sendPost.getPost_giver_type());
-//        System.out.println("Post Text: " + sendPost.getPost_text());
-//        System.out.println("Post Type: " + sendPost.getPost_type());
-//        System.out.println("Attachment Link: " + sendPost.getAttachment_link());
-//        System.out.println("Deadline: " + sendPost.getDeadline());
-
-
-
-        // back to workspace
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("studentSingleWorkspacePage.fxml"));
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        Scene afterLoginScene = new Scene(root);
-        StudentSingleWorkspaceController studentSingleWorkspaceController = loader.getController();
-        try {
-            studentSingleWorkspaceController.initiateData(workspaceName,currentStudent, registered_courses, currentUser);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(afterLoginScene);
-        window.show();
-
-    }
     public Pane getPane() {
         return infoPane;
     }

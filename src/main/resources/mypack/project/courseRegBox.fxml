@@ -12,7 +12,10 @@
    <children>
       <HBox fx:id="newCourseInfo" layoutX="188.0" layoutY="74.0">
          <children>
-            <CheckBox fx:id="option" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Course Code: Course Title" textAlignment="CENTER" textFill="#e4e4e4" />
+            <CheckBox fx:id="option" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Course Code: Course Title" textAlignment="CENTER" textFill="#e4e4e4">
+               <font>
+                  <Font size="14.0" />
+               </font></CheckBox>
          </children>
          <padding>
             <Insets bottom="16.0" />

@@ -39,13 +39,16 @@ public class TeacherInfoController {
     @FXML
     VBox notificationPanal_Vbox;
 
+    @FXML
+    Label contact_view;
+
 
 
     public Node getNotificationiBoxNode(Notification notification) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("notificationBox.fxml"));
         loader.load(); //loader.load() must be used otherwise controller isn't created
         NotificationBoxController notificationBoxController = loader.getController();
-        notificationBoxController.initiate(notification);
+        notificationBoxController.initiate(notification,currentUser,infoPane);
         Node childNode=notificationBoxController.getSmNotification();
         return childNode;
     }
@@ -61,7 +64,7 @@ public class TeacherInfoController {
         dob_view.setText(currentTeacher.getDob().toString());
         dept_view.setText(currentTeacher.getDept());
         id_view.setText(currentTeacher.getId());
-
+        contact_view.setText(currentTeacher.getContact());
 
 
         // get notifications

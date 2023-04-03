@@ -189,7 +189,7 @@
                                  </children>
                               </Pane>
                               <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="66.0" prefWidth="470.0" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="logout_btn" mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="33.0" prefWidth="88.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Login">
+                              <Button fx:id="logout_btn" mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="33.0" prefWidth="88.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Logout">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>

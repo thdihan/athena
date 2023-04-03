@@ -61,7 +61,7 @@ public class TeacherMarksController implements Initializable {
     @FXML
     private Label optionLabel;
     @FXML
-    private Toggle add_modify_toggle;
+    private ToggleButton add_modify_toggle;
 
     @FXML
     private Pane warning_box;
@@ -81,7 +81,6 @@ public class TeacherMarksController implements Initializable {
         currentUser = user;
         this.registered_course = registered_course;
         scrollPane.setVisible(false);
-        choice = "add";
         warning_box.setVisible(false);
         courseDropDown.setStyle("-fx-text-fill: white;");
         examTypeDropDown.setStyle("-fx-text-fill: white;");;
@@ -108,6 +107,39 @@ public class TeacherMarksController implements Initializable {
         examType.put("Quiz: 4", "quiz_4");
         examType.put("Semester Mid", "mid_marks");
         examType.put("Semester Final", "final_marks");
+
+        add_modify_toggle.setSelected(true);
+        add_modify_toggle.setText("Modify Marks");
+        choice = "add";
+        add_modify_toggle.setOnAction(e -> {
+            if (add_modify_toggle.isSelected()) {
+                add_modify_toggle.setText("Modify Marks");
+                choice = "add";
+//                studentListVbox.getChildren().clear();
+//                studentListVbox.setVisible(false);
+//                listBtn.setVisible(true);
+//                submitBtn.setVisible(true);
+//                scrollPane.setVisible(false);
+//
+//                courseDropDown.setVisible(true);
+//                examTypeDropDown.setVisible(true);
+
+//
+//        modifyBtn.setLayoutX(535);
+//        modifyBtn.setLayoutY(83);
+//        addBtn.setLayoutX(535);
+//        addBtn.setLayoutY(130);
+//
+//        modifyBtn.setPrefHeight(37);
+////        modifyBtn.setPrefWidth(129);
+//        addBtn.setPrefHeight(37);
+////        addBtn.setPrefWidth(129);
+            } else {
+                add_modify_toggle.setText("Add Marks");
+                choice = "modify";
+
+            }
+        });
     }
     public Node getHbox(String id, double marks) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("markBox.fxml"));
@@ -154,9 +186,14 @@ public class TeacherMarksController implements Initializable {
             TreeMap<String, Double> treeMap = new TreeMap<>();
             treeMap.putAll(dbUtilities.getStudentMarkList(selectCourseInDropDown(event), examType.get(selectExamInDropDown(event))));
             if (treeMap.isEmpty()) {
+                warning_box.setVisible(true);
+                warning_text.setText("No students registered or previously marks not added");
 //                studentLabel.setText("No students registered or previously marks not added");
 //                addTransition(studentLabel);
                 return studentList;
+            }
+            else{
+                warning_box.setVisible(false);
             }
             studentListVbox.getChildren().clear();
             for (Map.Entry<String, Double> entry : treeMap.entrySet()) {
@@ -184,25 +221,27 @@ public class TeacherMarksController implements Initializable {
      * @param event Event of submit button click
      */
     public void onSubmitBtnClicked(ActionEvent event) {
+        warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
         if (courseDropDown.getValue() == null || examTypeDropDown.getValue() == null || studentListVbox.getChildren().isEmpty()) {
+
+//            studentListVbox.getChildren().clear();
             if (courseDropDown.getValue() == null) {
                 warning_box.setVisible(true);
+                warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
                 warning_text.setText("Please select courses");
-            }
-            else{
-                warning_box.setVisible(false);
-            }
-            if (studentListVbox.getChildren().isEmpty()) {
+            } else if (studentListVbox.getChildren().isEmpty()) {
+                scrollPane.setVisible(false);
+                studentListVbox.setVisible(false);
 //                studentLabel.setText("Please generate student list to continue");
                 warning_box.setVisible(true);
+                warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
                 warning_text.setText("Please generate student list to continue");
             }
-            else{
-                warning_box.setVisible(false);
-            }
-            if (examTypeDropDown.getValue() == null) {
+
+            else if (examTypeDropDown.getValue() == null) {
 //                examLabel.setText("Please select exam type");
                 warning_box.setVisible(true);
+                warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
                 warning_text.setText("Please select exam type");
             }
             else{
@@ -210,14 +249,20 @@ public class TeacherMarksController implements Initializable {
             }
         } else {
             DbUtilities dbUtilities = new DbUtilities();
+            boolean submitFlag = true;
             for (int i = 0; i < studentListVbox.getChildren().size(); i++) {
                 HBox hBox = (HBox) studentListVbox.getChildren().get(i);
                 Label idLabel = (Label) hBox.getChildren().get(0);
                 TextField markField = (TextField) hBox.getChildren().get(1);
                 if (markField.getText().equals("")) {
-//                    studentLabel.setText("Please fill all the mark fields before submitting");
+                    warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
+                    warning_text.setText("Please fill all the mark fields before submitting");
+//                    studentLabel.setText("");
+                    submitFlag = false;
                     break;
                 } else if (!isNumeric(markField.getText())) {
+                    warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
+                    warning_text.setText("Please input valid marks");
 //                    studentLabel.setText("Please input valid marks");
                     break;
                 }
@@ -238,43 +283,19 @@ public class TeacherMarksController implements Initializable {
 //                pauseTransition.play();
 
             }
-            scrollPane.setVisible(false);
-            studentListVbox.setVisible(false);
-            studentListVbox.getChildren().clear();
+            if(submitFlag) {
+                scrollPane.setVisible(false);
+                studentListVbox.setVisible(false);
+                studentListVbox.getChildren().clear();
+                warning_box.setStyle("-fx-background-color: #a4ebb5;-fx-border-color: green;-fx-background-radius: 15px; -fx-border-radius: 15px;");
+                warning_text.setText("Submitted successfully");
+            }
 
+            warning_box.setVisible(true);
         }
     }
 
-    /**
-     * Option to add marks
-     * @param event Event of add marks button click
-     */
 
-    @FXML
-    public void add_modify_toggle_clicked(ActionEvent event) {
-//        choice = "add";
-////        optionLabel.setText("Adding marks");
-//        studentListVbox.getChildren().clear();
-//        studentListVbox.setVisible(false);
-//        listBtn.setVisible(true);
-//        submitBtn.setVisible(true);
-//        scrollPane.setVisible(false);
-//
-//        courseDropDown.setVisible(true);
-//        examTypeDropDown.setVisible(true);
-//        modifyBtn.setVisible(true);
-//        addBtn.setVisible(false);
-//
-//        modifyBtn.setLayoutX(535);
-//        modifyBtn.setLayoutY(83);
-//        addBtn.setLayoutX(535);
-//        addBtn.setLayoutY(130);
-//
-//        modifyBtn.setPrefHeight(37);
-////        modifyBtn.setPrefWidth(129);
-//        addBtn.setPrefHeight(37);
-////        addBtn.setPrefWidth(129);
-    }
 
     /**
      * Option to modify marks
@@ -406,6 +427,6 @@ public class TeacherMarksController implements Initializable {
     }
 
     public  String getUiName() {
-        return "Marks";
+        return "Marks Page";
     }
 }

@@ -9,58 +9,58 @@
 
 <AnchorPane fx:id="updatePane" prefHeight="720.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.UpdateProfileController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="217.0" prefHeight="24.0" prefWidth="107.0" style="-fx-background-color: #4183a7;" text="Full Name     :" textAlignment="CENTER" textFill="WHITE">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="217.0" prefHeight="42.0" prefWidth="107.0" style="-fx-background-color: #36373E;" text="Full Name     :" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="255.0" prefHeight="24.0" prefWidth="107.0" style="-fx-background-color: #4183a7;" text="Date of Birth :" textAlignment="CENTER" textFill="WHITE">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="266.0" prefHeight="42.0" prefWidth="107.0" style="-fx-background-color: #36373E;" text="Date of Birth :" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="291.0" prefHeight="24.0" prefWidth="107.0" style="-fx-background-color: #4183a7;" text="Contact          :" textAlignment="CENTER" textFill="WHITE">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="316.0" prefHeight="42.0" prefWidth="107.0" style="-fx-background-color: #36373E;" text="Contact          :" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="nameField" layoutX="262.0" layoutY="217.0" prefHeight="25.0" prefWidth="284.0" promptText="Enter new name" />
-      <TextField fx:id="contactField" layoutX="262.0" layoutY="291.0" prefHeight="25.0" prefWidth="284.0" promptText="Enter new contact" />
-      <TextField fx:id="dobField" layoutX="262.0" layoutY="255.0" prefHeight="25.0" prefWidth="284.0" promptText="Enter date of birth (yyyy-mm-dd)" />
-      <Label fx:id="newLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="397.0" prefHeight="24.0" prefWidth="116.0" style="-fx-background-color: #4183a7;" text="New Password      :" textAlignment="CENTER" textFill="WHITE">
+      <TextField fx:id="nameField" layoutX="262.0" layoutY="217.0" prefHeight="42.0" prefWidth="284.0" promptText="Enter new name" />
+      <TextField fx:id="contactField" layoutX="262.0" layoutY="316.0" prefHeight="42.0" prefWidth="284.0" promptText="Enter new contact" />
+      <TextField fx:id="dobField" layoutX="262.0" layoutY="266.0" prefHeight="42.0" prefWidth="284.0" promptText="Enter date of birth (yyyy-mm-dd)" />
+      <Label fx:id="newLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="430.0" prefHeight="42.0" prefWidth="116.0" style="-fx-background-color: #36373E;" text="New Password      :" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="currentLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="361.0" prefHeight="24.0" prefWidth="116.0" style="-fx-background-color: #4183a7;" text="Current Password :" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="currentLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="380.0" prefHeight="42.0" prefWidth="116.0" style="-fx-background-color: #36373E;" text="Current Password :" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="611.0" layoutY="269.0" mnemonicParsing="false" onAction="#onConfirmBtnClicked" prefHeight="45.0" prefWidth="141.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Confirm Changes" textFill="WHITE">
+      <Button layoutX="603.0" layoutY="270.0" mnemonicParsing="false" onAction="#onConfirmBtnClicked" prefHeight="42.0" prefWidth="119.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Confirm Changes">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <PasswordField fx:id="currentField" layoutX="262.0" layoutY="360.0" prefHeight="25.0" prefWidth="284.0" promptText="Enter the existing password" />
-      <PasswordField fx:id="newField" layoutX="262.0" layoutY="396.0" prefHeight="25.0" prefWidth="284.0" promptText="Enter the new password" />
-      <Label fx:id="confirmLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="434.0" prefHeight="24.0" prefWidth="116.0" style="-fx-background-color: #4183a7;" text="Confrim Password :" textAlignment="CENTER" textFill="WHITE">
+      <PasswordField fx:id="currentField" layoutX="262.0" layoutY="380.0" prefHeight="42.0" prefWidth="284.0" promptText="Enter the existing password" />
+      <PasswordField fx:id="newField" layoutX="262.0" layoutY="430.0" prefHeight="42.0" prefWidth="284.0" promptText="Enter the new password" />
+      <Label fx:id="confirmLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="480.0" prefHeight="42.0" prefWidth="116.0" style="-fx-background-color: #36373E;" text="Confrim Password :" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <PasswordField fx:id="confirmField" layoutX="262.0" layoutY="433.0" prefHeight="25.0" prefWidth="284.0" promptText="Enter the new password" />
-      <Button layoutX="603.0" layoutY="213.0" mnemonicParsing="false" onAction="#onChangePasswordBtnClicked" prefHeight="34.0" prefWidth="156.0" styleClass="btn" stylesheets="@studentDashBoard.css" text="Change Password" textFill="WHITE">
+      <PasswordField fx:id="confirmField" layoutX="262.0" layoutY="480.0" prefHeight="42.0" prefWidth="284.0" promptText="Enter the new password" />
+      <Button layoutX="603.0" layoutY="213.0" mnemonicParsing="false" onAction="#onChangePasswordBtnClicked" prefHeight="42.0" prefWidth="119.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Change Password">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label fx:id="checkLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="157.0" prefHeight="17.0" prefWidth="418.0" textAlignment="CENTER" textFill="RED">
+      <Label fx:id="checkLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="157.0" prefHeight="17.0" prefWidth="418.0" textAlignment="CENTER" textFill="#faafb6">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="passCheckLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="478.0" prefHeight="17.0" prefWidth="418.0" textAlignment="CENTER" textFill="RED">
+      <Label fx:id="passCheckLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="537.0" prefHeight="17.0" prefWidth="418.0" textAlignment="CENTER" textFill="RED">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

@@ -110,7 +110,7 @@ public class StudentCourseRegPageController {
     }
 
     public  String getUiName() {
-        return "Course Registration Page";
+        return "Course Page";
     }
 
 }

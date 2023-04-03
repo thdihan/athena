@@ -132,6 +132,6 @@ public class TeacherRegisteredCoursesController {
     }
 
     public  String getUiName() {
-        return "Course Registration Page";
+        return "Course Page";
     }
 }

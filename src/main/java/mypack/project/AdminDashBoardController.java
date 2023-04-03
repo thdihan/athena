@@ -229,4 +229,25 @@ public class AdminDashBoardController {
     void reset_system_btn_clicked(ActionEvent event) throws SQLException, IOException {
         changeSceneWithInfoPane(event, "resetAllData.fxml", "resetData");
     }
+
+    /**
+     * To change scene update information when updated profile button is clicked
+     * @param event Event of update profile button click
+     * @throws IOException
+     * @throws SQLException
+     */
+    @FXML
+    public void onUpdateProfileBtnClicked(ActionEvent event) throws IOException, SQLException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("updateProfile.fxml"));
+        loader.load(); //loader.load() must be used otherwise controller isn't created
+        UpdateProfileController updateProfileController=loader.getController();
+        updateProfileController.initiateUpdateProfileController(currentUser);
+        ui_name.setText(updateProfileController.getUiname());
+        System.out.println(updateProfileController.getUiname());
+        Node childNode=updateProfileController.getChildNode();
+        infoPane.getChildren().clear();
+        infoPane.getChildren().add(childNode);
+
+    }
 }

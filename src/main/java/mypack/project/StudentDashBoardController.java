@@ -167,12 +167,13 @@ public class StudentDashBoardController {
             studentRegisteredCoursesController =loader.getController();
             studentRegisteredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
 
-//            ui_name.setText(studentRegisteredCoursesController.getUiName());
+            ui_name.setText(studentRegisteredCoursesController.getUiName());
             childNode=studentRegisteredCoursesController.getPane();
 
         } else if (choice.equals("resultPage")) {
             previousResultController = loader.getController();
             previousResultController.initiate(currentStudent);
+            ui_name.setText(previousResultController.getUiName());
             childNode=previousResultController.getPane();
 
         } else if (choice.equals("logoutPage")) {
@@ -186,6 +187,7 @@ public class StudentDashBoardController {
         else if(choice.equals("workspacePage")){
             studentWorkspacePageController = loader.getController();
             studentWorkspacePageController.initiateRegisteredCourseView(registered_course, currentUser);
+            ui_name.setText(studentWorkspacePageController.getUiName());
             childNode=studentWorkspacePageController.getPane();
         }
 

@@ -126,26 +126,30 @@ public class TeacherDashBoardController {
             teacherRegisteredCoursesController =loader.getController();
             teacherRegisteredCoursesController.initiateRegisteredCourseView(currentTeacher, registered_course, currentUser);
 
-//            ui_name.setText(studentRegisteredCoursesController.getUiName());
+            ui_name.setText(teacherRegisteredCoursesController.getUiName());
             childNode=teacherRegisteredCoursesController.getPane();
 
         }
         else if (choice.equals("teacherAttendance")) {
             teacherAttendanceController=loader.getController();
             teacherAttendanceController.initiateTeacherAttendanceController(currentTeacher,currentUser,registered_course);
+            ui_name.setText(teacherAttendanceController.getUiName());
             childNode=teacherAttendanceController.getPane();
         }else if (choice.equals("teacherMarks")) {
             teacherMarksController = loader.getController();
             teacherMarksController.initiateTeacherMarksController(currentTeacher,currentUser, registered_course);
+            ui_name.setText(teacherMarksController.getUiName());
             childNode=teacherMarksController.getPane();
         } else if (choice.equals("teacherDashBoard")) {
             System.out.println("invoking");
             TeacherInfoController teacherInfoController=loader.getController();
             teacherInfoController.initiateTeacherPane(currentTeacher, currentUser);
+            ui_name.setText("Dashboard");
             childNode=teacherInfoController.getChildNode();
         }else if(choice.equals("workspacePage")){
             studentWorkspacePageController = loader.getController();
             studentWorkspacePageController.initiateRegisteredCourseView(registered_course, currentUser);
+            ui_name.setText(studentWorkspacePageController.getUiName());
             childNode=studentWorkspacePageController.getPane();
         }
 
@@ -260,6 +264,27 @@ public class TeacherDashBoardController {
     @FXML
     void workspaceBtnClicked(ActionEvent event) throws SQLException, IOException {
         changeSceneWithInfoPane(event, "studentWorkspacePage.fxml", "workspacePage");
+    }
+
+    /**
+     * To change scene update information when updated profile button is clicked
+     * @param event Event of update profile button click
+     * @throws IOException
+     * @throws SQLException
+     */
+    @FXML
+    public void onUpdateProfileBtnClicked(ActionEvent event) throws IOException, SQLException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("updateProfile.fxml"));
+        loader.load(); //loader.load() must be used otherwise controller isn't created
+        UpdateProfileController updateProfileController=loader.getController();
+        updateProfileController.initiateUpdateProfileController(currentUser);
+        ui_name.setText(updateProfileController.getUiname());
+        System.out.println(updateProfileController.getUiname());
+        Node childNode=updateProfileController.getChildNode();
+        infoPane.getChildren().clear();
+        infoPane.getChildren().add(childNode);
+
     }
 
 
