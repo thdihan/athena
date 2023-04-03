@@ -1166,7 +1166,7 @@ public class DbUtilities {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         Year thisYear = Year.now();
-        String query = "select course_code, course_title, dept, offered_dept, course_credit from courses , (select t_coursecode, T_OfferedDept from teacher_takes_course where courseteacher_ID=? and academic_year=?) sub where t_coursecode=course_code and T_OfferedDept=offered_dept;";
+        String query = "select course_code, course_title, dept, offered_dept, course_credit,semester from courses , (select t_coursecode, T_OfferedDept from teacher_takes_course where courseteacher_ID=? and academic_year=?) sub where t_coursecode=course_code and T_OfferedDept=offered_dept;";
         ArrayList<Courses> courses = new ArrayList<>();
 
         try {
@@ -1179,7 +1179,7 @@ public class DbUtilities {
 
             while (resultSet.next()) {
 //                System.out.println("NOT NULL");
-                courses.add(new Courses(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getDouble(5)));
+                courses.add(new Courses(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getDouble(5),resultSet.getString(6)));
             }
 //            System.out.println("NULL");
             return courses;
