@@ -1,10 +1,8 @@
 package mypack.project;
 
-import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.w3c.dom.traversal.NodeIterator;
 import userPack.*;
 
 import java.sql.*;
@@ -273,6 +271,91 @@ public class DbUtilities {
                 "        ELSE semester \n" +
                 "    END;";
         runResetQuery(query);
+
+        // delete all data from Notification DELETE FROM notification;
+        query = "DELETE FROM notification";
+        runResetQuery(query);
+
+        // delete all data from Comment DELETE FROM comment;
+        query = "DELETE FROM comment";
+        runResetQuery(query);
+
+        // delete all data from Submission DELETE FROM submission;
+        query = "DELETE FROM submission";
+        runResetQuery(query);
+
+        // delete all data from post DELETE FROM Post;
+        query = "DELETE FROM Post";
+        runResetQuery(query);
+
+    }
+
+    public void delete_studentTakesCourse(String id) throws SQLException {
+        // delete all data from teacherTakesCourse DELETE FROM teacher_takes_course;
+        String query = "DELETE FROM student_takes_course where s_id = ?";
+        // delete all data from teacherTakesCourse DELETE FROM teacher_takes_course;
+        PreparedStatement preparedStatement = null;
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,id);
+            preparedStatement.executeUpdate();
+
+//            Statement stmt = connection.createStatement();
+//            stmt.executeUpdate(query);
+//            System.out.println("working");
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+    }
+
+    public void delete_teacherTakesCourse(String id) throws SQLException {
+        // delete all data from teacherTakesCourse DELETE FROM teacher_takes_course;
+        String query = "DELETE FROM teacher_takes_course where courseteacher_id = ?";
+        // delete all data from teacherTakesCourse DELETE FROM teacher_takes_course;
+        PreparedStatement preparedStatement = null;
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,id);
+            preparedStatement.executeUpdate();
+
+//            Statement stmt = connection.createStatement();
+//            stmt.executeUpdate(query);
+//            System.out.println("working");
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+    }
+    public void delete_resetRequest(String id) throws SQLException {
+        // delete all data from teacherTakesCourse DELETE FROM teacher_takes_course;
+        String query = "DELETE FROM reset_request where request_giver_id = ?";
+        // delete all data from teacherTakesCourse DELETE FROM teacher_takes_course;
+        PreparedStatement preparedStatement = null;
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,id);
+            preparedStatement.executeUpdate();
+
+//            Statement stmt = connection.createStatement();
+//            stmt.executeUpdate(query);
+//            System.out.println("working");
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
     }
 
     public void addUser(User user) throws SQLException {
@@ -1025,19 +1108,75 @@ public class DbUtilities {
         } finally {
             preparedStatement.close();
         }
-//        // printing all value in console
-//        System.out.println("Post ID: " + post.getPostid());
-//        System.out.println("Course Code: " + post.getCourseCode());
-//        System.out.println("Post Giver Email: " + post.getPost_giver_email());
-//        System.out.println("Post Giver Type: " + post.getPost_giver_type());
-//        System.out.println("Post Text: " + post.getPost_text());
-//        System.out.println("Post Type: " + post.getPost_type());
-//        System.out.println("Attachment Link: " + post.getAttachment_link());
-//        System.out.println("Deadline: " + post.getDeadline());
-
 
         // set notification
         setNotification(post,"post");
+    }
+
+
+    public void setRegistrationResetRequest(String id,String email) throws SQLException {
+
+        PreparedStatement preparedStatement = null;
+        String query =  "INSERT INTO reset_request VALUES(?,?);";
+//        "INSERT INTO POST VALUES('P001','CSE 4405','jamal@gmail.com','t','This is demo post','assignment',null,'2023-04-01 12:00:00');",
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, id);
+            preparedStatement.setString(2, email);
+            preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+
+    }
+
+    public boolean getResetRequest(String id) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query =  "select * from reset_request where request_giver_id = ?  ;";
+//        "INSERT INTO POST VALUES('P001','CSE 4405','jamal@gmail.com','t','This is demo post','assignment',null,'2023-04-01 12:00:00');",
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, id);
+            ResultSet res = preparedStatement.executeQuery();
+            while(res.next())
+                return true;
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+        return false;
+    }
+
+    public ArrayList<Pair2<String, String>> getAllReset () throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ArrayList<Pair2<String, String>> newRequest = new ArrayList<>();
+        String query =  "select * from reset_request;";
+//        "INSERT INTO POST VALUES('P001','CSE 4405','jamal@gmail.com','t','This is demo post','assignment',null,'2023-04-01 12:00:00');",
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            ResultSet res = preparedStatement.executeQuery();
+
+            while (res.next()){
+                Pair2<String, String> temp = new Pair2<>(res.getString(1),res.getString(2));
+                newRequest.add(temp);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+        return newRequest;
     }
 
 

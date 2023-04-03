@@ -26,5 +26,27 @@
             <Insets bottom="15.0" />
          </padding>
       </Pane>
+      <Pane fx:id="resetNotification" layoutX="19.0" layoutY="167.0" prefWidth="378.0" style="-fx-background-color: #242529; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-border-color: #999;">
+         <children>
+            <Label fx:id="reset_id" layoutX="20.0" layoutY="14.0" text="ID" textFill="#d7d7d7">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="approvebtn" layoutX="20.0" layoutY="40.0" mnemonicParsing="false" onAction="#approvebtn_clicked" prefHeight="33.0" prefWidth="140.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Approve">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="declineButton" layoutX="179.0" layoutY="40.0" mnemonicParsing="false" onAction="#declineButton_clicked" prefHeight="33.0" prefWidth="140.0" styleClass="submission-button" stylesheets="@singlepostpage.css" text="Decline" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="15.0" />
+         </padding>
+      </Pane>
    </children>
 </Pane>

@@ -9,13 +9,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import userPack.Admin;
-import userPack.Notification;
-import userPack.Teacher;
-import userPack.User;
+import userPack.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -54,6 +52,15 @@ public class AdminInfoController {
         Node childNode=notificationBoxController.getSmNotification();
         return childNode;
     }
+
+    public Node getResetBoxNode(String id,String type) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("notificationBox.fxml"));
+        loader.load(); //loader.load() must be used otherwise controller isn't created
+        NotificationBoxController notificationBoxController = loader.getController();
+        notificationBoxController.resetRequestInitiate(currentUser,id,type,infoPane);
+        Node childNode=notificationBoxController.getResetNotification();
+        return childNode;
+    }
     /**
      * To initiate the teacher information in the pane
      * @param currentAdmin Teacher object containing their information
@@ -70,17 +77,22 @@ public class AdminInfoController {
 
         // get notifications
         DbUtilities dbUtilities = new DbUtilities();
-        ArrayList<Notification> allNotification = new ArrayList<>();
-        allNotification=dbUtilities.getAllNotification(currentUser.getEmail());
-        System.out.println(allNotification.size());
-        for(int i = 0;i < 5;i++){
-            if(i == allNotification.size()) break;
-            System.out.println("Working");
-            notificationPanal_Vbox.getChildren().add(getNotificationiBoxNode(allNotification.get(i)));
+        ArrayList<Pair2<String, String>> newRequest = dbUtilities.getAllReset();
+
+        for(int i = 0;i < newRequest.size();i++){
+            notificationPanal_Vbox.getChildren().add(getResetBoxNode(newRequest.get(i).getKey(),newRequest.get(i).getValue()));
             Pane separator = new Pane();
             separator.setPrefHeight(20);
             notificationPanal_Vbox.getChildren().add(separator);
         }
+//        for(int i = 0;i < 5;i++){
+//            if(i == allNotification.size()) break;
+//            System.out.println("Working");
+//            notificationPanal_Vbox.getChildren().add(getNotificationiBoxNode(allNotification.get(i)));
+//            Pane separator = new Pane();
+//            separator.setPrefHeight(20);
+//            notificationPanal_Vbox.getChildren().add(separator);
+//        }
     }
 
     /**

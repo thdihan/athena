@@ -197,18 +197,6 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="notification-button" stylesheets="@../../../../../../../athenaui/style.css" text="Button">
-                                 <graphic>
-                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../dashboardicons/bell.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Button>
                            </children>
                            <HBox.margin>
                               <Insets />

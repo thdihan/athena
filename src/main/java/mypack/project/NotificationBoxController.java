@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import userPack.Notification;
 import userPack.Post;
+import userPack.Student;
 import userPack.User;
 
 import java.io.IOException;
@@ -33,6 +34,17 @@ public class NotificationBoxController {
 
     User currentUser;
     Pane infoPane;
+
+    Button approvebtn;
+
+    @FXML
+    Label reset_id;
+
+    @FXML
+    Pane resetNotification;
+
+    String currentID;
+    String currentType;
     public void initiate(Notification notification, User currentUser,Pane infoPane){
         this.infoPane = infoPane;
         this.currentUser = currentUser;
@@ -42,6 +54,17 @@ public class NotificationBoxController {
         viewDetailsBtn.setId("viewDetailsNotificationBtn");
     }
 
+    public void resetRequestInitiate(User currentUser, String id,String type, Pane infoPane){
+        this.infoPane = infoPane;
+        this.currentUser = currentUser;
+        reset_id.setText(id);
+        currentID = id;
+        currentType = type;
+    }
+
+    public  Pane getResetNotification() {
+        return resetNotification;
+    }
     public Pane getSmNotification() {
         return single_notification_box_sm;
     }
@@ -65,6 +88,26 @@ public class NotificationBoxController {
         }
         infoPane.getChildren().clear();
         infoPane.getChildren().add(singlePostPageController.getPane());
+    }
+
+
+    @FXML
+    public  void approvebtn_clicked(ActionEvent event) throws SQLException {
+        DbUtilities dbUtilities = new DbUtilities();
+        System.out.println(currentType + currentID);
+        if(currentType.equals("s")){
+            dbUtilities.delete_studentTakesCourse(currentID);
+        }
+        if(currentType.equals("t")){
+            dbUtilities.delete_teacherTakesCourse(currentID);
+        }
+        dbUtilities.delete_resetRequest(currentID);
+    }
+
+    @FXML
+    public  void declineButton_clicked(ActionEvent event) throws SQLException {
+        DbUtilities dbUtilities = new DbUtilities();
+        dbUtilities.delete_resetRequest(currentID);
     }
 
 }

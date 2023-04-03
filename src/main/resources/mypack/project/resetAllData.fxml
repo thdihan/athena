@@ -10,7 +10,10 @@
    <children>
       <Pane layoutX="55.0" layoutY="226.0" prefHeight="177.0" prefWidth="813.0" style="-fx-background-color: #36373E;">
          <children>
-            <Button fx:id="confirmBtn" layoutX="461.0" layoutY="80.0" mnemonicParsing="false" onAction="#confirmBtn_clicked" prefHeight="36.0" prefWidth="129.0" text="Confirm Reset" />
+            <Button fx:id="confirmBtn" layoutX="461.0" layoutY="80.0" mnemonicParsing="false" onAction="#confirmBtn_clicked" prefHeight="36.0" prefWidth="129.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Confirm Reset">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
             <Label layoutX="31.0" layoutY="26.0" text="Reset the system" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
