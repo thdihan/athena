@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import userPack.Courses;
 import userPack.Student;
@@ -23,11 +24,11 @@ import java.util.ArrayList;
 public class StudentRegisteredCoursesController {
     @FXML
     private VBox course_box;
-    @FXML
-    private Label full_name_label;
     private User currentUser;
 
     private Student currentStudent;
+    @FXML
+    Pane infoPane;
     private ArrayList<Courses> registered_courses;
     /**
      * To create nodes of course Hbox
@@ -57,12 +58,16 @@ public class StudentRegisteredCoursesController {
         currentStudent=student;
         registered_courses=courses;
         currentUser=user;
-        full_name_label.setText(currentStudent.getName());
 
         for(int i=0 ; i<registered_courses.size() ; i++){
             String courseInfo=registered_courses.get(i).getCode() + ": "+ registered_courses.get(i).getTitle();
             String credit="Credits: "+registered_courses.get(i).getCredit().toString();
+
+
             course_box.getChildren().add(getHbox(courseInfo, credit));
+            Pane separator = new Pane();
+            separator.setPrefHeight(20);
+            course_box.getChildren().add(separator);
         }
 
     }
@@ -112,5 +117,14 @@ public class StudentRegisteredCoursesController {
         StudentDashBoardController studentDashBoardController=new StudentDashBoardController();
         studentDashBoardController.assignDummyController(currentStudent, registered_courses, currentUser);
         studentDashBoardController.logoutBtnClicked(event);
+    }
+
+
+    public Pane getPane() {
+        return infoPane;
+    }
+
+    public  String getUiName() {
+        return "Registered Courses";
     }
 }

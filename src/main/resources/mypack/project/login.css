@@ -1,0 +1,17 @@
+.common-background{
+ -fx-background-color:#242529;
+ }
+
+ .main-logo-left-side{
+ -fx-background-color:#363636;
+ }
+ .textfields{
+ -fx-background-color:#363636;
+   -fx-background-radius: 10px;
+   -fx-text-fill : #fff;
+ }
+ .login-button{
+ -fx-background-color:#FFF37B;
+    -fx-background-radius: 10px;
+             -fx-border-radius:10px;
+ }

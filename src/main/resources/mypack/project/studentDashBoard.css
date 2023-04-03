@@ -34,3 +34,126 @@
 .login {
     -fx-background-color: #fff;
 }
+
+
+
+/* New Css */
+.top-logo-part {
+    -fx-background-color: #242529;
+
+}
+
+.user-profile-part {
+    /*student pic and edit soho full vbox*/
+    -fx-background-color: #242529;
+}
+
+
+.edit-button {
+    -fx-background-color: #242529;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #A29B96;
+}
+
+.feature-background {
+    -fx-background-color: #242529;
+}
+
+
+
+.button:hover {
+    -fx-background-color: #464648;
+}
+
+.featurebutton {
+    -fx-background-color: #242529;
+}
+
+.featurebutton:hover {
+    -fx-border-width: 2px 2px 2px 2px;
+
+    -fx-background-color: #464648;
+
+
+}
+
+.featurebutton:pressed {
+    -fx-border-color: #fff;
+
+}
+
+.login-button {
+    -fx-background-color: #FFF37B;
+    -fx-background-radius: 10px;
+}
+
+.top-banner {
+    -fx-background-color: #242529;
+}
+
+.notification-button {
+    -fx-background-color: trasparent;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 11px;
+    -fx-border-style: solid;
+    -fx-border-color: #A29B96;
+}
+
+.centerinfo-pane{
+-fx-background-color: #242529;
+}
+.common-background{
+-fx-background-color: #242529;
+}
+.info-pane-box{
+-fx-background-color: #36383E;
+
+ -fx-background-radius: 20px;
+}
+
+
+.center-info-pane {
+    -fx-background-color: #242529;
+}
+
+.background-primary {
+    -fx-background-color: #242529;
+}
+
+.background-secondary {
+    -fx-background-color: #36373E;
+}
+
+.course-reg{
+}
+
+
+.thumb {
+    -fx-background-color:#242529;
+}
+.track{
+    -fx-background-color: #36373E;
+}
+
+.scroll-bar .decrement-button,.scroll-bar .increment-button, .corner{
+    -fx-background-color: #242529;
+    -fx-background-insets: 0;
+
+}
+
+
+.combo-box  .list-cell {
+-fx-text-fill: white;
+}
+
+ .list-cell {
+ -fx-background-color: #36373E;
+}
+
+
+.table-view .column-header-background {
+    -fx-background-color: #36373E;
+}

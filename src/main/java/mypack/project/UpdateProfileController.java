@@ -180,4 +180,7 @@ public class UpdateProfileController {
     public Node getChildNode() {
         return updatePane;
     }
+    public String getUiname () {
+        return "Update Profile";
+    }
 }

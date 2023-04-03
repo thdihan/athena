@@ -11,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import userPack.Courses;
@@ -32,8 +33,7 @@ public class TeacherAttendanceController {
     ArrayList<Courses> registered_course;
     HashMap<String, String> examType;
     private User currentUser;
-    @FXML
-    private Label full_name_label;
+
     @FXML
     private ComboBox<String> courseDropDown;
     @FXML
@@ -44,6 +44,14 @@ public class TeacherAttendanceController {
     private ScrollPane scrollPane;
     @FXML
     private Label submitLabel;
+
+    @FXML
+    private  Pane infoPane;
+
+    @FXML
+    private Pane warning_box;
+    @FXML
+    private  Label warning_text;
 
 
     /**
@@ -57,9 +65,10 @@ public class TeacherAttendanceController {
         currentTeacher = teacher;
         currentUser = user;
         this.registered_course = registered_course;
-        full_name_label.setText(teacher.getName());
         scrollPane.setVisible(false);
         studentListVbox.setVisible(false);
+        warning_box.setVisible(false);
+
 
         DbUtilities dbUtilities = new DbUtilities();
         ArrayList<Courses> registeredCourses = dbUtilities.getTeacherRegisteredCourses(currentTeacher.getId()); //may come empty if
@@ -87,13 +96,18 @@ public class TeacherAttendanceController {
      */
     public String selectCourseInDropDown(ActionEvent event) {
         if (courseDropDown.getValue() == null) {
-            courseLabel.setText("Please select course");
+            warning_box.setVisible(true);
+            warning_text.setText("Please select courses");
+//            courseLabel.setText("Please select course");
             return null;
+        }
+        else{
+            warning_box.setVisible(false);
         }
         String[] course = courseDropDown.getValue().split(":");
         String courseCode = course[0];
 //        testLabel.setText(courseCode);
-        courseLabel.setText("");
+//        courseLabel.setText("");
         return courseCode;
     }
 
@@ -112,6 +126,7 @@ public class TeacherAttendanceController {
      * @param event Event of get list button click
      * @return List of students based on course code
      */
+    @FXML
     public ArrayList<String> onGetStudentListBtnClicked(ActionEvent event) throws IOException {
         //return empty list if exceptions
         DbUtilities dbUtilities = new DbUtilities();
@@ -126,7 +141,7 @@ public class TeacherAttendanceController {
 
         }
 //        studentListVbox.setAlignment(Pos.TOP_CENTER);
-        submitLabel.setText("");
+//        submitLabel.setText("");
         scrollPane.setVisible(true);
         studentListVbox.setVisible(true);
         return studentList;
@@ -137,13 +152,23 @@ public class TeacherAttendanceController {
      * To submit the attendance when button is clicked
      * @param event Event of submit button click
      */
+    @FXML
     public void onSubmitBtnClicked(ActionEvent event) {
         if (courseDropDown.getValue() == null || studentListVbox.getChildren().isEmpty()) {
             if (courseDropDown.getValue() == null) {
-                courseLabel.setText("Please select course");
+                warning_box.setVisible(true);
+                warning_text.setText("Please select courses");
+            }
+            else{
+                warning_box.setVisible(false);
             }
             if(studentListVbox.getChildren().isEmpty()){
-                submitLabel.setText("Please generate student list to continue");
+                warning_box.setVisible(true);
+                warning_text.setText("Please select courses");
+//            courseLabel.setText("Please select course");
+            }
+            else{
+                warning_box.setVisible(false);
             }
 
         } else {
@@ -164,10 +189,12 @@ public class TeacherAttendanceController {
                 }
             }
             dbUtilities.takeAttendance(courseCode, presentList, absentList, currentTeacher);
-            submitLabel.setText("Attendance taken successfully");
-            PauseTransition pauseTransition =new PauseTransition(Duration.seconds(3));
-            pauseTransition.setOnFinished(event1 -> submitLabel.setText(""));
-            pauseTransition.play();
+            warning_box.setStyle("-fx-background-color: #a4ebb5;-fx-border-color: green;-fx-background-radius: 15px; -fx-border-radius: 15px;");
+            warning_box.setVisible(true);
+            warning_text.setText("Attendance Taken successfully");
+//            PauseTransition pauseTransition =new PauseTransition(Duration.seconds(3));
+//            pauseTransition.setOnFinished(event1 -> submitLabel.setText(""));
+//            pauseTransition.play();
             scrollPane.setVisible(false);
             studentListVbox.setVisible(false);
             studentListVbox.getChildren().clear();
@@ -229,5 +256,13 @@ public class TeacherAttendanceController {
         TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.dashBoardBtnClicked(event);
+    }
+
+    public Pane getPane() {
+        return infoPane;
+    }
+
+    public  String getUiName() {
+        return "Attendance";
     }
 }

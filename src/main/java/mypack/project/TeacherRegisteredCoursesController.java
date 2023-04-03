@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import userPack.Courses;
 import userPack.Student;
@@ -26,6 +27,9 @@ public class TeacherRegisteredCoursesController {
     @FXML
     private Label full_name_label;
     private User currentUser;
+
+    @FXML
+    Pane infoPane;
 
     private Teacher currentTeacher;
     private ArrayList<Courses> registered_courses;
@@ -58,13 +62,15 @@ public class TeacherRegisteredCoursesController {
         currentTeacher=teacher;
         registered_courses=courses;
         currentUser=user;
-        full_name_label.setText(currentTeacher.getName());
 
         for(int i=0 ; i<registered_courses.size() ; i++){
             String courseInfo=registered_courses.get(i).getCode() + ": "+ registered_courses.get(i).getTitle();
             String credit="Credits: "+registered_courses.get(i).getCredit().toString();
 
             course_box.getChildren().add(getHbox(courseInfo, credit));
+            Pane separator = new Pane();
+            separator.setPrefHeight(20);
+            course_box.getChildren().add(separator);
         }
 
     }
@@ -119,5 +125,13 @@ public class TeacherRegisteredCoursesController {
         TeacherDashBoardController teacherDashBoardController=new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_courses, currentUser);
         teacherDashBoardController.dashBoardBtnClicked(event);
+    }
+
+    public Pane getPane() {
+        return infoPane;
+    }
+
+    public  String getUiName() {
+        return "Course Registration Page";
     }
 }

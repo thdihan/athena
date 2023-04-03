@@ -44,6 +44,8 @@ public class TeacherDashBoardController {
     @FXML
     private Pane infoPane;
     @FXML
+    Label ui_name;
+    @FXML
     public User getCurrentUser() {
         return currentUser;
     }
@@ -93,6 +95,62 @@ public class TeacherDashBoardController {
         this.registered_course=registered_course;
         currentUser=user;
 
+    }
+
+
+
+    void changeSceneWithInfoPane(ActionEvent event, String fxml, String choice) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        loader.load(); //loader.load() must be used otherwise controller isn't created
+        Node childNode = null;
+
+
+        DbUtilities dbUtilities = new DbUtilities();
+        registered_course = dbUtilities.getTeacherRegisteredCourses(currentTeacher.getId());
+        //declaring all the controller
+        TeacherCourseRegPageController teacherCourseRegPageController;
+        TeacherRegisteredCoursesController teacherRegisteredCoursesController;
+        TeacherMarksController teacherMarksController;
+        TeacherAttendanceController teacherAttendanceController;
+        StudentWorkspacePageController studentWorkspacePageController;
+
+        /*--------Result View Controller Remaining-------------*/
+
+        if (choice.equals("regPage")) {
+            teacherCourseRegPageController = loader.getController();
+            teacherCourseRegPageController.initiateTeacher(currentTeacher, currentUser);
+            ui_name.setText(teacherCourseRegPageController.getUiName());
+            childNode=teacherCourseRegPageController.getPane();
+
+        } else if (choice.equals("regDonePage")) {
+            teacherRegisteredCoursesController =loader.getController();
+            teacherRegisteredCoursesController.initiateRegisteredCourseView(currentTeacher, registered_course, currentUser);
+
+//            ui_name.setText(studentRegisteredCoursesController.getUiName());
+            childNode=teacherRegisteredCoursesController.getPane();
+
+        }
+        else if (choice.equals("teacherAttendance")) {
+            teacherAttendanceController=loader.getController();
+            teacherAttendanceController.initiateTeacherAttendanceController(currentTeacher,currentUser,registered_course);
+            childNode=teacherAttendanceController.getPane();
+        }else if (choice.equals("teacherMarks")) {
+            teacherMarksController = loader.getController();
+            teacherMarksController.initiateTeacherMarksController(currentTeacher,currentUser, registered_course);
+            childNode=teacherMarksController.getPane();
+        } else if (choice.equals("teacherDashBoard")) {
+            System.out.println("invoking");
+            TeacherInfoController teacherInfoController=loader.getController();
+            teacherInfoController.initiateTeacherPane(currentTeacher, currentUser);
+            childNode=teacherInfoController.getChildNode();
+        }else if(choice.equals("workspacePage")){
+            studentWorkspacePageController = loader.getController();
+            studentWorkspacePageController.initiateRegisteredCourseView(registered_course, currentUser);
+            childNode=studentWorkspacePageController.getPane();
+        }
+
+        infoPane.getChildren().clear();
+        infoPane.getChildren().add(childNode);
     }
 
     /**
@@ -165,10 +223,10 @@ public class TeacherDashBoardController {
      */
     public void courseBtnClicked(ActionEvent event) throws SQLException, IOException {
         if (registered_course==null || registered_course.isEmpty()) {
-            changeSceneInDashboard(event, "teacherCourseRegPage.fxml", "regPage");
+            changeSceneWithInfoPane(event, "teacherCourseRegPage.fxml", "regPage");
         }
         else {
-            changeSceneInDashboard(event, "teacherRegisteredCourse.fxml", "regDonePage");
+            changeSceneWithInfoPane(event, "teacherRegisteredCourse.fxml", "regDonePage");
         }
     }
     /**
@@ -178,7 +236,7 @@ public class TeacherDashBoardController {
      * @throws IOException If problems with input/output
      */
     public void addMarksBtnClicked(ActionEvent event) throws SQLException, IOException {
-        changeSceneInDashboard(event, "teacherMarks.fxml", "teacherMarks");
+        changeSceneWithInfoPane(event, "teacherMarks.fxml", "teacherMarks");
     }
     /**
      * Attendance button click function
@@ -187,7 +245,7 @@ public class TeacherDashBoardController {
      * @throws IOException If problems with input/output
      */
     public void takeAttendanceBtnClicked(ActionEvent event) throws SQLException, IOException {
-        changeSceneInDashboard(event, "teacherAttendanceStudentList.fxml", "teacherAttendance");
+        changeSceneWithInfoPane(event, "teacherAttendanceStudentList.fxml", "teacherAttendance");
     }
     /**
      * Dashboard button click function
@@ -196,6 +254,13 @@ public class TeacherDashBoardController {
      * @throws SQLException If problems with query
      */
     public void dashBoardBtnClicked(ActionEvent event) throws SQLException, IOException {
-        changeSceneInDashboard(event, "teacherDashBoard.fxml", "teacherDashBoard");
+        changeSceneWithInfoPane(event, "teacherInfo.fxml", "teacherDashBoard");
     }
+
+    @FXML
+    void workspaceBtnClicked(ActionEvent event) throws SQLException, IOException {
+        changeSceneWithInfoPane(event, "studentWorkspacePage.fxml", "workspacePage");
+    }
+
+
 }

@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -35,7 +32,7 @@ public class SinglePostPageController {
     private VBox comment_box;
 
     @FXML
-    private TextField comment_textbox;
+    private TextArea comment_textbox;
 
     @FXML
     private Label full_name_label;
@@ -50,6 +47,9 @@ public class SinglePostPageController {
     private Text post_text;
     @FXML
     private  Label postDeadline_label;
+
+    @FXML
+    private Pane infoPane;
 
     private User currentUser;
 
@@ -66,6 +66,9 @@ public class SinglePostPageController {
     private  Button submissionBtn;
     @FXML
     private  Button selectSubmissionBtn;
+
+    @FXML
+    Button seeSubmissionbtn;
 
     Submission currentSubmission;
     public void initiate(String workspaceName, Student student, ArrayList<Courses> courses, User user, Post post) throws SQLException {
@@ -87,6 +90,12 @@ public class SinglePostPageController {
         else{
             submissionBtn.setVisible(false);
             selectSubmissionBtn.setVisible(false);
+        }
+        if(currentUser.getType().equals("t") && currentPost.getPost_type().equals("assignment")) {
+            seeSubmissionbtn.setVisible(true);
+        }
+        else{
+            seeSubmissionbtn.setVisible(false);
         }
         postType_label.setText(post.getPost_type());
         post_text.setText(post.getPost_text());
@@ -201,24 +210,19 @@ public class SinglePostPageController {
     void backtoworkspaceBtnClicked(ActionEvent event){
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("studentSingleWorkspacePage.fxml"));
-        Parent root = null;
         try {
-            root = loader.load();
+            loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        Scene afterLoginScene = new Scene(root);
         StudentSingleWorkspaceController studentSingleWorkspaceController = loader.getController();
         try {
             studentSingleWorkspaceController.initiateData(workspaceName,currentStudent, registered_courses, currentUser);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(afterLoginScene);
-        window.show();
+        infoPane.getChildren().clear();
+        infoPane.getChildren().add(studentSingleWorkspaceController.getPane());
     }
 
     @FXML
@@ -253,49 +257,33 @@ public class SinglePostPageController {
         // reload the page
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("singlePostPage.fxml"));
-        Parent root = null;
         try {
-            root = loader.load();
+            loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        Scene singlePostPageScene = new Scene(root);
         SinglePostPageController singlePostPageController = loader.getController();
         try {
             singlePostPageController.initiate(workspaceName,currentStudent, registered_courses, currentUser,currentPost);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(singlePostPageScene);
-        System.out.println("working");
-        window.show();
+        infoPane.getChildren().clear();
+        infoPane.getChildren().add(singlePostPageController.getPane());
     }
-    @FXML
-    void courseBtnClicked(ActionEvent event) {
 
-    }
 
     @FXML
-    void dashboardBtnClicked(ActionEvent event) {
+    public void seeSubmissionbtn_clicked(){}
 
+    public Pane getPane() {
+        return infoPane;
     }
 
-    @FXML
-    void logoutBtnClicked(ActionEvent event) {
-
+    public  String getUiName() {
+        return "Marks";
     }
 
-    @FXML
-    void progressBtnClicked(ActionEvent event) {
 
-    }
-
-    @FXML
-    void resultBtnClicked(ActionEvent event) {
-
-    }
 
 }

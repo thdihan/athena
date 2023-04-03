@@ -1,0 +1,26 @@
+.common-background{
+-fx-background-color:#242529;
+
+}
+
+.workspace-box{
+-fx-control-inner-background: #363636;
+-fx-background-color:#363636;
+}
+
+.common-background-button{
+-fx-background-color:#363636;
+   -fx-background-radius: 10px;
+        -fx-background-border-style: solid;
+         -fx-border-color: white;
+            -fx-border-width: 1px;
+            -fx-border-radius:10px;
+}
+
+.post-button{
+-fx-background-color:#FFF37B;
+   -fx-background-radius: 10px;
+            -fx-border-radius:10px;
+
+
+}

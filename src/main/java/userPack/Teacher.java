@@ -12,7 +12,7 @@ public class Teacher {
     private String name;
     private String email;
     private String dept;
-    private Date dob;
+    private String dob;
     private String contact;
     public String getId() {
         return id;
@@ -46,11 +46,11 @@ public class Teacher {
         this.dept = dept;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -62,7 +62,7 @@ public class Teacher {
         this.contact = contact;
     }
 
-    public Teacher(String id, String name, String email, String dept, Date dob, String contact) {
+    public Teacher(String id, String name, String email, String dept, String dob, String contact) {
         this.id = id;
         this.name = name;
         this.email = email;
