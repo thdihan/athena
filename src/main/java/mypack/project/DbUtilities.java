@@ -374,6 +374,32 @@ public class DbUtilities {
     }
 
 
+
+    public void addCourses(Courses course) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query = "insert into courses values(?,?,?,?,?,?)";
+//        "insert into student values('200041111','Hasan','hasan@gmail.com','CSE','4','2001-01-01','01711111111');",
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, course.getCode());
+            preparedStatement.setString(2, course.getTitle());
+            preparedStatement.setString(3, course.getDept());
+            preparedStatement.setString(4, course.getOffered_dept());
+            preparedStatement.setString(5, Double.toString(course.getCredit()));
+            preparedStatement.setString(6, course.getSemester());
+            preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Exception registering courses");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+        }
+
+    }
+
+
     public ArrayList<Pair<String,String>> getResults(Student currentStudent, String semester){
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -642,7 +668,7 @@ public class DbUtilities {
             }
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                courses.add(new Courses(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getDouble(5)));
+                courses.add(new Courses(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getDouble(5),semester));
             }
             return courses;
         } catch (SQLException e) {
@@ -1119,7 +1145,7 @@ public class DbUtilities {
 
             while (resultSet.next()) {
 //                System.out.println("NOT NULL");
-                courses.add(new Courses(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getDouble(5)));
+                courses.add(new Courses(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getDouble(5),semester));
             }
 //            System.out.println("NULL");
             return courses;

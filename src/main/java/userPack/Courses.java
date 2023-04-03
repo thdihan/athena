@@ -12,12 +12,15 @@ public class Courses {
     private String dept;
     private String offered_dept;
     private Double credit;
-    public Courses(String code, String title, String dept, String offered_dept, Double credit) {
+
+    private String semester;
+    public Courses(String code, String title, String dept, String offered_dept, Double credit,String semester) {
         this.code = code;
         this.title = title;
         this.dept = dept;
         this.offered_dept = offered_dept;
         this.credit = credit;
+        this.semester=semester;
     }
     public String getCode() {
         return code;
@@ -58,6 +61,10 @@ public class Courses {
     public void setCredit(Double credit) {
         this.credit = credit;
     }
+
+    public String getSemester(){return semester;}
+
+    public void setSemester(String semester){this.semester=semester;}
 
 
 

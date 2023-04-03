@@ -20,8 +20,8 @@
       </Pane>
       <Pane layoutX="55.0" layoutY="347.0" prefHeight="108.0" prefWidth="813.0" style="-fx-background-color: #36373E;">
          <children>
-            <Button layoutX="435.0" layoutY="46.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" text="Choose CSV File" />
-            <Button layoutX="595.0" layoutY="46.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" text="Add User" />
+            <Button fx:id="coursecsvfile" layoutX="435.0" layoutY="46.0" mnemonicParsing="false" onAction="#coursecsvfile_click" prefHeight="36.0" prefWidth="129.0" text="Choose CSV File" />
+            <Button fx:id="addcoursebutton" layoutX="595.0" layoutY="46.0" mnemonicParsing="false" onAction="#addcoursebutton_click" prefHeight="36.0" prefWidth="129.0" text="Add Course" />
             <Label layoutX="31.0" layoutY="26.0" text="Add Courses" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
