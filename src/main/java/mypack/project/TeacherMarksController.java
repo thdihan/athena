@@ -113,6 +113,9 @@ public class TeacherMarksController implements Initializable {
         choice = "add";
         add_modify_toggle.setOnAction(e -> {
             if (add_modify_toggle.isSelected()) {
+                studentListVbox.getChildren().clear();
+                studentListVbox.setVisible(false);
+                scrollPane.setVisible(false);
                 add_modify_toggle.setText("Modify Marks");
                 choice = "add";
 //                studentListVbox.getChildren().clear();
@@ -135,6 +138,9 @@ public class TeacherMarksController implements Initializable {
 //        addBtn.setPrefHeight(37);
 ////        addBtn.setPrefWidth(129);
             } else {
+                studentListVbox.getChildren().clear();
+                studentListVbox.setVisible(false);
+                scrollPane.setVisible(false);
                 add_modify_toggle.setText("Add Marks");
                 choice = "modify";
 
@@ -159,16 +165,27 @@ public class TeacherMarksController implements Initializable {
     @FXML
     public ArrayList<String> onGetStudentListBtnClicked(ActionEvent event) throws IOException {
         //return empty list if exceptions
+        studentListVbox.getChildren().clear();
+        scrollPane.setVisible(false);
+        studentListVbox.setVisible(false);
         System.out.println("Invokedddddd");
         DbUtilities dbUtilities = new DbUtilities();
         ArrayList<String> studentList = new ArrayList<>();
-        if (selectCourseInDropDown(event) == null)
+        if (selectCourseInDropDown(event) == null) {
+            warning_box.setVisible(true);
+            warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
+            warning_text.setText("Please select courses");
             return studentList;
+        }
         if (choice.equals("add")) {
+            studentListVbox.getChildren().clear();
+            studentListVbox.setVisible(false);
+            scrollPane.setVisible(false);
             studentList = dbUtilities.getStudentList(selectCourseInDropDown(event));
             if(studentList.isEmpty()){
 //                studentLabel.setText("No students registered for this course yet");
                 warning_box.setVisible(true);
+                warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
                 warning_text.setText("No students registered for this course yet");
 //                addTransition(studentLabel);
                 return studentList;
@@ -183,10 +200,15 @@ public class TeacherMarksController implements Initializable {
 
             }
         } else {
+            studentListVbox.getChildren().clear();
+            studentListVbox.setVisible(false);
+            scrollPane.setVisible(false);
             TreeMap<String, Double> treeMap = new TreeMap<>();
             treeMap.putAll(dbUtilities.getStudentMarkList(selectCourseInDropDown(event), examType.get(selectExamInDropDown(event))));
             if (treeMap.isEmpty()) {
                 warning_box.setVisible(true);
+                System.out.println("INSIDE");
+                warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
                 warning_text.setText("No students registered or previously marks not added");
 //                studentLabel.setText("No students registered or previously marks not added");
 //                addTransition(studentLabel);
@@ -268,7 +290,8 @@ public class TeacherMarksController implements Initializable {
                 }
                 System.out.println(studentListVbox.getChildren().size());
                 System.out.println(markField.getText());
-                dbUtilities.updateStudentMarks(idLabel.getText(), Double.parseDouble(markField.getText()), courseDropDown.getValue().split(":")[0], examType.get(examTypeDropDown.getValue()));
+                dbUtilities.updateStudentMarks(idLabel.getText().split(" ")[0], Double.parseDouble(markField.getText()), courseDropDown.getValue().split(":")[0], examType.get(examTypeDropDown.getValue()));
+//                System.out.println(idLabel.getText().split(" ")[0]);
 //                studentLabel.setText("Marks updated successfully");
 //                addTransition(studentLabel);
 //                System.out.println("IN");
