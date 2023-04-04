@@ -34,23 +34,23 @@
                   <Font name="Leelawadee Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="256.0" layoutY="418.0" prefHeight="26.0" prefWidth="210.0" text=" for  the  Teachers and " textFill="#f4f7f5">
+            <Label layoutX="287.0" layoutY="416.0" prefHeight="26.0" prefWidth="210.0" text="for  the  teachers" textFill="#f4f7f5">
                <font>
                   <Font name="Leelawadee" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="287.0" layoutY="391.0" text="  for  the  Students ," textFill="#f4f7f5">
+            <Label layoutX="287.0" layoutY="390.0" text="for  the  students" textFill="#f4f7f5">
                <font>
                   <Font name="Leelawadee" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="263.0" layoutY="443.0" text="For All." textFill="#f4f7f5">
+            <Label layoutX="287.0" layoutY="443.0" text="for all" textFill="#f4f7f5">
                <font>
                   <Font name="Leelawadee" size="20.0" />
                </font>
             </Label>
             <Line endX="16.000015258789062" endY="102.66665649414062" layoutX="118.0" layoutY="366.0" startX="16.000015258789062" startY="-5.60003662109375" stroke="#fff37b" strokeWidth="3.0" />
-            <Label layoutX="247.0" layoutY="364.0" text="in  the  Official-Process ," textFill="#f4f7f5">
+            <Label layoutX="287.0" layoutY="363.0" text="in  the  official process" textFill="#f4f7f5">
                <font>
                   <Font name="Leelawadee" size="20.0" />
                </font>
@@ -72,7 +72,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label fx:id="wrongField" layoutX="760.0" layoutY="201.0" text="Hello! Welcome Back" textFill="#f4f7f5">
+      <Label layoutX="760.0" layoutY="201.0" text="Hello! Welcome Back" textFill="#f4f7f5">
          <font>
             <Font name="Leelawadee Bold" size="30.0" />
          </font>
@@ -112,5 +112,10 @@
             <Image url="@../../dashboardicons/lock.png" />
          </image>
       </ImageView>
+      <Label fx:id="wrongField" layoutX="732.0" layoutY="283.0" prefHeight="20.0" prefWidth="350.0" textFill="#ff8989">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

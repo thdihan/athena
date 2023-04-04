@@ -7,24 +7,24 @@
 
 <Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="center-info-pane" stylesheets="@studentDashBoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.AddUser">
    <children>
-      <Pane layoutX="55.0" layoutY="199.0" prefHeight="108.0" prefWidth="813.0" style="-fx-background-color: #36373E;">
+      <Pane layoutX="55.0" layoutY="142.0" prefHeight="108.0" prefWidth="813.0" style="-fx-background-color: #36373E;">
          <children>
             <Button fx:id="userDataFileChooseBtn" layoutX="435.0" layoutY="46.0" mnemonicParsing="false" onAction="#userDataFileChooseBtn_clicked" prefHeight="36.0" prefWidth="129.0" styleClass="submission-button" stylesheets="@singlepostpage.css" text="Choose CSV File" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button fx:id="addUsersBtn" layoutX="595.0" layoutY="46.0" mnemonicParsing="false" onAction="#addUsersBtn_clicked" prefHeight="33.0" prefWidth="129.0" styleClass="login-button" text="Add User">
+            <Button fx:id="addUsersBtn" layoutX="595.0" layoutY="46.0" mnemonicParsing="false" onAction="#addUsersBtn_clicked" prefHeight="33.0" prefWidth="129.0" styleClass="login-button" text="Add Student">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Label layoutX="31.0" layoutY="26.0" text="Add User" textFill="WHITE">
+            <Label layoutX="31.0" layoutY="26.0" text="Add Student" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="55.0" layoutY="347.0" prefHeight="108.0" prefWidth="813.0" style="-fx-background-color: #36373E;">
+      <Pane layoutX="55.0" layoutY="399.0" prefHeight="108.0" prefWidth="813.0" style="-fx-background-color: #36373E;">
          <children>
 
             <Button layoutX="435.0" layoutY="46.0" mnemonicParsing="false" onAction="#coursecsvfile_click" prefHeight="36.0" prefWidth="129.0" styleClass="submission-button" stylesheets="@singlepostpage.css" text="Choose CSV File" textFill="WHITE">
@@ -43,5 +43,29 @@
             </Label>
          </children>
       </Pane>
+      <Pane layoutX="55.0" layoutY="270.0" prefHeight="108.0" prefWidth="813.0" style="-fx-background-color: #36373E;">
+         <children>
+            <Button fx:id="teacherDataChoose" layoutX="435.0" layoutY="46.0" mnemonicParsing="false" onAction="#teacherDataChoose_clicked" prefHeight="36.0" prefWidth="129.0" styleClass="submission-button" stylesheets="@singlepostpage.css" text="Choose CSV File" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="addTeacher" layoutX="595.0" layoutY="46.0" mnemonicParsing="false" onAction="#addTeacher_clicked" prefHeight="33.0" prefWidth="129.0" styleClass="login-button" text="Add Teacher">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="31.0" layoutY="26.0" text="Add Teacher" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label fx:id="warning" layoutX="220.0" layoutY="112.0" prefHeight="17.0" prefWidth="515.0" textFill="#faafb6">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

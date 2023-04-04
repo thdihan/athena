@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -30,6 +31,9 @@ public class TeacherRegisteredCoursesController {
 
     @FXML
     Pane infoPane;
+
+    @FXML
+    Button resetbtn;
 
     private Teacher currentTeacher;
     private ArrayList<Courses> registered_courses;
@@ -63,6 +67,14 @@ public class TeacherRegisteredCoursesController {
         registered_courses=courses;
         currentUser=user;
 
+        DbUtilities dbUtilities = new DbUtilities();
+        Boolean isReset = dbUtilities.getResetRequest(currentTeacher.getId());
+        if(isReset){
+            resetbtn.setVisible(false);
+        }
+        else{
+            resetbtn.setVisible(true);
+        }
         for(int i=0 ; i<registered_courses.size() ; i++){
             String courseInfo=registered_courses.get(i).getCode() + ": "+ registered_courses.get(i).getTitle();
             String credit="Credits: "+registered_courses.get(i).getCredit().toString();
@@ -127,6 +139,13 @@ public class TeacherRegisteredCoursesController {
         teacherDashBoardController.dashBoardBtnClicked(event);
     }
 
+
+    @FXML
+    public void resetRequest_clicked(ActionEvent event) throws SQLException {
+        DbUtilities dbUtilities = new DbUtilities();
+        dbUtilities.setRegistrationResetRequest(currentTeacher.getId(),currentUser.getType());
+        resetbtn.setVisible(false);
+    }
     public Pane getPane() {
         return infoPane;
     }

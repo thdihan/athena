@@ -43,6 +43,8 @@ public class AdminInfoController {
     @FXML
     Button userDataFileChooseBtn;
 
+    Admin currentAdmin;
+
 
     public Node getNotificationiBoxNode(Notification notification) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("notificationBox.fxml"));
@@ -57,8 +59,10 @@ public class AdminInfoController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("notificationBox.fxml"));
         loader.load(); //loader.load() must be used otherwise controller isn't created
         NotificationBoxController notificationBoxController = loader.getController();
-        notificationBoxController.resetRequestInitiate(currentUser,id,type,infoPane);
+        notificationBoxController.resetRequestInitiate(currentUser,id,type,infoPane,currentAdmin);
         Node childNode=notificationBoxController.getResetNotification();
+
+
         return childNode;
     }
     /**
@@ -73,6 +77,7 @@ public class AdminInfoController {
         dob_view.setText(currentAdmin.getDob().toString());
         id_view.setText(currentAdmin.getId());
 
+        this.currentAdmin = currentAdmin;
 
 
         // get notifications
@@ -93,6 +98,8 @@ public class AdminInfoController {
 //            separator.setPrefHeight(20);
 //            notificationPanal_Vbox.getChildren().add(separator);
 //        }
+
+        currentAdmin = dbUtilities.getAdminInfo(currentUser.getEmail());
     }
 
     /**

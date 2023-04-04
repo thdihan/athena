@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import userPack.Admin;
 import userPack.Student;
 import userPack.Teacher;
 import userPack.User;
@@ -73,11 +74,16 @@ public class UpdateProfileController {
             nameField.setText(student.getName());
             dobField.setText(student.getDob().toString());
             contactField.setText(student.getContact());
-        } else {
+        } else if(user.getType().equals("t")) {
             Teacher teacher = dbUtilities.getTeacherInfo(user.getEmail());
             nameField.setText(teacher.getName());
             dobField.setText(teacher.getDob().toString());
             contactField.setText(teacher.getContact());
+        } else{
+            Admin admin = dbUtilities.getAdminInfo(user.getEmail());
+            nameField.setText(admin.getName());
+            dobField.setText(admin.getDob().toString());
+            contactField.setText(admin.getContact());
         }
     }
 
@@ -148,8 +154,10 @@ public class UpdateProfileController {
                 FXMLLoader loader = new FXMLLoader();
                 if (currentUser.getType().equals("s"))
                     loader.setLocation(getClass().getResource("studentDashBoard.fxml"));
-                else
+                else if(currentUser.getType().equals("s"))
                     loader.setLocation(getClass().getResource("teacherDashBoard.fxml"));
+                else
+                    loader.setLocation(getClass().getResource("adminDashboard.fxml"));
 
                 Parent root = loader.load();
 
@@ -159,10 +167,15 @@ public class UpdateProfileController {
                     StudentDashBoardController studentDashBoardController;
                     studentDashBoardController = loader.getController();
                     studentDashBoardController.initiateStudentUser(currentUser);
-                } else {
+                } else if(currentUser.getType().equals("t")){
                     TeacherDashBoardController teacherDashBoardController;
                     teacherDashBoardController = loader.getController();
                     teacherDashBoardController.initiateTeacherUser(currentUser);
+                }
+                else{
+                    AdminDashBoardController adminDashBoardController;
+                    adminDashBoardController = loader.getController();
+                    adminDashBoardController.initiateAdmin(currentUser);
                 }
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(afterLoginScene);

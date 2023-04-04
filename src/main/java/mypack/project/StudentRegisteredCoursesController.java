@@ -66,8 +66,10 @@ public class StudentRegisteredCoursesController {
         DbUtilities dbUtilities = new DbUtilities();
         Boolean isReset = dbUtilities.getResetRequest(currentStudent.getId());
         if(isReset){
-//            resetbtn.setVisible(false);
-            resetbtn.setDisable(true);
+            resetbtn.setVisible(false);
+        }
+        else{
+            resetbtn.setVisible(true);
         }
 
         for(int i=0 ; i<registered_courses.size() ; i++){
@@ -134,6 +136,7 @@ public class StudentRegisteredCoursesController {
     public void resetRequest_clicked(ActionEvent event) throws SQLException {
         DbUtilities dbUtilities = new DbUtilities();
         dbUtilities.setRegistrationResetRequest(currentStudent.getId(),currentUser.getType());
+        resetbtn.setVisible(false);
     }
 
     public Pane getPane() {

@@ -145,7 +145,7 @@ public class TeacherMarksController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("markBox.fxml"));
         loader.load(); //loader.load() must be used otherwise controller isn't created
         MarkBoxController markBoxController=loader.getController();
-
+        id+=" :";
         markBoxController.initiateBox(id, marks);
         Node childNode= markBoxController.getChildNode();
         return childNode;
@@ -179,7 +179,7 @@ public class TeacherMarksController implements Initializable {
 //        System.out.println(studentList.get(0));
             studentListVbox.getChildren().clear();
             for (int i = 0; i < studentList.size(); i++) {
-                studentListVbox.getChildren().add(getHbox(studentList.get(i).split(" ")[1], -1));
+                studentListVbox.getChildren().add(getHbox(studentList.get(i).split(": ")[1], -1));
 
             }
         } else {

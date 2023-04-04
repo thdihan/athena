@@ -47,7 +47,7 @@
                            <children>
                               <ImageView fitHeight="78.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../dashboardicons/student.png" />
+                                    <Image url="@../../dashboardicons/man.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -59,7 +59,7 @@
                            <children>
                               <StackPane prefHeight="150.0" prefWidth="200.0">
                                  <children>
-                                    <Label fx:id="side_fullname_view" alignment="CENTER" prefHeight="32.0" prefWidth="117.0" text="Mahia " textFill="#f4e9e1">
+                                    <Label fx:id="side_fullname_view" alignment="CENTER" prefHeight="27.0" prefWidth="257.0" text="Mahia " textFill="#f4e9e1">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -105,7 +105,7 @@
                               <Insets top="30.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="addUser_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#addUser_btn_clicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Add User" textFill="#f4e9e1">
+                        <Button fx:id="addUser_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#addUser_btn_clicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Add Data" textFill="#f4e9e1">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

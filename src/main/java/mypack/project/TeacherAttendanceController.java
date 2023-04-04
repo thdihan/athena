@@ -115,7 +115,7 @@ public class TeacherAttendanceController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("attendanceBox.fxml"));
         loader.load(); //loader.load() must be used otherwise controller isn't created
         AttendanceBoxController attendanceBoxController=loader.getController();
-
+        id = id+" :";
         attendanceBoxController.initiateBox(id,name);
         Node childNode= attendanceBoxController.getChildNode();
         return childNode;
@@ -137,7 +137,7 @@ public class TeacherAttendanceController {
 //        System.out.println(studentList.get(0));
         studentListVbox.getChildren().clear();
         for (int i = 0; i < studentList.size(); i++) {
-            studentListVbox.getChildren().add(getHbox(studentList.get(i).split(" ")[1], studentList.get(i).split(":")[0]));
+            studentListVbox.getChildren().add(getHbox(studentList.get(i).split(": ")[1], studentList.get(i).split(":")[0]));
 
         }
 //        studentListVbox.setAlignment(Pos.TOP_CENTER);
@@ -165,7 +165,7 @@ public class TeacherAttendanceController {
             }
             if(studentListVbox.getChildren().isEmpty()){
                 warning_box.setVisible(true);
-                warning_text.setText("Please select courses");
+                warning_text.setText("Please generate student list");
 //            courseLabel.setText("Please select course");
             }
             else{

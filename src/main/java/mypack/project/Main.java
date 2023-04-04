@@ -44,7 +44,7 @@ public class Main extends Application {
         primaryStage.setTitle("Athena: Making student life easier");
         primaryStage.setResizable(false);
 
-//        initiateTables();
+        initiateTables();
 
         primaryStage.setScene(scene);
 

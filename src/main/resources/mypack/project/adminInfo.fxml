@@ -92,7 +92,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="71.0" prefWidth="415.0">
                      <children>
-                        <Label text="Academic Information" textFill="#fdece0">
+                        <Label text="Official Information" textFill="#fdece0">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>
@@ -115,14 +115,6 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <Label prefHeight="82.0" prefWidth="195.0" text="Department :" textFill="#fdece0">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
                      </children>
                   </VBox>
                   <VBox layoutX="185.0" layoutY="71.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="233.0" prefWidth="231.0">
@@ -134,14 +126,6 @@
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <Label fx:id="dept_view" prefHeight="79.0" prefWidth="233.0" text="(Dept from database)" textFill="#fdece0">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
                            <padding>
                               <Insets left="20.0" />
                            </padding>

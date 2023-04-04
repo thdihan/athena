@@ -97,7 +97,7 @@ public class DbUtilities {
 
         // Admin Table
         tableName = "admins";
-        tableQuery = "create table admins( admin_ID varchar(15) not null primary key, admin_Name varchar(60) not null, admin_email varchar(60) not null, DOB date, admin_contact varchar(20) not null );";
+        tableQuery = "create table admins( admin_ID varchar(15) not null primary key, admin_Name varchar(60) not null, admin_email varchar(60) not null, DOB varchar(30), admin_contact varchar(20) not null );";
         String[] insertAdmin = {
                 "insert into admins values('123456', 'Admin 1','admin@gmail.com','2000-01-01','0171111111')"
         };
@@ -226,13 +226,13 @@ public class DbUtilities {
         };
         tableName = "notification";
         tableQuery = "create table notification (\n" +
-                "\tnotificationid varchar(30),\n" +
-                "\tpostid varchar(30),\n" +
-                "\tnotification_type varchar(20),\n" +
+                "\tnotificationid varchar(100),\n" +
+                "\tpostid varchar(100),\n" +
+                "\tnotification_type varchar(100),\n" +
                 "notifier_email varchar(50),"+
                 "notify_email varchar(50),"+
                 "notification_text varchar(200),"+
-                "notificationTime varchar(30),"+
+                "notificationTime varchar(100),"+
                 "\tconstraint pk_notification primary key(notificationid),\n" +
                 "\tconstraint fk_notification_post foreign key (postid) references post(postid)\n" +
                 ");";
@@ -441,7 +441,7 @@ public class DbUtilities {
             preparedStatement.setString(2, course.getTitle());
             preparedStatement.setString(3, course.getDept());
             preparedStatement.setString(4, course.getOffered_dept());
-            preparedStatement.setString(5, Double.toString(course.getCredit()));
+            preparedStatement.setDouble(5, course.getCredit());
             preparedStatement.setString(6, course.getSemester());
             preparedStatement.executeUpdate();
 
@@ -681,7 +681,7 @@ public class DbUtilities {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
 //                System.out.println(resultSet.getString(3));
-                Admin temp = new Admin(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),  resultSet.getDate(4), resultSet.getString(5));
+                Admin temp = new Admin(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),  resultSet.getString(4), resultSet.getString(5));
                 return temp;
             } else {
                 return null;
@@ -1720,8 +1720,11 @@ public class DbUtilities {
         String userTableName;
         if(user.getType().equals("t")){
             userTableName="teacher";
-        }else {
+        }else if(user.getType().equals("s")) {
             userTableName="student";
+        }
+        else{
+            userTableName="admins";
         }
         String userQuery="update users\n" +
                 "set password=?\n" +
@@ -1732,6 +1735,9 @@ public class DbUtilities {
         String teacherQuery="update "+userTableName+" \n" +
                 "set t_name=?, dob=?, t_contact=?\n" +
                 "where t_email=?;";
+        String adminQuery="update "+userTableName+" \n" +
+                "set admin_name=?, dob=?, admin_contact=?\n" +
+                "where admin_email=?;";
         try {
             Connection connection=connectToDB("projectDb", "postgres", "tukasl");
 
@@ -1742,10 +1748,12 @@ public class DbUtilities {
 
             if(userTableName.equals("student"))
             studentStatement=connection.prepareStatement(studentQuery);
-            else
+            else if(userTableName.equals("teacher"))
                 studentStatement=connection.prepareStatement(teacherQuery);
+            else
+                studentStatement=connection.prepareStatement(adminQuery);
             studentStatement.setString(1,newName);
-            studentStatement.setDate(2, Date.valueOf(newDob));
+            studentStatement.setString(2, newDob);
             studentStatement.setString(3,newContact);
             studentStatement.setString(4,user.getEmail());
             studentStatement.executeUpdate();

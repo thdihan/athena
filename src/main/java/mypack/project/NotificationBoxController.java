@@ -8,10 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import userPack.Notification;
-import userPack.Post;
-import userPack.Student;
-import userPack.User;
+import userPack.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -45,6 +42,7 @@ public class NotificationBoxController {
 
     String currentID;
     String currentType;
+    Admin currentAdmin;
     public void initiate(Notification notification, User currentUser,Pane infoPane){
         this.infoPane = infoPane;
         this.currentUser = currentUser;
@@ -54,12 +52,13 @@ public class NotificationBoxController {
         viewDetailsBtn.setId("viewDetailsNotificationBtn");
     }
 
-    public void resetRequestInitiate(User currentUser, String id,String type, Pane infoPane){
+    public void resetRequestInitiate(User currentUser, String id,String type, Pane infoPane,Admin currentAdmin){
         this.infoPane = infoPane;
         this.currentUser = currentUser;
         reset_id.setText(id);
         currentID = id;
         currentType = type;
+        this.currentAdmin = currentAdmin;
     }
 
     public  Pane getResetNotification() {
@@ -102,12 +101,50 @@ public class NotificationBoxController {
             dbUtilities.delete_teacherTakesCourse(currentID);
         }
         dbUtilities.delete_resetRequest(currentID);
+
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("adminInfo.fxml"));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        AdminInfoController adminInfoController = loader.getController();
+        try {
+            adminInfoController.initiateAdminPane(currentAdmin,currentUser);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        infoPane.getChildren().clear();
+        infoPane.getChildren().add(adminInfoController.getChildNode());
     }
 
     @FXML
     public  void declineButton_clicked(ActionEvent event) throws SQLException {
         DbUtilities dbUtilities = new DbUtilities();
         dbUtilities.delete_resetRequest(currentID);
+
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("adminInfo.fxml"));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        AdminInfoController adminInfoController = loader.getController();
+        try {
+            adminInfoController.initiateAdminPane(currentAdmin,currentUser);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        infoPane.getChildren().clear();
+        infoPane.getChildren().add(adminInfoController.getChildNode());
     }
 
 }
