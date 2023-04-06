@@ -134,11 +134,16 @@ public class TeacherAttendanceController {
         if (selectCourseInDropDown(event) == null)
             return studentList;
         studentList = dbUtilities.getStudentList(selectCourseInDropDown(event));
+        if(studentList.isEmpty()){
+            warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
+            warning_box.setVisible(true);
+            warning_text.setText("No students are registered for this course");
+            return studentList;
+        }
 //        System.out.println(studentList.get(0));
         studentListVbox.getChildren().clear();
         for (int i = 0; i < studentList.size(); i++) {
             studentListVbox.getChildren().add(getHbox(studentList.get(i).split(": ")[1], studentList.get(i).split(":")[0]));
-
         }
 //        studentListVbox.setAlignment(Pos.TOP_CENTER);
 //        submitLabel.setText("");
