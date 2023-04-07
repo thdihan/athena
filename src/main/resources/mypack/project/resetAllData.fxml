@@ -22,5 +22,10 @@
             <PasswordField fx:id="password_textbox" layoutX="187.0" layoutY="80.0" prefHeight="36.0" prefWidth="226.0" promptText="Enter your password" />
          </children>
       </Pane>
+      <Label fx:id="warning" layoutX="228.0" layoutY="194.0" prefHeight="17.0" prefWidth="515.0" textFill="#faafb6">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

@@ -3,6 +3,7 @@ package mypack.project;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.Pane;
 import userPack.Admin;
@@ -22,6 +23,8 @@ public class ResetAllDataController {
     private PasswordField password_textbox;
 
     private Admin currentAdmin;
+    @FXML
+    Label warning;
 
     public void initiate(Admin admin){
         currentAdmin = admin;
@@ -37,6 +40,8 @@ public class ResetAllDataController {
         else{
             System.out.println("not valid");
         }
+        warning.setText("Reset Successfull");
+        password_textbox.clear();;
     }
 
 
