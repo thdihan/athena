@@ -131,6 +131,23 @@ public class AdminDashBoardController {
         resetAllDataController.initiate(currentAdmin);
         childNode=resetAllDataController.getInfoPane();
     }
+    else if(choice.equals("studentList")){
+        StudentListController studentListController = loader.getController();
+        studentListController.initiate(choice);
+        childNode = studentListController.getInfoPane();
+    }
+
+    else if(choice.equals("teacherList")){
+        StudentListController studentListController = loader.getController();
+        studentListController.initiate(choice);
+        childNode = studentListController.getInfoPane();
+    }
+
+    else if(choice.equals("courseList")){
+        StudentListController studentListController = loader.getController();
+        studentListController.initiate(choice);
+        childNode = studentListController.getInfoPane();
+    }
 
         infoPane.getChildren().clear();
         infoPane.getChildren().add(childNode);
@@ -249,5 +266,22 @@ public class AdminDashBoardController {
         infoPane.getChildren().clear();
         infoPane.getChildren().add(childNode);
 
+    }
+
+
+
+    @FXML
+    void courseList_btn_clicked(ActionEvent event) throws SQLException, IOException {
+        changeSceneWithInfoPane(event,"student_list.fxml","courseList");
+    }
+
+    @FXML
+    void studentList_btn_clicked(ActionEvent event) throws SQLException, IOException {
+        changeSceneWithInfoPane(event,"student_list.fxml","studentList");
+    }
+
+    @FXML
+    void teacherList_btn_clicked(ActionEvent event) throws SQLException, IOException {
+        changeSceneWithInfoPane(event,"student_list.fxml","teacherList");
     }
 }

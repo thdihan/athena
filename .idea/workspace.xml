@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc99f71b-b75b-403a-8455-3c1682544c88" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentListController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/student_list.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mypack/project/ListBoxController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/listBox.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/AdminDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/AdminDashBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/DbUtilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mypack/project/StudentListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mypack/project/StudentListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/adminDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/adminDashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mypack/project/student_list.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mypack/project/student_list.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

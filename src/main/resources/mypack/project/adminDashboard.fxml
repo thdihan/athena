@@ -135,6 +135,51 @@
                               <Insets left="60.0" />
                            </padding>
                         </Button>
+                        <Button fx:id="studentList_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="143.0" mnemonicParsing="false" onAction="#studentList_btn_clicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Student List" textFill="#f4e9e1">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../dashboardicons/attendance.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="teacherList_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="194.0" mnemonicParsing="false" onAction="#teacherList_btn_clicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Teacher List" textFill="#f4e9e1">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../dashboardicons/attendance.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="courseList_btn" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="245.0" mnemonicParsing="false" onAction="#courseList_btn_clicked" prefHeight="51.0" prefWidth="328.0" styleClass="featurebutton" stylesheets="@studentDashBoard.css" text="Course List" textFill="#f4e9e1">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../dashboardicons/attendance.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
                      </children>
                      <VBox.margin>
                         <Insets />

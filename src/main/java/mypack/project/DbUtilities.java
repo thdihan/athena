@@ -404,6 +404,9 @@ public class DbUtilities {
 
     }
 
+
+
+
     public void addTeacher(Teacher teacher) throws SQLException {
         PreparedStatement preparedStatement = null;
         String query = "insert into teacher values(?,?,?,?,?,?)";
@@ -636,6 +639,35 @@ public class DbUtilities {
         }
     }
 
+
+
+    public ArrayList<Student> getAllStudentInfo() throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        ArrayList<Student> allStudents = new ArrayList<>();
+        String query = "select * from student";
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Student temp = new Student(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
+
+                allStudents.add(temp);
+
+            }
+
+            return allStudents;
+
+        } catch (Exception e) {
+            System.out.println("Exception getting student info");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+    }
+
     /**
      * To get personal information of teacher
      * @param email Email of the teacher
@@ -668,6 +700,30 @@ public class DbUtilities {
         }
     }
 
+    public  ArrayList<Teacher> getAllTeacherInfo() throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        ArrayList<Teacher> allteachers = new ArrayList<>();
+        String query = "select * from teacher";
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+//                System.out.println(resultSet.getString(3));
+                Teacher temp = new Teacher(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
+                allteachers.add(temp);
+            }
+            return allteachers;
+        } catch (Exception e) {
+            System.out.println("Exception getting student info");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+    }
+
 
 
     public Admin getAdminInfo(String email) throws SQLException {
@@ -689,6 +745,31 @@ public class DbUtilities {
 
         } catch (Exception e) {
             System.out.println("Exception getting student info");
+            throw new RuntimeException(e);
+        } finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+    }
+
+
+    public ArrayList<Courses> getAllCourses() throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String query;
+
+        query = "select * from courses";
+        ArrayList<Courses> courses = new ArrayList<>();
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                courses.add(new Courses(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getDouble(5),resultSet.getString(6)));
+            }
+            return courses;
+        } catch (SQLException e) {
+            System.out.println("Exception getting offered courses");
             throw new RuntimeException(e);
         } finally {
             preparedStatement.close();

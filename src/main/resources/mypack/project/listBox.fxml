@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="center-info-pane" stylesheets="@studentDashBoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.ListBoxController">
+   <children>
+      <HBox fx:id="list_hbox" layoutX="41.0" layoutY="68.0" prefHeight="54.0" prefWidth="852.0" style="-fx-background-color: #242529; -fx-border-color: #555;">
+         <children>
+            <Label fx:id="code_label" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="194.0" text="Code/ID" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="name_label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="54.0" prefWidth="439.0" text="Name" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="department_label" alignment="CENTER" contentDisplay="CENTER" layoutX="233.0" layoutY="10.0" prefHeight="54.0" prefWidth="202.0" text="Department" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</Pane>
