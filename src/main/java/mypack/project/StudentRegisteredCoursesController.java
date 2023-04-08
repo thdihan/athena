@@ -33,6 +33,11 @@ public class StudentRegisteredCoursesController {
 
     @FXML
     Button resetbtn;
+
+    @FXML
+    Pane warning_box;
+    @FXML
+    Label warning_text;
     private ArrayList<Courses> registered_courses;
     /**
      * To create nodes of course Hbox
@@ -62,14 +67,16 @@ public class StudentRegisteredCoursesController {
         currentStudent=student;
         registered_courses=courses;
         currentUser=user;
-
         DbUtilities dbUtilities = new DbUtilities();
         Boolean isReset = dbUtilities.getResetRequest(currentStudent.getId());
         if(isReset){
             resetbtn.setVisible(false);
+            warning_box.setVisible(true);
+            warning_text.setText("You have a reset request pending...");
         }
         else{
             resetbtn.setVisible(true);
+            warning_box.setVisible(false);
         }
 
         for(int i=0 ; i<registered_courses.size() ; i++){
@@ -137,6 +144,8 @@ public class StudentRegisteredCoursesController {
         DbUtilities dbUtilities = new DbUtilities();
         dbUtilities.setRegistrationResetRequest(currentStudent.getId(),currentUser.getType());
         resetbtn.setVisible(false);
+        warning_box.setVisible(true);
+        warning_text.setText("You have a reset request pending...");
     }
 
     public Pane getPane() {

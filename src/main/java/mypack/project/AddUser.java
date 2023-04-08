@@ -22,6 +22,8 @@ public class AddUser {
     Pane infoPane;
     @FXML
     Label warning;
+    @FXML
+    Pane warning_box;
     public Pane getInfoPane() {
         return infoPane;
     }
@@ -35,6 +37,7 @@ public class AddUser {
     @FXML
     public void userDataFileChooseBtn_clicked(ActionEvent event) {
         warning.setText("");
+        warning_box.setVisible(false);
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select PDF File");
@@ -74,7 +77,7 @@ public class AddUser {
     @FXML
     public void teacherDataChoose_clicked() {
         warning.setText("");
-
+        warning_box.setVisible(false);
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select PDF File");
@@ -123,6 +126,7 @@ public class AddUser {
             dbUtilities.addStudent(newStudents.get(i));
         }
         newUsers.clear();
+        warning_box.setVisible(true);
         warning.setText("Added Successfully");
     }
     @FXML
@@ -136,6 +140,7 @@ public class AddUser {
         for (int i = 0; i < newTeacher.size(); i++) {
             dbUtilities.addTeacher(newTeacher.get(i));
         }
+        warning_box.setVisible(true);
         warning.setText("Added Successfully");
 
     }
@@ -144,7 +149,7 @@ public class AddUser {
     @FXML
     public void coursecsvfile_click(ActionEvent event) throws SQLException {
         warning.setText("");
-
+        warning_box.setVisible(false);
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select PDF File");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
@@ -176,6 +181,8 @@ public class AddUser {
         for (int i = 0; i < newCourses.size(); i++) {
             dbUtilities.addCourses(newCourses.get(i));
         }
+
+        warning_box.setVisible(true);
         warning.setText("Added Successfully");
 
 

@@ -35,6 +35,10 @@ public class TeacherRegisteredCoursesController {
     @FXML
     Button resetbtn;
 
+    @FXML
+    Pane warning_box;
+    @FXML
+    Label warning_text;
     private Teacher currentTeacher;
     private ArrayList<Courses> registered_courses;
     /**
@@ -71,9 +75,12 @@ public class TeacherRegisteredCoursesController {
         Boolean isReset = dbUtilities.getResetRequest(currentTeacher.getId());
         if(isReset){
             resetbtn.setVisible(false);
+            warning_box.setVisible(true);
+            warning_text.setText("You have a reset request pending...");
         }
         else{
             resetbtn.setVisible(true);
+            warning_box.setVisible(false);
         }
         for(int i=0 ; i<registered_courses.size() ; i++){
             String courseInfo=registered_courses.get(i).getCode() + ": "+ registered_courses.get(i).getTitle();
@@ -145,6 +152,9 @@ public class TeacherRegisteredCoursesController {
         DbUtilities dbUtilities = new DbUtilities();
         dbUtilities.setRegistrationResetRequest(currentTeacher.getId(),currentUser.getType());
         resetbtn.setVisible(false);
+
+        warning_box.setVisible(true);
+        warning_text.setText("You have a reset request pending...");
     }
     public Pane getPane() {
         return infoPane;

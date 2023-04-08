@@ -51,8 +51,9 @@ public class UpdateProfileController {
     public Pane updatePane;
     @FXML
     public Label checkLabel;
+
     @FXML
-    public Label passCheckLabel;
+    public  Pane warning_box;
 
     /**
      * To initiate the update profile pane while scene change
@@ -67,6 +68,7 @@ public class UpdateProfileController {
         currentLabel.setVisible(false);
         newLabel.setVisible(false);
         confirmLabel.setVisible(false);
+        warning_box.setVisible(false);
 
         DbUtilities dbUtilities = new DbUtilities();
         if (user.getType().equals("s")) {
@@ -121,29 +123,34 @@ public class UpdateProfileController {
      */
     public void onConfirmBtnClicked(ActionEvent event) throws IOException, SQLException, NoSuchAlgorithmException {
         checkLabel.setText("");
-        passCheckLabel.setText("");
         if (nameField.getText().equals("") || dobField.getText().equals("") || contactField.getText().equals("")) {
+            warning_box.setVisible(true);
             checkLabel.setText("Please fill up all the fields");
         } else {
+            warning_box.setVisible(false);
             boolean check = false;
             if (currentField.isVisible()) {
                 if (currentField.getText().equals("") || newField.getText().equals("") || confirmField.getText().equals("")) {
-                    passCheckLabel.setText("Please fill up all the fields");
+                    warning_box.setVisible(true);
+                    checkLabel.setText("Please fill up all the fields");
                     check = true;
                 } else {
+                    warning_box.setVisible(false);
                     String currentFieldPassword=encryptPassword(currentField.getText());
                     if (!(currentFieldPassword.equals(currentUser.getPassword()))) {
-                        passCheckLabel.setText("Current password doesn't match");
+                        warning_box.setVisible(true);
+                        checkLabel.setText("Current password doesn't match");
                         check = true;
                     } else if (!(newField.getText().equals(confirmField.getText()))) {
-                        passCheckLabel.setText("New passwords don't match");
+                        warning_box.setVisible(true);
+                        checkLabel.setText("New passwords don't match");
+//                        passCheckLabel.setText("New passwords don't match");
                         check = true;
                     }
                 }
             }
             if (check == false) {
                 checkLabel.setText("");
-                passCheckLabel.setText("");
                 System.out.println("IN");
                 if (!newField.getText().equals(""))
                     currentUser.setPassword(encryptPassword(newField.getText()));
