@@ -26,8 +26,12 @@ public class ResetAllDataController {
     @FXML
     Label warning;
 
+    @FXML
+    Pane warning_box;
+
     public void initiate(Admin admin){
         currentAdmin = admin;
+        warning_box.setVisible(false);
     }
     @FXML
     void confirmBtn_clicked(ActionEvent event) throws SQLException, NoSuchAlgorithmException {
@@ -40,7 +44,9 @@ public class ResetAllDataController {
         else{
             System.out.println("not valid");
         }
-        warning.setText("Reset Successfull");
+
+        warning_box.setVisible(true);
+        warning.setText("Reset Successful !");
         password_textbox.clear();;
     }
 
