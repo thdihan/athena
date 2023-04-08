@@ -104,7 +104,8 @@ public class SinglePostPageController {
         else {
             submissionVbox.setVisible(false);
         }
-        postType_label.setText(post.getPost_type());
+        String postType = post.getPost_type().substring(0,1).toUpperCase() + post.getPost_type().substring(1,post.getPost_type().length());
+        postType_label.setText(postType);
         post_text.setText(post.getPost_text());
         if(post.getDeadline() != null)
             postDeadline_label.setText("Deadline: "+post.getDeadline());

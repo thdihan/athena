@@ -66,6 +66,8 @@ public class StudentSingleWorkspaceController {
     @FXML
     private Button chooseAttachmentBtn;
 
+
+
     private byte[] attachment_data;
     public void initiateData(String workspaceName, User user) throws SQLException {
 
@@ -107,17 +109,25 @@ public class StudentSingleWorkspaceController {
             postHeaderPane.setPrefHeight(38);
             postHeaderPane.setPrefWidth(834);
 
+
+            // post type
+            Label postType_label = new Label();
+            String postType = post.getPost_type().substring(0,1).toUpperCase() + post.getPost_type().substring(1,post.getPost_type().length());
+            postType_label.setText(postType);
+            postType_label.setStyle("-fx-text-fill: #fff37a; -fx-font-weight: bold");
+            postType_label.setLayoutX(23);
+            postType_label.setLayoutY(11);
             // Post Giver info
             Label postGiverTag = new Label();
             postGiverTag.setText("Posted By : ");
             postGiverTag.setStyle("-fx-text-fill: #fff; -fx-font-weight: bold");
-            postGiverTag.setLayoutX(23);
+            postGiverTag.setLayoutX(138);
             postGiverTag.setLayoutY(11);
 
             Label postGiverName = new Label();
             postGiverName.setText(post.getPost_giver_email());
             postGiverName.setStyle("-fx-text-fill: #fff");
-            postGiverName.setLayoutX(95);
+            postGiverName.setLayoutX(213);
             postGiverName.setLayoutY(11);
 
             Button viewDetails = new Button();
@@ -126,7 +136,7 @@ public class StudentSingleWorkspaceController {
             viewDetails.setLayoutY(7);
             viewDetails.setStyle("-fx-text-fill: #fff37a;-fx-background-color: trainsparent;-fx-font-weight: bold");
 
-            postHeaderPane.getChildren().addAll(postGiverTag,postGiverName,viewDetails);
+            postHeaderPane.getChildren().addAll(postType_label,postGiverTag,postGiverName,viewDetails);
 
 
             // Post Text Pane
