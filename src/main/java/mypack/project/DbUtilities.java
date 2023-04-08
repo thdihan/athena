@@ -66,7 +66,7 @@ public class DbUtilities {
                 "insert into users values ('shakun650@gmail.com', '21752926f73d037a19c53a9f172dd00c2b08d4b7b6d6e3b096835842faf24f57', 's')",
                 "insert into users values ('hasan@gmail.com', 'd38b6b3ca3e5bac0547c3cf6ea5b92a4f633bd6b2c8c94d28e009736d02ab3f4', 's')",
                 "insert into users values ('z', '594e519ae499312b29433b7dd8a97ff068defcba9755b6d5d00e84c524d67b06', 't')",
-                "insert into users values ('shuvro234@gmail.com', 'tukasl', 's')",
+//                "insert into users values ('shuvro234@gmail.com', 'tukasl', 's')",
                 "insert into users values ('a', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', 's')",
                 "insert into users values ('s', '43a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89', 's')",
                 "insert into users values ('admin@gmail.com','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','a')"
@@ -135,7 +135,7 @@ public class DbUtilities {
                 "Academic_Year int not null," +
                 "CONSTRAINT ttc_teacher Foreign key(courseteacher_ID) references Teacher(T_ID),CONSTRAINT ttc_course Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
         String[] insertData = {};
-//        initiateAllTable(tableName, tableQuery, insertData);
+        initiateAllTable(tableName, tableQuery, insertData);
 
 //        Student_takes_course
         tableName = "Student_takes_course";
@@ -154,7 +154,7 @@ public class DbUtilities {
                 "Final_marks double precision ," +
                 "Academic_Year int not null," +
                 "CONSTRAINT stc_student Foreign key(S_ID) references student(S_ID),CONSTRAINT stc_course Foreign key(S_coursedept,s_courseOfferedDept,S_coursecode) references Courses(dept,offered_dept,Course_code));";
-//        initiateAllTable(tableName, tableQuery, insertData);
+        initiateAllTable(tableName, tableQuery, insertData);
 
         // Post Table
 
