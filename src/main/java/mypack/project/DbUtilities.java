@@ -1191,7 +1191,7 @@ public class DbUtilities {
         }
 
         // set notification
-        setNotification(post,"post");
+        setNotification(post,post.getPost_type());
     }
 
 
