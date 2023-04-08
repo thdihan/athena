@@ -25,10 +25,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
-/** Controller class for adding marks
+
+/**
+ * Controller class for adding marks
+ *
  * @author Unknown
  * @version 1.0
- * @since March,2023
+ * @since March, 2023
  */
 
 public class TeacherMarksController implements Initializable {
@@ -50,7 +53,7 @@ public class TeacherMarksController implements Initializable {
     @FXML
     private ComboBox<String> examTypeDropDown;
     @FXML
-    private  Pane infoPane;
+    private Pane infoPane;
 
     @FXML
     private Label courseLabel;
@@ -66,13 +69,14 @@ public class TeacherMarksController implements Initializable {
     @FXML
     private Pane warning_box;
     @FXML
-    private  Label warning_text;
+    private Label warning_text;
 
 
     /**
      * To initiate the add marks view during scene change
-     * @param teacher Teacher object containing their information
-     * @param user User object of the teacher
+     *
+     * @param teacher           Teacher object containing their information
+     * @param user              User object of the teacher
      * @param registered_course List of registered courses of the teacher if any
      * @throws SQLException If problems with query
      */
@@ -83,7 +87,8 @@ public class TeacherMarksController implements Initializable {
         scrollPane.setVisible(false);
         warning_box.setVisible(false);
         courseDropDown.setStyle("-fx-text-fill: white;");
-        examTypeDropDown.setStyle("-fx-text-fill: white;");;
+        examTypeDropDown.setStyle("-fx-text-fill: white;");
+        ;
 //        studentListVbox.setVisible(false);
 //        courseDropDown.setVisible(false);
 //        examTypeDropDown.setVisible(false);
@@ -147,18 +152,20 @@ public class TeacherMarksController implements Initializable {
             }
         });
     }
+
     public Node getHbox(String id, double marks) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("markBox.fxml"));
         loader.load(); //loader.load() must be used otherwise controller isn't created
-        MarkBoxController markBoxController=loader.getController();
-        id+=" :";
+        MarkBoxController markBoxController = loader.getController();
+        id += " :";
         markBoxController.initiateBox(id, marks);
-        Node childNode= markBoxController.getChildNode();
+        Node childNode = markBoxController.getChildNode();
         return childNode;
     }
 
     /**
      * To generate the student list
+     *
      * @param event Event of get list button click
      * @return List of students based on course code selected
      */
@@ -182,15 +189,14 @@ public class TeacherMarksController implements Initializable {
             studentListVbox.setVisible(false);
             scrollPane.setVisible(false);
             studentList = dbUtilities.getStudentList(selectCourseInDropDown(event));
-            if(studentList.isEmpty()){
+            if (studentList.isEmpty()) {
 //                studentLabel.setText("No students registered for this course yet");
                 warning_box.setVisible(true);
                 warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
                 warning_text.setText("No students registered for this course yet");
 //                addTransition(studentLabel);
                 return studentList;
-            }
-            else{
+            } else {
                 warning_box.setVisible(false);
             }
 //        System.out.println(studentList.get(0));
@@ -213,8 +219,7 @@ public class TeacherMarksController implements Initializable {
 //                studentLabel.setText("No students registered or previously marks not added");
 //                addTransition(studentLabel);
                 return studentList;
-            }
-            else{
+            } else {
                 warning_box.setVisible(false);
             }
             studentListVbox.getChildren().clear();
@@ -232,14 +237,17 @@ public class TeacherMarksController implements Initializable {
 
     /**
      * To check if valid marks has been given as input
+     *
      * @param str Marks as string
      * @return True if string contains only numeric else False
      */
     public boolean isNumeric(String str) {
         return str != null && str.matches("-?\\d+(\\.\\d+)?");
     }
+
     /**
      * To submit the newly added marks
+     *
      * @param event Event of submit button click
      */
     public void onSubmitBtnClicked(ActionEvent event) {
@@ -258,55 +266,62 @@ public class TeacherMarksController implements Initializable {
                 warning_box.setVisible(true);
                 warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
                 warning_text.setText("Please generate student list to continue");
-            }
-
-            else if (examTypeDropDown.getValue() == null) {
+            } else if (examTypeDropDown.getValue() == null) {
 //                examLabel.setText("Please select exam type");
                 warning_box.setVisible(true);
                 warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
                 warning_text.setText("Please select exam type");
-            }
-            else{
+            } else {
                 warning_box.setVisible(false);
             }
         } else {
             DbUtilities dbUtilities = new DbUtilities();
             boolean submitFlag = true;
+            double credit = dbUtilities.getCourseCredit(courseDropDown.getValue().split(":")[0]);
             for (int i = 0; i < studentListVbox.getChildren().size(); i++) {
                 HBox hBox = (HBox) studentListVbox.getChildren().get(i);
                 Label idLabel = (Label) hBox.getChildren().get(0);
                 TextField markField = (TextField) hBox.getChildren().get(1);
+//                System.out.println("Credits: "+ credit);
                 if (markField.getText().equals("")) {
+
                     warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
                     warning_text.setText("Please fill all the mark fields before submitting");
-//                    studentLabel.setText("");
                     submitFlag = false;
                     break;
-                } else if (!isNumeric(markField.getText())) {
+                } else if (!isNumeric(markField.getText()) || Double.parseDouble(markField.getText()) < 0) {
+
                     warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
                     warning_text.setText("Please input valid marks");
-//                    studentLabel.setText("Please input valid marks");
+                    submitFlag = false;
+                    break;
+                } else if (examType.get(examTypeDropDown.getValue()).split("_")[0].equals("quiz") && Double.parseDouble(markField.getText()) > credit * 5) {
+
+                    System.out.println("IN");
+                    warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
+                    warning_text.setText("Marks limited to " + credit * 5 + " for this course");
+                    submitFlag = false;
+                    break;
+                } else if (examType.get(examTypeDropDown.getValue()).split("_")[0].equals("mid") && Double.parseDouble(markField.getText()) > credit * 25) {
+
+                    warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
+                    warning_text.setText("Marks limited to " + credit * 25 + " for this course");
+                    submitFlag = false;
+                    break;
+                } else if (examType.get(examTypeDropDown.getValue()).split("_")[0].equals("final") && Double.parseDouble(markField.getText()) > credit * 50) {
+
+                    warning_box.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
+                    warning_text.setText("Marks limited to " + credit * 50 + " for this course");
+                    submitFlag = false;
                     break;
                 }
                 System.out.println(studentListVbox.getChildren().size());
                 System.out.println(markField.getText());
                 dbUtilities.updateStudentMarks(idLabel.getText().split(" ")[0], Double.parseDouble(markField.getText()), courseDropDown.getValue().split(":")[0], examType.get(examTypeDropDown.getValue()));
-//                System.out.println(idLabel.getText().split(" ")[0]);
-//                studentLabel.setText("Marks updated successfully");
-//                addTransition(studentLabel);
-//                System.out.println("IN");
-//                PauseTransition pauseTransition = new PauseTransition(Duration.seconds(3));
-////                FadeTransition fade = new FadeTransition(Duration.seconds(1), studentLabel);
-////                fade.setToValue(0);
-////                fade.setOnFinished(event1 -> studentLabel.setText(""));
-////                SequentialTransition seq = new SequentialTransition(pauseTransition, fade);
-////                seq.play();
-//
-//                pauseTransition.setOnFinished(event1 -> studentLabel.setText(""));
-//                pauseTransition.play();
+
 
             }
-            if(submitFlag) {
+            if (submitFlag) {
                 scrollPane.setVisible(false);
                 studentListVbox.setVisible(false);
                 studentListVbox.getChildren().clear();
@@ -319,9 +334,9 @@ public class TeacherMarksController implements Initializable {
     }
 
 
-
     /**
      * Option to modify marks
+     *
      * @param event Event of modify marks button click
      */
     public void onModifyMarksBtnClicked(ActionEvent event) {
@@ -341,6 +356,7 @@ public class TeacherMarksController implements Initializable {
 
     /**
      * To get the selected course in dropdown
+     *
      * @param event Event of selection
      * @return Course code as string
      */
@@ -358,6 +374,7 @@ public class TeacherMarksController implements Initializable {
 
     /**
      * To get the exam type in drop down
+     *
      * @param event Event of selection
      * @return Exam type as string
      */
@@ -366,22 +383,26 @@ public class TeacherMarksController implements Initializable {
 //        examLabel.setText("");
         return examType;
     }
+
     /**
      * Attendance button click function
+     *
      * @param event Event for attendance button clicked
      * @throws SQLException If problems with query
-     * @throws IOException If problems with input/output
+     * @throws IOException  If problems with input/output
      */
     public void takeAttendanceBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.takeAttendanceBtnClicked(event);
     }
+
     /**
      * Course button click function
+     *
      * @param event Event for course button clicked
      * @throws SQLException If problems with query
-     * @throws IOException If problems with input/output
+     * @throws IOException  If problems with input/output
      */
     public void courseBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
@@ -395,26 +416,31 @@ public class TeacherMarksController implements Initializable {
 
     /**
      * Marks button click function
+     *
      * @param event Event of marks button click
      */
     public void marksBtnClicked(ActionEvent event) {
         System.out.println("Already in marks page");
     }
+
     /**
      * Logout button click function
+     *
      * @param event Event for logout button clicked
      * @throws SQLException If problems with query
-     * @throws IOException If problems with input/output
+     * @throws IOException  If problems with input/output
      */
     public void logoutBtnClicked(ActionEvent event) throws SQLException, IOException {
         TeacherDashBoardController teacherDashBoardController = new TeacherDashBoardController();
         teacherDashBoardController.assignDummyController(currentTeacher, registered_course, currentUser);
         teacherDashBoardController.logoutBtnClicked(event);
     }
+
     /**
      * Dashboard button click function
+     *
      * @param event Event of button click
-     * @throws IOException If problems with input/output
+     * @throws IOException  If problems with input/output
      * @throws SQLException If problems with query
      */
     public void dashBoardBtnClicked(ActionEvent event) throws SQLException, IOException {
@@ -436,6 +462,7 @@ public class TeacherMarksController implements Initializable {
 
     /**
      * To initiate the exam dropdown
+     *
      * @param url
      * @param resourceBundle
      */
@@ -449,7 +476,7 @@ public class TeacherMarksController implements Initializable {
         return infoPane;
     }
 
-    public  String getUiName() {
+    public String getUiName() {
         return "Marks Page";
     }
 }

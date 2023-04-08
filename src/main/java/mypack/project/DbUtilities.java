@@ -135,7 +135,7 @@ public class DbUtilities {
                 "Academic_Year int not null," +
                 "CONSTRAINT ttc_teacher Foreign key(courseteacher_ID) references Teacher(T_ID),CONSTRAINT ttc_course Foreign key(T_coursedept,T_OfferedDept,T_coursecode) references courses(dept,offered_dept,Course_code));";
         String[] insertData = {};
-        initiateAllTable(tableName, tableQuery, insertData);
+//        initiateAllTable(tableName, tableQuery, insertData);
 
 //        Student_takes_course
         tableName = "Student_takes_course";
@@ -154,7 +154,7 @@ public class DbUtilities {
                 "Final_marks double precision ," +
                 "Academic_Year int not null," +
                 "CONSTRAINT stc_student Foreign key(S_ID) references student(S_ID),CONSTRAINT stc_course Foreign key(S_coursedept,s_courseOfferedDept,S_coursecode) references Courses(dept,offered_dept,Course_code));";
-        initiateAllTable(tableName, tableQuery, insertData);
+//        initiateAllTable(tableName, tableQuery, insertData);
 
         // Post Table
 
@@ -1759,6 +1759,27 @@ public class DbUtilities {
             studentStatement.executeUpdate();
 
         } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public double getCourseCredit(String courseCode){
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String query = "select course_credit from courses where Course_code=?;";
+
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, courseCode);
+            resultSet = preparedStatement.executeQuery();
+            double credit =-1;
+            if(resultSet.next()){
+                credit=resultSet.getDouble(1);
+            }
+            return credit;
+        } catch (SQLException e) {
+            System.out.println("Exception getting course credit");
             throw new RuntimeException(e);
         }
     }
