@@ -66,7 +66,7 @@ public class DbUtilities {
                 "insert into users values ('shakun650@gmail.com', '21752926f73d037a19c53a9f172dd00c2b08d4b7b6d6e3b096835842faf24f57', 's')",
                 "insert into users values ('hasan@gmail.com', 'd38b6b3ca3e5bac0547c3cf6ea5b92a4f633bd6b2c8c94d28e009736d02ab3f4', 's')",
                 "insert into users values ('z', '594e519ae499312b29433b7dd8a97ff068defcba9755b6d5d00e84c524d67b06', 't')",
-                "insert into users values ('shuvro234@gmail.com', 'tukasl', 's')",
+//                "insert into users values ('shuvro234@gmail.com', 'tukasl', 's')",
                 "insert into users values ('a', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', 's')",
                 "insert into users values ('s', '43a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89', 's')",
                 "insert into users values ('admin@gmail.com','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','a')"
@@ -1759,6 +1759,27 @@ public class DbUtilities {
             studentStatement.executeUpdate();
 
         } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public double getCourseCredit(String courseCode){
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String query = "select course_credit from courses where Course_code=?;";
+
+        try {
+            Connection connection = connectToDB("projectDb", "postgres", "tukasl");
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, courseCode);
+            resultSet = preparedStatement.executeQuery();
+            double credit =-1;
+            if(resultSet.next()){
+                credit=resultSet.getDouble(1);
+            }
+            return credit;
+        } catch (SQLException e) {
+            System.out.println("Exception getting course credit");
             throw new RuntimeException(e);
         }
     }
