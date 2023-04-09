@@ -16,7 +16,7 @@
       </Button>
       <Pane fx:id="warning_box" layoutX="40.0" layoutY="25.0" prefHeight="50.0" prefWidth="836.0" style="-fx-background-color: #faafb6; -fx-opacity: 1; -fx-background-radius: 15; -fx-border-color: red; -fx-border-radius: 15;" visible="false">
          <children>
-            <Label fx:id="warningLabel1" alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="10.0" prefHeight="30.0" prefWidth="140.0" textAlignment="CENTER">
+            <Label fx:id="warningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="10.0" prefHeight="30.0" prefWidth="140.0" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
