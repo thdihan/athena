@@ -161,7 +161,7 @@ public class UpdateProfileController {
                 FXMLLoader loader = new FXMLLoader();
                 if (currentUser.getType().equals("s"))
                     loader.setLocation(getClass().getResource("studentDashBoard.fxml"));
-                else if(currentUser.getType().equals("s"))
+                else if(currentUser.getType().equals("t"))
                     loader.setLocation(getClass().getResource("teacherDashBoard.fxml"));
                 else
                     loader.setLocation(getClass().getResource("adminDashboard.fxml"));

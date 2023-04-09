@@ -119,7 +119,7 @@ public class DbUtilities {
                 "INSERT INTO COURSES VALUES('CSE 4407','System Analysis and Design','CSE','CSE',2.0,'4');", "INSERT INTO COURSES VALUES('MATH 4441','Probability','CSE','CSE',3.0,'4');",
                 "INSERT INTO COURSES VALUES('EEE 4481','Digital Electronics and Pulse Techniques','EEE','CSE',3.0,'4');",
                 "INSERT INTO COURSES VALUES('HUM 4441','Engineering Ethics','CSE','CSE',3.0,'4');",
-                "INSERT INTO COURSES VALUES('CSE 4303','DBMS','CSE','CSE',3.0,'3');"
+//                "INSERT INTO COURSES VALUES('CSE 4303','DBMS','CSE','CSE',3.0,'3');"
         };
         initiateAllTable(tableName, tableQuery, insertCourse);
 
