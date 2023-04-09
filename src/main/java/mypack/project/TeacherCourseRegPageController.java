@@ -36,6 +36,8 @@ public class TeacherCourseRegPageController {
     Pane infoPane;
     ArrayList<Courses> offered_courses;
     ArrayList<Courses> registered_course;
+    @FXML
+    Label warningLabel;
     /**
      * To create nodes of course Hbox
      * @param course Course code and title
@@ -84,24 +86,28 @@ public class TeacherCourseRegPageController {
     public void registerCourseBtnClicked(ActionEvent event) throws SQLException, IOException {
         DbUtilities dbUtilities=new DbUtilities();
         ArrayList<Courses>registered_course=dbUtilities.registerTeacherCourses(course_box, currentTeacher, offered_courses);
-        System.out.println("Registered");
+        if(registered_course.isEmpty()){
+            warningLabel.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
+            warningLabel.setText("No course selected");
+        }
+        else {
+            System.out.println("Registered");
 
-        TeacherRegisteredCoursesController teacherRegisteredCoursesController;
+            TeacherRegisteredCoursesController teacherRegisteredCoursesController;
 
 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherRegisteredCourse.fxml"));
+            loader.load(); //loader.load() must be used otherwise controller isn't created
+            Node childNode = null;
 
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherRegisteredCourse.fxml"));
-        loader.load(); //loader.load() must be used otherwise controller isn't created
-        Node childNode = null;
-
-        teacherRegisteredCoursesController =loader.getController();
-        teacherRegisteredCoursesController.initiateRegisteredCourseView(currentTeacher, registered_course, currentUser);
+            teacherRegisteredCoursesController = loader.getController();
+            teacherRegisteredCoursesController.initiateRegisteredCourseView(currentTeacher, registered_course, currentUser);
 
 //            ui_name.setText(studentRegisteredCoursesController.getUiName());
-        childNode=teacherRegisteredCoursesController.getPane();
-        infoPane.getChildren().clear();
-        infoPane.getChildren().add(childNode);
+            childNode = teacherRegisteredCoursesController.getPane();
+            infoPane.getChildren().clear();
+            infoPane.getChildren().add(childNode);
+        }
     }
 
     /**

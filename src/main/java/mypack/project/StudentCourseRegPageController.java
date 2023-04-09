@@ -35,6 +35,8 @@ public class StudentCourseRegPageController {
     Pane infoPane;
     ArrayList<Courses> offered_courses;
     ArrayList<Courses> registered_course;
+    @FXML
+    Label warningLabel;
 
     /**
      * To create nodes of course Hbox
@@ -84,21 +86,27 @@ public class StudentCourseRegPageController {
     public void registerCourseBtnClicked(ActionEvent event) throws SQLException, IOException {
         DbUtilities dbUtilities=new DbUtilities();
         ArrayList<Courses>registered_course=dbUtilities.registerCourses(course_box, currentStudent, offered_courses);
-        System.out.println("Registered");
+        if(registered_course.isEmpty()){
+            warningLabel.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
+            warningLabel.setText("No course selected");
+        }
+        else {
+            System.out.println("Registered");
 
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("registeredCourses.fxml"));
-        loader.load(); //loader.load() must be used otherwise controller isn't created
-        Node childNode = null;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("registeredCourses.fxml"));
+            loader.load(); //loader.load() must be used otherwise controller isn't created
+            Node childNode = null;
 
-        StudentRegisteredCoursesController studentRegisteredCoursesController;
-        studentRegisteredCoursesController =loader.getController();
-        studentRegisteredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
+            StudentRegisteredCoursesController studentRegisteredCoursesController;
+            studentRegisteredCoursesController = loader.getController();
+            studentRegisteredCoursesController.initiateRegisteredCourseView(currentStudent, registered_course, currentUser);
 
 //            ui_name.setText(studentRegisteredCoursesController.getUiName());
-        childNode=studentRegisteredCoursesController.getPane();
-        infoPane.getChildren().clear();
-        infoPane.getChildren().add(childNode);
+            childNode = studentRegisteredCoursesController.getPane();
+            infoPane.getChildren().clear();
+            infoPane.getChildren().add(childNode);
+        }
     }
 
 
