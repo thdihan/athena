@@ -38,6 +38,9 @@ public class TeacherCourseRegPageController {
     ArrayList<Courses> registered_course;
     @FXML
     Label warningLabel;
+
+    @FXML
+    Pane warning_box;
     /**
      * To create nodes of course Hbox
      * @param course Course code and title
@@ -87,10 +90,12 @@ public class TeacherCourseRegPageController {
         DbUtilities dbUtilities=new DbUtilities();
         ArrayList<Courses>registered_course=dbUtilities.registerTeacherCourses(course_box, currentTeacher, offered_courses);
         if(registered_course.isEmpty()){
-            warningLabel.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
+//            warningLabel.setStyle("-fx-background-color: #faafb6;-fx-border-color: red;-fx-background-radius: 15px; -fx-border-radius: 15px;");
+            warning_box.setVisible(true);
             warningLabel.setText("No course selected");
         }
         else {
+            warning_box.setVisible(false);
             System.out.println("Registered");
 
             TeacherRegisteredCoursesController teacherRegisteredCoursesController;

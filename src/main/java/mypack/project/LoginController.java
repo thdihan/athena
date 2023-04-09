@@ -63,6 +63,7 @@ public class LoginController {
 
 
         } else if (userType.equals("t")) {
+            System.out.println("WORKING 1");
             teacherDashBoardController=loader.getController();
             teacherDashBoardController.initiateTeacherUser(loggingUser);
 

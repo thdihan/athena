@@ -8,16 +8,20 @@
 
 <Pane fx:id="infoPane" prefHeight="655.0" prefWidth="923.0" styleClass="center-info-pane" stylesheets="@studentDashBoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypack.project.TeacherCourseRegPageController">
    <children>
-      <VBox fx:id="course_box" layoutX="33.0" layoutY="33.0" prefWidth="366.0" />
+      <VBox fx:id="course_box" layoutX="40.0" layoutY="100.0" prefWidth="366.0" />
       <Button layoutX="737.0" layoutY="582.0" mnemonicParsing="false" onAction="#registerCourseBtnClicked" prefHeight="41.0" prefWidth="140.0" styleClass="login-button" stylesheets="@studentDashBoard.css" text="Register Courses">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Label fx:id="warningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="737.0" layoutY="536.0" prefHeight="30.0" prefWidth="140.0" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
+      <Pane fx:id="warning_box" layoutX="40.0" layoutY="25.0" prefHeight="50.0" prefWidth="836.0" style="-fx-background-color: #faafb6; -fx-opacity: 1; -fx-background-radius: 15; -fx-border-color: red; -fx-border-radius: 15;" visible="false">
+         <children>
+            <Label fx:id="warningLabel1" alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="10.0" prefHeight="30.0" prefWidth="140.0" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </Pane>
